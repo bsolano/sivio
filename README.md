@@ -13,7 +13,7 @@ git clone https://github.com/bsolano/sivio.git
 composer update
 ```
 
-### Crear copia de ´config/app´
+### Crear copia de `config/app`
 Craer una *copia* del archivo `config/app.default.php` y renombrarlo a `config/app.php`
 
 ```bash
@@ -24,9 +24,9 @@ cp app.default.php app.php
 ### Base de datos
 
 Ir a `app.php` buscar `Datasource` y cambiar
-* **host**
-* **nombre de la base de datos**
-* **username**
-* **password**
+* *host*
+* *nombre de la base de datos*
+* *username*
+* *password*
 
 Con los datos que brindó el profe por correo electrónico.
