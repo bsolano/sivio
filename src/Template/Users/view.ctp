@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
+            <td><?= h($user->password) ?></td>  
         </tr>
         <tr>
             <th><?= __('Group') ?></th>
