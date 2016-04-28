@@ -1,0 +1,21 @@
+php my admin control panel:
+
+    https://ceaam-jasonanx.c9users.io/phpmyadmin
+    
+Puse un .htacces en el root dir para que redirija hacia /app, asi no se muestra 
+la molesta af página de index
+
+username: 
+
+
+[ver archivos ocultos en el tree view de c9]
+    Go to upper left Cloud9 menu item, then select the preferences option.
+    In the settings select tree & navigate, and then you can modify the pattern of hidden files.
+    To show'em all, yo can erase all from the text box, to see the .gitignore file, delete only the ".*"
+
+
+
+[paginas]
+
+https://community.c9.io/t/setting-up-phpmyadmin/1723
+https://docs.c9.io/docs/setting-up-mysql
