@@ -120,4 +120,11 @@ class PeopleController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function initialize()
+    {
+        parent::initialize();
+    
+        $this->Auth->allow();
+    }
 }
