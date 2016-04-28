@@ -55,10 +55,10 @@ class UsersPeopleController extends AppController
         if ($this->request->is('post')) {
             $usersPerson = $this->UsersPeople->patchEntity($usersPerson, $this->request->data);
             if ($this->UsersPeople->save($usersPerson)) {
-                $this->Flash->success(__('The users person has been saved.'));
+                $this->Flash->success(__('Se ha guardado la atención'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The users person could not be saved. Please, try again.'));
+                $this->Flash->error(__('No se pudo guardar la atención'));
             }
         }
         $users = $this->UsersPeople->Users->find('list', ['limit' => 200]);
@@ -112,4 +112,12 @@ class UsersPeopleController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+ 
+    public function initialize()
+    {
+        parent::initialize();
+    
+        $this->Auth->allow();
+    }
+
 }

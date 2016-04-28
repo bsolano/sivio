@@ -25,7 +25,15 @@
             <tr>
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->username) ?></td>
-                <td><?= h($user->password) ?></td>
+                
+                <?php 
+                if (false) {
+                    ?> <td> <?= h($user->password) ?>  </td> <?php
+                } else {
+                    ?> <td>[Oculta]</td> <?php
+                }
+                ?>
+                
                 <td><?= $user->has('group') ? $this->Html->link($user->group->name, ['controller' => 'Groups', 'action' => 'view', $user->group->id]) : '' ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->modified) ?></td>
