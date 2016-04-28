@@ -125,14 +125,20 @@ class PeopleController extends AppController
      * records_search method
      * Devuelve los resultados encontrados dado un keyword para buscar
      */ 
-    public function records_search() {
-        // $results = $this->People->find_record($keyword)
+    public function recordsSearch() {
+        $keyword = $this->request->query('keyword');
+        $people = $this->People->find_record($keyword);
+        
+        $this->set(compact('people'));
+        $this->set('_serialize', ['people']);
     }
     
-    // Métodos auxiliares
     public function initialize()
     {
         parent::initialize();
         $this->Auth->allow();
+        
+        // Json
+        $this->loadComponent('RequestHandler');
     }
 }
