@@ -120,4 +120,19 @@ class PeopleController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+    /**
+     * records_search method
+     * Devuelve los resultados encontrados dado un keyword para buscar
+     */ 
+    public function records_search() {
+        // $results = $this->People->find_record($keyword)
+    }
+    
+    // Métodos auxiliares
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow();
+    }
 }
