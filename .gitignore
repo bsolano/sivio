@@ -4,5 +4,5 @@
 /logs/*
 /phpmyadmin/*
 composer.phar
-.htaccess
+phpMyAdmin/
 

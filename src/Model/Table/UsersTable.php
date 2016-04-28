@@ -62,6 +62,14 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
+        $validator->add('confirm', [
+            'compare' => [
+                'rule' => ['compareWith', 'password'],
+                'message' => 'Las contraseñas no coinciden'
+            ]
+            ]
+        );
+ 
         return $validator;
     }
 
