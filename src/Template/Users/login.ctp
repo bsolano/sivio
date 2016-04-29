@@ -1,4 +1,4 @@
-<?= $this->Form->create('User', ['action' => 'login']) ?>
+<?= $this->Form->create('User', ['url' => 'users/login']) ?>
 <fieldset>
     <legend><?= __('Login') ?></legend>
     <?= $this->Form->input('username') ?>

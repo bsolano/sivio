@@ -52,7 +52,12 @@ class UsersPeopleController extends AppController
     public function add()
     {
         $usersPerson = $this->UsersPeople->newEntity();
-        $query = $this->UsersPeople->People->find('list')->select(['nombre', 'apellidos']);
+       
+       
+        $query = $this->UsersPeople->People->find('list',[
+            'keyField' => 'id',
+            'valueField' => 'nombre'
+        ]);
         
         $this->set('nombres', $query);
         

@@ -17,10 +17,6 @@
             <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>  
-        </tr>
-        <tr>
             <th><?= __('Group') ?></th>
             <td><?= $user->has('group') ? $this->Html->link($user->group->name, ['controller' => 'Groups', 'action' => 'view', $user->group->id]) : '' ?></td>
         </tr>
