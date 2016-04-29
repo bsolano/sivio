@@ -50,7 +50,7 @@ class PeopleEntriesFixture extends TestFixture
             'person_id' => 1,
             'entries_id' => 1,
             'tipo_accion' => 'Lorem ipsum dolor sit amet',
-            'fecha_accion' => '2016-04-27 17:25:40',
+            'fecha_accion' => '2016-04-29 02:41:48',
             'id' => 1,
             'rechazo' => 'Lorem ipsum dolor sit amet',
             'motivo_rechazo' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.'

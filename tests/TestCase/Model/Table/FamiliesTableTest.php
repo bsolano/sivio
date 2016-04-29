@@ -30,20 +30,21 @@ class FamiliesTableTest extends TestCase
         'app.aggressors',
         'app.histories',
         'app.consultations',
-        'app.external_references',
-        'app.followups',
-        'app.internal_references',
-        'app.interventions',
-        'app.interventions_people',
-        'app.advocacies',
-        'app.evaluations',
         'app.users',
         'app.groups',
-        'app.people_advocacies',
         'app.entries',
         'app.people_entries',
-        'app.people_families',
-        'app.users_people'
+        'app.evaluations',
+        'app.advocacies',
+        'app.followups',
+        'app.followups_users',
+        'app.people_advocacies',
+        'app.internal_references',
+        'app.users_people',
+        'app.external_references',
+        'app.interventions',
+        'app.interventions_people',
+        'app.people_families'
     ];
 
     /**
