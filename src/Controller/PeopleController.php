@@ -132,7 +132,9 @@ class PeopleController extends AppController
         $this->set(compact('people'));
         $this->set('_serialize', ['people']);
     }
-    
+    public function summaryview(){
+        
+    }
     public function initialize()
     {
         parent::initialize();

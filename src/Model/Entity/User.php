@@ -13,6 +13,12 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Group $group
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+ * @property \App\Model\Entity\Consultation[] $consultations
+ * @property \App\Model\Entity\Entry[] $entries
+ * @property \App\Model\Entity\Evaluation[] $evaluations
+ * @property \App\Model\Entity\Followup[] $followups
+ * @property \App\Model\Entity\InternalReference[] $internal_references
+ * @property \App\Model\Entity\Person[] $people
  */
 class User extends Entity
 {

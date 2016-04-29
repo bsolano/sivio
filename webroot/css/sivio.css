@@ -6,7 +6,9 @@ html {
 a.disabled {
     pointer-events: none;
 }
-
+.box{
+    border: solid;
+}
 a:hover {
     color: #15848F;
 }

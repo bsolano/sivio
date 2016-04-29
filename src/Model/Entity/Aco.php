@@ -8,13 +8,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $parent_id
- * @property \App\Model\Entity\ParentAco $parent_aco
+ * @property \App\Model\Entity\Aco $parent_aco
  * @property string $model
  * @property int $foreign_key
  * @property string $alias
  * @property int $lft
  * @property int $rght
- * @property \App\Model\Entity\ChildAco[] $child_acos
+ * @property \App\Model\Entity\Aco[] $child_acos
  * @property \App\Model\Entity\Aro[] $aros
  */
 class Aco extends Entity

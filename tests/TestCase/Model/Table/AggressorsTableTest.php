@@ -25,7 +25,26 @@ class AggressorsTableTest extends TestCase
      */
     public $fixtures = [
         'app.aggressors',
-        'app.people'
+        'app.people',
+        'app.transfers',
+        'app.histories',
+        'app.consultations',
+        'app.users',
+        'app.groups',
+        'app.entries',
+        'app.people_entries',
+        'app.evaluations',
+        'app.advocacies',
+        'app.followups',
+        'app.followups_users',
+        'app.people_advocacies',
+        'app.internal_references',
+        'app.users_people',
+        'app.external_references',
+        'app.interventions',
+        'app.interventions_people',
+        'app.families',
+        'app.people_families'
     ];
 
     /**

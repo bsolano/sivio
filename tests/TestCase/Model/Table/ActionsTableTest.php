@@ -25,7 +25,27 @@ class ActionsTableTest extends TestCase
      */
     public $fixtures = [
         'app.actions',
-        'app.transfers'
+        'app.transfers',
+        'app.people',
+        'app.aggressors',
+        'app.histories',
+        'app.consultations',
+        'app.users',
+        'app.groups',
+        'app.entries',
+        'app.people_entries',
+        'app.evaluations',
+        'app.advocacies',
+        'app.followups',
+        'app.followups_users',
+        'app.people_advocacies',
+        'app.internal_references',
+        'app.users_people',
+        'app.external_references',
+        'app.interventions',
+        'app.interventions_people',
+        'app.families',
+        'app.people_families'
     ];
 
     /**
