@@ -221,3 +221,4 @@ Type::build('date')
 Type::build('datetime')
     ->useImmutable()
     ->useLocaleParser();
+Plugin::load('BasicSeed', ['bootstrap' => false, 'routes' => false]);

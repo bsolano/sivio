@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0a35fb90132be13f80a19335adc525d",
-    "content-hash": "ed338b1bbdc54376d008e7a34209d188",
+    "hash": "a17b4120e14f7ca89821177250093138",
+    "content-hash": "dd3d9d8c3dadfde4f79f7d69b3ae69c0",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -387,6 +387,57 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2016-04-27 02:41:58"
+        },
+        {
+            "name": "loadsys/cakephp-basic-seed",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loadsys/CakePHP-Basic-Seed.git",
+                "reference": "ef8dd693bfe7962eba84c364f00df340af1ad1f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loadsys/CakePHP-Basic-Seed/zipball/ef8dd693bfe7962eba84c364f00df340af1ad1f2",
+                "reference": "ef8dd693bfe7962eba84c364f00df340af1ad1f2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "php": ">=5.4.16"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "BasicSeed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loadsys Web Strategies",
+                    "homepage": "https://www.loadsys.com/"
+                }
+            ],
+            "description": "Provides a simple mechanism for seeding data into a CakePHP application's database.",
+            "homepage": "http://github.com/loadsys/CakePHP-Basic-Seed",
+            "keywords": [
+                "cakephp",
+                "data",
+                "database",
+                "import",
+                "plugin",
+                "seed",
+                "shell",
+                "testing"
+            ],
+            "time": "2015-10-26 17:12:28"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
