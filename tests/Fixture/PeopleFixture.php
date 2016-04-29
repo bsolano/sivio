@@ -63,7 +63,7 @@ class PeopleFixture extends TestFixture
             'id' => 1,
             'nombre' => 'Lorem ipsum dolor sit amet',
             'apellidos' => 'Lorem ipsum dolor sit amet',
-            'fecha_de_nacimiento' => '2016-04-27',
+            'fecha_de_nacimiento' => '2016-04-29',
             'estado_civil' => 'Lorem ipsum d',
             'escolaridad' => 'Lorem ipsum dolor sit a',
             'atencion_especializada' => 'Lorem ipsum dolor sit amet',

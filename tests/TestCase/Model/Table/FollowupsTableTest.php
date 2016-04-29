@@ -30,21 +30,21 @@ class FollowupsTableTest extends TestCase
         'app.aggressors',
         'app.histories',
         'app.consultations',
-        'app.external_references',
-        'app.internal_references',
-        'app.interventions',
-        'app.interventions_people',
-        'app.advocacies',
-        'app.evaluations',
         'app.users',
         'app.groups',
-        'app.people_advocacies',
         'app.entries',
         'app.people_entries',
-        'app.families',
-        'app.people_families',
+        'app.evaluations',
+        'app.advocacies',
+        'app.people_advocacies',
+        'app.followups_users',
+        'app.internal_references',
         'app.users_people',
-        'app.followups_users'
+        'app.external_references',
+        'app.interventions',
+        'app.interventions_people',
+        'app.families',
+        'app.people_families'
     ];
 
     /**

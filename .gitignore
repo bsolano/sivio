@@ -2,4 +2,7 @@
 /config/app.php
 /tmp/*
 /logs/*
+/phpmyadmin/*
 composer.phar
+phpMyAdmin/
+

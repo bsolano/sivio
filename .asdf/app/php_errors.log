@@ -1,0 +1,30 @@
+[19-Mar-2016 18:21:06 UTC] PHP Fatal error:  Unsupported operand types in /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Router.php on line 361
+[19-Mar-2016 18:21:06 UTC] PHP Stack trace:
+[19-Mar-2016 18:21:06 UTC] PHP   1. {main}() /home/ubuntu/workspace/app/webroot/index.php:0
+[19-Mar-2016 18:21:06 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/app/webroot/index.php:37
+[19-Mar-2016 18:21:06 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[19-Mar-2016 18:21:06 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[19-Mar-2016 18:21:06 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[19-Mar-2016 18:21:06 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[19-Mar-2016 18:21:06 UTC] PHP   7. Cake\Routing\Filter\RoutingFilter->beforeDispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[19-Mar-2016 18:21:06 UTC] PHP   8. Cake\Routing\Router::setRequestInfo() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Filter/RoutingFilter.php:51
+[19-Mar-2016 18:21:07 UTC] PHP Fatal error:  Unsupported operand types in /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Router.php on line 361
+[19-Mar-2016 18:21:07 UTC] PHP Stack trace:
+[19-Mar-2016 18:21:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/app/webroot/index.php:0
+[19-Mar-2016 18:21:07 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/app/webroot/index.php:37
+[19-Mar-2016 18:21:07 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[19-Mar-2016 18:21:07 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[19-Mar-2016 18:21:07 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[19-Mar-2016 18:21:07 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[19-Mar-2016 18:21:07 UTC] PHP   7. Cake\Routing\Filter\RoutingFilter->beforeDispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[19-Mar-2016 18:21:07 UTC] PHP   8. Cake\Routing\Router::setRequestInfo() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Filter/RoutingFilter.php:51
+[19-Mar-2016 18:21:07 UTC] PHP Fatal error:  Unsupported operand types in /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Router.php on line 361
+[19-Mar-2016 18:21:07 UTC] PHP Stack trace:
+[19-Mar-2016 18:21:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/app/webroot/index.php:0
+[19-Mar-2016 18:21:07 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/app/webroot/index.php:37
+[19-Mar-2016 18:21:07 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[19-Mar-2016 18:21:07 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[19-Mar-2016 18:21:07 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[19-Mar-2016 18:21:07 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[19-Mar-2016 18:21:07 UTC] PHP   7. Cake\Routing\Filter\RoutingFilter->beforeDispatch() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[19-Mar-2016 18:21:07 UTC] PHP   8. Cake\Routing\Router::setRequestInfo() /home/ubuntu/workspace/app/vendor/cakephp/cakephp/src/Routing/Filter/RoutingFilter.php:51

@@ -13,9 +13,13 @@
         <?php
             echo $this->Form->input('username');
             echo $this->Form->input('password');
+            echo $this->Form->input('confirm', array('required'=>true,'label'=>'Confirm Password','type'=>'password') );
             echo $this->Form->input('group_id', ['options' => $groups]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+    
 </div>
+
+

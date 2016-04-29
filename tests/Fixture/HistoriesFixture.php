@@ -68,7 +68,7 @@ class HistoriesFixture extends TestFixture
             'id' => 1,
             'valoracion_riesgo' => 'Lorem ipsum dolor ',
             'medida_proteccion' => 'Lorem ipsum dolor sit amet',
-            'vencimiento_proteccion' => '2016-04-27',
+            'vencimiento_proteccion' => '2016-04-29',
             'situacion_enfrentada' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.'
         ],
     ];

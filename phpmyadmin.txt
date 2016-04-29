@@ -1,0 +1,23 @@
+
+
+
+cd /home/ubuntu/workspace
+ln -s /usr/share/phpmyadmin
+sudo service apache2 restart
+
+sudo vi /etc/phpmyadmin/config.inc.php 
+	- Activar la linea comentada que dice AllowNoPassword, o poner sus credenciales.
+	- Agregar el servidor del profe copiando esto:
+
+		$i++;
+$cfg['Servers'][$i]['host'] = 'xxx.com:3306'; //provide hostname and port if other than default
+$cfg['Servers'][$i]['user'] = 'solsofth_sivio';   //user name for your remote server
+$cfg['Servers'][$i]['password'] = 'xxx';  //password
+$cfg['Servers'][$i]['auth_type'] = 'config';       // keep it as config
+
+
+
+Se pueden loguear normalmente con usuario root
+
+Ejemplo:
+https://sivio-pvelacr.c9users.io/phpmyadmin

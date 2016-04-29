@@ -33,18 +33,18 @@ class ConsultationsTableTest extends TestCase
         'app.followups',
         'app.users',
         'app.groups',
-        'app.followups_users',
-        'app.advocacies',
-        'app.evaluations',
-        'app.people_advocacies',
-        'app.internal_references',
-        'app.interventions',
-        'app.interventions_people',
         'app.entries',
         'app.people_entries',
+        'app.evaluations',
+        'app.advocacies',
+        'app.people_advocacies',
+        'app.followups_users',
+        'app.internal_references',
+        'app.users_people',
+        'app.interventions',
+        'app.interventions_people',
         'app.families',
-        'app.people_families',
-        'app.users_people'
+        'app.people_families'
     ];
 
     /**

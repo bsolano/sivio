@@ -30,21 +30,21 @@ class InterventionsTableTest extends TestCase
         'app.aggressors',
         'app.histories',
         'app.consultations',
-        'app.external_references',
-        'app.followups',
         'app.users',
         'app.groups',
-        'app.followups_users',
-        'app.advocacies',
-        'app.evaluations',
-        'app.people_advocacies',
-        'app.internal_references',
-        'app.interventions_people',
         'app.entries',
         'app.people_entries',
+        'app.evaluations',
+        'app.advocacies',
+        'app.followups',
+        'app.followups_users',
+        'app.people_advocacies',
+        'app.internal_references',
+        'app.users_people',
+        'app.external_references',
+        'app.interventions_people',
         'app.families',
-        'app.people_families',
-        'app.users_people'
+        'app.people_families'
     ];
 
     /**

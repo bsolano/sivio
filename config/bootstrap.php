@@ -189,7 +189,7 @@ Request::addDetector('tablet', function ($request) {
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
-
+Plugin::load('Bootstrap');
 Plugin::load('Migrations');
 Plugin::load('Acl', ['bootstrap' => true]);
 
@@ -222,3 +222,7 @@ Type::build('datetime')
     ->useImmutable()
     ->useLocaleParser();
 Plugin::load('BasicSeed', ['bootstrap' => false, 'routes' => false]);
+
+Plugin::load('BootstrapUI');
+
+Plugin::load('Less');
