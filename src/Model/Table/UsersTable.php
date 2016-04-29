@@ -6,15 +6,18 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Event\Event;
-use Cake\ORM\Entity;
-use Cake\Auth\DefaultPasswordHasher;
-
 
 /**
  * Users Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Groups
+ * @property \Cake\ORM\Association\HasMany $Consultations
+ * @property \Cake\ORM\Association\HasMany $Entries
+ * @property \Cake\ORM\Association\HasMany $Evaluations
+ * @property \Cake\ORM\Association\HasMany $Followups
+ * @property \Cake\ORM\Association\HasMany $InternalReferences
+ * @property \Cake\ORM\Association\BelongsToMany $Followups
+ * @property \Cake\ORM\Association\BelongsToMany $People
  */
 class UsersTable extends Table
 {
@@ -39,6 +42,31 @@ class UsersTable extends Table
             'foreignKey' => 'group_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasMany('Consultations', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Entries', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Evaluations', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Followups', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('InternalReferences', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->belongsToMany('Followups', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'followup_id',
+            'joinTable' => 'followups_users'
+        ]);
+        $this->belongsToMany('People', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'person_id',
+            'joinTable' => 'users_people'
+        ]);
     }
 
     /**
@@ -62,14 +90,6 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
-        $validator->add('confirm', [
-            'compare' => [
-                'rule' => ['compareWith', 'password'],
-                'message' => 'Las contraseñas no coinciden'
-            ]
-            ]
-        );
- 
         return $validator;
     }
 
@@ -85,12 +105,5 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
         return $rules;
-    }
-    
-    public function beforeSave(Event $event, Entity $entity, \ArrayObject $options)
-    {
-        $hasher = new DefaultPasswordHasher;
-        $entity->password = $hasher->hash($entity->password);
-        return true;
     }
 }

@@ -45,8 +45,8 @@ class AclPhinxlogFixture extends TestFixture
     public $records = [
         [
             'version' => 1,
-            'start_time' => 1461777577,
-            'end_time' => 1461777577
+            'start_time' => 1461897564,
+            'end_time' => 1461897564
         ],
     ];
 }

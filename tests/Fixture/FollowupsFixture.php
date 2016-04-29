@@ -56,7 +56,7 @@ class FollowupsFixture extends TestFixture
         [
             'id' => 1,
             'person_id' => 1,
-            'created' => '2016-04-27 17:21:35',
+            'created' => '2016-04-29 02:40:49',
             'user_id' => 1,
             'medio_comunicacion' => 'Lorem ipsum dolor ',
             'aspectos_sociales' => 'Lorem ipsum dolor sit amet',
