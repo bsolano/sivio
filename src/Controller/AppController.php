@@ -59,7 +59,7 @@ class AppController extends Controller
             ],
             'loginRedirect' => [
                 'plugin' => false,
-                'controller' => 'Cameras',
+                'controller' => 'users',
                 'action' => 'index'
             ],
             'logoutRedirect' => [

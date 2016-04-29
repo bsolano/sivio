@@ -52,8 +52,14 @@ class UsersPeopleController extends AppController
     public function add()
     {
         $usersPerson = $this->UsersPeople->newEntity();
+        $query = $this->UsersPeople->People->find('list')->select(['nombre', 'apellidos']);
+        
+        $this->set('nombres', $query);
+        
+        
         if ($this->request->is('post')) {
             $usersPerson = $this->UsersPeople->patchEntity($usersPerson, $this->request->data);
+            $usersPerson['user_id'] = $this->Auth->user('id');
             if ($this->UsersPeople->save($usersPerson)) {
                 $this->Flash->success(__('Se ha guardado la atención'));
                 return $this->redirect(['action' => 'index']);

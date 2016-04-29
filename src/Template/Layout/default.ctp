@@ -42,8 +42,18 @@ $sivioDescription = 'SIVIO';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+            
+                <?php
+                
+                if($this->request->session()->read('Auth.User')) {
+                    // user is logged in, show logout..user menu etc
+                    echo $this->Html->tag('li', $this->Html->link(__('Log out'), ['controller' => 'Users', 'action' => 'logout']) );
+                } else {
+                    // the user is not logged in
+                    echo $this->Html->tag('li', $this->Html->link(__('Log in'), ['controller' => 'Users', 'action' => 'login']) );
+                }
+
+                ?>
             </ul>
         </div>
     </nav>
@@ -52,6 +62,7 @@ $sivioDescription = 'SIVIO';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
     </footer>
 </body>
 </html>

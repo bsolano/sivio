@@ -60,7 +60,12 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password');
+            ->notEmpty('password')
+            ->add('password', 'minimo',array('rule' => array('minLength', 8),'message'=>'8 carácteres mínimo'))
+            ->add('password', 'unaLetra',array('rule' => array('custom','/([a-z]{1,})/i'),'message'=>'Al menos 1 letra'))
+            ->add('password', 'unNumero',array('rule' => array('custom','/([0-9]{1,})/i'),'message'=>'Al menos 1 numero'))
+            ->add('password', 'unNumero',array('rule' => array('custom','/[,.!:]{1,}/'),'message'=>'Al menos un simbolo entre {,!.:}'));
+            
 
         $validator->add('confirm', [
             'compare' => [
