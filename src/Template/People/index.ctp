@@ -1,24 +1,39 @@
 <div class="row">
     <div class="people form large-12 medium-10 columns content">
-        <?= $this->Form->create('', ['type' => 'get', 'url' => ['action' => 'records_search']]); ?>
-            <fieldset>
+
+
                 <legend>
                     <?= __('Buscar') ?>
                 </legend>
                 <?php
-                echo $this->Form->input('records_search', ['placeholder' => 'Digite el nombre o el número de cédula', 'label' => '']);
+                echo $this->Form->input('keyword', ['placeholder' => 'Digite el nombre o el número de cédula', 'label' => '']);
                 //'required' => true
                 ?>
-            </fieldset>
-            <?= $this->Form->button(__('Buscar')) ?>
-                <?= $this->Form->end() ?>
 
+            <?= $this->Form->button(__('Buscar'), ['onclick' => 'loadResults()', 'type' => 'button']) ?>
+
+
+            <div id="results">Por favor ingrese su criterio de búsqueda.</div>
     </div>
+    
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <h1>Resultados</h1>
-    </div>
+<script>
 
-</div>
+function loadResults(){
+
+       jQuery.ajax({
+             type: "get",  // Request method: post, get
+             url: "/people/recordsSearch.ajax?keyword=" + document.getElementById("keyword").value, // URL to request
+             //data: data,  // post data
+             success: function(response) {
+                                  document.getElementById("results").innerHTML = response;
+                           },
+                           error:function (XMLHttpRequest, textStatus, errorThrown) {
+                                   document.getElementById("results").innerHTML = 'No es posible obtener un respuesta, intente de nuevo.';
+                           }
+          });
+          return false;
+}
+</script>
+

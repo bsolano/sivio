@@ -32,6 +32,10 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->script(array(
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
+    'global'
+    )); ?>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
