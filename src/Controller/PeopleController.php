@@ -129,8 +129,20 @@ class PeopleController extends AppController
         $keyword = $this->request->query('keyword');
         $people = $this->People->find_record($keyword);
         
-        $this->set(compact('people'));
-        $this->set('_serialize', ['people']);
+        
+        if($this->request->is('Ajax')) {
+            //$this->disableCache(); // Como se hace en cake 3?
+            $this->set(['people' => $people ]);
+            //$this->render('records_search', 'ajax');
+            //$this->RequestHandler->renderAs($this, 'html');
+
+        } else { // Para que funcione la vista de HTML, JSON, etc.
+         
+            $this->set(['people' => $people ]);
+
+            //$this->set(compact('people'));
+            //$this->set('_serialize', ['people']);
+        }
     }
     public function summaryview(){
         
