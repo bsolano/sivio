@@ -197,4 +197,15 @@ class PeopleTable extends Table
         $rules->add($rules->existsIn(['history_id'], 'Histories'));
         return $rules;
     }
+    
+    /**
+    * Método para buscar expedientes por identificación (cédula, etc)
+    * o por nombre y/o apellido
+    */
+    public function find_record($keyword) {
+        return $this->find()
+            ->where(['identificacion LIKE' => '%'.$keyword.'%'])
+            ->orWhere(['nombre LIKE' => '%'.$keyword.'%'])
+            ->orWhere(['apellidos LIKE' => '%'.$keyword.'%']);
+    }
 }
