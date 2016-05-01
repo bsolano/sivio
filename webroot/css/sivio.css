@@ -7,7 +7,13 @@ a.disabled {
     pointer-events: none;
 }
 .box{
-    border: solid;
+    border: 1px solid;
+    
+}
+.box:hover{
+    background-color: grey;
+    color: white;
+    cursor: pointer;
 }
 a:hover {
     color: #15848F;

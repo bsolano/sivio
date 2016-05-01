@@ -1,177 +1,80 @@
-[29-Apr-2016 23:39:07 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:39:07 UTC] PHP Stack trace:
-[29-Apr-2016 23:39:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:42:43 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:42:43 UTC] PHP Stack trace:
-[29-Apr-2016 23:42:43 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:42:43 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:42:43 UTC] PHP Stack trace:
-[29-Apr-2016 23:42:43 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:42:52 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:42:52 UTC] PHP Stack trace:
-[29-Apr-2016 23:42:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:42:52 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:42:52 UTC] PHP Stack trace:
-[29-Apr-2016 23:42:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:42:52 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:42:52 UTC] PHP Stack trace:
-[29-Apr-2016 23:42:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:43:02 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:43:02 UTC] PHP Stack trace:
-[29-Apr-2016 23:43:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:43:03 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:43:03 UTC] PHP Stack trace:
-[29-Apr-2016 23:43:03 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:43:10 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:43:10 UTC] PHP Stack trace:
-[29-Apr-2016 23:43:10 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:43:10 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:43:10 UTC] PHP Stack trace:
-[29-Apr-2016 23:43:10 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:43:46 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:43:46 UTC] PHP Stack trace:
-[29-Apr-2016 23:43:46 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:31 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:31 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:31 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:35 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:35 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:35 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:35 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:35 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:35 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:37 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:37 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:37 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:37 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:46 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:46 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:46 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:47 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:47 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:47 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:48 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:48 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:48 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:48 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:48 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:48 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:48 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:48 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:48 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:44:57 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:44:57 UTC] PHP Stack trace:
-[29-Apr-2016 23:44:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:06 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:06 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:06 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:06 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:06 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:06 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:13 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:13 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:13 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:13 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:13 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:13 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:16 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:16 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:16 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:17 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:17 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:17 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:17 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:20 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:20 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:20 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:21 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:21 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:21 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:42 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:42 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:42 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:45 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:45 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:45 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:45 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:45 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:45 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:51 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:51 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:51 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:52 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:52 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:55 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:55 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:55 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:55 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:55 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:55 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:55 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:59 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:59 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:59 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:59 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:45:59 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:45:59 UTC] PHP Stack trace:
-[29-Apr-2016 23:45:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:02 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:02 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:02 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:02 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:08 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:08 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:08 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:08 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:08 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:08 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:08 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:08 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:08 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:16 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:16 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:16 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:17 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:17 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:17 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:19 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:19 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:19 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:19 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:20 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:20 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:20 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:25 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:25 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:25 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:25 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:25 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:25 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:27 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:27 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:27 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:28 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:28 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:29 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:29 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:29 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
-[29-Apr-2016 23:46:29 UTC] PHP Fatal error:  Using $this when not in object context in /home/ubuntu/workspace/webroot/index.php on line 35
-[29-Apr-2016 23:46:29 UTC] PHP Stack trace:
-[29-Apr-2016 23:46:29 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:03:27 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:03:27 UTC] PHP Stack trace:
+[01-May-2016 18:03:27 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:03:27 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:03:27 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:03:27 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:03:27 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:03:27 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:04:07 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:04:07 UTC] PHP Stack trace:
+[01-May-2016 18:04:07 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:04:07 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:04:07 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:04:07 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:04:07 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:04:07 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:08:59 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:08:59 UTC] PHP Stack trace:
+[01-May-2016 18:08:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:08:59 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:08:59 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:08:59 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:08:59 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:08:59 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:09:49 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:09:49 UTC] PHP Stack trace:
+[01-May-2016 18:09:49 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:09:49 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:09:49 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:09:49 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:09:49 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:09:49 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:10:54 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:10:54 UTC] PHP Stack trace:
+[01-May-2016 18:10:54 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:10:54 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:10:54 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:10:54 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:10:54 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:10:54 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:13:15 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:13:15 UTC] PHP Stack trace:
+[01-May-2016 18:13:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:13:15 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:13:15 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:13:15 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:13:15 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:13:15 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:13:28 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:13:28 UTC] PHP Stack trace:
+[01-May-2016 18:13:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:13:28 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:13:28 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:13:28 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:13:28 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:13:28 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:14:05 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 18:14:05 UTC] PHP Stack trace:
+[01-May-2016 18:14:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:14:05 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:14:05 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 18:14:05 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 18:14:05 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:14:05 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 18:33:29 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 151
+[01-May-2016 18:33:29 UTC] PHP Stack trace:
+[01-May-2016 18:33:29 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 18:33:29 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 18:33:29 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[01-May-2016 18:33:29 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[01-May-2016 18:33:29 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[01-May-2016 18:33:29 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:390
+[01-May-2016 18:33:29 UTC] PHP   7. Cake\Routing\Filter\ControllerFactoryFilter->beforeDispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[01-May-2016 18:33:29 UTC] PHP   8. Cake\Routing\Filter\ControllerFactoryFilter->_getController() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:51
+[01-May-2016 18:33:29 UTC] PHP   9. Cake\Core\App::className() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:91
+[01-May-2016 18:33:29 UTC] PHP  10. Cake\Core\App::_classExistsInBase() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:64
+[01-May-2016 18:33:29 UTC] PHP  11. class_exists() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 18:33:29 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 18:33:29 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 18:33:29 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
