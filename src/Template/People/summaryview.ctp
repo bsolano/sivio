@@ -1,30 +1,37 @@
+
+<br>
+
+ <!--Sale cortado-->
 <nav class="large-3 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
+    Nav bar
     </ul>
 </nav>
- 
-<div class="row">
+
+
      <!--This will be the container years-->
       <div class = "container">
-           <div class = "row ">
-                   <div class = "large-3 columns box" > 
-                           2015 
-                    </div>  
-                    <div class = "row ">
-                       <div class = "large-9 columns box"> 
-                            <!--Each atenttion will be a row-->
-                               Atencion 
-                        </div>
-                        </div>
-                    <div class = "row ">    
-                        <div class = "large-9 columns box"> 
-                            <!--Each atenttion will be a row-->
-                               Atencion 2
-                        </div>
-                        </div>
-                    
+          <?php foreach ($years as $year): ?>
+          <div class = "row">
+                   <div class = "large-3 medium columns" > 
+                         <legend><h2></h2><?php echo $year; ?></h2> </legend> 
+                         
+                         <br>
+                    </div>   
+                    <?php foreach ($atentions as $atention): ?>
+                        <div class = "row">
+                             <div class = "small-9 large-push-1 columns box"> 
+                                    <!--Each atenttion will be a row-->
+                                <tr><td><?php echo "atention".$atention; ?></td><td>
+                             </div>
+                         </div>
+                    <?php endforeach; ?>
+ 
+                    </div>
+            <?php endforeach; ?>
             </div>   
       </div>
        
-</div>
+
+
 

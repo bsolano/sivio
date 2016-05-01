@@ -1,13 +1,10 @@
-<head> ola k ase </head>
 
-<?php
-    echo $prueba;
-?>
 <br>
 
  <!--Sale cortado-->
 <nav class="large-3 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
+        Nav bar
     </ul>
 </nav>
  

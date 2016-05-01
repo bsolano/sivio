@@ -144,8 +144,13 @@ class PeopleController extends AppController
             //$this->set('_serialize', ['people']);
         }
     }
-    public function summaryview(){
+    public function summaryview($person = null){
+        $atentions = [1,2,3,4,5];
+      
+        $years = [2015,2014,2013,1998];
         
+        $this->set(['atentions' => $atentions]);
+        $this->set(['years' => $years]);
     }
     public function initialize()
     {
