@@ -14,7 +14,7 @@
           <?php foreach ($years as $year): ?>
           <div class = "row">
                    <div class = "large-3 medium columns" > 
-                         <legend><h2></h2><?php echo $year; ?></h2> </legend> 
+                         <legend><h2></h2><?php echo $year->fecha_inicio->format('Y'); ?></h2> </legend> 
                          
                          <br>
                     </div>   
@@ -22,7 +22,9 @@
                         <div class = "row">
                              <div class = "small-9 large-push-1 columns box"> 
                                     <!--Each atenttion will be a row-->
-                                <tr><td><?php echo "atention".$atention; ?></td><td>
+                                <tr><td><?php 
+                                if ($atention->fecha_inicio->format('Y') == $year->fecha_inicio->format('Y'))
+                                    echo $atention; ?></td><td>
                              </div>
                          </div>
                     <?php endforeach; ?>

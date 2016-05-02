@@ -78,3 +78,43 @@
 [01-May-2016 18:33:29 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
 [01-May-2016 18:33:29 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
 [01-May-2016 18:33:29 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
+[01-May-2016 20:49:57 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 151
+[01-May-2016 20:49:57 UTC] PHP Stack trace:
+[01-May-2016 20:49:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 20:49:57 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 20:49:57 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 20:49:57 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 20:49:57 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 20:49:57 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 21:19:13 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 151
+[01-May-2016 21:19:13 UTC] PHP Stack trace:
+[01-May-2016 21:19:13 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 21:19:13 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 21:19:13 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 21:19:13 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 21:19:13 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 21:19:13 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 21:23:25 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 152
+[01-May-2016 21:23:25 UTC] PHP Stack trace:
+[01-May-2016 21:23:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 21:23:25 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 21:23:25 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[01-May-2016 21:23:25 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[01-May-2016 21:23:25 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 21:23:25 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[01-May-2016 21:43:36 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 155
+[01-May-2016 21:43:36 UTC] PHP Stack trace:
+[01-May-2016 21:43:36 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[01-May-2016 21:43:36 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[01-May-2016 21:43:36 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[01-May-2016 21:43:36 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[01-May-2016 21:43:36 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[01-May-2016 21:43:36 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:390
+[01-May-2016 21:43:36 UTC] PHP   7. Cake\Routing\Filter\ControllerFactoryFilter->beforeDispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[01-May-2016 21:43:36 UTC] PHP   8. Cake\Routing\Filter\ControllerFactoryFilter->_getController() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:51
+[01-May-2016 21:43:36 UTC] PHP   9. Cake\Core\App::className() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:91
+[01-May-2016 21:43:36 UTC] PHP  10. Cake\Core\App::_classExistsInBase() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:64
+[01-May-2016 21:43:36 UTC] PHP  11. class_exists() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 21:43:36 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 21:43:36 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[01-May-2016 21:43:36 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
