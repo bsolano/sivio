@@ -18,30 +18,29 @@
       <div class = "container">
           <?php foreach ($years as $year): ?>
           <div class = "row">
-                   <div class = "large-12 medium columns" > 
+                   <div class = "large-12 medium-12 columns content" >  
                          <legend><h3><?php echo $year ?></h3> </legend> 
                          <hr>
-                    </div>   
+                    </div>
+          </div>
                     <?php foreach ($atentions as $atention): ?>
+                     <?php 
+                    if ($atention->fecha_inicio->format('Y') == $year): ?>
                         <div class = "row">
-                             <div class = "small-9 large-push-1 columns box"> 
+                             <div class = "large-8-push-2 small-6-push-1 medium-6-push-1 columns box"> 
                                     <!--Each atenttion will be a row-->
-                                <?php 
-                                if ($atention->fecha_inicio->format('Y') == $year): ?>
+                               
                                     <strong>Tipo de atención: </strong><?php echo $atention->tipo;?><br>
                                     <strong>Persona encargada: </strong><?php echo $atention->nombre_locutor_coavif;?><br>
                                     <strong>Observaciones: </strong><?php echo $atention->observaciones;?><br>
-                                    
-                                    <?php endif; ?>
                              </div>
                              
                          </div>
+                          <?php endif; ?>
                     <?php endforeach; ?>
- 
-                    </div>
             <?php endforeach; ?>
-            </div>   
-      </div>
+    </div>   
+   
        
 
 
