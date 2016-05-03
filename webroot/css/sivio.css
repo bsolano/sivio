@@ -7,8 +7,9 @@ a.disabled {
     pointer-events: none;
 }
 .box{
-    border: 1px solid;
-    
+    border-width: 1px;
+    border-style: ridge;
+    border-radius: 8px;
 }
 .box:hover{
     background-color: grey;

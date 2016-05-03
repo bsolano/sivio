@@ -118,3 +118,95 @@
 [01-May-2016 21:43:36 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
 [01-May-2016 21:43:36 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
 [01-May-2016 21:43:36 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
+[03-May-2016 00:30:54 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 159
+[03-May-2016 00:30:54 UTC] PHP Stack trace:
+[03-May-2016 00:30:54 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 00:30:54 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 00:30:54 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[03-May-2016 00:30:54 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[03-May-2016 00:30:54 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[03-May-2016 00:30:54 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[03-May-2016 00:32:09 UTC] PHP Fatal error:  Call to a member function get() on a non-object in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 159
+[03-May-2016 00:32:09 UTC] PHP Stack trace:
+[03-May-2016 00:32:09 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 00:32:09 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 00:32:09 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[03-May-2016 00:32:09 UTC] PHP   4. Cake\Controller\Controller->invokeAction() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:114
+[03-May-2016 00:32:09 UTC] PHP   5. call_user_func_array:{/home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429}() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[03-May-2016 00:32:09 UTC] PHP   6. App\Controller\PeopleController->summaryview() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:429
+[03-May-2016 00:56:02 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF), expecting ',' or ';' in /home/ubuntu/workspace/src/Template/People/summaryview.ctp on line 34
+[03-May-2016 00:56:02 UTC] PHP Stack trace:
+[03-May-2016 00:56:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 00:56:02 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 00:56:02 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[03-May-2016 00:56:02 UTC] PHP   4. Cake\Controller\Controller->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:120
+[03-May-2016 00:56:02 UTC] PHP   5. Cake\View\View->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:611
+[03-May-2016 00:56:02 UTC] PHP   6. Cake\View\View->_render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:587
+[03-May-2016 00:56:02 UTC] PHP   7. Cake\View\View->_evaluate() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:952
+[03-May-2016 00:58:15 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /home/ubuntu/workspace/src/Template/People/summaryview.ctp on line 22
+[03-May-2016 00:58:15 UTC] PHP Stack trace:
+[03-May-2016 00:58:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 00:58:15 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 00:58:15 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[03-May-2016 00:58:15 UTC] PHP   4. Cake\Controller\Controller->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:120
+[03-May-2016 00:58:15 UTC] PHP   5. Cake\View\View->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:611
+[03-May-2016 00:58:15 UTC] PHP   6. Cake\View\View->_render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:587
+[03-May-2016 00:58:15 UTC] PHP   7. Cake\View\View->_evaluate() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:952
+[03-May-2016 00:58:15 UTC] PHP   8. include() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:992
+[03-May-2016 02:33:00 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 159
+[03-May-2016 02:33:00 UTC] PHP Stack trace:
+[03-May-2016 02:33:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 02:33:00 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 02:33:00 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[03-May-2016 02:33:00 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[03-May-2016 02:33:00 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[03-May-2016 02:33:00 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:390
+[03-May-2016 02:33:00 UTC] PHP   7. Cake\Routing\Filter\ControllerFactoryFilter->beforeDispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[03-May-2016 02:33:00 UTC] PHP   8. Cake\Routing\Filter\ControllerFactoryFilter->_getController() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:51
+[03-May-2016 02:33:00 UTC] PHP   9. Cake\Core\App::className() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:91
+[03-May-2016 02:33:00 UTC] PHP  10. Cake\Core\App::_classExistsInBase() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:64
+[03-May-2016 02:33:00 UTC] PHP  11. class_exists() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:00 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:00 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:00 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
+[03-May-2016 02:33:36 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 159
+[03-May-2016 02:33:36 UTC] PHP Stack trace:
+[03-May-2016 02:33:36 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 02:33:36 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 02:33:36 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[03-May-2016 02:33:36 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[03-May-2016 02:33:36 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[03-May-2016 02:33:36 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:390
+[03-May-2016 02:33:36 UTC] PHP   7. Cake\Routing\Filter\ControllerFactoryFilter->beforeDispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[03-May-2016 02:33:36 UTC] PHP   8. Cake\Routing\Filter\ControllerFactoryFilter->_getController() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:51
+[03-May-2016 02:33:36 UTC] PHP   9. Cake\Core\App::className() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:91
+[03-May-2016 02:33:36 UTC] PHP  10. Cake\Core\App::_classExistsInBase() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:64
+[03-May-2016 02:33:36 UTC] PHP  11. class_exists() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:36 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:36 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:33:36 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
+[03-May-2016 02:34:08 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/ubuntu/workspace/src/Controller/PeopleController.php on line 160
+[03-May-2016 02:34:08 UTC] PHP Stack trace:
+[03-May-2016 02:34:08 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 02:34:08 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 02:34:08 UTC] PHP   3. Cake\Routing\Dispatcher->dispatchEvent() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:62
+[03-May-2016 02:34:08 UTC] PHP   4. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[03-May-2016 02:34:08 UTC] PHP   5. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[03-May-2016 02:34:08 UTC] PHP   6. Cake\Routing\DispatcherFilter->handle() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Event/EventManager.php:390
+[03-May-2016 02:34:08 UTC] PHP   7. Cake\Routing\Filter\ControllerFactoryFilter->beforeDispatch() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/DispatcherFilter.php:145
+[03-May-2016 02:34:08 UTC] PHP   8. Cake\Routing\Filter\ControllerFactoryFilter->_getController() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:51
+[03-May-2016 02:34:08 UTC] PHP   9. Cake\Core\App::className() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Filter/ControllerFactoryFilter.php:91
+[03-May-2016 02:34:08 UTC] PHP  10. Cake\Core\App::_classExistsInBase() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:64
+[03-May-2016 02:34:08 UTC] PHP  11. class_exists() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:34:08 UTC] PHP  12. spl_autoload_call() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:34:08 UTC] PHP  13. Composer\Autoload\ClassLoader->loadClass() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Core/App.php:151
+[03-May-2016 02:34:08 UTC] PHP  14. Composer\Autoload\includeFile() /home/ubuntu/workspace/vendor/composer/ClassLoader.php:301
+[03-May-2016 02:34:32 UTC] PHP Parse error:  syntax error, unexpected ':' in /home/ubuntu/workspace/src/Template/People/summaryview.ctp on line 30
+[03-May-2016 02:34:32 UTC] PHP Stack trace:
+[03-May-2016 02:34:32 UTC] PHP   1. {main}() /home/ubuntu/workspace/webroot/index.php:0
+[03-May-2016 02:34:32 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/webroot/index.php:37
+[03-May-2016 02:34:32 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[03-May-2016 02:34:32 UTC] PHP   4. Cake\Controller\Controller->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:120
+[03-May-2016 02:34:32 UTC] PHP   5. Cake\View\View->render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Controller/Controller.php:611
+[03-May-2016 02:34:32 UTC] PHP   6. Cake\View\View->_render() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:587
+[03-May-2016 02:34:32 UTC] PHP   7. Cake\View\View->_evaluate() /home/ubuntu/workspace/vendor/cakephp/cakephp/src/View/View.php:952
