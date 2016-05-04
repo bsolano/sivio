@@ -145,13 +145,29 @@ class PeopleController extends AppController
         }
     }
     public function summaryview($person = null){
-        $atentions = [1,2,3,4,5];
-      
-        $years = [2015,2014,2013,1998];
+        //$atentions = [1,2,3,4,5];
+        $years = array();
+        $this->loadModel('Evaluations'); //Carga el modelo Evaluation en la base
+        $eva = $this->Evaluations->find('all', [
+        'conditions' => ['Evaluations.people_id' => $person] 
+        ]); //Busca todas las evaluaciones con el id de la persona seleccionada anteriormente.
+        $dates = $this->Evaluations->find('all', [
+        'conditions' => ['Evaluations.people_id' => $person], 
+        'fields' => ['fecha_inicio']
+        ]);
+        foreach ($dates as $date){
+         if(!in_array($date->fecha_inicio->format('Y'), $years)){
+                array_push($years,$date->fecha_inicio->format('Y'));
+         }
+        }
+            
         
-        $this->set(['atentions' => $atentions]);
+        $person_data = $this->People->get($person);
+        $this->set(['atentions' => $eva]);
         $this->set(['years' => $years]);
+        $this->set(['person' => $person_data]);
     }
+    
     public function initialize()
     {
         parent::initialize();
