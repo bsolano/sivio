@@ -52,14 +52,13 @@ class UsersPeopleController extends AppController
     public function add()
     {
         $usersPerson = $this->UsersPeople->newEntity();
-       
-       
-        $query = $this->UsersPeople->People->find('list',[
-            'keyField' => 'id',
-            'valueField' => 'nombre'
-        ]);
         
-        $this->set('nombres', $query);
+        $query = $this->UsersPeople->People->find('all');
+        $personas = array();
+        foreach ($query as $q) {
+            $personas[$q->id]=$q->nombre." ".$q->apellidos;
+        }
+        $this->set('nombres', $personas);
         
         
         if ($this->request->is('post')) {
@@ -125,6 +124,9 @@ class UsersPeopleController extends AppController
     }
  
     public function tabular($id = null){
+        $query = $this->UsersPeople->People->find('all',['conditions' => ['People.id'  => $id]]);
+        $this->set('persona', $query);
+        
           if ($this->request->is('post')) {
         }
     }

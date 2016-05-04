@@ -9,13 +9,9 @@
     <fieldset>
         <legend><?= __('Atención') ?></legend>
         <?php
-            echo $this->Form->input('person_id', ['options' => $nombres->toArray(), 'label'=>'Persona']);
+        
+            echo $this->Form->input('person_id', ['options' => $nombres, 'label'=>'Persona']);
             echo $this->Form->input('observaciones');
-            //echo $this->Form->button('Historial',['onclick'=> '(window.open()).document.write(\'Satanas vive\')','type'=>'button']);
-            //echo $this->Form->button('Historial',['onclick'=> '(window.open()).document.write(
-            //    \'Satanas vive muchisimo\'
-            //)','type'=>'button']);
-            //echo $this->Form->button('Historial',['action' => 'historial','type'=>'button']);
             echo $this->Html->link(__('Historial'), ['action' => 'historial'],['class' => 'button']);
             echo "&nbsp";
             echo $this->Html->link(__('Editar Persona'), ['action' => 'tabular',$usersPerson->person_id],['class' => 'button']);
