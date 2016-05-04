@@ -17,7 +17,7 @@
 <div class="usersPeople form large-9 medium-8 columns content">
     <?= $this->Form->create($usersPerson) ?>
     <fieldset>
-        <legend><?= __('Edit Users Person') ?></legend>
+        <legend><?= __('Editar Atenciones') ?></legend>
         <?php
             echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('person_id', ['options' => $people]);

@@ -11,10 +11,10 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('id')       ?></th>
                 <th><?= $this->Paginator->sort('username') ?></th>
                 <th><?= $this->Paginator->sort('group_id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+                <th class="actions"><?= __('Actions')       ?></th>
             </tr>
         </thead>
         <tbody>

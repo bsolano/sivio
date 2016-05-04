@@ -93,10 +93,10 @@ class UsersPeopleController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $usersPerson = $this->UsersPeople->patchEntity($usersPerson, $this->request->data);
             if ($this->UsersPeople->save($usersPerson)) {
-                $this->Flash->success(__('The users person has been saved.'));
+                $this->Flash->success(__('El usuario fue guardado.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The users person could not be saved. Please, try again.'));
+                $this->Flash->error(__('El usuario no pudo ser guardado, por favor intente de nuevo.'));
             }
         }
         $users = $this->UsersPeople->Users->find('list', ['limit' => 200]);
@@ -124,6 +124,31 @@ class UsersPeopleController extends AppController
         return $this->redirect(['action' => 'index']);
     }
  
+    public function tabular(){
+          if ($this->request->is('post')) {
+        }
+    }
+    
+    public function expediente($id = null){
+        //$usersPerson = $this->UsersPeople->get($id, [
+        //    'contain' => []
+        //]);
+        
+        if ($this->request->is('post')) {
+        }
+    }
+    public function historial(){
+        if ($this->request->is('post')) {
+            //$usersPerson = $this->UsersPeople->get($id, [
+            //'contain' => ['Users', 'People']
+            //]);
+            //$this->set('usersPerson', $usersPerson);
+            //$this->set('_serialize', ['usersPerson']);
+            
+            // dios ha muerto
+        }    
+    }
+    
     public function initialize()
     {
         parent::initialize();

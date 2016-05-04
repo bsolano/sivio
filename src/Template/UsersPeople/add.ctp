@@ -11,7 +11,15 @@
         <?php
             echo $this->Form->input('person_id', ['options' => $nombres->toArray(), 'label'=>'Persona']);
             echo $this->Form->input('observaciones');
-            echo $this->Form->button('Expediente',['onclick'=> '(window.open()).document.write(\'Historial\')','type'=>'button']);
+            //echo $this->Form->button('Historial',['onclick'=> '(window.open()).document.write(\'Satanas vive\')','type'=>'button']);
+            //echo $this->Form->button('Historial',['onclick'=> '(window.open()).document.write(
+            //    \'Satanas vive muchisimo\'
+            //)','type'=>'button']);
+            //echo $this->Form->button('Historial',['action' => 'historial','type'=>'button']);
+            echo $this->Html->link(__('Historial'), ['action' => 'historial'],['class' => 'button']);
+            echo "&nbsp";
+            echo $this->Html->link(__('Editar Persona'), ['action' => 'expediente',$usersPerson->person_id],['class' => 'button']);
+            
         ?>
     </fieldset>
     <?= $this->Form->button(__('Agregar')); ?>

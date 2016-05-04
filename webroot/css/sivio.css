@@ -1,5 +1,13 @@
-html {
-  --inamu-celeste: #00ADE3;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html, body {
+    --inamu-celeste: #00ADE3;
 }
 
 .disabled a,
@@ -18,6 +26,12 @@ a.disabled {
 }
 a:hover {
     color: #15848F;
+}
+
+footer {
+    /*background-color: var(--inamu-celeste);*/
+    bottom:0;
+    position:fixed;
 }
 
 a {
@@ -551,8 +565,9 @@ div.message.hidden {
 
 /* Use 'one true layout' methods to get equal height columns */
 .container {
-    overflow: hidden;
+    /*overflow-y: auto;*/
     min-height: 92%; /* full height almost always */
+    /*display: inline-block;*/
 }
 
 /* Force equal height by overflowing */
@@ -567,6 +582,8 @@ div.message.hidden {
         margin-bottom: 0;
     }
 }
+
+#actions-sidebar{    background-color:#dbdbdb; }
 
 .content h3 {
     color: #be140b;
@@ -588,3 +605,49 @@ div.message.hidden {
     margin-bottom: 10px;
     border-bottom: 0px;
 }
+
+
+
+/*   TABS       */
+
+.wrapper {
+  background: white;
+  margin: auto;
+  padding: 0;
+  /*width: 100%;*/
+}
+
+ul.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul.tabs li {
+  border: gray solid 1px;
+  border-bottom: none;
+  float: left;
+  margin: 0 .25em 0 0;
+  padding: .25em .5em;
+}
+ul.tabs li a {
+  color: gray;
+  font-weight: bold;
+  text-decoration: none;
+}
+ul.tabs li.active {
+  background: gray;
+}
+ul.tabs li.active a {
+  color: white;
+}
+.clr {
+  clear: both;
+}
+article {
+  border-top: gray solid 1px;
+  padding: 0 1em;
+  overflow:scroll;
+  height:90vh;
+}
+
+/*   FIN TABS  */

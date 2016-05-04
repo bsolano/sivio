@@ -3,6 +3,6 @@
     <legend><?= __('Login') ?></legend>
     <?= $this->Form->input('username') ?>
     <?= $this->Form->input('password') ?>
-    <?= $this->Form->submit(__('Login')) ?>
+    <?= $this->Form->button(__('Login')); ?>
 </fieldset>
 <?= $this->Form->end() ?>
