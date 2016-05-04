@@ -124,19 +124,11 @@ class UsersPeopleController extends AppController
         return $this->redirect(['action' => 'index']);
     }
  
-    public function tabular(){
+    public function tabular($id = null){
           if ($this->request->is('post')) {
         }
     }
     
-    public function expediente($id = null){
-        //$usersPerson = $this->UsersPeople->get($id, [
-        //    'contain' => []
-        //]);
-        
-        if ($this->request->is('post')) {
-        }
-    }
     public function historial(){
         if ($this->request->is('post')) {
             //$usersPerson = $this->UsersPeople->get($id, [
@@ -144,8 +136,7 @@ class UsersPeopleController extends AppController
             //]);
             //$this->set('usersPerson', $usersPerson);
             //$this->set('_serialize', ['usersPerson']);
-            
-            // dios ha muerto
+
         }    
     }
     

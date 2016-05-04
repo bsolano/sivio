@@ -7,67 +7,6 @@
         
 
     </head>
-<!--
-    
-    <body>
-
-    <div id="form">
-        <ul>
-            <li><a href="#tab-1">Responsive Tab-1</a></li>
-            <li><a href="#tab-2">Responsive Tab-2</a></li>
-            <li><a href="#tab-3">Responsive Tab-3</a></li>
-            <li><a href="#tab-4">Responsive Tab-4</a></li>
-            <li><a href="#tab-5">Responsive Tab-5</a></li>
-        </ul>
-
-        <div id="tab-1">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu scelerisque eros. Fusce ante orci, hendrerit sit amet metus sit amet, venenatis sodales felis. Morbi vel mi in leo dignissim convallis in a neque. Suspendisse sollicitudin nibh non dapibus condimentum. Etiam sit amet arcu ultricies, porttitor justo eget, scelerisque urna. Praesent non ligula nec ligula euismod condimentum eget sed augue. Ut feugiat, turpis id sollicitudin vestibulum, tellus massa adipiscing nisl, quis cursus nisl arcu vel ipsum.</p>
-        </div>
-        <div id="tab-2">
-            <p>Quisque sodales sodales lacus pharetra bibendum. Etiam commodo non velit ac rhoncus. Mauris euismod purus sem, ac adipiscing quam laoreet et. Praesent vulputate ornare sem vel scelerisque. Ut dictum augue non erat lacinia, sed lobortis elit gravida. Proin ante massa, ornare accumsan ultricies et, posuere sit amet magna. Praesent dignissim, enim sed malesuada luctus, arcu sapien sodales sapien, ut placerat eros nunc vel est. Donec tristique mi turpis, et sodales nibh gravida eu. Etiam odio risus, porttitor non lacus id, rhoncus tempus tortor. Curabitur tincidunt molestie turpis, ut luctus nibh sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean ultricies dolor est, a congue ante dapibus varius. Nulla at auctor nunc. Curabitur accumsan feugiat felis ut pretium. Praesent semper semper nisi, eu cursus augue.</p>
-        </div>
-        <div id="tab-3">
-            <p>Mauris facilisis elit ut sem eleifend accumsan molestie sit amet dolor. Pellentesque dapibus arcu eu lorem laoreet, vitae cursus metus mattis. Nullam eget porta enim, eu rutrum magna. Duis quis tincidunt sem, sit amet faucibus magna. Integer commodo, turpis consequat fermentum egestas, leo odio posuere dui, elementum placerat eros erat id augue. Nullam at eros eget urna vestibulum malesuada vitae eu mauris. Aliquam interdum rhoncus velit, quis scelerisque leo viverra non. Suspendisse id feugiat dui. Nulla in aliquet leo. Proin vel magna sed est gravida rhoncus. Mauris lobortis condimentum nibh, vitae bibendum tortor vehicula ac. Curabitur posuere arcu eros.</p>
-        </div>
-        <div id="tab-4">
-            <p>Donec egestas facilisis sapien sit amet euismod. Donec mollis lectus neque, in consectetur magna sodales et. Nam rutrum libero vitae magna sollicitudin aliquet. In tristique ultrices euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse pretium congue sodales. Curabitur egestas, metus sed ultrices suscipit, metus nibh vehicula ligula, vel volutpat sapien nibh sed quam. Etiam elementum nisi eu risus congue, ut eleifend lectus ultricies. Vivamus in ligula fermentum, bibendum sapien eget, pretium est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ut ante non risus rutrum faucibus.</p>
-        </div>
-        <div id="tab-5">
-            <p>Proin dignissim faucibus odio sollicitudin sagittis. Phasellus aliquet, erat vitae mollis consectetur, enim lectus ornare libero, et porta mi dui eu tellus. Morbi lobortis, elit at euismod porta, magna lacus mattis massa, a lacinia ligula risus et lectus. Sed et aliquam ligula. Nunc venenatis orci magna, quis facilisis sem porta non. Nunc sodales arcu in consectetur malesuada. Maecenas varius justo lacus, scelerisque viverra tellus luctus eu. Nam imperdiet ultricies suscipit. Ut urna mauris, eleifend quis lacinia non, mollis id libero. Praesent pharetra viverra ipsum at posuere. Quisque commodo tortor nec hendrerit faucibus. Fusce convallis urna et vehicula tincidunt. Duis sed vehicula justo, eu placerat nisi. Donec facilisis augue non turpis semper, eget condimentum mauris malesuada. Nunc in dignissim mi, sed laoreet felis.</p>
-        </div>
-
-    </div>
-
-    <script type="text/javascript" language= "JavaScript">
-    
-        $(document).ready(function () {
-            ('#form').responsiveTabs({
-                rotate: false,
-                startCollapsed: 'accordion',
-                collapsible: 'accordion',
-                setHash: true,
-                disabled: [3,4],
-            });
-    </script>
-</body>
-    
-</html> -->
-    
-
-        <!--
-        <fieldset>
-            <legend><?= __('Editar Expediente') ?></legend>
-            <?= $this->Form->create('People', array('url' => 'people/edit')); ?>
-            <?php
-                echo $this->Form->input('nombre'); 
-                
-            ?>
-            
-            
-            
-            
-        </fieldset>
-        -->
 <body>
     <nav class="large-3 medium-4 columns" id="actions-sidebar">
         <ul class="side-nav">
@@ -85,21 +24,47 @@
     <div class="usersPeople form large-9 medium-8 columns content">
         <section class="wrapper">
   <ul class="tabs">
-    <li><a href="#tab1">Pestaña 1</a></li>
-    <li><a href="#tab2">Pestaña 2</a></li>
-    <li><a href="#tab3">Pestaña 3</a></li>
+    <li><a href="#tab1">Perfil</a></li>
+    <li><a href="#tab2">Historia de Violencia</a></li>
+    <li><a href="#tab3">Ingresos y Egresos</a></li>
+    <li><a href="#tab4">Hijos</a></li>
+    <li><a href="#tab5">Seguimientos</a></li>
+    <li><a href="#tab6">Intervenciones</a></li>
+    <li><a href="#tab7">Redes de Apoyo</a></li>
+    
+    
   </ul>
   <div class="clr"></div>
   <section class="block">
     <article id="tab1">
-                <fieldset>
-       <legend><?= __('Editar Expediente') ?></legend>
-            <?= $this->Form->create('People', array('url' => 'people/edit')); ?>
+        <fieldset>
+            <?= $this->Form->create('People', array('url' => 'people/edit',)); ?>
             <?php
                 echo $this->Form->input('nombre'); 
-                echo $this->Form->input('fecha_nacimiento');
                 echo $this->Form->input('apellidos');
-                echo $this->Form->input('estado_civil');
+                echo $this->Form->input('identificacion',['label'=>'Identificación']);
+                echo $this->Form->input('tipo_identificacion',['label'=>'Tipo de identificación']);
+                echo $this->Form->input('nacionalidad');            
+                echo $this->Form->input('ocupacion',['label'=>'Ocupación']);
+                echo $this->Form->input('lugar_trabajo',['label'=>'Lugar de trabajo']);
+                echo $this->Form->input('fecha_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento']);
+                
+                $estadocivil = array('casada'=>'casada',
+                                     'unión libre'=>'unión libre',
+                                     'soltera'=>'soltera',
+                                     'divorciada'=>'divorciada',
+                                     'viuda'=>'viuda',
+                                     'separada'=>'separada',
+                                    );
+                echo $this->Form->input('estado_civil', [
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                  'type' => 'radio',
+                  'options' =>  $estadocivil,
+                  'required' => 'required',
+                  'label' => 'Estado civil'
+                ]);
 
                 $escolaridad = array('primaria completa'=>'primaria completa',
                                      'primaria incompleta'=>'primaria incompleta',
@@ -111,45 +76,65 @@
                                      'ningún grado'=>'ningún grado'
                                     );
                 echo $this->Form->input('escolaridad', [
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
                   'type' => 'radio',
                   'options' =>  $escolaridad,
                   'required' => 'required',
                   'label' => 'Escolaridad'
                 ]);
 
-                echo $this->Form->input('atencion_especializada');
-                echo $this->Form->input('nacionalidad');
-
                 $genero = array('Masculino' => 'Masculino','Femenino'=>'Femenino');
                 echo $this->Form->input('genero', array(
-                    'label' => 'Genero',
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                    'label' => 'Género',
+                    'type' => 'radio',
+                    'required' => 'required',
                     'options' => $genero
                     )
                 );
                 
-                echo $this->Form->input('ocupacion');
-                echo $this->Form->input('lugar_trabajo');
-                echo $this->Form->input('adicciones');
+                $adicciones = [
+                'Alcohol' => 'Alcohol',
+                'Drogas' => 'Drogas',
+                'Medicamentos' => 'Medicamentos',
+                'Ninguna' => 'Ninguna'
+                ];
+                echo $this->Form->input('adicciones', array(
+                    'label' => 'Adicciones',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $adicciones
+                    )
+                );
+                
                 
                 $migratoria = array('nacional'=>'nacional','residente'=>'residente',
                                     'refugiada'=>'refugiada','regular'=>'regular',
                                     'irregular'=>'irregular'
                                     );
                 echo $this->Form->input('condicion_migratoria',array(
-                  'label'=>'Condicion Migratoria',
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                  'label'=>'Condición Migratoria',
                   'type' => 'radio',
                   'options' => $migratoria,
                   'required' => 'required'
                   )
                 );
 
-                $laboral = array('remunerada'=>'remunerada','no remunerada'=>'no remunerada',
+                $laboral = array('remunerada'=>'remunerada','no reumnerada'=>'no remunerada',
                                 'desempleada'=>'desempleada', 'pensionada'=>'pensionada'
                                 );
                 echo $this->Form->input('condicion_laboral',array(
-                  'label'=>'Condicion Laboral',
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                  'label'=>'Condición Laboral',
                   'type' => 'radio',
                   'options' => $laboral,
                   'required' => 'required'
@@ -157,6 +142,9 @@
                 );
 
                 echo $this->Form->input('experiencia_laboral',array(
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
                   'label'=>'Experiencia Laboral',
                   'type' => 'radio',
                   'options' => ['Sí'=>'Sí','No'=>'No'],
@@ -164,21 +152,154 @@
                   )
                 );
 
-                echo $this->Form->input('condicion_aseguramiento');
-                echo $this->Form->input('vivienda');
-                echo $this->Form->input('num_hijos_ceaam');
-                echo $this->Form->input('tipo_familia');
-                echo $this->Form->input('embarazo');
-                echo $this->Form->input('condicion_salud');
-                echo $this->Form->input('identificacion');
-                echo $this->Form->input('tipo_identificacion');
+                $aseguramiento = [
+                'directa' => 'directa',
+                'familiar' => 'familiar',
+                'voluntario o convenio' => 'voluntario o convenio',
+                'pensionada' => 'pensionada',
+                'por el estado' => 'por el estado',
+                'ninguna' => 'ninguna'
+                ];
+                echo $this->Form->input('condicion_aseguramiento', array(
+                    'label' => 'Condición de Aseguramiento',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $aseguramiento
+                    )
+                );                
+                
+                $vivienda = array('alquilada'=>'alquilada','precario'=>'precario',
+                                    'propia total'=>'propia total','prestada'=>'prestada',
+                                    'propia con hipoteca'=>'propia con hipoteca','no tiene'=>'no tiene'
+                                    );
+                echo $this->Form->input('vivienda',array(
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                  'label'=>'Tipo de Vivienda',
+                  'type' => 'radio',
+                  'options' => $vivienda,
+                  'required' => 'required'
+                  )
+                );
+                
+                echo $this->Form->input('num_hijos_ceaam',['label'=>'Número de hijos con los que ingresa al CEAAM',
+                'type'=>'number'
+                ]);
+                
+                $familia =   array('nuclear'=>'nuclear',
+                                    'uniparental'=>'uniparental',
+                                    'nuclear extendida'=>'nuclear extendida'
+                                    );
+                echo $this->Form->input('tipo_familia',array(
+                  'templates' => [
+                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                  ],
+                  'label'=>'Tipo de Familia',
+                  'type' => 'radio',
+                  'options' => $familia,
+                  'required' => 'required'
+                  )
+                );               
+                
+                $salud = [
+                'Discapacidad Física' => 'Discapacidad Física',
+                'Discapacidad Cognitiva' => 'Discapacidad Cognitiva',
+                'Discapacidad Sensorial' => 'Discapacidad Sensorial',
+                'Discapacidad Mental' => 'Discapacidad Mental',
+                'Padecimientos Crónicos' => 'Padecimientos Crónicos',
+                'VIH-SIDA' => 'VIH-SIDA',
+                'ITS' => 'ITS',
+                'Condición Psiquíatrica' => 'Condición Psiquíatrica',
+                'Enfermedad Terminal' => 'Enfermedad Terminal'
+                ];
+                echo $this->Form->input('condicion_salud', array(
+                    'label' => 'Condición de Salud',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $salud
+                    )
+                );    
+                
+                $embarazo = [
+                    'No' => 'No',
+                    '1 mes' => '1 mes',
+                    '2 meses' => '2 meses',
+                    '3 meses' => '3 meses',
+                    '4 meses' => '4 meses',
+                    '5 meses' => '5 meses',
+                    '6 meses' => '6 meses',
+                    '7 meses' => '7 meses',
+                    '8 meses' => '8 meses',
+                    '9 meses' => '9 meses'
+                ];
+                
+                echo $this->Form->input('embarazo',['label'=>'Embarazo','type'=>'select','options'=>$embarazo]);
+            
             ?>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
 
         </fieldset>
-      <p>Lorem ipsum dolor silementum vulputate, nunc.</p>
     </article>
     <article id="tab2">
-      <p>Sed egestas, ante et ve eu, fermentum et, dapibus sed, urna.</p>
+      <fieldset>
+            <?= $this->Form->create('History', array('url' => 'histories/edit',)); ?>   
+            <?php
+                echo $this->Form->input('motivo_regreso');
+                echo $this->Form->input('antecedente_legal');
+                echo $this->Form->input('antecedente_psiquiatrico');
+                echo $this->Form->input('atencion_por_agresion');
+                echo $this->Form->input('centro_salud');
+                
+                $vfisica = 
+                array(
+                    'Le ha lanzado cualquier tipo de objetos' => 'Le ha lanzado cualquier tipo de objetos',
+                    'La ha empujado o zarandeado'=>'La ha empujado o zarandeado',
+                    'La ha tirado/halado el pelo' => 'La ha tirado/halado el pelo',
+                    'Le ha dado golpe en la cara ' => 'Le ha dado golpe en la cara ',
+                    'La patearon' => 'La patearon',
+                    'Le ha causado fracturas ' => 'Le ha causado fracturas ',
+                    'La tiraron al piso' => 'La tiraron al piso',
+                    'Ha intentado ahorcarla o asfixiarla' => 'Ha intentado ahorcarla o asfixiarla',
+                    'Le ha impedido el acceso a los alimentos ' => 'Le ha impedido el acceso a los alimentos ',
+                    'La ha amenazado con un arma de fuego' => 'La ha amenazado con un arma de fuego',
+                    'La ha amenazado con arma punzo cortante' => 'La ha amenazado con arma punzo cortante',
+                    'La ha quemado en alguna parte del cuerpo' => 'La ha quemado en alguna parte del cuerpo',
+                    'Ha utilizado contra usted algún objeto' => 'Ha utilizado contra usted algún objeto',
+                    'Ha utilizado contra usted un arma de fuego' => 'Ha utilizado contra usted un arma de fuego',
+                    'La ha amarrado para impedirle salir/hacer sus cosas' => 'La ha amarrado para impedirle salir/hacer sus cosas',
+                    'Ha utilizado contra usted algún arma punzo cortante' => 'Ha utilizado contra usted algún arma punzo cortante',
+                    'Le ha pegado con la mano en cualquier otra parte del cuerpo' => 'Le ha pegado con la mano en cualquier otra parte del cuerpo',
+                    'La ha mordido y dejado marcas de dientes en el cuerpo' => 'La ha mordido y dejado marcas de dientes en el cuerpo',
+                    'Le ha dado algo para envenenarla/intoxicarla' => 'Le ha dado algo para envenenarla/intoxicarla',
+                    'Ha amenazado con un objeto, palo o garrote' => 'Ha amenazado con un objeto, palo o garrote'
+                );
+    
+                echo $this->Form->input('violencia_fisica', array(
+                    'label' => 'Violencia Física',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $vfisica
+                    )
+                );
+                
+                echo $this->Form->input('violencia_psicologica');
+                echo $this->Form->input('violencia_sexual');
+                echo $this->Form->input('violencia_patrimonial');
+                echo $this->Form->input('impacto_violencia');
+                echo $this->Form->input('riesgo');
+                echo $this->Form->input('programa_oapvd');
+                echo $this->Form->input('proteccion');
+                echo $this->Form->input('valoracion_riesgo');
+                echo $this->Form->input('medida_proteccion');
+                echo $this->Form->input('vencimiento_proteccion');
+                echo $this->Form->input('situacion_enfrentada');
+            ?>
+        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->end() ?>
+        </fieldset>
+      
     </article>
     <article id="tab3">
       <p>Morbi interdum mollis saMdellr leo pedetate vel, nisl.</p>

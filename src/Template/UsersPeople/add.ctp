@@ -18,7 +18,7 @@
             //echo $this->Form->button('Historial',['action' => 'historial','type'=>'button']);
             echo $this->Html->link(__('Historial'), ['action' => 'historial'],['class' => 'button']);
             echo "&nbsp";
-            echo $this->Html->link(__('Editar Persona'), ['action' => 'expediente',$usersPerson->person_id],['class' => 'button']);
+            echo $this->Html->link(__('Editar Persona'), ['action' => 'tabular',$usersPerson->person_id],['class' => 'button']);
             
         ?>
     </fieldset>
