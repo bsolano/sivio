@@ -3,6 +3,11 @@
 /tmp/*
 /logs/*
 /phpmyadmin/*
+/phpmyadmin
+/phpMyAdmin/*
+/phpMyAdmin
 composer.phar
-phpMyAdmin/
-
+test.php
+php.ini
+php_errors.log
+hello-world.php
