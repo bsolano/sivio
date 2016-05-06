@@ -1,19 +1,14 @@
 <div class="row">
     <div class="people form large-12 medium-10 columns content">
-
-
-                <legend>
-                    <?= __('Buscar') ?>
-                </legend>
-                <?php
-                echo $this->Form->input('keyword', ['placeholder' => 'Digite el nombre o el número de cédula', 'label' => '']);
-                //'required' => true
-                ?>
-
-            <?= $this->Form->button(__('Buscar'), ['onclick' => 'loadResults()', 'type' => 'button']) ?>
-
-
-            <div id="results">Por favor ingrese su criterio de búsqueda.</div>
+        <h3>Expedientes</h3>
+        <legend>
+            Filtre expedientes
+        </legend>
+        <?php
+            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '']);
+        ?>
+        <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'class' => 'button secondary']) ?>
+        <div id="results">Por favor ingrese su criterio de búsqueda.</div>
     </div>
     
 </div>
@@ -36,4 +31,3 @@ function loadResults(){
           return false;
 }
 </script>
-

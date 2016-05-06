@@ -27,6 +27,8 @@ class ExternalReferencesController extends AppController
         $this->set('_serialize', ['externalReferences']);
     }
 
+ 
+
     /**
      * View method
      *
@@ -117,5 +119,19 @@ class ExternalReferencesController extends AppController
         parent::initialize();
     
         $this->Auth->allow();
+      
     }
+    
+     public function pdf(){
+        //$this->layout='ajax';
+        $this->viewBuilder()->layout('ajax');
+        $this->response->type('pdf');
+        
+    } 
+      // class to test pdf
+    public function test()
+    {
+
+    }
+   
 }
