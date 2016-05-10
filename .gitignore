@@ -1,6 +1,7 @@
 /vendor/*
 /config/app.php
 /tmp/*
+/less
 /logs/*
 /phpmyadmin/*
 /phpmyadmin
@@ -11,3 +12,4 @@ test.php
 php.ini
 php_errors.log
 hello-world.php
+.editorconfig

@@ -1,8 +1,8 @@
 <?= $this->Form->create('User', ['url' => 'users/login']) ?>
 <fieldset>
-    <legend><?= __('Login') ?></legend>
-    <?= $this->Form->input('username') ?>
-    <?= $this->Form->input('password') ?>
-    <?= $this->Form->button(__('Login')); ?>
+    <legend>Acceso de usuario</legend>
+    <?= $this->Form->input('username', ['label' => 'Nombre de usuario']) ?>
+    <?= $this->Form->input('password', ['label' => 'Clave']) ?>
+    <?= $this->Form->button('Acceder', ['class' => 'button']); ?>
 </fieldset>
 <?= $this->Form->end() ?>
