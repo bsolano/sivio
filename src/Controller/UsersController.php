@@ -128,6 +128,20 @@ class UsersController extends AppController
     
         $this->Auth->allow();
     }
+    
+     public function pdf($id = null){
+         
+        $user = $this->Users->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('user', $user);
+        $this->set('_serialize', ['user']);
+        //$this->layout='ajax';
+        $this->viewBuilder()->layout('ajax');
+        $this->response->type('pdf');
+        
+    } 
 
     public function logout() {
         $this->Flash->success(__('Good-Bye'));

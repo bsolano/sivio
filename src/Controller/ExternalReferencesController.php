@@ -122,16 +122,20 @@ class ExternalReferencesController extends AppController
       
     }
     
-     public function pdf(){
+     public function pdf($id = null){
+         
+        $externalReference = $this->ExternalReferences->get($id, [
+            'contain' => ['People']
+        ]);
+
+        $this->set('externalReference', $externalReference);
+        $this->set('_serialize', ['externalReference']);
+        
         //$this->layout='ajax';
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
         
     } 
-      // class to test pdf
-    public function test()
-    {
-
-    }
+    
    
 }
