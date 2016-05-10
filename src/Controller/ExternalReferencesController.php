@@ -58,7 +58,7 @@ class ExternalReferencesController extends AppController
             $externalReference = $this->ExternalReferences->patchEntity($externalReference, $this->request->data);
             if ($this->ExternalReferences->save($externalReference)) {
                 $this->Flash->success(__('The external reference has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $externalReference->id]);
             } else {
                 $this->Flash->error(__('The external reference could not be saved. Please, try again.'));
             }
@@ -66,6 +66,7 @@ class ExternalReferencesController extends AppController
         $people = $this->ExternalReferences->People->find('list', ['limit' => 200]);
         $this->set(compact('externalReference', 'people'));
         $this->set('_serialize', ['externalReference']);
+        
     }
 
     /**
@@ -134,7 +135,7 @@ class ExternalReferencesController extends AppController
         //$this->layout='ajax';
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
-        
+       
     } 
     
    

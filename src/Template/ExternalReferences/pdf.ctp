@@ -130,7 +130,7 @@ $html = '<h2>Número de Referencia'.$externalReference->id.':</h2>
         <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->id.'</td>
     </tr>
     <tr>
-        <td>identificación:</td>
+        <td>Observación:</td>
         <td bgcolor="#cccccc" align="justify" colspan="2">'.$externalReference->observacion.'</td>
     </tr>
 </table>';
