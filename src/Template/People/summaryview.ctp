@@ -18,7 +18,7 @@
       <div class = "container">
           <?php foreach ($years as $year): ?>
           <div class = "row">
-                   <div class = "large-12 medium-12 columns content" >  
+                   <div class = "small-11 small-centered columns content" >  
                          <legend><h3><?php echo $year ?></h3> </legend> 
                          <hr>
                     </div>
@@ -27,7 +27,7 @@
                      <?php 
                     if ($atention->fecha_inicio->format('Y') == $year): ?>
                         <div class = "row">
-                             <div class = "large-8-push-2 small-6-push-1 medium-6-push-1 columns box"> 
+                             <div class = "small-6 large-centered columns box_summary"> 
                                     <!--Each atenttion will be a row-->
                                
                                     <strong>Tipo de atención: </strong><?php echo $atention->tipo;?><br>

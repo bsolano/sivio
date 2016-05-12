@@ -145,6 +145,17 @@ class PeopleController extends AppController
         }
     }
     
+    /*
+    * action
+    * Según la accion seleccionada cuando se tiene una usuaria se debe de enviar distintos datos.
+    */ 
+    public function action() {
+        $keyword = $_POST['usuaria'];
+        $person = $this->People->get($keyword);
+        
+        $this->set(['person' => $person]);
+    }
+    
      /**
      * records_search method
      * Busca las atenciones de la persona solicitada.
@@ -180,5 +191,13 @@ class PeopleController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
+    }
+    
+    public function atencion($id = null){
+        $query = $this->People->find('all',['conditions' => ['People.id'  => $id]]);
+        $this->set('persona', $query);
+        
+          if ($this->request->is('post')) {
+        }
     }
 }

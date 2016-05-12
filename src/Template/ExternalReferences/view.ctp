@@ -7,6 +7,7 @@
         <li><?= $this->Html->link(__('New External Reference'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('PDF'), ['action' => 'pdf', $externalReference->id]) ?> </li>
     </ul>
 </nav>
 <div class="externalReferences view large-9 medium-8 columns content">

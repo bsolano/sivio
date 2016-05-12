@@ -39,7 +39,7 @@ class MYPDF extends TCPDF {
         // Set font
         $this->SetFont('helvetica', 'B', 20);
         // Title
-        $this->Cell(0, 15, 'Reporte Referencia Externa sistema SIVIO ', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 15, 'Ficha de usuario del sistema SIVIO ', 0, false, 'C', 0, '', 0, false, 'M', 'M');
     }
 
     // Page footer
@@ -61,7 +61,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('David Hine sivio');
-$pdf->SetTitle('Referencia Externa');
+$pdf->SetTitle('Ficha Usuario');
 $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, Usuario, test, guide');
 
@@ -105,34 +105,23 @@ $pdf->AddPage();
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
 // create some HTML content
-$html = '<h2>Número de Referencia'.$externalReference->id.':</h2>
+$html = '<h2>Datos del Usuario:</h2>
 <table border="1" cellspacing="3" cellpadding="4">
    
     <tr>
-        <td>Receptor:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->receptor.'</td>
+        <td>User Name:</td>
+        <td bgcolor="#cccccc" align="center" colspan="2">'.$user->username.'</td>
     </tr>
     
     <tr>
-        <td>Dirección:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->direccion.'</td>
+        <td>Group:</td>
+        <td bgcolor="#cccccc" align="center" colspan="2">'."Admin".'</td>
     </tr>
     <tr>
-        <td>Teléfono:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->telefono.'</td>
+        <td>ID:</td>
+        <td bgcolor="#cccccc" align="center" colspan="2">'.$user->id.'</td>
     </tr>
-    <tr>
-        <td>Nombre Referido:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->persona.'</td>
-    </tr>
-    <tr>
-        <td>identificación:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->id.'</td>
-    </tr>
-    <tr>
-        <td>Observación:</td>
-        <td bgcolor="#cccccc" align="justify" colspan="2">'.$externalReference->observacion.'</td>
-    </tr>
+    
 </table>';
 
 // output the HTML content
@@ -156,7 +145,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'D');
+$pdf->Output($user->username.'.pdf', 'D');
 
 //============================================================+
 // END OF FILE

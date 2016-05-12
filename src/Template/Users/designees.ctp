@@ -1,3 +1,7 @@
+     <title>
+        <?php echo $title; ?>
+    </title>
+    
      <div class = "row">
         <div class = "small-9 large-push-1 columns">          
              <strong>Personas asignadas a la profesional: </strong> <?php echo $user->username ?> <br>
@@ -11,9 +15,10 @@
                      <?php 
                     if ($designeeData->person_id == $person->id): ?>
                         <div class = "row">
-                             <div class = "large-8-push-2 small-6-push-1 medium-6-push-1 columns box"> 
-                                    <strong>Nombre: </strong><?php echo $person->nombre;?> <?= $this->Html->link(__(<?php echo $person->nombre;?>), ['action' => 'designees', $user->id]) ?> <br> 
-                                    <strong>Apellidos: </strong><?php echo $person->apellidos;?><br>
+                             <div class = "small-6 large-centered columns box_designees"> 
+                                    <strong>Nombre completo: </strong>
+                                    <!-- El link debe redigir al expediente de la persona, pero como aún no está esa parte, lo redirigo al resumen -->
+                                    <?= $this->Html->link($person->nombre . " " . $person->apellidos, ['controller' => 'People', 'action' => 'summaryview', $person->id]) ?> <br>
                                     <strong>Cédula: </strong><?php echo $person->identificacion;?><br>
                                     <strong>Fecha de Nacimiento: </strong><?php echo $person->fecha_de_nacimiento;?><br>
                                     <strong>Observaciones: </strong><?php echo $designeeData->observaciones;?><br>
