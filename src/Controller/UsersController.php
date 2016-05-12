@@ -2,14 +2,14 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
-class UsersController extends AppController
-{
+class UsersController extends AppController {
 
     /**
      * Index method
@@ -122,6 +122,11 @@ class UsersController extends AppController
         }
     }
     
+    public function logout() {
+        $this->Flash->success(__('Good-Bye'));
+        $this->redirect($this->Auth->logout());
+    }
+    
     public function initialize()
     {
         parent::initialize();
@@ -143,8 +148,5 @@ class UsersController extends AppController
         
     } 
 
-    public function logout() {
-        $this->Flash->success(__('Good-Bye'));
-        $this->redirect($this->Auth->logout());
-    }
+    
 }
