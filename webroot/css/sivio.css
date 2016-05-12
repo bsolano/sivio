@@ -1,3 +1,13 @@
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.tabs {
+    border:0;
+    border-bottom: 1px solid  #5AB1D0 !important;
+}
+
 .disabled a,
 a.disabled {
     pointer-events: none;
