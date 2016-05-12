@@ -123,7 +123,7 @@ class UsersController extends AppController {
     }
     
     public function logout() {
-        $this->Flash->success(__('Good-Bye'));
+        $this->Flash->success('¡Hasta pronto!');
         $this->redirect($this->Auth->logout());
     }
     
@@ -148,9 +148,4 @@ class UsersController extends AppController {
         
     } 
 
-    public function logout() {
-        $this->Flash->success('¡Hasta pronto!');
-        $this->redirect($this->Auth->logout());
-    }
-    
 }
