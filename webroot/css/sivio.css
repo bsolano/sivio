@@ -638,3 +638,17 @@ article {
 }
 
 /*   FIN TABS  */
+
+/* sumarry view boxes */
+.box_summary{   
+     border-width: 2%;
+     border-style: ridge;
+     border-radius: 8px;
+     
+     width: 80%;
+}
+.box_summary:hover{
+      background-color: grey;
+      cursor: pointer;
+}    
+/* END SUMMARY VIEW BOXES */
