@@ -6,19 +6,6 @@
         <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
     </head>
 <body>
-    <nav class="large-3 medium-4 columns" id="actions-sidebar">
-        <ul class="side-nav">
-            <li class="heading"><?= __('Actions') ?></li>
-            <li><?= $this->Html->link(__('Ingresos y Egresos'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Perfil de Usuaria'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Historia de Violencia'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Hijas e Hijos'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Intervenciones'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Redes de Apoyo'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Seguimientos'), ['action' => 'index']) ?></li>
-        </ul>
-    </nav>
-        
     <div class="usersPeople form large-9 medium-8 columns content">
         <section class="wrapper">
     <ul class="tabs">

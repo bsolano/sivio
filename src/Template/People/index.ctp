@@ -37,6 +37,6 @@ function loadResults(){
     }
     
     function esAtencion() {
-        document.location = "/atentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+        document.location = "/people/atencion/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }
 </script>
