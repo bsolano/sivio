@@ -32,6 +32,7 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
+
 <body>
 	<!--<header>-->
 		<div class="title-bar" style="background-color:white;">
@@ -83,10 +84,10 @@ $sivioDescription = 'SIVIO';
 		?>
 	<!--</header>-->
 
-    <?= $this->Flash->render() ?>
     <div class="container">
+    	<?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
-    </div>
+    </div>  <!-- Container -->
     
     
   </div>

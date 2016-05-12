@@ -9,8 +9,8 @@
         <tr><td class="text-center"><input type="radio" name="usuaria" value="<?php echo $person->id; ?>" /></td><td><?php echo $person->nombre.' '.$person->apellidos; ?></td><td><?php echo $person->fecha_de_nacimiento; ?></td><td><?php echo $person->identificacion; ?></td></tr>
     <?php endforeach; ?>
 </table>
-<input type="button" value="Consulta" onclick='esConsulta()'/>
-<input type="button" value="Atención" onclick='esAtencion()'/>
+<input type="button" value="Consulta" class="secondary button" onclick='esConsulta()'/>
+<input type="button" value="Atención" class="secondary button" onclick='esAtencion()'/>
 <?php else: ?>
     <p>No hay registro</p>
 <?php endif; ?>
