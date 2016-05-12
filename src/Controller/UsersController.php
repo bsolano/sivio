@@ -169,7 +169,7 @@ class UsersController extends AppController {
         $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
         $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
         $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
-        $this->set('title', 'Personas asignadas'); //Guarda en variable accesible desde la vista.
+        //$this->set('title', 'Personas asignadas'); //Guarda en variable accesible desde la vista.
     }
 
 }

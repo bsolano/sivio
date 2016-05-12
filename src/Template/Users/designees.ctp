@@ -1,5 +1,5 @@
      <title>
-        <?php echo $title; ?>
+        <?php $this->assign('title', 'Personas asignadas'); ?>
     </title>
     
      <div class = "row">

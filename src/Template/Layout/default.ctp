@@ -58,7 +58,7 @@ $sivioDescription = 'SIVIO';
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
 			  <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
-			  <li><?= $this->Html->link('Casos asignados', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
+			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
 			  <li><a href="#">Referencias</a></li>
 			  <li><a href="#">Asesoría técnica</a></li>
 			  <li><a href="#">Reportes</a></li>
