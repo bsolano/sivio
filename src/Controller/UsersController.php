@@ -2,14 +2,14 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
-class UsersController extends AppController
-{
+class UsersController extends AppController {
 
     /**
      * Index method
@@ -118,8 +118,13 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Your username or password was incorrect.'));
+            $this->Flash->error('Su nombre de usuario y clave son incorrectos.');
         }
+    }
+    
+    public function logout() {
+        $this->Flash->success('¡Hasta pronto!');
+        $this->redirect($this->Auth->logout());
     }
     
     public function initialize()
@@ -128,9 +133,19 @@ class UsersController extends AppController
     
         $this->Auth->allow();
     }
+    
+     public function pdf($id = null){
+         
+        $user = $this->Users->get($id, [
+            'contain' => []
+        ]);
 
-    public function logout() {
-        $this->Flash->success(__('Good-Bye'));
-        $this->redirect($this->Auth->logout());
-    }
+        $this->set('user', $user);
+        $this->set('_serialize', ['user']);
+        //$this->layout='ajax';
+        $this->viewBuilder()->layout('ajax');
+        $this->response->type('pdf');
+        
+    } 
+
 }

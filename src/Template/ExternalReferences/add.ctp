@@ -10,11 +10,25 @@
     <?= $this->Form->create($externalReference) ?>
     <fieldset>
         <legend><?= __('Add External Reference') ?></legend>
+        
+         <legend><?= __('Persona') ?></legend>
         <?php
-            echo $this->Form->input('receptor');
+            
+            echo $this->Form->input('nacionalidad');
+            echo $this->Form->input('edad');
             echo $this->Form->input('telefono');
-            echo $this->Form->input('person_id', ['options' => $people, 'empty' => true]);
+            echo $this->Form->input('person_id', ['options' => $people, 'empty' => true,'label' => 'Identificación' ]);
             echo $this->Form->input('direccion');
+            
+            
+            ?>
+            <legend><?= __('Institución') ?></legend>
+            <?php
+            echo $this->Form->input('receptor');
+            echo $this->Form->input('institucion', array('type' => 'text', 'selected' => '13:30:00'));
+             ?>
+            <legend><?= __('Motivo') ?></legend>
+            <?php
             echo $this->Form->input('observacion');
             echo $this->Form->input('persona');
         ?>

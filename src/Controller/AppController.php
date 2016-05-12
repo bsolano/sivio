@@ -25,8 +25,13 @@ use Cake\Event\Event;
  *
  * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller
-{
+class AppController extends Controller {
+    
+    public function beforeFilter(Event $event)
+    {
+        /*$this->Auth->Allow(['index']);*/
+    }
+    
     public $components = [
         'Acl' => [
             'className' => 'Acl.Acl'
@@ -61,7 +66,7 @@ class AppController extends Controller
             ],
             'loginRedirect' => [
                 'plugin' => false,
-                'controller' => 'users',
+                'controller' => 'People',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
@@ -70,11 +75,11 @@ class AppController extends Controller
                 'action' => 'login'
             ],
             'unauthorizedRedirect' => [
-                'controller' => 'Cameras',
-                'action' => 'index',
+                'controller' => 'Users',
+                'action' => 'login',
                 'prefix' => false
             ],
-            'authError' => 'You are not authorized to access that location.',
+            'authError' => 'Usted no está autorizado a acceder dicha acción.',
             'flash' => [
                 'element' => 'error'
             ]

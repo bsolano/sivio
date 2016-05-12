@@ -1,3 +1,14 @@
+body, html {
+    height: 100%;
+    overflow: hidden;
+    font-weight: 300;
+}
+
+.tabs {
+    border:0;
+    border-bottom: 1px solid  #5AB1D0 !important;
+}
+
 .disabled a,
 a.disabled {
     pointer-events: none;
@@ -164,6 +175,8 @@ button {
 
 .required > label {
     font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 .required > label:after {
     content: ' *';
@@ -444,7 +457,7 @@ table thead tr {
 table tr th {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
-    color: #1798A5;
+    /*color: #1798A5;*/
     text-align: left;
     border-bottom: 2px solid #1798A5;
 }
@@ -534,7 +547,7 @@ div.message.hidden {
 .vertical-table th {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
-    color: #1798A5;
+    /*color: #1798A5;*/
     border: none;
     text-align: left;
 }
@@ -563,6 +576,7 @@ div.message.hidden {
 #actions-sidebar {
     margin-bottom: -99999px;
     padding-bottom: 99999px;
+    background-color: white;
 }
 @media(max-width: 640px) {
     #actions-sidebar {
@@ -610,31 +624,59 @@ ul.tabs {
   padding: 0;
 }
 ul.tabs li {
-  border: gray solid 1px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  background-color: #F2F2F2 ;
+  /*border: gray solid 1px;*/
   border-bottom: none;
   float: left;
   margin: 0 .25em 0 0;
   padding: .25em .5em;
+  margin-bottom: -1px !important;
+  border: 1px solid #dbdbdb !important;
+  border-bottom: 1px solid #5AB1D0 !important;
+}
+ul.tabs li:hover {
+    background-color: rgb(220, 220, 220) ;
+    transition-duration: 1s;
 }
 ul.tabs li a {
   color: gray;
-  font-weight: bold;
   text-decoration: none;
 }
 ul.tabs li.active {
-  background: gray;
+    transition-duration: 0s;
+  margin-bottom: -1px !important;
+  border: 1px solid #5AB1D0 !important;
+  border-bottom:  1px #fff solid !important;
+  background-color: white;
+  /*background: gray;*/
 }
 ul.tabs li.active a {
-  color: white;
+  /*color: white;*/
 }
 .clr {
   clear: both;
 }
 article {
-  border-top: gray solid 1px;
+  border-top: 1px solid var(--inamu-celeste);
   padding: 0 1em;
   overflow:scroll;
   height:90vh;
 }
 
 /*   FIN TABS  */
+
+/* sumarry view boxes */
+.box_summary{   
+     border-width: 2%;
+     border-style: ridge;
+     border-radius: 8px;
+     
+     width: 80%;
+}
+.box_summary:hover{
+      background-color: grey;
+      cursor: pointer;
+}    
+/* END SUMMARY VIEW BOXES */
