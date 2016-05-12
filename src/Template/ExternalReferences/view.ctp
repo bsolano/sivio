@@ -13,13 +13,14 @@
 <div class="externalReferences view large-9 medium-8 columns content">
     <h3><?= h($externalReference->id) ?></h3>
     <table class="vertical-table">
-        <tr>
-            <th><?= __('Receptor') ?></th>
-            <td><?= h($externalReference->receptor) ?></td>
-        </tr>
+       
         <tr>
             <th><?= __('Telefono') ?></th>
             <td><?= h($externalReference->telefono) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Edad') ?></th>
+            <td><?= h($externalReference->edad) ?></td>
         </tr>
         <tr>
             <th><?= __('Person') ?></th>

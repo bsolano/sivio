@@ -9,7 +9,7 @@
 <div class="externalReferences form large-9 medium-8 columns content">
     <?= $this->Form->create($externalReference) ?>
     <fieldset>
-        <legend><?= __('Add External Reference') ?></legend>
+     
         
          <legend><?= __('Persona') ?></legend>
         <?php
@@ -26,6 +26,8 @@
             <?php
             echo $this->Form->input('receptor');
             echo $this->Form->input('institucion', array('type' => 'text', 'selected' => '13:30:00'));
+            echo $this->Form->input('telefono_receptor');
+            echo $this->Form->input('correo');
              ?>
             <legend><?= __('Motivo') ?></legend>
             <?php
