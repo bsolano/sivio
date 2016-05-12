@@ -47,9 +47,10 @@ class ConsultationsController extends AppController
     /**
      * Add method
      *
+     * @param int|null $usuaria Person id.
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($usuaria = null)
     {
         $consultation = $this->Consultations->newEntity();
         if ($this->request->is('post')) {
@@ -61,9 +62,11 @@ class ConsultationsController extends AppController
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
         }
+        echo debug($usuaria);
         $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $users = $this->Consultations->Users->find('list', ['limit' => 200]);
         $this->set(compact('consultation', 'people', 'users'));
+        $this->set(['usuaria' => $usuaria]);
         $this->set('_serialize', ['consultation']);
     }
 

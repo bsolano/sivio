@@ -144,6 +144,18 @@ class PeopleController extends AppController
             //$this->set('_serialize', ['people']);
         }
     }
+    
+    /*
+    * action
+    * Según la accion seleccionada cuando se tiene una usuaria se debe de enviar distintos datos.
+    */ 
+    public function action() {
+        $keyword = $_POST['usuaria'];
+        $person = $this->People->get($keyword);
+        
+        $this->set(['person' => $person]);
+    }
+    
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
         $years = array();

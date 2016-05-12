@@ -31,3 +31,12 @@ function loadResults(){
           return false;
 }
 </script>
+<script type="text/javascript">
+    function esConsulta() {
+        document.location = "/consultations/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    }
+    
+    function esAtencion() {
+        document.location = "/atentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    }
+</script>
