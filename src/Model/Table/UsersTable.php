@@ -2,6 +2,9 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\User;
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\Event\Event;
+use Cake\ORM\Entity;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -67,6 +70,8 @@ class UsersTable extends Table
             'targetForeignKey' => 'person_id',
             'joinTable' => 'users_people'
         ]);
+        
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
     }
 
     /**
@@ -110,5 +115,12 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
         return $rules;
+    }
+    
+    public function beforeSave(Event $event, Entity $entity, \ArrayObject $options)
+    {
+        $hasher = new DefaultPasswordHasher;
+        $entity->password = $hasher->hash($entity->password);
+        return true;
     }
 }

@@ -118,7 +118,7 @@ class UsersController extends AppController {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Your username or password was incorrect.'));
+            $this->Flash->error('Su nombre de usuario y clave son incorrectos.');
         }
     }
     
@@ -148,5 +148,9 @@ class UsersController extends AppController {
         
     } 
 
+    public function logout() {
+        $this->Flash->success('¡Hasta pronto!');
+        $this->redirect($this->Auth->logout());
+    }
     
 }
