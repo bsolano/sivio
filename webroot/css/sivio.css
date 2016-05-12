@@ -1,6 +1,7 @@
 body, html {
     height: 100%;
     overflow: hidden;
+    font-weight: 300;
 }
 
 .tabs {
@@ -641,7 +642,6 @@ ul.tabs li:hover {
 }
 ul.tabs li a {
   color: gray;
-  font-weight: bold;
   text-decoration: none;
 }
 ul.tabs li.active {

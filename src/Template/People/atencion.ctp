@@ -2,7 +2,7 @@
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
-        <link type="text/css" rel="stylesheet" href="/webroot/css/style.css" />
+        <!--<link type="text/css" rel="stylesheet" href="/webroot/css/style.css" /> -->
         <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
     </head>
 <body>

@@ -13,7 +13,7 @@
             <td><?php echo $person->identificacion; ?></td>
             <td class="actions">
                 <?= $this->Html->link('Consulta', ['action' => 'view', $person->id]) ?>
-                <?= $this->Html->link('Atención', ['action' => 'edit', $person->id]) ?>
+                <?= $this->Html->link('Atención', ['action' => 'atencion', $person->id]) ?>
             </td>
         </tr>
     <?php endforeach; ?>

@@ -176,4 +176,12 @@ class PeopleController extends AppController
         // Json
         $this->loadComponent('RequestHandler');
     }
+    
+    public function atencion($id = null){
+        $query = $this->People->find('all',['conditions' => ['People.id'  => $id]]);
+        $this->set('persona', $query);
+        
+          if ($this->request->is('post')) {
+        }
+    }
 }
