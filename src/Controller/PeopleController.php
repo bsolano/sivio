@@ -144,6 +144,11 @@ class PeopleController extends AppController
             //$this->set('_serialize', ['people']);
         }
     }
+    
+     /**
+     * records_search method
+     * Busca las atenciones de la persona solicitada.
+     */ 
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
         $years = array();

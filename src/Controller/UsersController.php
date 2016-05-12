@@ -133,4 +133,28 @@ class UsersController extends AppController
         $this->Flash->success(__('Good-Bye'));
         $this->redirect($this->Auth->logout());
     }
+    
+    /**
+     * designees
+     * Busca las personas asignadas a la usuario logueada.
+     */ 
+    public function designees($user = null) {
+        $this->loadModel('UsersPeople'); //Carga la tabla Users_People en en este controlador.
+        $this->loadModel('People'); //Carga la tabla People en en este controlador.
+        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
+        $designeesData = $this->UsersPeople->find('all', [
+        'conditions' => ['UsersPeople.user_id' => $user]
+        ]); //Obtiene el id de las personas asignadas al usuario logeado.
+        $designeeObservations = $this->UsersPeople->find('all', [
+        'conditions' => ['UsersPeople.user_id' => $user], 
+        'fields' => ['observaciones']
+        ]); //Obtiene la observación de las personas asignadas al usuario logeado.
+        $people = $this->People->find('all');
+        //$peopleData = $this->People->get($designeeId); //Obtiene la información de las personas asignadas a la usuaria logueada.
+        
+        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
+        $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
+        $this->set(['designeeObservations' => $designeeObservations]); //Guarda en variable accesible desde la vista.
+        $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
+    }
 }
