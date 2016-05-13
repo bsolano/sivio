@@ -17,26 +17,29 @@ class ConsultationsControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.consultations',
+        'app.users',
+        'app.groups',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos',
+        'app.entries',
         'app.people',
         'app.transfers',
         'app.aggressors',
         'app.histories',
         'app.external_references',
         'app.followups',
-        'app.users',
-        'app.groups',
         'app.followups_users',
-        'app.users_people',
         'app.advocacies',
         'app.evaluations',
         'app.people_advocacies',
         'app.internal_references',
         'app.interventions',
         'app.interventions_people',
-        'app.entries',
         'app.people_entries',
         'app.families',
-        'app.people_families'
+        'app.people_families',
+        'app.users_people'
     ];
 
     /**
