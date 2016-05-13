@@ -1,3 +1,4 @@
+<!--
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -28,10 +29,13 @@
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="people form large-9 medium-8 columns content">
+-->
+
+<!-- Se agrega large-centered para que el form se encuentre centrado. -->
+<div class="people form large-centered large-9 medium-8 columns content">
     <?= $this->Form->create($person) ?>
     <fieldset>
-        <legend><?= __('Add Person') ?></legend>
+        <legend><?= __('Agregar nueva usuaria') ?></legend>
         <?php
             echo $this->Form->input('nombre');
             echo $this->Form->input('apellidos');
@@ -65,6 +69,6 @@
             echo $this->Form->input('users._ids', ['options' => $users]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Enviar', ['class' => 'secondary button'])) ?>
     <?= $this->Form->end() ?>
 </div>
