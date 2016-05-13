@@ -5,10 +5,10 @@
         <li><?= $this->Form->postLink(__('Delete Consultation'), ['action' => 'delete', $consultation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $consultation->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Consultations'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Consultation'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="consultations view large-9 medium-8 columns content">
@@ -27,16 +27,20 @@
             <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
         </tr>
         <tr>
+            <th><?= __('Situacion Enfrentada') ?></th>
+            <td><?= h($consultation->situacion_enfrentada) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($consultation->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Person Id') ?></th>
-            <td><?= $this->Number->format($consultation->person_id) ?></td>
+            <th><?= __('Created') ?></th>
+            <td><?= h($consultation->created) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Modified') ?></th>
+            <td><?= h($consultation->modified) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Observaciones') ?></h4>
-        <?= $this->Text->autoParagraph(h($consultation->observaciones)); ?>
-    </div>
 </div>

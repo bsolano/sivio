@@ -7,13 +7,14 @@ use Cake\ORM\Entity;
  * Consultation Entity.
  *
  * @property int $id
- * @property int $person_id
- * @property string $observaciones
  * @property string $tipo
  * @property int $user_id
  * @property \App\Model\Entity\User $user
- * @property int $people_id
+ * @property int $person_id
  * @property \App\Model\Entity\Person $person
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ * @property string $situacion_enfrentada
  */
 class Consultation extends Entity
 {
@@ -30,6 +31,5 @@ class Consultation extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-        'people_id' => false,
     ];
 }

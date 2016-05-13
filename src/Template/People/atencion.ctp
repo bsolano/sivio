@@ -6,24 +6,24 @@
         <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
     </head>
 <body>
-    <div class="usersPeople form large-9 medium-8 columns content">
+    <?= $this->Form->create('People', array('url' => 'people/edit',)); ?>
+    <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
         <section class="wrapper">
     <ul class="tabs">
-    <li><a href="#tab1">Perfil</a></li>
-    <li><a href="#tab2">Historia de Violencia</a></li>
-    <li><a href="#tab3">Ingresos y Egresos</a></li>
-    <li><a href="#tab4">Hijos</a></li>
-    <li><a href="#tab5">Seguimientos</a></li>
+    <li><a href="#tab1">Ingresos y Egresos</a></li>
+    <li><a href="#tab2">Perfil de Usuaria</a></li>
+    <li><a href="#tab3">Redes de Apoyo</a></li>
+    <li><a href="#tab4">Historia de Violencia</a></li>
+    <li><a href="#tab5">Hijos</a></li>
     <li><a href="#tab6">Intervenciones</a></li>
-    <li><a href="#tab7">Redes de Apoyo</a></li>
+    <li><a href="#tab7">Seguimientos</a></li>
     
     
   </ul>
   <section class="block">
-    <article id="tab1">
+    <article id="tab2">
         <fieldset>
-            <div class="large-6 medium-6 columns">
-            <?= $this->Form->create('People', array('url' => 'people/edit',)); ?>
+            <div class="large-4 small-4 columns">
             <?php
                 echo $this->Form->input('nombre'); 
                 echo $this->Form->input('apellidos');
@@ -33,6 +33,7 @@
                 echo $this->Form->input('ocupacion',['label'=>'Ocupación']);
                 echo $this->Form->input('lugar_trabajo',['label'=>'Lugar de trabajo']);
                 echo $this->Form->input('fecha_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento']);
+                
                 
                 $estadocivil = array('casada'=>'casada',
                                      'unión libre'=>'unión libre',
@@ -70,6 +71,10 @@
                   'label' => 'Escolaridad'
                 ]);
 
+            ?>
+        </div>
+        <div class="large-4 small-4 columns">
+            <?php
                 $genero = array('Masculino' => 'Masculino','Femenino'=>'Femenino');
                 echo $this->Form->input('genero', array(
                   'templates' => [
@@ -81,6 +86,7 @@
                     'options' => $genero
                     )
                 );
+
                 $adicciones = [
                 'Alcohol' => 'Alcohol',
                 'Drogas' => 'Drogas',
@@ -94,10 +100,6 @@
                     'options' => $adicciones
                     )
                 );
-            ?>
-        </div>
-        <div class="large-6 medium-6 columns">
-            <?php
                 $migratoria = array('nacional'=>'nacional','residente'=>'residente',
                                     'refugiada'=>'refugiada','regular'=>'regular',
                                     'irregular'=>'irregular'
@@ -137,7 +139,6 @@
                   'required' => 'required'
                   )
                 );
-
                 $aseguramiento = [
                 'directa' => 'directa',
                 'familiar' => 'familiar',
@@ -154,6 +155,10 @@
                     )
                 );                
                 
+            ?>
+        </div>
+        <div class="large-4 small-4 columns">
+            <?php
                 $vivienda = array('alquilada'=>'alquilada','precario'=>'precario',
                                     'propia total'=>'propia total','prestada'=>'prestada',
                                     'propia con hipoteca'=>'propia con hipoteca','no tiene'=>'no tiene'
@@ -231,7 +236,7 @@
             </div>
         </fieldset>
     </article>
-    <article id="tab2">
+    <article id="tab4">
         <fieldset>
             <div class="large-6 medium-6 columns">
             <h4><?= __('Perfil del agresor') ?></h4>

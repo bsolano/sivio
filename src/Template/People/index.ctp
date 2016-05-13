@@ -1,6 +1,10 @@
 <div class="row">
     <div class="people form large-12 medium-10 columns content">
+        <!-- Se tiene la opción de siempre agregar alguien nueva al sistema. -->
+        <input type="button" value="Crear Usuaria" class="primary button float-right" onclick='crearUsuaria()'/>
+        
         <h3>Expedientes</h3>
+
         <legend>
             Filtre expedientes
         </legend>
@@ -32,6 +36,15 @@ function loadResults(){
 }
 </script>
 <script type="text/javascript">
+    function crearUsuaria() {
+        document.location = "/people/add";
+    }
+    
+    function usuariaSelect() {
+        document.getElementById("bnt_Atencion").style.display = "block";
+        document.getElementById("bnt_Consulta").style.display = "block";
+    }
+    
     function esConsulta() {
         document.location = "/consultations/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }

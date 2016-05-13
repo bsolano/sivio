@@ -19,7 +19,7 @@ class ConsultationsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People', 'Users']
+            'contain' => ['Users', 'People']
         ];
         $consultations = $this->paginate($this->Consultations);
 
@@ -37,7 +37,7 @@ class ConsultationsController extends AppController
     public function view($id = null)
     {
         $consultation = $this->Consultations->get($id, [
-            'contain' => ['People', 'Users']
+            'contain' => ['Users', 'People']
         ]);
 
         $this->set('consultation', $consultation);
@@ -47,10 +47,9 @@ class ConsultationsController extends AppController
     /**
      * Add method
      *
-     * @param int|null $usuaria Person id.
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add($usuaria = null)
+    public function add($id = null)
     {
         $consultation = $this->Consultations->newEntity();
         if ($this->request->is('post')) {
@@ -62,11 +61,10 @@ class ConsultationsController extends AppController
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
         }
-        echo debug($usuaria);
-        $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $users = $this->Consultations->Users->find('list', ['limit' => 200]);
-        $this->set(compact('consultation', 'people', 'users'));
-        $this->set(['usuaria' => $usuaria]);
+        $people = $this->Consultations->People->find('list', ['limit' => 200]);
+        $this->set(compact('consultation', 'users', 'people'));
+        $this->set('person_id', $id);
         $this->set('_serialize', ['consultation']);
     }
 
@@ -91,9 +89,9 @@ class ConsultationsController extends AppController
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
         }
-        $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $users = $this->Consultations->Users->find('list', ['limit' => 200]);
-        $this->set(compact('consultation', 'people', 'users'));
+        $people = $this->Consultations->People->find('list', ['limit' => 200]);
+        $this->set(compact('consultation', 'users', 'people'));
         $this->set('_serialize', ['consultation']);
     }
 
@@ -115,21 +113,13 @@ class ConsultationsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
-    
-    public function initialize()
+      public function initialize()
     {
         parent::initialize();
-    
         $this->Auth->allow();
-    }
-    
-    public function summary($person = null) {
-        $this->paginate = [
-            'contain' => ['People', 'Users']
-        ];
-        $this->set('prueba', $person);
-        $consultations = $this->paginate($this->Consultations->find('all', [ 'conditions' => ['Consultations.user_id' => $person]]));
-        $this->set(compact('consultations'));
-        $this->set('_serialize', ['consultations']);
+        
+        // Json
+        $this->loadComponent('RequestHandler');
+        
     }
 }

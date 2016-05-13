@@ -9,28 +9,31 @@
 <div class="externalReferences form large-9 medium-8 columns content">
     <?= $this->Form->create($externalReference) ?>
     <fieldset>
-        <legend><?= __('Add External Reference') ?></legend>
+     
         
          <legend><?= __('Persona') ?></legend>
         <?php
-            
+        echo $this->Form->input('person_id', ['options' => $people, 'empty' => true,'label' => 'Identificación' ]);
+           echo $this->Form->input('persona',['label' => 'Nombre' ]);
             echo $this->Form->input('nacionalidad');
             echo $this->Form->input('edad');
-            echo $this->Form->input('telefono');
-            echo $this->Form->input('person_id', ['options' => $people, 'empty' => true,'label' => 'Identificación' ]);
-            echo $this->Form->input('direccion');
+            echo $this->Form->input('telefono',['empty' => true,'label' => 'Teléfono']);
+            
+            echo $this->Form->input('direccion',[ 'empty' => true,'label' => 'Dirección' ]);
             
             
             ?>
             <legend><?= __('Institución') ?></legend>
             <?php
             echo $this->Form->input('receptor');
-            echo $this->Form->input('institucion', array('type' => 'text', 'selected' => '13:30:00'));
+            echo $this->Form->select('institucion',['IMAS', 'Fiscalía', 3, 4, 5],['empty' => '(Institución)']);
+            echo $this->Form->input('telefono_receptor',['empty' => true,'label' => 'Teléfono Receptor' ]);
+            echo $this->Form->input('correo');
              ?>
             <legend><?= __('Motivo') ?></legend>
             <?php
-            echo $this->Form->input('observacion');
-            echo $this->Form->input('persona');
+            echo $this->Form->input('observacion',[ 'empty' => true,'label' => 'Observación' ]);
+          
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -1,13 +1,21 @@
 body, html {
     height: 100%;
-    overflow: hidden;
+    margin: 0;
+    overflow: auto;
     font-weight: 300;
+    color: #707c80;
 }
 
 .tabs {
     border:0;
     border-bottom: 1px solid  #5AB1D0 !important;
 }
+
+label {
+    color: inherit;
+}
+
+/*    -------------------------------------------------*/
 
 .disabled a,
 a.disabled {
@@ -566,16 +574,17 @@ div.message.hidden {
 
 /* Use 'one true layout' methods to get equal height columns */
 .container {
-    /*overflow-y: auto;*/
-    min-height: 92%; /* full height almost always */
+    /* full height almost always */
+    /*min-height: 92%; */
+    
     /*display: inline-block;*/
 }
 
 /* Force equal height by overflowing */
 .content,
 #actions-sidebar {
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
+    /*margin-bottom: -99999px;*/
+    /*padding-bottom: 99999px;*/
     background-color: white;
 }
 @media(max-width: 640px) {
@@ -588,15 +597,15 @@ div.message.hidden {
 #actions-sidebar{    background-color:#dbdbdb; }
 
 .content h3 {
-    color: #be140b;
+    color: #d97300;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
 }
 
 .content h4 {
-    color: #be140b;
+    color: #d97300;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #be140b;
+    border-bottom: 2px solid #d97300;
 }
 
 .content .related h4 {
@@ -661,7 +670,7 @@ ul.tabs li.active a {
 article {
   border-top: 1px solid var(--inamu-celeste);
   padding: 0 1em;
-  overflow:scroll;
+  /*overflow-y:scroll;*/
   height:90vh;
 }
 

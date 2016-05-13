@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
 /**
  * Consultations Model
  *
- * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $People
  */
@@ -29,16 +28,15 @@ class ConsultationsTable extends Table
 
         $this->table('consultations');
         $this->displayField('id');
-        $this->primaryKey(['id', 'people_id']);
+        $this->primaryKey('id');
 
-        $this->belongsTo('People', [
-            'foreignKey' => 'person_id'
-        ]);
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
         $this->belongsTo('People', [
-            'foreignKey' => 'people_id',
+            'foreignKey' => 'person_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -56,10 +54,11 @@ class ConsultationsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('observaciones');
+            ->allowEmpty('tipo');
 
         $validator
-            ->allowEmpty('tipo');
+            ->requirePresence('situacion_enfrentada', 'create')
+            ->notEmpty('situacion_enfrentada');
 
         return $validator;
     }
@@ -73,9 +72,8 @@ class ConsultationsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['people_id'], 'People'));
+        $rules->add($rules->existsIn(['person_id'], 'People'));
         return $rules;
     }
 }
