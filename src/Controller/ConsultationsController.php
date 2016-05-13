@@ -49,7 +49,7 @@ class ConsultationsController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $consultation = $this->Consultations->newEntity();
         if ($this->request->is('post')) {
@@ -64,6 +64,7 @@ class ConsultationsController extends AppController
         $users = $this->Consultations->Users->find('list', ['limit' => 200]);
         $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $this->set(compact('consultation', 'users', 'people'));
+        $this->set('person_id', $id);
         $this->set('_serialize', ['consultation']);
     }
 
