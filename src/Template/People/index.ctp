@@ -37,7 +37,13 @@ function loadResults(){
 </script>
 <script type="text/javascript">
     function crearUsuaria() {
-        document.location = "/people/add";
+        if(document.getElementById("keyword").value == ""){
+            if(confirm("¿Está segura?\nNo ha realizado una busqueda")) {
+                document.location = "/people/add";
+            }
+        } else {
+            document.location = "/people/add";
+        }
     }
     
     function usuariaSelect() {
