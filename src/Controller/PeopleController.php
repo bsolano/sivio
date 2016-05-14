@@ -22,7 +22,11 @@ class PeopleController extends AppController
             'contain' => ['Histories']
         ];
         $people = $this->paginate($this->People);
-
+        
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $this->set('user_group', $user_group_id);
+        
         $this->set(compact('people'));
         $this->set('_serialize', ['people']);
     }
@@ -172,11 +176,10 @@ class PeopleController extends AppController
         'fields' => ['fecha_inicio']
         ]);
         foreach ($dates as $date){
-         if(!in_array($date->fecha_inicio->format('Y'), $years)){
+            if(!in_array($date->fecha_inicio->format('Y'), $years)){
                 array_push($years,$date->fecha_inicio->format('Y'));
-         }
+            }
         }
-            
         
         $person_data = $this->People->get($person);
         $this->set(['atentions' => $eva]);
