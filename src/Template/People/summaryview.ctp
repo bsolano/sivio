@@ -1,5 +1,5 @@
 
-<br>
+
 
  <!--Sale cortado-->
 
@@ -33,6 +33,7 @@
                                     <strong>Tipo de atención: </strong><?php echo $atention->tipo;?><br>
                                     <strong>Persona encargada: </strong><?php echo $atention->nombre_locutor_coavif;?><br>
                                     <strong>Observaciones: </strong><?php echo $atention->observaciones;?><br>
+                                    <br>
                              </div>
                              
                          </div>

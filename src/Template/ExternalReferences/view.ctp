@@ -12,10 +12,21 @@
 </nav>
 <div class="externalReferences view large-9 medium-8 columns content">
     <h3><?= h($externalReference->id) ?></h3>
+    <legend><?= __('Persona') ?></legend>
     <table class="vertical-table">
+         
+         <tr>
+            <th><?= __('Identificación') ?></th>
+            <td><?= $externalReference->has('person') ? $this->Html->link($externalReference->person->id, ['controller' => 'People', 'action' => 'view', $externalReference->person->id]) : '' ?></td>
+        </tr>
+         <tr>
+            <th><?= __('Nombre') ?></th>
+            <td><?= h($externalReference->persona) ?></td>
+        </tr>
+       
        
         <tr>
-            <th><?= __('Telefono') ?></th>
+            <th><?= __('Teléfono') ?></th>
             <td><?= h($externalReference->telefono) ?></td>
         </tr>
         <tr>
@@ -23,20 +34,31 @@
             <td><?= h($externalReference->edad) ?></td>
         </tr>
         <tr>
-            <th><?= __('Person') ?></th>
-            <td><?= $externalReference->has('person') ? $this->Html->link($externalReference->person->id, ['controller' => 'People', 'action' => 'view', $externalReference->person->id]) : '' ?></td>
+            <th><?= __('Nacionalidad') ?></th>
+            <td><?= h($externalReference->nacionalidad) ?></td>
         </tr>
+        
         <tr>
             <th><?= __('Direccion') ?></th>
             <td><?= h($externalReference->direccion) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Persona') ?></th>
-            <td><?= h($externalReference->persona) ?></td>
+        </table>
+        
+        
+         <legend><?= __('Institución') ?></legend>
+         
+         <table class="vertical-table">
+         <tr>
+            <th><?= __('Receptor') ?></th>
+            <td><?= h($externalReference->receptor) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($externalReference->id) ?></td>
+            <th><?= __('Institución') ?></th>
+            <td><?= h($externalReference->institucion) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Correo') ?></th>
+            <td><?= h($externalReference->correo) ?></td>
         </tr>
         <tr>
             <th><?= __('Created') ?></th>
