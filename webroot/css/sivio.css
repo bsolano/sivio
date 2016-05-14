@@ -689,3 +689,17 @@ article {
       cursor: pointer;
 }    
 /* END SUMMARY VIEW BOXES */
+
+/* designees view boxes */
+.box_designees{   
+     border-width: 2%;
+     border-style: ridge;
+     border-radius: 8px;
+     
+     width: 80%;
+}
+.box_designees:hover{
+      background-color: grey;
+      cursor: pointer;
+}    
+/* END DESIGNEES VIEW BOXES */
