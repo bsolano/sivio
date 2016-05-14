@@ -39,7 +39,7 @@
         <?php
             echo $this->Form->input('nombre');
             echo $this->Form->input('apellidos');
-            echo $this->Form->input('fecha_de_nacimiento', ['empty' => true]);
+            echo $this->Form->input('fecha_de_nacimiento', ['empty' => true, 'minYear' => 1940]);
             echo $this->Form->input('estado_civil');
             echo $this->Form->input('escolaridad');
             echo $this->Form->input('atencion_especializada');
