@@ -1,6 +1,6 @@
 <!-- Se agrega large-centered para centrar el form. -->
 <div class="consultations form large-centered large-9 medium-8 columns content">
-    <h2>Consulta para <?php echo $person_id ?></h2>
+    <h2>Consulta para <?php echo $person->nombre.' '.$person->apellidos ?></h2>
     <?= $this->Form->create($consultation) ?>
     <fieldset>
         <legend><?= __('Nueva consulta') ?></legend>
@@ -24,8 +24,6 @@
                     'options' => $situacionEnfrentada
                     )
                 );   
-
-
         ?>
     </fieldset>
     <?= $this->Form->button(__('Enviar'),['class' => 'secondary button']) ?>

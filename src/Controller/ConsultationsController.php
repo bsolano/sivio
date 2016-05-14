@@ -52,7 +52,12 @@ class ConsultationsController extends AppController
     public function add($id = null)
     {
         $consultation = $this->Consultations->newEntity();
+        $session = $this->request->session();
+        $person = $this->Consultations->People->get($id);
         if ($this->request->is('post')) {
+            $user_id = $session->read('Auth.User.id');
+            $consultation->user_id = $user_id;
+            $consultation->person_id = $id;
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
             /*Transforma el array del input a una string con el token & para ser guardada */
             $this->Flash->success($consultation);
@@ -68,10 +73,8 @@ class ConsultationsController extends AppController
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Consultations->Users->find('list', ['limit' => 200]);
-        $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $this->set(compact('consultation', 'users', 'people'));
-        $this->set('person_id', $id);
+        $this->set('person', $person);
         $this->set('_serialize', ['consultation']);
     }
 
