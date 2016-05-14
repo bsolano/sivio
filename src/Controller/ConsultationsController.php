@@ -55,10 +55,12 @@ class ConsultationsController extends AppController
         if ($this->request->is('post')) {
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
             /*Transforma el array del input a una string con el token & para ser guardada */
+            $this->Flash->success($consultation);
+            /** 
             $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation[$situacion_enfrentada]);
             $consultation[$situacion_enfrentada] = $string_SituacionEnfrentada;
             $this->beforeSave($consultation,$situacion_enfrentada);
-
+            */
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -124,6 +126,6 @@ class ConsultationsController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
-        
+        $this->loadComponent('StringManipulation');
     }
 }
