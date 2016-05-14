@@ -39,7 +39,7 @@ class ConsultationsController extends AppController
         $consultation = $this->Consultations->get($id, [
             'contain' => ['Users', 'People']
         ]);
-
+        $consultation->situacion_enfrentada = $this->StringManipulation->StringTokenedToArray($consultation->situacion_enfrentada);
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
     }
@@ -60,12 +60,9 @@ class ConsultationsController extends AppController
             $consultation->person_id = $id;
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
             /*Transforma el array del input a una string con el token & para ser guardada */
-            $this->Flash->success($consultation);
-            /** 
-            $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation[$situacion_enfrentada]);
-            $consultation[$situacion_enfrentada] = $string_SituacionEnfrentada;
-            $this->beforeSave($consultation,$situacion_enfrentada);
-            */
+            $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
+            $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
+            
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -90,8 +87,13 @@ class ConsultationsController extends AppController
         $consultation = $this->Consultations->get($id, [
             'contain' => []
         ]);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
+            /*Transforma el array del input a una string con el token & para ser guardada */
+            $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
+            $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
+             
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
