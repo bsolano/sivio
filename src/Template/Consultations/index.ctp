@@ -19,7 +19,7 @@
                 <th><?= $this->Paginator->sort('person_id') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
-                <th><?= $this->Paginator->sort('situacion_enfrentada') ?></th>
+               
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                 <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
                 <td><?= h($consultation->created) ?></td>
                 <td><?= h($consultation->modified) ?></td>
-                <td><?= h($consultation->situacion_enfrentada) ?></td>
+                
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $consultation->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $consultation->id]) ?>

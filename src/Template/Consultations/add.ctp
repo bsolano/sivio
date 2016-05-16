@@ -6,7 +6,22 @@
         <legend><?= __('Nueva consulta') ?></legend>
         <?php
             echo $this->Form->input('tipo');
-            echo $this->Form->input('situacion_enfrentada');
+            $situacion_enfrentada = [
+                'Violencia Sexual' => 'Violencia Sexual',
+                'Violencia Fisica' => 'Violencia Física',
+                'Acoso Laboral' => 'Acoso Laboral',
+                'Violencia Psicologica' => 'Violencia Psicológica',
+                'Hostigamiento Sexual' => 'Hostigamiento Sexual',
+                'Violencia Patrimonial' => 'Violencia Patrimonial',
+                'Trata' => 'Trata'
+                ];
+                echo $this->Form->input('situacion-enfrentada', array(
+                    'label' => 'Situación Enfrentada',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $situacion_enfrentada
+                    )
+                );   
         ?>
     </fieldset>
     <?= $this->Form->button(__('Enviar'),['class' => 'secondary button']) ?>
