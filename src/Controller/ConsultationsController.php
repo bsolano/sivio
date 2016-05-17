@@ -39,7 +39,7 @@ class ConsultationsController extends AppController
         $consultation = $this->Consultations->get($id, [
             'contain' => ['Users', 'People']
         ]);
-
+        $consultation->situacion_enfrentada = $this->StringManipulation->StringTokenedToArray($consultation->situacion_enfrentada);
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
     }
@@ -49,11 +49,20 @@ class ConsultationsController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $consultation = $this->Consultations->newEntity();
+        $session = $this->request->session();
+        $person = $this->Consultations->People->get($id);
         if ($this->request->is('post')) {
+            $user_id = $session->read('Auth.User.id');
+            $consultation->user_id = $user_id;
+            $consultation->person_id = $id;
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
+            /*Transforma el array del input a una string con el token & para ser guardada */
+            $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
+            $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
+            
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -61,9 +70,8 @@ class ConsultationsController extends AppController
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Consultations->Users->find('list', ['limit' => 200]);
-        $people = $this->Consultations->People->find('list', ['limit' => 200]);
         $this->set(compact('consultation', 'users', 'people'));
+        $this->set('person', $person);
         $this->set('_serialize', ['consultation']);
     }
 
@@ -79,8 +87,13 @@ class ConsultationsController extends AppController
         $consultation = $this->Consultations->get($id, [
             'contain' => []
         ]);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
+            /*Transforma el array del input a una string con el token & para ser guardada */
+            $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
+            $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
+             
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -119,6 +132,6 @@ class ConsultationsController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
-        
+        $this->loadComponent('StringManipulation');
     }
 }

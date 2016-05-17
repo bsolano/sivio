@@ -57,8 +57,7 @@ class ConsultationsTable extends Table
             ->allowEmpty('tipo');
 
         $validator
-            ->requirePresence('situacion_enfrentada', 'create')
-            ->notEmpty('situacion_enfrentada');
+            ->allowEmpty('situacion_enfrentada');
 
         return $validator;
     }

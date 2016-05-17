@@ -23,7 +23,7 @@ class ConsultationsFixture extends TestFixture
         'person_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'situacion_enfrentada' => ['type' => 'string', 'length' => 250, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+        'situacion_enfrentada' => ['type' => 'string', 'length' => 250, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -45,8 +45,8 @@ class ConsultationsFixture extends TestFixture
             'tipo' => 'Lorem ipsum dolor sit amet',
             'user_id' => 1,
             'person_id' => 1,
-            'created' => '2016-05-13 04:29:11',
-            'modified' => '2016-05-13 04:29:11',
+            'created' => '2016-05-14 01:54:52',
+            'modified' => '2016-05-14 01:54:52',
             'situacion_enfrentada' => 'Lorem ipsum dolor sit amet'
         ],
     ];

@@ -28,7 +28,10 @@
         </tr>
         <tr>
             <th><?= __('Situacion Enfrentada') ?></th>
-            <td><?= h($consultation->situacion_enfrentada) ?></td>
+         
+            <td><?php foreach($consultation->situacion_enfrentada as $consult): ?> 
+            <ul><?= h($consult)  ?></ul>
+            <?php endforeach?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
