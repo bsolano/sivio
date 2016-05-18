@@ -14,7 +14,10 @@
     <h3><?= h($externalReference->id) ?></h3>
     
     <table class="vertical-table">
-         <?php echo $externalReference?>
+         <?php  $p= $externalReference->toArray();
+        
+         
+         ?>
          <tr>
             <th><?= __('Identificación') ?></th>
             <td<?= h($externalReference->identificacion) ?></td>
