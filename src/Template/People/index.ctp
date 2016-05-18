@@ -9,7 +9,7 @@
             Filtre expedientes
         </legend>
         <?php
-            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '']);
+            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '',]);
         ?>
         <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'class' => 'button secondary']) ?>
         <div id="results">Por favor ingrese su criterio de búsqueda.</div>
@@ -48,7 +48,9 @@ function loadResults(){
     
     // Aquí muestra un solo boton a oficinisita, es codigo quemado, preguntando si el grupo es 3 = recepcionista delegacion de la mujer.
     function usuariaSelect() {
-        if( <?php echo $user_group; ?> == '3' ) {
+        var user_name = "<?php echo $group_name ?>";
+        alert(user_name);
+        if( user_name == 'RecepcionistaDelegacionDeLaMujer' ) {
             document.getElementById("bnt_Atencion").style.display = "none";
             document.getElementById("bnt_Consulta").style.display = "block";
         } else {

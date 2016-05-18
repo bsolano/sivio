@@ -7,6 +7,7 @@ use App\Controller\AppController;
  * People Controller
  *
  * @property \App\Model\Table\PeopleTable $People
+ * @property \App\Model\Table\GroupsTable $Groups
  */
 class PeopleController extends AppController
 {
@@ -25,7 +26,8 @@ class PeopleController extends AppController
         
         $session = $this->request->session();
         $user_group_id = $session->read('Auth.User.group_id');
-        $this->set('user_group', $user_group_id);
+        $group_name = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group_name);
         
         $this->set(compact('people'));
         $this->set('_serialize', ['people']);
