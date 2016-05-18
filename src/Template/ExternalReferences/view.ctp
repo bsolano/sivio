@@ -12,12 +12,12 @@
 </nav>
 <div class="externalReferences view large-9 medium-8 columns content">
     <h3><?= h($externalReference->id) ?></h3>
-    <legend><?= __('Persona') ?></legend>
+    
     <table class="vertical-table">
-         
+         <?php echo $externalReference?>
          <tr>
             <th><?= __('Identificación') ?></th>
-            <td><?= $externalReference->has('person') ? $this->Html->link($externalReference->person->id, ['controller' => 'People', 'action' => 'view', $externalReference->person->id]) : '' ?></td>
+            <td<?= h($externalReference->identificacion) ?></td>
         </tr>
          <tr>
             <th><?= __('Nombre') ?></th>
