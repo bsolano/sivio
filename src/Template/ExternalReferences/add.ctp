@@ -29,7 +29,10 @@
             <legend><?= __('Institución') ?></legend>
             <?php
             echo $this->Form->input('receptor');
-            echo $this->Form->select('institucion',['IMAS', 'Fiscalía', 3, 4, 5],['empty' => '(Institución)']);
+            $options = ['IMAS' => 'IMAS', 'FISCALIA' => 'FISCALÍA'];
+            echo $this->Form->select('institucion', $options,['empty' => '(Institución)']);
+            
+            
             echo $this->Form->input('telefono_receptor',['empty' => true,'label' => 'Teléfono Receptor' ]);
             echo $this->Form->input('correo');
              ?>
