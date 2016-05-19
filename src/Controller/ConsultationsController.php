@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
-
 /**
  * Consultations Controller
  *
@@ -10,7 +8,6 @@ use App\Controller\AppController;
  */
 class ConsultationsController extends AppController
 {
-
     /**
      * Index method
      *
@@ -22,11 +19,9 @@ class ConsultationsController extends AppController
             'contain' => ['Users', 'People']
         ];
         $consultations = $this->paginate($this->Consultations);
-
         $this->set(compact('consultations'));
         $this->set('_serialize', ['consultations']);
     }
-
     /**
      * View method
      *
@@ -43,7 +38,6 @@ class ConsultationsController extends AppController
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
     }
-
     /**
      * Add method
      *
@@ -74,7 +68,6 @@ class ConsultationsController extends AppController
         $this->set('person', $person);
         $this->set('_serialize', ['consultation']);
     }
-
     /**
      * Edit method
      *
@@ -106,7 +99,6 @@ class ConsultationsController extends AppController
         $this->set(compact('consultation', 'users', 'people'));
         $this->set('_serialize', ['consultation']);
     }
-
     /**
      * Delete method
      *
