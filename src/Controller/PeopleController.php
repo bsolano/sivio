@@ -7,7 +7,6 @@ use App\Controller\AppController;
  * People Controller
  *
  * @property \App\Model\Table\PeopleTable $People
- * @property \App\Model\Table\GroupsTable $Groups
  */
 class PeopleController extends AppController
 {
@@ -19,6 +18,7 @@ class PeopleController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Groups');
         $this->paginate = [
             'contain' => ['Histories']
         ];
@@ -26,8 +26,8 @@ class PeopleController extends AppController
         
         $session = $this->request->session();
         $user_group_id = $session->read('Auth.User.group_id');
-        $group_name = $this->Groups->get($user_group_id);
-        $this->set('group_name', $group_name);
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
         
         $this->set(compact('people'));
         $this->set('_serialize', ['people']);

@@ -48,9 +48,8 @@ function loadResults(){
     
     // Aquí muestra un solo boton a oficinisita, es codigo quemado, preguntando si el grupo es 3 = recepcionista delegacion de la mujer.
     function usuariaSelect() {
-        var user_name = "<?php echo $group_name ?>";
-        alert(user_name);
-        if( user_name == 'RecepcionistaDelegacionDeLaMujer' ) {
+        //var user_name = "<?php echo $group_name ?>";
+        if( "<?php echo $group_name ?>" == 'RecepcionistaDelegacionDeLaMujer' ) {
             document.getElementById("bnt_Atencion").style.display = "none";
             document.getElementById("bnt_Consulta").style.display = "block";
         } else {
