@@ -15,11 +15,11 @@
     <h3>Consulta de <?= h($person->nombre) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Identificación de la Persona') ?></th>
+            <th><?= __('Identificación') ?></th>
             <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Persona que registro la consulta') ?></th>
+            <th><?= __('Funcionario atendió la consulta') ?></th>
             <td><?= $consultation->has('user') ? $this->Html->link($consultation->user->username, ['controller' => 'Users', 'action' => 'view', $consultation->user->id]) : '' ?></td>
         </tr>
         <tr>
@@ -31,15 +31,15 @@
             <td><?= h($consultation->tipo) ?></td>
         </tr>
         <tr>
-            <th><?= __('Institucion Que Refiere') ?></th>
+            <th><?= __('Institucion referente') ?></th>
             <td><?= h($consultation->institucion_que_refiere) ?></td>
         </tr>
         <tr>
-            <th><?= __('Nombre Que Refiere') ?></th>
+            <th><?= __('Funcionario institución referente') ?></th>
             <td><?= h($consultation->nombre_que_refiere) ?></td>
         </tr>
         <tr>
-            <th><?= __('Telefono Que Refiere') ?></th>
+            <th><?= __('Teléfono del funcionario institución referente') ?></th>
             <td><?= h($consultation->telefono_que_refiere) ?></td>
         </tr>
         <tr>
