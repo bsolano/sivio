@@ -12,15 +12,15 @@
     </ul>
 </nav>
 <div class="consultations view large-9 medium-8 columns content">
-    <h3><?= h($consultation->id) ?></h3>
+    <h3>Consulta de <?= h($person->nombre) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Person') ?></th>
+            <th><?= __('Identificación de la Persona') ?></th>
             <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('User') ?></th>
-            <td><?= $consultation->has('user') ? $this->Html->link($consultation->user->id, ['controller' => 'Users', 'action' => 'view', $consultation->user->id]) : '' ?></td>
+            <th><?= __('Persona que registro la consulta') ?></th>
+            <td><?= $consultation->has('user') ? $this->Html->link($consultation->user->username, ['controller' => 'Users', 'action' => 'view', $consultation->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Horario') ?></th>
@@ -71,14 +71,6 @@
             <td><?= h($consultation->telefono_recurso) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($consultation->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Fecha') ?></th>
-            <td><?= h($consultation->fecha) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Hora Inicio') ?></th>
             <td><?= h($consultation->hora_inicio) ?></td>
         </tr>
@@ -89,10 +81,6 @@
         <tr>
             <th><?= __('Fecha Finalizacion') ?></th>
             <td><?= h($consultation->fecha_finalizacion) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Fecha Vencimiento') ?></th>
-            <td><?= h($consultation->fecha_vencimiento) ?></td>
         </tr>
         <tr>
             <th><?= __('Familiares Requieren Proteccion') ?></th>
@@ -109,7 +97,9 @@
     </table>
     <div class="row">
         <h4><?= __('Situacion Enfrentada') ?></h4>
-        <?= $this->Text->autoParagraph(h($consultation->situacion_enfrentada)); ?>
+            <td><?php foreach($consultation->situacion_enfrentada as $consult): ?> 
+            <ul><?= h($consult)  ?></ul>
+            <?php endforeach?></td>
     </div>
     <div class="row">
         <h4><?= __('Ultimo Incidente') ?></h4>

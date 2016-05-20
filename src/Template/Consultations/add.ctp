@@ -58,11 +58,10 @@
                 ];
                 echo $this->Form->input('situacion-enfrentada', array(
                     'label' => 'Situación Enfrentada',
-                    'type' => 'r',
+                    'type' => 'select',
                     'multiple' => 'checkbox',
                     'options' => $situacion_enfrentada
-                    )
-                );   
+                    ));   
             ?></div> <!-- page 2 -->
             <div class = "row page page3">
             <?php
@@ -94,22 +93,41 @@
                 'Nuera' => 'Nuera',
                 'Desconocido/a' => 'Desconocido/a'
                 ];?>
-                <div class="row">
-                <div class = "small-6 large-6 columns">
                     <?php
             echo $this->Form->input('vinculo_con_persona_agresora', [
-                    'label' => 'Vinculo',
+                    'label' => 'Vinculo con la persona agresora',
                     'type' => 'radio',
                     'options' => $vinculo]); ?>
-                    </div>
-                    </div>
-                    <?php
-            echo $this->Form->input('tiempo_relacion_con_agresor');
-            echo $this->Form->input('tiempo_agresion');
-            echo $this->Form->input('medidas_proteccion');
-            echo $this->Form->input('denuncia_penal');
+                    
+                </div> <!-- / page 3 vinculo -->
+                    <div class = "page page4">
+                
+                    <?php echo $this->Form->input('tiempo_relacion_con_agresor'); ?>
+               
+               
+                    <?php echo $this->Form->input('tiempo_agresion'); ?>
+            
+            
+            <div class="row">
+            <div class="medium-6 columns">
+            <?php echo $this->Form->input('medidas_proteccion');?>
+             </div>
+              <div class="medium-6 columns">
+            <?php echo $this->Form->input('denuncia_penal');?>
+                </div>
+            </div> <!--/ row medidas -->
+            <?php
             echo $this->Form->input('fecha_vencimiento', ['empty' => true]);
-            echo $this->Form->input('recurso_apoyo_fuera_zona_riesgo');
+            $apoyo = [
+                'Familiar' => 'Familiar',
+                'Amistad' => 'Amistad',
+                'Comunal' => 'Comunal',
+                'Institución' => 'Institución'
+                ];?>
+                <?php
+            echo $this->Form->input('recurso_apoyo_fuera_zona_riesgo',['label' => 'Recurso de apoyo fuera de la zona de riesgo',
+                    'type' => 'radio',
+                    'options' => $apoyo]);
             echo $this->Form->input('nombre_recurso');
             echo $this->Form->input('telefono_recurso');
             echo $this->Form->input('observaciones');
@@ -124,10 +142,10 @@
         <div class class="medium-9 large-9 columns">
             </div>
         <div class class="medium-3 large-3 columns">
-        <button id="foward">Regresar</button>
-        <button id="backward">Siguiente</button>
+        <button id="backward">Regresar</button>
+        <button id="foward">Siguiente</button>
         </div>
     </div> <!-- row pages-->
-</div>
+</div> <!-- /page 4-->
 <?php echo $this->Html->script('jquery');?>
 <?php echo $this->Html->script('pagination');?>

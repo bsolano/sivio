@@ -31,12 +31,15 @@ class ConsultationsController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('People');   
         $consultation = $this->Consultations->get($id, [
             'contain' => ['Users', 'People']
         ]);
+        $person = $this->People->get($consultation->person_id);
         $consultation->situacion_enfrentada = $this->StringManipulation->StringTokenedToArray($consultation->situacion_enfrentada);
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
+        $this->set('person', $person);
     }
     /**
      * Add method
@@ -56,7 +59,7 @@ class ConsultationsController extends AppController
             /*Transforma el array del input a una string con el token & para ser guardada */
             $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
             $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
-            
+            $this->Flash->success($consultation);
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(['action' => 'index']);
