@@ -133,7 +133,7 @@
             echo $this->Form->input('observaciones');
         ?>
     </fieldset>
-   
+       <span id="num_page"></span>
     
     <div id="submit"><?= $this->Form->button(__('Submit')) ?></div>
     <?= $this->Form->end() ?>

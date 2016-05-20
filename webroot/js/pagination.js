@@ -7,6 +7,7 @@ $(document).ready(function(){
     var num_pages = pages.length;
     for(i = 1;i<=num_pages;i++){
         if(i == current_page){
+            $("#num_page").html(current_page + " de " + num_pages);
             $(".page" + i).show();
         }
         else{
@@ -29,8 +30,9 @@ $(document).ready(function(){
             $("#submit").hide();
         }
         
-        
+        $("#num_page").html(current_page + " de " + num_pages);
         $(".page"+current_page).show();
+        
     });
     
      $("#backward").click(function(){
@@ -47,7 +49,7 @@ $(document).ready(function(){
         else{
             $("#submit").hide();
         }
-        
+        $("#num_page").html(current_page + " de " + num_pages);
         $(".page"+current_page).show();
     });
 });
