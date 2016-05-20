@@ -135,7 +135,7 @@
     </fieldset>
    
     
-    <?= $this->Form->button(__('Submit')) ?>
+    <div id="submit"><?= $this->Form->button(__('Submit')) ?></div>
     <?= $this->Form->end() ?>
     
     <div class = "row">

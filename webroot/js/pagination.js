@@ -3,6 +3,7 @@
 var current_page = 1; 
 $(document).ready(function(){
     var pages = document.getElementsByClassName("page");
+    $("#submit").hide();
     var num_pages = pages.length;
     for(i = 1;i<=num_pages;i++){
         if(i == current_page){
@@ -21,6 +22,13 @@ $(document).ready(function(){
         if(current_page > num_pages){
             current_page = 1;
         }
+        if(current_page == num_pages){
+            $("#submit").show();
+        }
+        else{
+            $("#submit").hide();
+        }
+        
         
         $(".page"+current_page).show();
     });
@@ -32,6 +40,12 @@ $(document).ready(function(){
         
         if(current_page < 1){
             current_page = num_pages;
+        }
+        if(current_page == num_pages){
+            $("#submit").show();
+        }
+        else{
+            $("#submit").hide();
         }
         
         $(".page"+current_page).show();
