@@ -62,7 +62,10 @@ class ConsultationsController extends AppController
             $this->Flash->success($consultation);
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(array("controller" => "Consultations", 
+                          "action" => "view",
+                          $consultation->id));
+
             } else {
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
@@ -92,7 +95,7 @@ class ConsultationsController extends AppController
              
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view']);
             } else {
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
