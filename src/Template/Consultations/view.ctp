@@ -19,7 +19,7 @@
             <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Funcionario atendió la consulta') ?></th>
+            <th><?= __('Funcionario que atendió la consulta') ?></th>
             <td><?= $consultation->has('user') ? $this->Html->link($consultation->user->username, ['controller' => 'Users', 'action' => 'view', $consultation->user->id]) : '' ?></td>
         </tr>
         <tr>
