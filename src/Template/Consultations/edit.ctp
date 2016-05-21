@@ -81,7 +81,10 @@
                     'type' => 'radio',
                     'options' => $riesgo]);
             echo $this->Form->input('familiares_en_riesgo');
-            echo $this->Form->input('familiares_requieren_proteccion');
+            echo $this->Form->input('familiares_requieren_proteccion');?>
+            </div> <!-- / page3 -->
+            <div class = "row page page4">
+            <?php
              $vinculo = [
                 'Compañero/a' => 'Compañero/a',
                 'Esposo' => 'Esposo',
@@ -97,15 +100,14 @@
                 'Cuñado/a' => 'Cuñado/a',
                 'Nuera' => 'Nuera',
                 'Desconocido/a' => 'Desconocido/a'
-                ];?>
-                    <?php
-            echo $this->Form->input('vinculo_con_persona_agresora', [
+                ];
+                echo $this->Form->input('vinculo_con_persona_agresora', [
                     'label' => 'Vinculo con la persona agresora',
                     'type' => 'radio',
                     'options' => $vinculo]); ?>
                     
-                </div> <!-- / page 3 vinculo -->
-                    <div class = "page page4">
+                </div> <!-- / page 4 vinculo -->
+                    <div class = "page page5">
                 
                     <?php echo $this->Form->input('tiempo_relacion_con_agresor'); ?>
                
@@ -134,23 +136,29 @@
                     'type' => 'radio',
                     'options' => $apoyo]);
             echo $this->Form->input('nombre_recurso');
-            echo $this->Form->input('telefono_recurso');
-            echo $this->Form->input('observaciones');
-        ?>
+            echo $this->Form->input('telefono_recurso');?>
+            </div> <!-- / page 5 -->
+            <div class="row page page6">
+            <?php  echo $this->Form->input('observaciones');?>
+        
     </fieldset>
-   
-    
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-    
+    <div class= "row">
+        <div class= "small-4 large-3 large-offset-1 medium-4">
+              <span id="num_page"></span>
+         </div>
+   </div>
     <div class = "row">
-        <div class class="medium-9 large-9 columns">
-            </div>
-        <div class class="medium-3 large-3 columns">
-        <button id="backward">Regresar</button>
-        <button id="foward">Siguiente</button>
+        
+        <div class="medium-4 large-4 large-offset-4 columns">
+        <button id="backward" class="secondary button" type="button">Regresar</button>
+        <button id="foward" class="secondary button" type="button">Siguiente</button>
         </div>
     </div> <!-- row pages-->
-</div> <!-- /page 4-->
+       
+    
+    <div id="submit"><?= $this->Form->button(__('Submit'), ['class' => 'secondary button']) ?></div>
+    <?= $this->Form->end() ?>
+  
+</div> <!-- /page 6-->
 <?php echo $this->Html->script('jquery');?>
 <?php echo $this->Html->script('pagination');?>

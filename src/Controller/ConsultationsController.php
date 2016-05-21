@@ -59,7 +59,7 @@ class ConsultationsController extends AppController
             /*Transforma el array del input a una string con el token & para ser guardada */
             $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
             $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
-            $this->Flash->success($consultation);
+        
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(array("controller" => "Consultations", 
