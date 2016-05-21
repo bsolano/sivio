@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
  * Aggressors Model
  *
  * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $People
  */
 class AggressorsTable extends Table
 {
@@ -29,18 +27,10 @@ class AggressorsTable extends Table
 
         $this->table('aggressors');
         $this->displayField('id');
-        $this->primaryKey(['id', 'people_id', 'people_aggressors_id']);
+        $this->primaryKey(['id']);
 
         $this->belongsTo('People', [
             'foreignKey' => 'person_id'
-        ]);
-        $this->belongsTo('People', [
-            'foreignKey' => 'people_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('People', [
-            'foreignKey' => 'people_aggressors_id',
-            'joinType' => 'INNER'
         ]);
     }
 
@@ -68,6 +58,13 @@ class AggressorsTable extends Table
         $validator
             ->allowEmpty('num_separaciones');
 
+        $validator
+            ->allowEmpty('familiares_en_riesgos');
+
+        $validator
+            ->boolean('familiar_require_proteccion')
+            ->allowEmpty('familiar_require_proteccion');
+
         return $validator;
     }
 
@@ -81,8 +78,6 @@ class AggressorsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['people_id'], 'People'));
-        $rules->add($rules->existsIn(['people_aggressors_id'], 'People'));
         return $rules;
     }
 }

@@ -23,14 +23,10 @@ class AggressorsFixture extends TestFixture
         'tiempo_relacion' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'tiempo_agresion' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'num_separaciones' => ['type' => 'string', 'length' => 5, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'people_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'people_aggressors_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        '_indexes' => [
-            'fk_aggressors_people1_idx' => ['type' => 'index', 'columns' => ['people_id', 'people_aggressors_id'], 'length' => []],
-        ],
+        'familiares_en_riesgos' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'familiar_require_proteccion' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id', 'people_id', 'people_aggressors_id'], 'length' => []],
-            'fk_aggressors_people1' => ['type' => 'foreign', 'columns' => ['people_id', 'people_aggressors_id'], 'references' => ['people', '1' => ['id', 'aggressors_id']], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -52,8 +48,8 @@ class AggressorsFixture extends TestFixture
             'tiempo_relacion' => 'Lorem ipsum dolor sit amet',
             'tiempo_agresion' => 'Lorem ipsum dolor sit amet',
             'num_separaciones' => 'Lor',
-            'people_id' => 1,
-            'people_aggressors_id' => 1
+            'familiares_en_riesgos' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'familiar_require_proteccion' => 1
         ],
     ];
 }

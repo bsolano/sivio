@@ -24,6 +24,7 @@ use Cake\ORM\Entity;
  * @property string $atencion_especializada
  * @property int $advocacy_id
  * @property \App\Model\Entity\Advocacy $advocacy
+ * @property int $attention_id
  * @property \App\Model\Entity\User[] $users
  */
 class Followup extends Entity

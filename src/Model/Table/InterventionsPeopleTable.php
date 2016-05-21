@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  * InterventionsPeople Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Interventions
+ * @property \Cake\ORM\Association\BelongsTo $Attentions
  * @property \Cake\ORM\Association\BelongsTo $People
  */
 class InterventionsPeopleTable extends Table
@@ -33,6 +34,9 @@ class InterventionsPeopleTable extends Table
         $this->belongsTo('Interventions', [
             'foreignKey' => 'intervention_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Attentions', [
+            'foreignKey' => 'attention_id'
         ]);
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
@@ -68,6 +72,7 @@ class InterventionsPeopleTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['intervention_id'], 'Interventions'));
+        $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         $rules->add($rules->existsIn(['person_id'], 'People'));
         return $rules;
     }

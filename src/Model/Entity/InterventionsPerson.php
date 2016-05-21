@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $intervention_id
  * @property \App\Model\Entity\Intervention $intervention
  * @property int $id
+ * @property int $attention_id
  * @property int $person_id
  * @property \App\Model\Entity\Person $person
  * @property string $tipo_intervencion

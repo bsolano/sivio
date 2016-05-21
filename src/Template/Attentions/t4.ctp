@@ -1,301 +1,31 @@
-<html>
-    <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
-        <!--<link type="text/css" rel="stylesheet" href="/webroot/css/style.css" /> -->
-        <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
-    </head>
-<body>
-    <?= $this->Form->create(); ?>
-    <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
-        <section class="wrapper">
-    <ul class="tabs">
-    <li><a href="#tab1">Ingresos y Egresos</a></li>
-    <li><a href="#tab2">Perfil de Usuaria</a></li>
-    <li><a href="#tab3">Redes de Apoyo</a></li>
-    <li><a href="#tab4">Historia de Violencia</a></li>
-    <li><a href="#tab5">Hijos</a></li>
-    <li><a href="#tab6">Intervenciones</a></li>
-    <li><a href="#tab7">Seguimientos</a></li>
-    
-    
-  </ul>
-  <section class="block">
-      
-      
-        
-    <article id="tab1">
-        <fieldset>
-            <div class = "large-4 small-4 columns">
-                
-            </div>
-        </fieldset>
-
-    </article>
-    
-    
-      
-    <article id="tab2">
-        <fieldset>
-            <div class="large-4 small-4 columns">
-            <?php
-                //Primera columna
-                /**Arrays y declaraciones a las preguntas **/
-            
-                $estadocivil = array('casada'=>'casada',
-                                     'unión libre'=>'unión libre',
-                                     'soltera'=>'soltera',
-                                     'divorciada'=>'divorciada',
-                                     'viuda'=>'viuda',
-                                     'separada'=>'separada',
-                );
-                $escolaridad = array('primaria completa'=>'primaria completa',
-                                     'primaria incompleta'=>'primaria incompleta',
-                                     'secundaria completa'=>'secundaria completa',
-                                     'secundaria incompleta'=>'secundaria incompleta',
-                                     'para universitario/técnico'=>'para universitario/técnico',
-                                     'universitaria completa'=>'universitaria completa',
-                                     'universitaria incompleta'=>'universitaria incompleta',
-                                     'ningún grado'=>'ningún grado'
-                );
-                $genero = array('M' => 'Masculino','F'=>'Femenino');
-                $adicciones = [
-                'Alcohol' => 'Alcohol',
-                'Drogas' => 'Drogas',
-                'Medicamentos' => 'Medicamentos',
-                'Ninguna' => 'Ninguna'
-                ];
-                $migratoria = array('nacional'=>'nacional','residente'=>'residente',
-                                    'refugiada'=>'refugiada','regular'=>'regular',
-                                    'irregular'=>'irregular'
-                );
-                $laboral = array('remunerada'=>'remunerada','no reumnerada'=>'no remunerada',
-                                'desempleada'=>'desempleada', 'pensionada'=>'pensionada'
-                );
-                $aseguramiento = [
-                'directa' => 'directa',
-                'familiar' => 'familiar',
-                'voluntario o convenio' => 'voluntario o convenio',
-                'pensionada' => 'pensionada',
-                'por el estado' => 'por el estado',
-                'ninguna' => 'ninguna'
-                ];
-                $vivienda = array('alquilada'=>'alquilada','precario'=>'precario',
-                                    'propia total'=>'propia total','prestada'=>'prestada',
-                                    'propia con hipoteca'=>'propia con hipoteca','no tiene'=>'no tiene'
-                );            
-                $salud = [
-                'Discapacidad Física' => 'Discapacidad Física',
-                'Discapacidad Cognitiva' => 'Discapacidad Cognitiva',
-                'Discapacidad Sensorial' => 'Discapacidad Sensorial',
-                'Discapacidad Mental' => 'Discapacidad Mental',
-                'Padecimientos Crónicos' => 'Padecimientos Crónicos',
-                'VIH-SIDA' => 'VIH-SIDA',
-                'ITS' => 'ITS',
-                'Condición Psiquíatrica' => 'Condición Psiquíatrica',
-                'Enfermedad Terminal' => 'Enfermedad Terminal'
-                ];            
-                $familia =   array('nuclear'=>'nuclear',
-                                    'uniparental'=>'uniparental',
-                                    'nuclear extendida'=>'nuclear extendida'
-                );
-                $embarazo = [
-                    'No' => 'No',
-                    '1 mes' => '1 mes',
-                    '2 meses' => '2 meses',
-                    '3 meses' => '3 meses',
-                    '4 meses' => '4 meses',
-                    '5 meses' => '5 meses',
-                    '6 meses' => '6 meses',
-                    '7 meses' => '7 meses',
-                    '8 meses' => '8 meses',
-                    '9 meses' => '9 meses'
-                ];                
-                
-                //INPUTS      
-                $p = $persona->toArray();
-                echo $this->Form->input('Person.nombre',['value'=>$p[0]['nombre']]); 
-                echo $this->Form->input('Person.apellidos',['value'=>$p[0]['apellidos']]);
-                echo $this->Form->input('Person.identificacion',['label'=>'Identificación','value'=>$p[0]['identificacion']]);
-                echo $this->Form->input('Person.tipo_identificacion',['label'=>'Tipo de identificación','value'=>$p[0]['tipo_identificacion']]);
-                echo $this->Form->input('Person.nacionalidad',['value'=>$p[0]['nacionalidad']]);            
-                echo $this->Form->input('Person.ocupacion',['label'=>'Ocupación','value'=>$p[0]['ocupacion']]);
-                echo $this->Form->input('Person.lugar_trabajo',['label'=>'Lugar de trabajo','value'=>$p[0]['lugar_trabajo']]);
-                echo $this->Form->input('Person.fecha_de_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento','value'=>$p[0]['fecha_de_nacimiento']]);
-                echo $this->Form->input('Person.estado_civil', [
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'type' => 'radio',
-                  'options' =>  $estadocivil,
-                  'required' => 'required',
-                  'label' => 'Estado civil',
-                  'value' => $p[0]['estado_civil']
-                ]);
-                echo $this->Form->input('Person.escolaridad', [
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'type' => 'radio',
-                  'options' =>  $escolaridad,
-                  'required' => 'required',
-                  'label' => 'Escolaridad',
-                  'value' => $p[0]['escolaridad']
-                ]);
-            ?>
-        </div>
-        <div class="large-4 small-4 columns">
-            <?php
-                //Segunda columna
-                echo $this->Form->input('Person.genero', array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                    'label' => 'Género',
-                    'type' => 'radio',
-                    'required' => 'required',
-                    'options' => $genero,
-                    'value' => $p[0]['genero']
-
-                    )
-                );
-                echo $this->Form->input('Person.adicciones', array(
-                    'label' => 'Adicciones',
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
-                    'options' => $adicciones
-                    )
-                );
-                echo $this->Form->input('Person.condicion_migratoria',array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'label'=>'Condición Migratoria',
-                  'type' => 'radio',
-                  'options' => $migratoria,
-                  'required' => 'required',
-                  'value' => $p[0]['condicion_migratoria']
-
-                  )
-                );
-                echo $this->Form->input('Person.condicion_laboral',array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'label'=>'Condición Laboral',
-                  'type' => 'radio',
-                  'options' => $laboral,
-                  'required' => 'required',
-                  'value' => $p[0]['condicion_laboral']
-
-                  )
-                );
-                echo $this->Form->input('Person.experiencia_laboral',array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'label'=>'Experiencia Laboral',
-                  'type' => 'radio',
-                  'options' => ['Sí'=>'Sí','No'=>'No'],
-                  'required' => 'required',
-                  'value' => $p[0]['experiencia_laboral']
-                  )
-                );
-                echo $this->Form->input('Person.condicion_aseguramiento', array(
-                    'label' => 'Condición de Aseguramiento',
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
-                    'options' => $aseguramiento
-                    )
-                );                
-                
-            ?>
-        </div>
-        <div class="large-4 small-4 columns">
-            <?php
-                //Tercera columna
-                echo $this->Form->input('Person.vivienda',array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'label'=>'Tipo de Vivienda',
-                  'type' => 'radio',
-                  'options' => $vivienda,
-                  'required' => 'required',
-                  'value' => $p[0]['vivienda']
-
-                  )
-                );
-                echo $this->Form->input('Person.num_hijos_ceaam',['label'=>'Número de hijos con los que ingresa al CEAAM',
-                'type'=>'number','value'=>$p[0]['num_hijos_ceaam']
-                ]);
-                echo $this->Form->input('Person.tipo_familia',array(
-                  'templates' => [
-                        'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                  ],
-                  'label'=>'Tipo de Familia',
-                  'type' => 'radio',
-                  'options' => $familia,
-                  'required' => 'required',
-                  'value' => $p[0]['tipo_familia']
-                  )
-                );               
-                echo $this->Form->input('Person.condicion_salud', array(
-                    'label' => 'Condición de Salud',
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
-                    'options' => $salud
-                    )
-                );    
-                echo $this->Form->input('Person.embarazo',['label'=>'Embarazo','type'=>'select','options'=>$embarazo]);
-            
-            ?>
-
-            </div>
-        </fieldset>
-    </article>
-    
-    
-    <!--  -->
-    <article id="tab3">
-      <p>Morbi interdum mollis saMdellr leo pedetate vel, nisl.</p>
-    </article>
-    
-    
-    
-    
-    
-    <article id="tab4">
-        <fieldset>
+<fieldset>
             <div class="large-6 medium-6 columns">
-            <h4><?= __('Perfil del agresor') ?></h4>
+            <legend>Perfil del agresor</legend>
                 <?php
-                    echo $this->Form->input('Agressor.nombre'); 
-                    echo $this->Form->input('Agressor.apellidos');                    
-                    echo $this->Form->input('Agressor.nacionalidad');            
-                    echo $this->Form->input('Agressor.ocupacion',['label'=>'Ocupación']);
-                    echo $this->Form->input('Agressor.lugar_trabajo',['label'=>'Lugar de trabajo']);
-                    echo $this->Form->input('Agressor.fecha_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento']);
-        
-                    $genero = array('Masculino' => 'Masculino','Femenino'=>'Femenino');
-                    echo $this->Form->input('Agressor.genero', array(
-                      'templates' => [
-                            'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
-                      ],
+                    $genero = array('M' => 'Masculino','F'=>'Femenino');
+
+                    echo $this->Form->input('Person.nombre'); 
+                    echo $this->Form->input('Person.apellidos');
+                    echo $this->Form->input('Person.edad',['type'=>'number','min'=>'0']);
+                    echo $this->Form->input('Person.genero', array(
+                        'templates' => [
+                          'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
+                        ],
                         'label' => 'Género',
                         'type' => 'radio',
                         'required' => 'required',
                         'options' => $genero
                         )
                     );
-                    
+                    echo $this->Form->input('Person.ocupacion',['label'=>'Ocupación']);
+                    echo $this->Form->input('Person.lugar_trabajo',['label'=>'Lugar de trabajo']);
                     $adicciones = [
                         'Alcohol' => 'Alcohol',
                         'Drogas' => 'Drogas',
                         'Medicamentos' => 'Medicamentos',
                         'Ninguna' => 'Ninguna'
                         ];
-                    echo $this->Form->input('adicciones', array(
+                    echo $this->Form->input('Person.adicciones', array(
                         'label' => 'Adicciones',
                         'type' => 'select',
                         'multiple' => 'checkbox',
@@ -303,7 +33,7 @@
                         )
                     );                 
                 ?>
-        
+                <legend>Relación entre agesor y usuaria</legend>
                 <?php
                     echo $this->Form->input('Agressor.vinculo',['label'=>'Vínculo con el agresor']);
                     echo $this->Form->input('Agressor.tiempo_relacion',['label'=>'Tiempo de la relación']);
@@ -325,13 +55,10 @@
                       )
                     );             
                 ?>
-
-            
-            <h4><?= __('Historia de violencia')  ?></h4>
-
+            <legend>Historia de violencia</legend>
             <?php
                 
-                echo $this->Form->input('History.situacion_enfrentada');
+                echo $this->Form->input('History.situacion_enfrentada',['label'=>'Situación enfrentada','type'=>'textarea']);
 
                 $motivos = array(
                     'Amenazas' => 'Amenazas',
@@ -472,12 +199,6 @@
                     'La ha obligado a tener sexo con otras personas por dinero' => 'La ha obligado a tener sexo con otras personas por dinero',
                     'La ha obligado tener relaciones sexuales con él' => 'La ha obligado tener relaciones sexuales con él'
                 );
-                echo "<legend></legend><br>";
-                echo $this->Form->input('violenciasexual', ['type'=>'checkbox','id'=>'violenciasexual', 'label'=>'¿Ha sufrido 
-                violencia sexual?','checked'=>false]);echo "<br>";
-            ?>  
-                <div class="row" id= "vsexual">  
-            <?php
                 echo $this->Form->input('History.violencia_sexual', array(
                     'label' => 'Violencia sexual',
                     'type' => 'select',
@@ -485,10 +206,6 @@
                     'options' => $vsex
                     )
                 );
-            ?>
-                </div>
-            <?php
-            
                 $vpat = array(
                     'La ha amenazado con quitarle los bienes' => 'La ha amenazado con quitarle los bienes',
                     'Se ha apropiado de sus bienes a través de engaños, amenazas o chantaje afectivo' => 'Se ha apropiado de sus bienes a través de engaños, amenazas o chantaje afectivo',
@@ -588,80 +305,5 @@
                 );      
                 
             ?>
-            <?= $this->Form->submit('Guardar',['class'=>'shallow secondary button']) ?>
         </div>
         </fieldset>
-      
-    </article>
-    
-    <article id="tab5">
-      <p>Morbi interdum mollis saMdellr leo pedetate vel, nisl.</p>
-    </article>
-    
-    
-    <!-------------------------------------------------------------------------*/
-    /*                    TAB de Intervencines                                 */
-    /*-------------------------------------------------------------------------->
-    <article id="tab6">
-        
-        <?php include 't6.ctp';?>
-        
-    </article>
-    
-    
-    
-    
-    <article id="tab7">
-      <p>Morbi interdum mollis saMdellr leo pedetate vel, nisl.</p>
-    </article>
-    
-    
-    
-  </section>
-</section>
-    </div>
-	<script type="text/javascript" id='scpts'>
-	    $(window).load( function () {
-	            hideOrShow( $('#desea_intervencion') , $('#atencionl') );/*legal*/
-	            hideOrShow( $('#deseaAtencionp') , $('#atencionp') );/*psico*/
-	            hideOrShow( $('#deseaAtencionn') , $('#atencionn') );/*psico (niños)*/
-	            hideOrShow( $('#trabajosocial') , $('#tsocial') );/*psico (niños)*/
-	            hideOrShow( $('#violenciasexual') , $('#vsexual') );/*psico (niños)*/
-	            
-	    })
-
-    $('#desea_intervencion').change(function () { hideOrShow( $(this), $('#atencionl') );});
-    
-    $('#trabajosocial').change(function () { hideOrShow( $(this), $('#tsocial') ); });
-    
-    $('#deseaAtencionp').change(function () { hideOrShow( $(this), $('#atencionp') ); });
-    
-    $('#deseaAtencionn').change(function () { hideOrShow( $(this), $('#atencionn') ); });
-    
-    $('#violenciasexual').change(function () { hideOrShow( $(this), $('#vsexual') );});
-
-    function hideOrShow ($checkbname, $containerName ) {
-        if ( $checkbname.is(":checked")) {
-            $containerName.fadeIn();
-            return;
-        }
-        $containerName.fadeOut();
-        return;
-    }
-    
-    $(function(){
-        $('ul.tabs li:first').addClass('active');
-        $('.block article').hide();
-        $('.block article:first').show();
-        $('ul.tabs li').on('click',function(){
-            $('ul.tabs li').removeClass('active');
-            $(this).addClass('active')
-            $('.block article').hide();
-            var activeTab = $(this).find('a').attr('href');
-            $(activeTab).show();
-            return false;
-          });
-    })
-	</script>
-</body>
-</html>

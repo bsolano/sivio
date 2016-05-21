@@ -31,8 +31,8 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
 	<!--<header>-->
 		<div class="title-bar" style="background-color:white;">
@@ -84,10 +84,10 @@ $sivioDescription = 'SIVIO';
 		?>
 	<!--</header>-->
 
+    <?= $this->Flash->render() ?>
     <div class="container">
-    	<?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
-    </div>  <!-- Container -->
+    </div>
     
     
   </div>
