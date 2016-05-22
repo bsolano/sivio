@@ -36,11 +36,15 @@ class StatisticsController extends AppController
            
             if ($data[0] != NULL) {
                 
-               $opciones=array($this->People->find('all', array('conditions'=> array('People.nombre >=' => '20'))));
-	
-               $query = $this->People->find('all',$opciones);
+                //se declaran los criterios de búsqueda
+               $opciones=array('conditions'=> array('People.edad >=' => 20));
+               
+               //se construye el query
+	           $query = $this->People->find('all',$opciones);
+	           
+	           //se recorre el resultado de la consulta
                 foreach ($query as $row) {
-                    echo $row->nombre.'->'.$row->id;
+                    echo $row->nombre.' -> '.$row->edad;
                 
                 }
                 
