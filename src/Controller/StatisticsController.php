@@ -17,17 +17,35 @@ class StatisticsController extends AppController
     {
        // $this->Statistic->$useTable = '';
        //$this->loadModel('');
+       $this->loadModel('People');
     
-        //$statistic = $this->Statistics->newEntity();
+        $statistic = $this->Statistics->newEntity();
         if ($this->request->is('post')) {
             
            //acá va el código para las consultas
            
             $s = $this->request->data;
             $data = array($s);
-            //$data = $this->$s->toArray();
-           echo $data[0]['nacionalidad'];
-            if (1) {
+            
+           $nacionalidad = $data[0]['nacionalidad'];
+           $edad = $data[0]['edad'];
+           $escolaridad = $data[0]['escolaridad'];
+           $estado_civil = $data[0]['estado_civil'];
+           $ocupacion = $data[0]['ocupacion'];
+           //print_r($data[0]);
+           
+            if ($data[0] != NULL) {
+                
+               $opciones=array($this->People->find('all', array('conditions'=> array('People.nombre >=' => '20'))));
+	
+               $query = $this->People->find('all',$opciones);
+                foreach ($query as $row) {
+                    echo $row->nombre.'->'.$row->id;
+                
+                }
+                
+                //,array('conditions'=>array(array('People.edad BETWEEN ? AND ?' => array(15,45))))
+                //int_r($personasFiltradas);
                 
                 $this->Flash->success(__('The person has been saved.'));
                 //echo $statistic;
