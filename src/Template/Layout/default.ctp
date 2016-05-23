@@ -89,10 +89,6 @@ $sivioDescription = 'SIVIO';
         <?= $this->fetch('content') ?>
     </div>  <!-- Container -->
     
-    
-  </div>
-</div>
-
     <footer class="footer">
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>

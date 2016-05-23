@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\User $user
  * @property string $telefono
  * @property string $oficina
+ * @property int $location_id
  */
 class InternalReference extends Entity
 {
