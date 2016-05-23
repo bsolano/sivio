@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
-
 /**
  * Consultations Controller
  *
@@ -10,7 +8,6 @@ use App\Controller\AppController;
  */
 class ConsultationsController extends AppController
 {
-
     /**
      * Index method
      *
@@ -22,11 +19,9 @@ class ConsultationsController extends AppController
             'contain' => ['Users', 'People']
         ];
         $consultations = $this->paginate($this->Consultations);
-
         $this->set(compact('consultations'));
         $this->set('_serialize', ['consultations']);
     }
-
     /**
      * View method
      *
@@ -36,14 +31,19 @@ class ConsultationsController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('People');   
         $consultation = $this->Consultations->get($id, [
             'contain' => ['Users', 'People']
         ]);
+        $references = $this->request->query('redirect');
+        
+        $person = $this->People->get($consultation->person_id);
         $consultation->situacion_enfrentada = $this->StringManipulation->StringTokenedToArray($consultation->situacion_enfrentada);
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
+        $this->set('person', $person);
+        $this->set('references', $references);
     }
-
     /**
      * Add method
      *
@@ -62,10 +62,14 @@ class ConsultationsController extends AppController
             /*Transforma el array del input a una string con el token & para ser guardada */
             $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
             $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
-            
+        
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(array("controller" => "Consultations", 
+                          "action" => "view",
+                          $consultation->id,
+                          "redirect" => "True"));
+
             } else {
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
@@ -74,7 +78,6 @@ class ConsultationsController extends AppController
         $this->set('person', $person);
         $this->set('_serialize', ['consultation']);
     }
-
     /**
      * Edit method
      *
@@ -96,7 +99,7 @@ class ConsultationsController extends AppController
              
             if ($this->Consultations->save($consultation)) {
                 $this->Flash->success(__('The consultation has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view']);
             } else {
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
             }
@@ -106,7 +109,6 @@ class ConsultationsController extends AppController
         $this->set(compact('consultation', 'users', 'people'));
         $this->set('_serialize', ['consultation']);
     }
-
     /**
      * Delete method
      *

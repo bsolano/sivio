@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
 /**
  * Consultations Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $People
+ * @property \Cake\ORM\Association\BelongsTo $Users
  */
 class ConsultationsTable extends Table
 {
@@ -30,13 +30,12 @@ class ConsultationsTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->addBehavior('Timestamp');
-
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id'
-        ]);
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -54,10 +53,84 @@ class ConsultationsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->allowEmpty('horario');
+
+        $validator
             ->allowEmpty('tipo');
 
         $validator
+            ->date('fecha')
+            ->allowEmpty('fecha');
+
+        $validator
+            ->time('hora_inicio')
+            ->allowEmpty('hora_inicio');
+
+        $validator
+            ->time('hora_finalizacion')
+            ->allowEmpty('hora_finalizacion');
+
+        $validator
+            ->date('fecha_finalizacion')
+            ->allowEmpty('fecha_finalizacion');
+
+        $validator
+            ->allowEmpty('institucion_que_refiere');
+
+        $validator
+            ->allowEmpty('nombre_que_refiere');
+
+        $validator
+            ->allowEmpty('telefono_que_refiere');
+
+        $validator
             ->allowEmpty('situacion_enfrentada');
+
+        $validator
+            ->allowEmpty('ultimo_incidente');
+
+        $validator
+            ->allowEmpty('valoracion_de_riesgo');
+
+        $validator
+            ->allowEmpty('familiares_en_riesgo');
+
+        $validator
+            ->boolean('familiares_requieren_proteccion')
+            ->allowEmpty('familiares_requieren_proteccion');
+
+        $validator
+            ->allowEmpty('vinculo_con_persona_agresora');
+
+        $validator
+            ->allowEmpty('tiempo_relacion_con_agresor');
+
+        $validator
+            ->allowEmpty('tiempo_agresion');
+
+        $validator
+            ->boolean('medidas_proteccion')
+            ->allowEmpty('medidas_proteccion');
+
+        $validator
+            ->boolean('denuncia_penal')
+            ->allowEmpty('denuncia_penal');
+
+        $validator
+            ->date('fecha_vencimiento')
+            ->allowEmpty('fecha_vencimiento');
+
+        $validator
+            ->allowEmpty('recurso_apoyo_fuera_zona_riesgo');
+
+        $validator
+            ->allowEmpty('nombre_recurso');
+
+        $validator
+            ->allowEmpty('telefono_recurso');
+
+        $validator
+            ->allowEmpty('observaciones');
 
         return $validator;
     }
@@ -71,8 +144,8 @@ class ConsultationsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['person_id'], 'People'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
 }
