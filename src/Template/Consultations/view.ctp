@@ -13,6 +13,11 @@
 </nav>
 <div class="consultations view large-9 medium-8 columns content">
     <h3>Consulta de <?= h($person->nombre) ?></h3>
+    
+    <?php if($references != null):?> 
+        <?=$this->Html->link("Referencia Externa", ['controller' => 'ExternalReferences', 'action' => 'add', $consultation->person->id], ['class' => 'button']) ?>
+        <?=$this->Html->link("Referencia Interna", ['controller' => 'InternalReferences', 'action' => 'add', $consultation->person->id], ['class' => 'button']) ?>
+    <?php endif ?>
     <table class="vertical-table">
         <tr>
             <th><?= __('Identificación') ?></th>

@@ -35,11 +35,14 @@ class ConsultationsController extends AppController
         $consultation = $this->Consultations->get($id, [
             'contain' => ['Users', 'People']
         ]);
+        $references = $this->request->query('redirect');
+        
         $person = $this->People->get($consultation->person_id);
         $consultation->situacion_enfrentada = $this->StringManipulation->StringTokenedToArray($consultation->situacion_enfrentada);
         $this->set('consultation', $consultation);
         $this->set('_serialize', ['consultation']);
         $this->set('person', $person);
+        $this->set('references', $references);
     }
     /**
      * Add method
@@ -64,7 +67,8 @@ class ConsultationsController extends AppController
                 $this->Flash->success(__('The consultation has been saved.'));
                 return $this->redirect(array("controller" => "Consultations", 
                           "action" => "view",
-                          $consultation->id));
+                          $consultation->id,
+                          "redirect" => "True"));
 
             } else {
                 $this->Flash->error(__('The consultation could not be saved. Please, try again.'));
