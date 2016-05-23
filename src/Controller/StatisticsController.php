@@ -33,18 +33,19 @@ class StatisticsController extends AppController
            $estado_civil = $data[0]['estado_civil'];
            $ocupacion = $data[0]['ocupacion'];
            //print_r($data[0]);
+           echo $edad;
            
             if ($data[0] != NULL) {
                 
                 //se declaran los criterios de búsqueda
-               $opciones=array('conditions'=> array('People.edad >=' => 20));
+               $opciones=array('conditions'=> array('People.edad >=' => $edad,'People.nacionalidad >=' => $nacionalidad ));
                
                //se construye el query
 	           $query = $this->People->find('all',$opciones);
 	           
 	           //se recorre el resultado de la consulta
                 foreach ($query as $row) {
-                    echo $row->nombre.' -> '.$row->edad;
+                    echo $row->nombre.' -> '.$row->nacionalidad;
                 
                 }
                 
