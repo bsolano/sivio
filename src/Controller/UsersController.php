@@ -146,7 +146,25 @@ class UsersController extends AppController {
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
         
+    }
+    
+    //Para generar los reportes
+    
+    public function reports($id = null){
+         
+        //$user = $this->Users->get($id, [
+        //    'contain' => []
+        //]);
+
+        //$this->set('user', $user);
+        //$this->set('_serialize', ['user']);
+        //$this->layout='ajax';
+        //$this->viewBuilder()->layout('ajax');
+        //$this->response->type('pdf');
+        
     } 
+    
+    
     
     /**
      * designees
