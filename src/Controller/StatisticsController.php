@@ -30,6 +30,7 @@ class StatisticsController extends AppController
             
             $data = array($s);
             
+<<<<<<< Updated upstream
             // Saca los datos de los campos de texto en los que se escribió
             
             $nacionalidad = $data[0]['nacionalidad'];
@@ -42,11 +43,20 @@ class StatisticsController extends AppController
             
             //print_r(array_filter($data[0]));
             //echo $edad;
+=======
+           $nacionalidad = $data[0]['nacionalidad'];
+           $edad = $data[0]['edad'];
+           $escolaridad = $data[0]['escolaridad'];
+           $estado_civil = $data[0]['estado_civil'];
+           $ocupacion = $data[0]['ocupacion'];
+          
+>>>>>>> Stashed changes
            
             if ($data[0] != NULL) { // Si se ingresó algo en los campos
                 
                 /*          POR AHORA SE DEJA ESTO COMENTADO PARA HACER LA CONSULTA DE OTRA MANERA
                 
+<<<<<<< Updated upstream
                 // Se declaran criterios de búsqueda para las consultas
                 
                 $arreglo = array('People.edad >=' => '1','People.nacionalidad' => '' );
@@ -90,6 +100,25 @@ class StatisticsController extends AppController
 	            
                 //foreach ($personasEncontradas as $row) {
                     //echo $row->nombre.' -> '.$row->nacionalidad;
+=======
+                //se declaran los criterios de búsqueda
+                $campos = array('People.edad >=' => $edad,'People.nacionalidad' => $nacionalidad,'People.escolaridad' => $escolaridad,'People.estado_civil' => $estado_civil,'People.ocupacion' => $ocupacion);
+                
+                //elimina los campos en blanco del query
+                $opciones= array_filter($campos);
+                
+                $conditions=array('conditions'=> (array($opciones)));
+               
+               print_r(($conditions));
+           
+               //se construye el query
+	        $query = $this->People->find('all',$conditions);
+	           
+	           //se recorre el resultado de la consulta
+                foreach ($query as $row) {
+                    echo $row->nombre.' -> '.$row->nacionalidad.' -> '.$row->estado_civil;
+                    echo "<br>"; //* Esto es un salto de linea
+>>>>>>> Stashed changes
                 
                 //}
                 
