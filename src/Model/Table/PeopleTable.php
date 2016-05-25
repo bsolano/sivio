@@ -69,6 +69,9 @@ class PeopleTable extends Table
         $this->hasMany('Transfers', [
             'foreignKey' => 'person_id'
         ]);
+        $this->hasMany('Histories', [
+            'foreignKey' => 'person_id'
+        ]);
         $this->belongsToMany('Interventions', [
             'foreignKey' => 'person_id',
             'targetForeignKey' => 'intervention_id',

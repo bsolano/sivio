@@ -40,33 +40,25 @@
             echo $this->Form->input('nombre');
             echo $this->Form->input('apellidos');
             echo $this->Form->input('fecha_de_nacimiento', ['empty' => true, 'minYear' => 1940]);
-            echo $this->Form->input('estado_civil');
-            echo $this->Form->input('escolaridad');
+            echo $this->Form->input('estado_civil', ['options' => ['Casada','Unión libre','Soltera','Divorciada','Separada','Viuda'], 'empty' => true]);
+            echo $this->Form->input('escolaridad', ['options' => ['Primaria completa','Primaria incompleta','Secundaria completa','Secundaria incompleta','Para-universitario/Técnico','Universitaria completa','Universitaria incompleta','Ningún grado'], 'empty' => true]);
             echo $this->Form->input('atencion_especializada');
             echo $this->Form->input('nacionalidad');
-            echo $this->Form->input('genero');
+            echo $this->Form->input('genero', ['options' => ['Masculino' => 'M','Femenino' => 'F'], 'empty' => true]);
             echo $this->Form->input('ocupacion');
             echo $this->Form->input('lugar_trabajo');
-            echo $this->Form->input('adicciones');
-            echo $this->Form->input('condicion_migratoria');
-            echo $this->Form->input('condicion_laboral');
-            echo $this->Form->input('experiencia_laboral');
-            echo $this->Form->input('condicion_aseguramiento');
-            echo $this->Form->input('vivienda');
-            echo $this->Form->input('num_hijos_ceaam');
-            echo $this->Form->input('tipo_familia');
+            echo $this->Form->input('adicciones', ['label' => 'Adicciones', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Alcohol','Drogas','Medicamentos','Ninguna']]);
+            echo $this->Form->input('condicion_migratoria', ['options' => ['Nacional','Regular','Residente','Refugiada','Irregular'], 'empty' => true]);
+            echo $this->Form->input('condicion_laboral', ['options' => ['Remunerada','No remunerada','Desempleada'], 'empty' => true]);
+            echo $this->Form->input('experiencia_laboral', ['options' => ['Sí', 'No'], 'empty' => true]);
+            echo $this->Form->input('condicion_aseguramiento', ['options' => ['Directa','Familiar','Voluntario o Convenio','Pensionada por el Estado','No tiene '], 'empty' => true]);
+            echo $this->Form->input('vivienda', ['options' => ['Alquilada','Precario','Prestada','Propia total','Propia con hipoteca','No tiene'], 'empty' => true]);
+            echo $this->Form->input('tipo_familia', ['options' => ['Nuclear','Uniparental','Nuclear extendida'], 'empty' => true]);
             echo $this->Form->input('embarazo');
-            echo $this->Form->input('condicion_salud');
-            echo $this->Form->input('identificacion');
-            echo $this->Form->input('tipo_identificacion');
-            echo $this->Form->input('transfer_id');
-            echo $this->Form->input('aggressor_id');
-            echo $this->Form->input('history_id', ['options' => $histories, 'empty' => true]);
-            echo $this->Form->input('interventions._ids', ['options' => $interventions]);
-            echo $this->Form->input('advocacies._ids', ['options' => $advocacies]);
-            echo $this->Form->input('entries._ids', ['options' => $entries]);
-            echo $this->Form->input('families._ids', ['options' => $families]);
-            echo $this->Form->input('users._ids', ['options' => $users]);
+            echo $this->Form->input('condicion_salud', ['label' => 'Condición de salud', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Discapacidad Física','Discapacidad Cognitiva','Discapacidad Sensorial','Discapacidad Mental','Padecimientos Crónicos','VIH-SIDA','ITS','Condición Psiquíatrica','Enfermedad Terminal'], 'empty' => true]);
+            echo $this->Form->input('identificacion', ['label' => 'Identificación']);
+            echo $this->Form->input('tipo_identificacion', ['label' => 'Tipo de identificación']);
+            echo $this->Form->input('Family.num_familia', ['options' => $families, 'label' => 'Familia']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Enviar', ['class' => 'secondary button'])) ?>
