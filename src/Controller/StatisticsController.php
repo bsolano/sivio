@@ -33,15 +33,7 @@ class StatisticsController extends AppController
             // Saca los datos de los campos de texto en los que se escribió
             
             $nacionalidad = $data[0]['nacionalidad'];
-            // $edad = $data[0]['edad'];
-            $edadLow = $data[0]['edadLower']; // Lower bound de la edad
-            $edadUp = $data[0]['edadUpper']; // Upper bound de la edad
-            $escolaridad = $data[0]['escolaridad'];
-            $estado_civil = $data[0]['estado_civil'];
-            $ocupacion = $data[0]['ocupacion'];
-            
-            $nacionalidad = $data[0]['nacionalidad'];
-            // $edad = $data[0]['edad'];
+            $edad = $data[0]['edad'];
             $escolaridad = $data[0]['escolaridad'];
             $estado_civil = $data[0]['estado_civil'];
             $ocupacion = $data[0]['ocupacion'];
@@ -56,11 +48,7 @@ class StatisticsController extends AppController
                 
                 // Elimina los campos en blanco del query
                 
-                // $array = array_filter($arreglo);
-                
-                // $opciones=array('conditions'=> (array('People.edad >=' => '0','People.nacionalidad' => '' )));
                
-                // print_r(($array));
                 
                 
                 //$opciones = array('conditions' => array('Personas.nombre' => "David"));
@@ -69,8 +57,8 @@ class StatisticsController extends AppController
                 
                 
                 
-                $opciones = $this->People->find('all',array('conditions'=>array(array(
-                    'People.edad BETWEEN ? AND ?' => array(10,20)))));
+               // $opciones = $this->People->find('all',array('conditions'=>array(array(
+                   // 'People.edad BETWEEN ? AND ?' => array(10,20)))));
                 
                 /*
                 
@@ -95,7 +83,7 @@ class StatisticsController extends AppController
                 
                 // Ejecuta consulta    
                     
-                $personasEncontradas = $this->People->find('all', $opciones);
+                //$personasEncontradas = $this->People->find('all', $opciones);
             
 	            // Se recorre el resultado de la consulta
 	            
@@ -104,13 +92,13 @@ class StatisticsController extends AppController
 
                 //se declaran los criterios de búsqueda
                 
-                // $campos = array('People.edad >=' => $edad,'People.nacionalidad' => $nacionalidad,'People.escolaridad' => $escolaridad,'People.estado_civil' => $estado_civil,'People.ocupacion' => $ocupacion);
+                 $campos = array('People.edad >=' => $edad,'People.nacionalidad' => $nacionalidad,'People.escolaridad' => $escolaridad,'People.estado_civil' => $estado_civil,'People.ocupacion' => $ocupacion);
                 
                 //elimina los campos en blanco del query
                 
-                // $opciones= array_filter($campos);
+                $opciones= array_filter($campos);
                 
-                //$conditions=array('conditions'=> (array($opciones)));
+                $conditions=array('conditions'=> (array($opciones)));
                
                 //print_r(($conditions));
            
