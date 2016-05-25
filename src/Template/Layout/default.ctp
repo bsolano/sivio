@@ -62,7 +62,7 @@ $sivioDescription = 'SIVIO';
 			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
 			  <li><a href="#">Referencias</a></li>
 			  <li><a href="#">Asesoría técnica</a></li>
-			  <li><a href="#">Reportes</a></li>
+			  <li><?= $this->Html->link('Reportes', ['controller' => 'Statistics', 'action' => 'index']) ?></li>
 			  <li>
 			      <a href="#">Administración</a>
 			      <ul class="menu vertical">
