@@ -4,7 +4,7 @@
     
         <legend><?= __('Reporte de Estadísticas') ?></legend>
         <?php
-            echo $this->Form->input('edad',['empty' => true, 'label' => 'Edad' ]);
+            //echo $this->Form->input('edad',['empty' => true, 'label' => 'Edad' ]);
             echo $this->Form->input('nacionalidad',['empty' => true, 'label' => 'Nacionalidad' ]);
             echo $this->Form->input('ocupacion',['empty' => true, 'label' => 'Ocupación' ]);
             echo 'Estado Civil';
@@ -15,7 +15,7 @@
             $options = ['','ningún grado' => 'Ningún grado','primaria completa' => 'Primaria Completa', 'primaria incompleta' => 'Primaria incompleta', 'secundaria completa' => 'Secundaria completa','secundaria incompleta' => 'Secundaria incompleta','parauniversitario/técnico' => 'Parauniversitario/técnico','universitaria completa' => 'Universitaria completa','universitaria incompleta' => 'Universitaria incompleta'];
             echo $this->Form->select('escolaridad', $options,['value' => 0]);
             
-            echo 'Edad entre: '; 
+            echo 'Edad:'; 
         ?>
             
         <div class = "row">
