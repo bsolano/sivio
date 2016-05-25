@@ -10,7 +10,9 @@ use Cake\Validation\Validator;
 /**
  * Histories Model
  *
- * @property \Cake\ORM\Association\HasMany $People
+ * @property \Cake\ORM\Association\BelongsTo $People
+ * @property \Cake\ORM\Association\BelongsTo $Aggressors
+ * @property \Cake\ORM\Association\HasMany $Attentions
  */
 class HistoriesTable extends Table
 {
@@ -29,7 +31,14 @@ class HistoriesTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->hasMany('People', [
+        $this->belongsTo('People', [
+            'foreignKey' => 'person_id'
+        ]);
+        $this->belongsTo('Aggressors', [
+            'foreignKey' => 'aggressor_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Attentions', [
             'foreignKey' => 'history_id'
         ]);
     }
@@ -99,6 +108,39 @@ class HistoriesTable extends Table
         $validator
             ->allowEmpty('situacion_enfrentada');
 
+        $validator
+            ->allowEmpty('vinculo_usuaria');
+
+        $validator
+            ->allowEmpty('tiempo_relacion');
+
+        $validator
+            ->allowEmpty('tiempo_agresion');
+
+        $validator
+            ->allowEmpty('num_separaciones');
+
+        $validator
+            ->allowEmpty('familiares_en_riesgo');
+
+        $validator
+            ->boolean('familiar_requiere_proteccion')
+            ->allowEmpty('familiar_requiere_proteccion');
+
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['person_id'], 'People'));
+        $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
+        return $rules;
     }
 }

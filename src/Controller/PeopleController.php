@@ -18,11 +18,17 @@ class PeopleController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Groups');
         $this->paginate = [
             'contain' => ['Histories']
         ];
         $people = $this->paginate($this->People);
-
+        
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
+        
         $this->set(compact('people'));
         $this->set('_serialize', ['people']);
     }
@@ -156,6 +162,10 @@ class PeopleController extends AppController
         $this->set(['person' => $person]);
     }
     
+     /**
+     * records_search method
+     * Busca las atenciones de la persona solicitada.
+     */ 
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
         $years = array();
@@ -168,11 +178,10 @@ class PeopleController extends AppController
         'fields' => ['fecha_inicio']
         ]);
         foreach ($dates as $date){
-         if(!in_array($date->fecha_inicio->format('Y'), $years)){
+            if(!in_array($date->fecha_inicio->format('Y'), $years)){
                 array_push($years,$date->fecha_inicio->format('Y'));
-         }
+            }
         }
-            
         
         $person_data = $this->People->get($person);
         $this->set(['atentions' => $eva]);

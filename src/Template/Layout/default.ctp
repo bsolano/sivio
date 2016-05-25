@@ -54,15 +54,15 @@ $sivioDescription = 'SIVIO';
 		  <button class="menu-icon" type="button" data-toggle></button>
 		  <div class="title-bar-title">Menú</div>
 		</div>
-
 		<div class="top-bar" id="sivio-menu">
 		  <div class="top-bar-left">
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
-			  <li><a href="#">Casos asignados</a></li>
+			  <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
+			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
 			  <li><a href="#">Referencias</a></li>
 			  <li><a href="#">Asesoría técnica</a></li>
-			  <li><a href="#">Reportes</a></li>
+			  <li><?= $this->Html->link('Reportes', ['controller' => 'Statistics', 'action' => 'index']) ?></li>
 			  <li>
 			      <a href="#">Administración</a>
 			      <ul class="menu vertical">
@@ -89,10 +89,6 @@ $sivioDescription = 'SIVIO';
         <?= $this->fetch('content') ?>
     </div>  <!-- Container -->
     
-    
-  </div>
-</div>
-
     <footer class="footer">
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>

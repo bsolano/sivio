@@ -13,20 +13,26 @@
         
          <legend><?= __('Persona') ?></legend>
         <?php
-        echo $this->Form->input('person_id', ['options' => $people, 'empty' => true,'label' => 'Identificación' ]);
-           echo $this->Form->input('persona',['label' => 'Nombre' ]);
-            echo $this->Form->input('nacionalidad');
-            echo $this->Form->input('edad');
-            echo $this->Form->input('telefono',['empty' => true,'label' => 'Teléfono']);
-            
-            echo $this->Form->input('direccion',[ 'empty' => true,'label' => 'Dirección' ]);
+        $p= $persona->toArray();
+        
+     
+      
+        echo $this->Form->input('identificacion', ['value' => $p[0]['identificacion'], 'empty' => true,'label' => 'Identificación' ]);
+           echo $this->Form->input('persona', ['value' => $p[0]['nombre'].' '.$p[0]['apellidos'], 'empty' => true,'label' => 'Nombre' ]);
+             echo $this->Form->input('nacionalidad', ['value' => $p[0]['nacionalidad'], 'empty' => true,'label' => 'Nacionalidad' ]);
+            echo $this->Form->input('edad', ['value' => $p[0]['edad'], 'empty' => true,'label' => 'Edad' ]);
+            echo $this->Form->input('telefono', ['value' => $p[0]['numero_de_telefono'], 'empty' => true,'label' => 'Teléfono' ]);
+            echo $this->Form->input('direccion', ['value' => $p[0]['provincia'].' '.$p[0]['canton'], 'empty' => true,'label' => 'Dirección' ]);
             
             
             ?>
             <legend><?= __('Institución') ?></legend>
             <?php
             echo $this->Form->input('receptor');
-            echo $this->Form->select('institucion',['IMAS', 'Fiscalía', 3, 4, 5],['empty' => '(Institución)']);
+            $options = ['IMAS' => 'IMAS', 'FISCALIA' => 'FISCALÍA'];
+            echo $this->Form->select('institucion', $options,['empty' => '(Institución)']);
+            
+            
             echo $this->Form->input('telefono_receptor',['empty' => true,'label' => 'Teléfono Receptor' ]);
             echo $this->Form->input('correo');
              ?>

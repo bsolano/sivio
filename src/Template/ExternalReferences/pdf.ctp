@@ -103,7 +103,7 @@ $pdf->AddPage();
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
-$idperson =  $externalReference->person->id;
+//$idperson =  $externalReference->person->id;
 // create some HTML content
 $html = '<h2>Número de Referencia: '.$externalReference->id.'</h2>
 <h4>Persona</h4>
@@ -113,34 +113,38 @@ $html = '<h2>Número de Referencia: '.$externalReference->id.'</h2>
     
      <tr>
         <td>Identificación:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$idperson.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->identificacion.'</td>
     </tr>
     <tr>
         <td>Dirección:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->direccion.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->direccion.'</td>
     </tr>
     <tr>
         <td>Teléfono:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->telefono.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->telefono.'</td>
     </tr>
     <tr>
         <td>Nombre Referido:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->persona.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->persona.'</td>
     </tr>
     </table>
     <h4>Institución</h4>
 <table border="1" cellspacing="3" cellpadding="4">
     <tr>
         <td>Receptor:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->receptor.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->receptor.'</td>
     </tr>
     <tr>
         <td>Institución:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->institucion.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->institucion.'</td>
+    </tr>
+    <tr>
+        <td>Telefono Receptor:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->telefono_receptor.'</td>
     </tr>
     <tr>
         <td>Correo:</td>
-        <td bgcolor="#cccccc" align="center" colspan="2">'.$externalReference->correo.'</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->correo.'</td>
     </tr>
     
     </table>

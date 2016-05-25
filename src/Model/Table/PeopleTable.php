@@ -10,13 +10,11 @@ use Cake\Validation\Validator;
 /**
  * People Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Transfers
- * @property \Cake\ORM\Association\BelongsTo $Aggressors
- * @property \Cake\ORM\Association\BelongsTo $Histories
  * @property \Cake\ORM\Association\HasMany $Aggressors
  * @property \Cake\ORM\Association\HasMany $Consultations
  * @property \Cake\ORM\Association\HasMany $ExternalReferences
  * @property \Cake\ORM\Association\HasMany $Followups
+ * @property \Cake\ORM\Association\HasMany $Histories
  * @property \Cake\ORM\Association\HasMany $InternalReferences
  * @property \Cake\ORM\Association\HasMany $Transfers
  * @property \Cake\ORM\Association\BelongsToMany $Interventions
@@ -42,15 +40,6 @@ class PeopleTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->belongsTo('Transfers', [
-            'foreignKey' => 'transfer_id'
-        ]);
-        $this->belongsTo('Aggressors', [
-            'foreignKey' => 'aggressor_id'
-        ]);
-        $this->belongsTo('Histories', [
-            'foreignKey' => 'history_id'
-        ]);
         $this->hasMany('Aggressors', [
             'foreignKey' => 'person_id'
         ]);
@@ -61,6 +50,9 @@ class PeopleTable extends Table
             'foreignKey' => 'person_id'
         ]);
         $this->hasMany('Followups', [
+            'foreignKey' => 'person_id'
+        ]);
+        $this->hasMany('Histories', [
             'foreignKey' => 'person_id'
         ]);
         $this->hasMany('InternalReferences', [
@@ -164,10 +156,6 @@ class PeopleTable extends Table
             ->allowEmpty('vivienda');
 
         $validator
-            ->integer('num_hijos_ceaam')
-            ->allowEmpty('num_hijos_ceaam');
-
-        $validator
             ->allowEmpty('tipo_familia');
 
         $validator
@@ -183,22 +171,31 @@ class PeopleTable extends Table
         $validator
             ->allowEmpty('tipo_identificacion');
 
-        return $validator;
-    }
+        $validator
+            ->allowEmpty('numero_de_telefono');
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['transfer_id'], 'Transfers'));
-        $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
-        $rules->add($rules->existsIn(['history_id'], 'Histories'));
-        return $rules;
+        $validator
+            ->integer('edad')
+            ->allowEmpty('edad');
+
+        $validator
+            ->integer('numero_de_hijos')
+            ->allowEmpty('numero_de_hijos');
+
+        $validator
+            ->allowEmpty('provincia');
+
+        $validator
+            ->allowEmpty('canton');
+
+        $validator
+            ->allowEmpty('direccion');
+
+        $validator
+            ->boolean('tiene_hijos_doce')
+            ->allowEmpty('tiene_hijos_doce');
+
+        return $validator;
     }
     
     /**

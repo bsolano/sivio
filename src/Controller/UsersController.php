@@ -146,6 +146,57 @@ class UsersController extends AppController {
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
         
+    }
+    
+    //Para generar los reportes
+    
+    public function reports($id = null){
+         
+        //$user = $this->Users->get($id, [
+        //    'contain' => []
+        //]);
+
+        //$this->set('user', $user);
+        //$this->set('_serialize', ['user']);
+        //$this->layout='ajax';
+        //$this->viewBuilder()->layout('ajax');
+        //$this->response->type('pdf');
+        
     } 
+    
+    
+    
+    /**
+     * designees
+     * Busca las personas asignadas a la usuaria logueada.
+     */ 
+    public function designees($user = null) {
+        $this->loadModel('UsersPeople'); //Carga la tabla Users_People en en este controlador.
+        $this->loadModel('People'); //Carga la tabla People en en este controlador.
+        //$designeePeople = array();
+        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
+        $designeesData = $this->UsersPeople->find('all', [
+        'conditions' => ['UsersPeople.user_id' => $user]
+        ]); //Obtiene el id de las personas asignadas al usuario logeado.
+        $people = $this->People->find('all');
+        
+       /*$flag = false;
+       foreach ($designeesData as $designeeData){
+            foreach ($people as $person) {
+                if($designeeData->person_id == $person->id){
+                    $tempPerson = (array) $person;
+                    $tempDesignee = (array) $designeeData;
+                    $tempDesigneePerson = (object) array_merge_recursive($tempPerson, $tempDesignee); //Combina las instancias.
+                    
+                    array_push($designeePeople, $tempDesigneePerson);
+                }
+             }
+        }*/
+        //$this->set(['designeePeople' => $designeePeople]); //Guarda en variable accesible desde la vista.
+        
+        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
+        $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
+        $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
+    }
 
 }
