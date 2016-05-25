@@ -1,3 +1,4 @@
+<!--
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -6,6 +7,7 @@
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+-->
 <div class="histories index large-9 medium-8 columns content">
     <h3><?= __('Histories') ?></h3>
     <table cellpadding="0" cellspacing="0">
@@ -24,6 +26,13 @@
                 <th><?= $this->Paginator->sort('valoracion_riesgo') ?></th>
                 <th><?= $this->Paginator->sort('medida_proteccion') ?></th>
                 <th><?= $this->Paginator->sort('vencimiento_proteccion') ?></th>
+                <th><?= $this->Paginator->sort('person_id') ?></th>
+                <th><?= $this->Paginator->sort('vinculo_usuaria') ?></th>
+                <th><?= $this->Paginator->sort('tiempo_relacion') ?></th>
+                <th><?= $this->Paginator->sort('tiempo_agresion') ?></th>
+                <th><?= $this->Paginator->sort('num_separaciones') ?></th>
+                <th><?= $this->Paginator->sort('familiar_requiere_proteccion') ?></th>
+                <th><?= $this->Paginator->sort('aggressor_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -43,6 +52,13 @@
                 <td><?= h($history->valoracion_riesgo) ?></td>
                 <td><?= h($history->medida_proteccion) ?></td>
                 <td><?= h($history->vencimiento_proteccion) ?></td>
+                <td><?= $this->Number->format($history->person_id) ?></td>
+                <td><?= h($history->vinculo_usuaria) ?></td>
+                <td><?= h($history->tiempo_relacion) ?></td>
+                <td><?= h($history->tiempo_agresion) ?></td>
+                <td><?= h($history->num_separaciones) ?></td>
+                <td><?= h($history->familiar_requiere_proteccion) ?></td>
+                <td><?= $this->Number->format($history->aggressor_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $history->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $history->id]) ?>
