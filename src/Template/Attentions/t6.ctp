@@ -68,11 +68,14 @@
                  *   requiera atencion legal
                  */
                 echo "<legend></legend><br>";
-                echo $this->Form->input('Interventions.desea_intervencion', ['type'=>'checkbox','id'=>'desea_intervencion', 'label'=>'¿Desea recibir atención legal?','checked'=>false]);echo "<br>";
+                echo $this->Form->input('InterventionsPerson.1.tipo_intervencion', [
+                    'type'=>'checkbox','id'=>'desea_intervencion', 
+                    'label'=>'¿Desea recibir atención legal?','checked'=>false, 
+                    'value'=>'legal'
+                    ]); echo "<br>";
                 ?>  <div class="row" id= "atencionl">  <?php
                 /* checkbox para atencion legal  */
-                
-                echo $this->Form->input('interventions_people.Legal', array(
+                echo $this->Form->input('sinterventions_people', array(
                     'label' => 'Legal',
                     'type' => 'select',
                     'multiple' => 'checkbox',
@@ -87,9 +90,19 @@
                 /*   div se usa para ocultar seccion en caso de que no se ------
                  *   requiera atencion psicologica
                  */
+                 
+                 
                 /* checkbox para atencion psicologica  */
                 echo "<legend></legend><br>";
-                echo $this->Form->input('deseaAtencionp', ['type'=>'checkbox','id'=>'deseaAtencionp', 'label'=>'¿Desea recibir atención psicologica?','checked'=>false]);echo "<br>";
+                
+                echo $this->Form->input('InterventionsPerson.2.tipo_intervencion',
+                ['type'=>'checkbox','id'=>'deseaAtencionp',
+                'label'=>'¿Desea recibir atención psicologica?',
+                'checked'=>false,
+                'value'=>'psicoadulta'
+                ]);
+                echo "<br>";
+                
                 ?>  <div class="row" id= "atencionp">  <?php
                 echo $this->Form->input('PsicoAdultas', array(
                     'label' => 'Psicología de Adultas',
@@ -108,19 +121,20 @@
                  *   requiera atencion psicologica
                  */
                 /* checkbox para atencion psicologica  */
-                echo "<legend></legend><br>";
-                echo $this->Form->input('deseaAtencionn', ['type'=>'checkbox','id'=>'deseaAtencionn', 'label'=>'¿Desea que 
-                los niños reciban atención psicologica?','checked'=>false]);echo "<br>";
-                ?>  <div class="row" id= "atencionn">  <?php
-                echo $this->Form->input('PsicoNinos', array(
-                    'label' => 'Psicología de Niños',
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
-                    'options' => $psiconinos,
-                    'required'=>'required'
-                    )
-                );
-                ?> </div> <?php     /*  fin div  ******************************/
+                //echo "<legend></legend><br>";
+                //echo $this->Form->input('InterventionsPerson.tipo_intervencion[]',
+                //['type'=>'checkbox','id'=>'deseaAtencionn', 'label'=>'¿Desea que 
+                //los niños reciban atención psicologica?','checked'=>false]);echo "<br>";
+                //?>  <div class="row" id= "atencionn">  <?php
+                //echo $this->Form->input('PsicoNinos', array(
+                //    'label' => 'Psicología de Niños',
+                //    'type' => 'select',
+                //    'multiple' => 'checkbox',
+                //    'options' => $psiconinos,
+                //    'required'=>'required'
+                //    )
+                //);
+                //?> </div> <?php     /*  fin div  ******************************/
                 
                 
                 
@@ -132,7 +146,12 @@
                  */
                 /* checkbox para atencion psicologica  */
                 echo "<legend></legend><br>";
-                echo $this->Form->input('trabajosocial', ['type'=>'checkbox','id'=>'trabajosocial', 'label'=>'¿Desea recibir atención de una trabajadora social?','checked'=>false]);echo "<br>";
+                
+                echo $this->Form->input('InterventionsPerson.3.tipo_intervencion', [
+                    'type'=>'checkbox','id'=>'trabajosocial', 
+                    'label'=>'¿Desea recibir atención de una trabajadora social?', 
+                    'checked'=>false, 'value' => 'trabajosocial']); echo "<br>";
+                
                 ?>  <div class="row" id= "tsocial">  <?php
                 echo $this->Form->input('TrabSocial', array(
                     'label' => 'Trabajo Social',

@@ -2,7 +2,6 @@
             <div class="large-6 medium-6 columns">
             <legend>Perfil del agresor</legend>
                 <?php
-                    $genero = array('M' => 'Masculino','F'=>'Femenino');
 
                     echo $this->Form->input('Person.nombre'); 
                     echo $this->Form->input('Person.apellidos');
@@ -13,7 +12,6 @@
                         ],
                         'label' => 'Género',
                         'type' => 'radio',
-                        'required' => 'required',
                         'options' => $genero
                         )
                     );
@@ -51,7 +49,6 @@
                       'label'=>'Número de separaciones de la persona agresora',
                       'type' => 'radio',
                       'options' => $sep,
-                      'required' => 'required'
                       )
                     );             
                 ?>
@@ -90,7 +87,6 @@
                   'label'=>'Antecedentes Psiquiátricos',
                   'type' => 'radio',
                   'options' => $apsiq,
-                  'required' => 'required'
                   )
                 );             
                 
@@ -262,7 +258,6 @@
                   'label'=>'Valoración de riesgo',
                   'type' => 'radio',
                   'options' => $riesgo,
-                  'required' => 'required'
                   )
                 );                 
                 
@@ -300,7 +295,6 @@
                   'label'=>'Se encuentra en el programa OAPVD',
                   'type' => 'radio',
                   'options' => $oapvd,
-                  'required' => 'required'
                   )
                 );      
                 

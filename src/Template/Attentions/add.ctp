@@ -1,3 +1,4 @@
+<!--
 <html>
 <head>
     <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
@@ -6,6 +7,8 @@
 </head>
     
 <body>
+-->
+
     <?= $this->Form->create(); ?>
     <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
     
@@ -30,7 +33,6 @@
             <article id="tab7"> <?php include 't7.ctp';?> </article>
         </section>
     </section>
-    
     <!-- $this->Form->submit('Guardar',['class'=>'shallow secondary button'])  -->
     
     </div>
@@ -47,27 +49,29 @@
 	            hideOrShow( $('#deseaAtencionp') , $('#atencionp') );/*psico*/
 	            hideOrShow( $('#deseaAtencionn') , $('#atencionn') );/*psico (niños)*/
 	            hideOrShow( $('#trabajosocial') , $('#tsocial') );/*psico (niños)*/
+	            hideOrShow( $('#RecursosApoyo') , $('#RecursosAp') );/*psico (niños)*/
+	            
 
 	    })
         //tab 1
-        $('#dconfidencial').change(function () { showOrHide( $(this), $('#direccion') );});
+        $('#dconfidencial'      ).change (function () { showOrHide( $(this), $('#direccion'  ) );  });
+        $('#desea_intervencion' ).change (function () { hideOrShow( $(this), $('#atencionl'  ) );  });
+        $('#trabajosocial'      ).change (function () { hideOrShow( $(this), $('#tsocial'    ) );  });
+        $('#deseaAtencionp'     ).change (function () { hideOrShow( $(this), $('#atencionp'  ) );  });
+        $('#deseaAtencionn'     ).change (function () { hideOrShow( $(this), $('#atencionn'  ) );  });
+        $('#RecursosApoyo'      ).change (function () { hideOrShow( $(this), $('#RecursosAp' ) );  });
 
-        $('#desea_intervencion').change(function () { hideOrShow( $(this), $('#atencionl') );});
-        $('#trabajosocial').change(function () { hideOrShow( $(this), $('#tsocial') ); });
-        $('#deseaAtencionp').change(function () { hideOrShow( $(this), $('#atencionp') ); });
-        $('#deseaAtencionn').change(function () { hideOrShow( $(this), $('#atencionn') ); });
-
-    /*function radioButtonInput($radiobname, $containerName, $option){*/
-    /*    if( $radiobname[0] = $option && $radiobname[0].chec )*/
-    /*}*/
+        /*function radioButtonInput($radiobname, $containerName, $option){*/
+        /*    if( $radiobname[0] = $option && $radiobname[0].chec )*/
+        /*}*/
     
-    function showOrHide ($checkbname, $containerName ) {
+        function showOrHide ($checkbname, $containerName ) {
             if ( $checkbname.is(":checked")) {
-                    $containerName.fadeOut();
-                    return;
-            }
-                $containerName.fadeIn();
+                $containerName.fadeOut();
                 return;
+            }
+            $containerName.fadeIn();
+            return;
         }        
         
         function hideOrShow ($checkbname, $containerName ) {
@@ -92,6 +96,24 @@
                 return false;
               });
         })
+        
+        var counter = 1;
+        function addInput(divName){
+             if (counter++ < 15) {
+                 var legend = "<legend> Red de apoyo número "+counter+"</legend><br>";
+                  var newdiv = document.createElement('div');
+                  newdiv.innerHTML = legend+
+                  '<?php
+                        echo $this->Form->input('PeopleAdvocacy[].tipo',['type'=>'select','label'=>'Tipo de red de apoyo','options'=>$opciones]);
+                        echo $this->Form->input('Advocacy[].nombre',['label'=>'Nombre de la persona o instutición']);
+                        echo $this->Form->input('Advocacy[].telefono',['label'=>'Teléfono']); 
+                  ?>';
+                  document.getElementById(divName).appendChild(newdiv);
+             }
+        }
 	</script>
+	
+<!--
 </body>
 </html>
+-->

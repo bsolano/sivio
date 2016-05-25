@@ -57,8 +57,29 @@ class AttentionsController extends AppController
         $this->set('historia',$query3);
         
           if ($this->request->is('post')) {
-              $data=$this->request->data;
-              $this->set('data',$data);
+            $data=$this->request->data;
+            $data['PeopleAdvocacy']['attention_id'] = '555';
+            
+            $persona = $this->request->data['Person'];
+            $persona['id'] = $id;
+            
+            //debugging sets
+            $this->set('data',$data);
+            $this->set('p',$persona);
+            
+            // $person = $this->People->patchEntity($person, $persona);
+            // if ($this->People->save($person)) {
+            //     $this->Flash->success(__('The person has been saved.'));
+            //     return $this->redirect(['action' => 'add', $id]);
+            // } else {
+            //     $this->Flash->error(__('The person could not be saved. Please, try again.'));
+            // }
+            
+            
+            //Se crea la atencion asociada
+            $at = $this->Attentions->newEntity();
+            $at->person_id = $id;
+            //$this->Attentions->save($at);
         }
     }
 

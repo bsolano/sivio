@@ -4,19 +4,19 @@
                 //Primera columna
                 /**Arrays y declaraciones a las preguntas **/
                 
-                $ceaam = ['AM','OCC','HC'];
+                $ceaam = ['AM'=>'AM','OCC'=>'OCC','HC'=>'HC'];
                 $motivoIngreso = array(
-                     'Abuso sexual',
-                     'Intento femicidio',
-                     'Orden Judicial',
-                     'Recomendación de PANI',
-                     'Trata',
-                     'Violencia contra las mujeres',
-                     'Violencia intrafamiliar',
-                     'Vulnerabilidad social'
+                     'Abuso sexual' => 'Abuso sexual',
+                     'Intento femicidio' => 'Intento femicidio',
+                     'Orden Judicial' => 'Orden Judicial',
+                     'Recomendación de PANI' => 'Recomendación de PANI',
+                     'Trata' => 'Trata',
+                     'Violencia contra las mujeres' => 'Violencia contra las mujeres',
+                     'Violencia intrafamiliar' => 'Violencia intrafamiliar',
+                     'Vulnerabilidad social' => 'Vulnerabilidad social'
                      
                 );
-                $kit = ['Sí','No','No indica'];
+                $kit = ['Sí'=>'Sí','No'=>'No','No indica'=>'No indica'];
                 
                 //INPUTS      
                 $p = $persona->toArray();
@@ -54,7 +54,7 @@
         </div>
         <div class="large-6 medium-6 columns">
             <?php            
-                echo $this->Form->input('PeopleEntry.fecha_accion',['type'=>'datetime','label'=>'Fecha de ingreso actual']);
+                echo $this->Form->input('PeopleEntry[].fecha_accion',['type'=>'datetime','label'=>'Fecha de ingreso actual']);
                 //fecha ingreso anterior
                 echo $this->Form->input('Entry.motivo_ingreso', array(
                     'label' => 'Motivo de ingreso',
@@ -65,7 +65,7 @@
                 );
                 echo $this->Form->input('Entry.ultimo_episodio', ['type'=>'textarea','label'=>'Descripción del último episodio']);
                 
-                echo $this->Form->input('PeopleEntry.fecha_accion',['type'=>'datetime','label'=>'Fecha de egreso']);
+                echo $this->Form->input('PeopleEntry[].fecha_accion',['type'=>'datetime','label'=>'Fecha de egreso']);
                 echo $this->Form->input('History.kit', [
                     'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'

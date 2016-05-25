@@ -102,14 +102,13 @@
                 echo $this->Form->input('Person.num_hijos_ceaam',['label'=>'Número de hijos con los que ingresa al CEAAM',
                     'type'=>'number','value'=>$p[0]['num_hijos_ceaam']
                 ]);
-                echo $this->Form->input('Person.tipo_familia',array(
+                echo $this->Form->input('Person[].tipo_familia',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Tipo de Familia',
                   'type' => 'radio',
                   'options' => $familia,
-                  'required' => 'required',
                   'value' => $p[0]['tipo_familia']
                   )
                 );  
@@ -119,7 +118,7 @@
         <div class="large-4 small-4 columns">
             <?php
                 //Segunda columna
-                echo $this->Form->input('Person.nacionalidad',['value'=>$p[0]['nacionalidad']]);
+                echo $this->Form->input('Person.nacionalidad',['default'=>$p[0]['nacionalidad']]);
                 echo $this->Form->input('Person.condicion_migratoria',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
@@ -127,7 +126,6 @@
                   'label'=>'Condición Migratoria',
                   'type' => 'radio',
                   'options' => $migratoria,
-                  'required' => 'required',
                   'value' => $p[0]['condicion_migratoria']
 
                   )
@@ -140,7 +138,6 @@
                   'label'=>'Condición Laboral',
                   'type' => 'radio',
                   'options' => $laboral,
-                  'required' => 'required',
                   'value' => $p[0]['condicion_laboral']
 
                   )
@@ -152,7 +149,6 @@
                   'label'=>'Experiencia Laboral',
                   'type' => 'radio',
                   'options' => ['Sí'=>'Sí','No'=>'No'],
-                  'required' => 'required',
                   'value' => $p[0]['experiencia_laboral']
                   )
                 );
@@ -185,7 +181,6 @@
                   'label'=>'Tipo de Vivienda',
                   'type' => 'radio',
                   'options' => $vivienda,
-                  'required' => 'required',
                   'value' => $p[0]['vivienda']
 
                   )
