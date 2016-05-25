@@ -24,6 +24,14 @@ use Cake\ORM\Entity;
  * @property string $medida_proteccion
  * @property \Cake\I18n\Time $vencimiento_proteccion
  * @property string $situacion_enfrentada
+ * @property int $person_id
+ * @property string $vinculo_usuaria
+ * @property string $tiempo_relacion
+ * @property string $tiempo_agresion
+ * @property string $num_separaciones
+ * @property string $familiares_en_riesgo
+ * @property bool $familiar_requiere_proteccion
+ * @property int $aggressor_id
  * @property \App\Model\Entity\Person[] $people
  */
 class History extends Entity

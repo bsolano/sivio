@@ -62,7 +62,7 @@ $sivioDescription = 'SIVIO';
 			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
 			  <li><a href="#">Referencias</a></li>
 			  <li><a href="#">Asesoría técnica</a></li>
-			  <li><a href="#">Reportes</a></li>
+			  <li><?= $this->Html->link('Reportes', ['controller' => 'Statistics', 'action' => 'index']) ?></li>
 			  <li>
 			      <a href="#">Administración</a>
 			      <ul class="menu vertical">
@@ -89,10 +89,6 @@ $sivioDescription = 'SIVIO';
         <?= $this->fetch('content') ?>
     </div>
     
-    
-  </div>
-</div>
-
     <footer class="footer">
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>

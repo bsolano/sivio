@@ -109,7 +109,9 @@ class HistoriesController extends AppController
     public function initialize()
     {
         parent::initialize();
-    
         $this->Auth->allow();
+        
+        // Json
+        $this->loadComponent('RequestHandler');
     }
 }
