@@ -33,6 +33,7 @@ class FollowupsFixture extends TestFixture
         'convivencia' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'atencion_especializada' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'advocacy_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'attention_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'fk_followups_people1_idx' => ['type' => 'index', 'columns' => ['person_id'], 'length' => []],
         ],
@@ -56,7 +57,7 @@ class FollowupsFixture extends TestFixture
         [
             'id' => 1,
             'person_id' => 1,
-            'created' => '2016-04-29 02:40:49',
+            'created' => '2016-05-20 21:17:24',
             'user_id' => 1,
             'medio_comunicacion' => 'Lorem ipsum dolor ',
             'aspectos_sociales' => 'Lorem ipsum dolor sit amet',
@@ -69,7 +70,8 @@ class FollowupsFixture extends TestFixture
             'enfrenta_violencia' => 'Lorem ipsum d',
             'convivencia' => 1,
             'atencion_especializada' => 'Lorem ipsum dolor sit amet',
-            'advocacy_id' => 1
+            'advocacy_id' => 1,
+            'attention_id' => 1
         ],
     ];
 }

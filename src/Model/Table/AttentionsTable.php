@@ -1,20 +1,20 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\PeopleEntry;
+use App\Model\Entity\Attention;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * PeopleEntries Model
+ * Attentions Model
  *
- * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $Entries
- * @property \Cake\ORM\Association\BelongsTo $Attentions
+ * @property \Cake\ORM\Association\BelongsTo $Aggressors
+ * @property \Cake\ORM\Association\BelongsTo $Histories
+ * @property \Cake\ORM\Association\BelongsTo $Users
  */
-class PeopleEntriesTable extends Table
+class AttentionsTable extends Table
 {
 
     /**
@@ -27,20 +27,18 @@ class PeopleEntriesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('people_entries');
+        $this->table('attentions');
         $this->displayField('id');
-        $this->primaryKey(['id', 'entries_id', 'person_id']);
+        $this->primaryKey('id');
 
-        $this->belongsTo('People', [
-            'foreignKey' => 'person_id',
-            'joinType' => 'INNER'
+        $this->belongsTo('Aggressors', [
+            'foreignKey' => 'aggressor_id'
         ]);
-        $this->belongsTo('Entries', [
-            'foreignKey' => 'entries_id',
-            'joinType' => 'INNER'
+        $this->belongsTo('Histories', [
+            'foreignKey' => 'history_id'
         ]);
-        $this->belongsTo('Attentions', [
-            'foreignKey' => 'attention_id'
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -53,21 +51,11 @@ class PeopleEntriesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('tipo_accion');
-
-        $validator
-            ->dateTime('fecha_accion')
-            ->allowEmpty('fecha_accion');
-
-        $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('rechazo');
-
-        $validator
-            ->allowEmpty('motivo_rechazo');
+            ->allowEmpty('tipo');
 
         return $validator;
     }
@@ -81,9 +69,9 @@ class PeopleEntriesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['entries_id'], 'Entries'));
-        $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
+        $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
+        $rules->add($rules->existsIn(['history_id'], 'Histories'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
 }

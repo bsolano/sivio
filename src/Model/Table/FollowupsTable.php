@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $Advocacies
+ * @property \Cake\ORM\Association\BelongsTo $Attentions
  * @property \Cake\ORM\Association\BelongsToMany $Users
  */
 class FollowupsTable extends Table
@@ -42,6 +43,9 @@ class FollowupsTable extends Table
         ]);
         $this->belongsTo('Advocacies', [
             'foreignKey' => 'advocacy_id'
+        ]);
+        $this->belongsTo('Attentions', [
+            'foreignKey' => 'attention_id'
         ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'followup_id',
@@ -112,6 +116,7 @@ class FollowupsTable extends Table
         $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['advocacy_id'], 'Advocacies'));
+        $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         return $rules;
     }
 }

@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PeopleAdvocaciesTable;
+use App\Model\Table\AttentionsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PeopleAdvocaciesTable Test Case
+ * App\Model\Table\AttentionsTable Test Case
  */
-class PeopleAdvocaciesTableTest extends TestCase
+class AttentionsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PeopleAdvocaciesTable
+     * @var \App\Model\Table\AttentionsTable
      */
-    public $PeopleAdvocacies;
+    public $Attentions;
 
     /**
      * Fixtures
@@ -24,11 +24,12 @@ class PeopleAdvocaciesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.people_advocacies',
+        'app.attentions',
+        'app.agressors',
+        'app.histories',
         'app.people',
         'app.transfers',
         'app.aggressors',
-        'app.histories',
         'app.consultations',
         'app.users',
         'app.groups',
@@ -41,7 +42,7 @@ class PeopleAdvocaciesTableTest extends TestCase
         'app.advocacies',
         'app.followups',
         'app.followups_users',
-        'app.attentions',
+        'app.people_advocacies',
         'app.internal_references',
         'app.users_people',
         'app.external_references',
@@ -59,8 +60,8 @@ class PeopleAdvocaciesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('PeopleAdvocacies') ? [] : ['className' => 'App\Model\Table\PeopleAdvocaciesTable'];
-        $this->PeopleAdvocacies = TableRegistry::get('PeopleAdvocacies', $config);
+        $config = TableRegistry::exists('Attentions') ? [] : ['className' => 'App\Model\Table\AttentionsTable'];
+        $this->Attentions = TableRegistry::get('Attentions', $config);
     }
 
     /**
@@ -70,7 +71,7 @@ class PeopleAdvocaciesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->PeopleAdvocacies);
+        unset($this->Attentions);
 
         parent::tearDown();
     }

@@ -4,19 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Aggressor Entity.
+ * Attention Entity.
  *
- * @property int $person_id
- * @property \App\Model\Entity\Person $person
  * @property int $id
- * @property string $vinculo
- * @property string $tiempo_relacion
- * @property string $tiempo_agresion
- * @property string $num_separaciones
- * @property string $familiares_en_riesgos
- * @property bool $familiar_require_proteccion
+ * @property int $aggressor_id
+ * @property int $history_id
+ * @property \App\Model\Entity\History $history
+ * @property int $user_id
+ * @property \App\Model\Entity\User $user
+ * @property string $tipo
+ * @property \App\Model\Entity\Agressor $agressor
  */
-class Aggressor extends Entity
+class Attention extends Entity
 {
 
     /**
@@ -31,7 +30,5 @@ class Aggressor extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-        'people_id' => false,
-        'people_aggressors_id' => false,
     ];
 }

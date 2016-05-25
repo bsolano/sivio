@@ -63,6 +63,6 @@ function loadResults(){
     }
     
     function esAtencion() {
-        document.location = "/people/atencion/" + document.querySelector('input[name = "usuaria"]:checked').value;
+        document.location = "/attentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }
 </script>

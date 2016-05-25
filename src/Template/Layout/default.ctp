@@ -31,25 +31,31 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    
+    <!-- JQuery!  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    <!-- Para attentions/add/  -->
+    <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
+    <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script>
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
 	<!--<header>-->
-		<div class="title-bar" style="background-color:white;">
-			<?= $this->Html->image('main-logo.png', ['alt' => 'SIVIO']) ?>
-			<div style="float:right;">
-				<?php
-					// User is logged in, shows logout.
-					if($this->request->session()->read('Auth.User')) {
-						echo $this->Html->link('Cerrar sesión', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'hollow secondary button']);
-					}
-				?>
-			</div>
+	<div class="title-bar" style="background-color:white;">
+		<?= $this->Html->image('main-logo.png', ['alt' => 'SIVIO']) ?>
+		<div style="float:right;">
+			<?php
+				// User is logged in, shows logout.
+				if($this->request->session()->read('Auth.User')) {
+					echo $this->Html->link('Cerrar sesión', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'hollow secondary button']);
+				}
+			?>
 		</div>
-		
-		<?php
-		    if($this->request->session()->read('Auth.User')) {
-		?>
+	</div> <?php
+	
+	if($this->request->session()->read('Auth.User')) { ?>
 		<div class="title-bar" data-responsive-toggle="sivio-menu" data-hide-for="medium">
 		  <button class="menu-icon" type="button" data-toggle></button>
 		  <div class="title-bar-title">Menú</div>
@@ -78,17 +84,16 @@ $sivioDescription = 'SIVIO';
 			  <li><button type="button" class="secondary button">Buscar expediente</button></li>
 			</ul>
 		  </div>
-		</div>
-		<?php
-		    }
-		?>
+		</div> <?php
+	} ?>
 	<!--</header>-->
 
+    <?= $this->Flash->render() ?>
     <div class="container">
-    	<?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
-    </div>  <!-- Container -->
+    </div>
     
+
     <footer class="footer">
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>
