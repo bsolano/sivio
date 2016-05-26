@@ -32,19 +32,19 @@
 -->
 
 <!-- Se agrega large-centered para que el form se encuentre centrado. -->
-<div class="people form large-centered large-9 medium-8 columns content">
+<div class="people form large-9 large-centered medium-8 columns content">
     <?= $this->Form->create($person) ?>
     <fieldset>
         <legend><?= __('Agregar nueva usuaria') ?></legend>
-        <?php
+        <?php 
             echo $this->Form->input('nombre');
             echo $this->Form->input('apellidos');
             echo $this->Form->input('fecha_de_nacimiento', ['empty' => true, 'minYear' => 1940]);
+            echo $this->Form->input('genero', ['options' => ['Masculino' => 'M','Femenino' => 'F'], 'empty' => true]);
             echo $this->Form->input('estado_civil', ['options' => ['Casada','Unión libre','Soltera','Divorciada','Separada','Viuda'], 'empty' => true]);
             echo $this->Form->input('escolaridad', ['options' => ['Primaria completa','Primaria incompleta','Secundaria completa','Secundaria incompleta','Para-universitario/Técnico','Universitaria completa','Universitaria incompleta','Ningún grado'], 'empty' => true]);
             echo $this->Form->input('atencion_especializada');
             echo $this->Form->input('nacionalidad');
-            echo $this->Form->input('genero', ['options' => ['Masculino' => 'M','Femenino' => 'F'], 'empty' => true]);
             echo $this->Form->input('ocupacion');
             echo $this->Form->input('lugar_trabajo');
             echo $this->Form->input('adicciones', ['label' => 'Adicciones', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Alcohol','Drogas','Medicamentos','Ninguna']]);
@@ -61,6 +61,6 @@
             echo $this->Form->input('Family.num_familia', ['options' => $families, 'label' => 'Familia']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Enviar', ['class' => 'secondary button'])) ?>
+    <?= $this->Form->button('Enviar', ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>
