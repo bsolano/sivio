@@ -55,7 +55,7 @@ class StatisticsController extends AppController
 	            
 	            $query = $this->People->find('all',$conditions);
 	            
-	            
+	            $this->set('result',$query);
 	           //$this->set(compact('query'));
                //$this->set('_serialize', ['query']);
 	           //se recorre el resultado de la consulta
@@ -70,9 +70,8 @@ class StatisticsController extends AppController
             } else {
                 $this->Flash->error(__('Error, pruebe de nuevo.'));
             }
-            
         }
-          $this->set('result',$query);
+        
     }
     
     
