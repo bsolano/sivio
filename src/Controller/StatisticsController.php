@@ -18,7 +18,8 @@ class StatisticsController extends AppController
        // $this->Statistic->$useTable = '';
        //$this->loadModel('');
        $this->loadModel('People');
-    
+       $this->loadModel('Attentions');
+        $this->set('result','');
         $statistic = $this->Statistics->newEntity();
         if ($this->request->is('post')) {
             
@@ -50,28 +51,24 @@ class StatisticsController extends AppController
                 $opciones= array_filter($campos);
                 
                 $conditions=array('conditions'=> (array($opciones)));
+                //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
            
                 //se construye el query
 	            
 	            $query = $this->People->find('all',$conditions);
 	            
-	            $this->set('result',$query);
-	           //$this->set(compact('query'));
-               //$this->set('_serialize', ['query']);
-	           //se recorre el resultado de la consulta
-                
-                foreach ($result as $row) {
-                    echo $row->nombre.' -> '.$row->nacionalidad.' -> '.$row->estado_civil.' -> '.$row->edad.' -> '.$row->escolaridad.' -> '.$row->ocupacion;
-                    echo "<br>"; //* Esto es un salto de linea
-                }
+                $this->set('result',$query);
+	            
 
                 $this->Flash->success(__('Éxito en consulta de estadísticas'));
 
             } else {
                 $this->Flash->error(__('Error, pruebe de nuevo.'));
             }
+            
         }
         
+          
     }
     
     

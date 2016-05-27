@@ -39,7 +39,7 @@
         <?php
             echo $this->Form->input('nombre');
             echo $this->Form->input('apellidos');
-            echo $this->Form->input('fecha_de_nacimiento', ['empty' => true, 'minYear' => 1940]);
+           
             echo 'este es temporal mientras se crea el procedimiento para ingresar la edad';
             echo $this->Form->input('edad');
             echo $this->Form->input('estado_civil');

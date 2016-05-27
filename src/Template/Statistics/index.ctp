@@ -2,10 +2,13 @@
     <?= $this->Form->create() ?>
     <fieldset>
     
-        <legend><?= __('Reporte de Estadísticas') ?></legend>
+        <legend><?= __('Reporte de Estadísticas de Atenciones') ?></legend>
         <?php
-            //echo $this->Form->input('edad',['empty' => true, 'label' => 'Edad' ]);
+           
+            echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Desde']);
+            echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Hasta']);
             echo $this->Form->input('nacionalidad',['empty' => true, 'label' => 'Nacionalidad' ]);
+           
             echo $this->Form->input('ocupacion',['empty' => true, 'label' => 'Ocupación' ]);
             echo 'Estado Civil';
             $options = ['','soltera' => 'Soltera', 'casada' => 'Casada', 'union libre' => 'Unión libre','soltera' => 'Soltera','divorciada' => 'Divorciada','separada' => 'Separada'];
@@ -53,9 +56,13 @@
             </tr>
         </thead>
         <tbody>
-           <?php foreach ($result as $results): ?>
+           <?php 
+          // print_r($result);
+           
+           foreach ($result as $results): ?>
             <tr>
-              
+             <td><?= h($results->id) ?></td>
+             <td><?= h($results->nombre) ?></td>
              
             </tr>
             <?php endforeach; ?>
