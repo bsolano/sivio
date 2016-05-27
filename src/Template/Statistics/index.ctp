@@ -61,7 +61,7 @@
            
            foreach ($result as $results): ?>
             <tr>
-             <td><?= h($results->id) ?></td>
+             <td><?= h($results->identificacion) ?></td>
              <td><?= h($results->nombre) ?></td>
              
             </tr>

@@ -19,7 +19,8 @@ class StatisticsController extends AppController
        //$this->loadModel('');
        $this->loadModel('People');
        $this->loadModel('Attentions');
-        $this->set('result','');
+       $query = $this->Attentions->find('all');
+        $this->set('result',$query);
         $statistic = $this->Statistics->newEntity();
         if ($this->request->is('post')) {
             
