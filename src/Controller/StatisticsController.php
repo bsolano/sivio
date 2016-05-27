@@ -59,8 +59,6 @@ class StatisticsController extends AppController
 	           // $query = $this->People->find('all',$conditions);
 	            $query = $this->paginate($this->People->find('all',$conditions)); 
                 $this->set('result',$query);
-	          
-
 
                 $this->Flash->success(__('Éxito en consulta de estadísticas'));
 
@@ -69,10 +67,7 @@ class StatisticsController extends AppController
             }
             
         }
-        
-          
     }
-    
     
     public function initialize()
     {
