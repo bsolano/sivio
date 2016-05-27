@@ -15,7 +15,7 @@
             echo $this->Form->select('estado_civil', $options, ['value' => 0]);
 
             echo 'Escolaridad';
-            $options = ['','ningún grado' => 'Ningún grado','primaria completa' => 'Primaria Completa', 'primaria incompleta' => 'Primaria incompleta', 'secundaria completa' => 'Secundaria completa','secundaria incompleta' => 'Secundaria incompleta','parauniversitario/técnico' => 'Parauniversitario/técnico','universitaria completa' => 'Universitaria completa','universitaria incompleta' => 'Universitaria incompleta'];
+            $options = ['','ningún grado' => 'Ningún grado','primaria completa' => 'Primaria completa', 'primaria incompleta' => 'Primaria incompleta', 'secundaria completa' => 'Secundaria completa','secundaria incompleta' => 'Secundaria incompleta','parauniversitario/técnico' => 'Parauniversitario/Técnico','universitaria completa' => 'Universitaria completa','universitaria incompleta' => 'Universitaria incompleta'];
             echo $this->Form->select('escolaridad', $options,['value' => 0]);
             
             echo 'Edad:'; 
@@ -46,7 +46,7 @@
 
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id')       ?></th>
+                <th><?= $this->Paginator->sort('Identificación')       ?></th>
                 <th><?= $this->Paginator->sort('Nombre') ?></th>
                 <th><?= $this->Paginator->sort('Nacionalidad') ?></th>
                 <th><?= $this->Paginator->sort('Ocupación') ?></th>
@@ -59,15 +59,26 @@
            <?php 
           // print_r($result);
            
-           foreach ($result as $results): ?>
-            <tr>
-             <td><?= h($results->identificacion) ?></td>
-             <td><?= h($results->nombre) ?></td>
-             
+            foreach ($result as $results): ?>
+                <tr>
+                    <td><?= h($results->identificacion) ?></td>
+                    <td><?= h($results->nombre) ?></td>
+                    <td><?= h($results->nacionalidad) ?></td>
+                    <td><?= h($results->ocupacion) ?></td>
+                    <td><?= h($results->estado_civil) ?></td>
+                    <td><?= h($results->escolaridad) ?></td>
+                    <td><?= h($results->edad) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-
+         <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
 </fieldset>
 </div>

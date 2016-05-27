@@ -19,7 +19,7 @@ class StatisticsController extends AppController
        //$this->loadModel('');
        $this->loadModel('People');
        $this->loadModel('Attentions');
-       $query = $this->Attentions->find('all');
+       $query = $this->paginate($this->Attentions->find('all'));
         $this->set('result',$query);
         $statistic = $this->Statistics->newEntity();
         if ($this->request->is('post')) {
@@ -56,10 +56,11 @@ class StatisticsController extends AppController
            
                 //se construye el query
 	            
-	            $query = $this->People->find('all',$conditions);
-	            
+	           // $query = $this->People->find('all',$conditions);
+	            $query = $this->paginate($this->People->find('all',$conditions)); 
                 $this->set('result',$query);
-	            
+	          
+
 
                 $this->Flash->success(__('Éxito en consulta de estadísticas'));
 
