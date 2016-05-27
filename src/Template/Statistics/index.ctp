@@ -1,4 +1,4 @@
-<div class="externalReferences form large-5 medium-8 columns content">
+<div class="externalReferences form large-5 medium-5 columns content">
     <?= $this->Form->create() ?>
     <fieldset>
     
@@ -27,11 +27,40 @@
                 <?php echo $this->Form->input('edadUpper', ['empty' => true, 'label' => 'y']); ?>
             </div> 
         </div> <!--/ First row dates-->
-               
+                       
       
         
              
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+</div>
+<div class="externalReferences large-7 medium-7 columns">
+
+    <fieldset>
+    <h3><?= __('Resultados') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+
+        <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('id')       ?></th>
+                <th><?= $this->Paginator->sort('Nombre') ?></th>
+                <th><?= $this->Paginator->sort('Nacionalidad') ?></th>
+                <th><?= $this->Paginator->sort('Ocupación') ?></th>
+                <th><?= $this->Paginator->sort('Estado Civil') ?></th>
+                <th><?= $this->Paginator->sort('Escolaridad') ?></th>
+                <th><?= $this->Paginator->sort('Edad') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+           <?php foreach ($result as $results): ?>
+            <tr>
+              
+             
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+</fieldset>
 </div>

@@ -43,7 +43,7 @@ class StatisticsController extends AppController
             
                 // Se declaran los criterios de búsqueda
                 
-                 $campos = array('People.edad >=' => $edadLower, 'People.edad <=' => $edadUpper  ,'People.nacionalidad' => $nacionalidad,'People.escolaridad' => $escolaridad,'People.estado_civil' => $estado_civil,'People.ocupacion' => $ocupacion);
+                $campos = array('People.edad >=' => $edadLower, 'People.edad <=' => $edadUpper  ,'People.nacionalidad' => $nacionalidad,'People.escolaridad' => $escolaridad,'People.estado_civil' => $estado_civil,'People.ocupacion' => $ocupacion);
                 
                 // Elimina los campos en blanco del query
                 
@@ -54,10 +54,14 @@ class StatisticsController extends AppController
                 //se construye el query
 	            
 	            $query = $this->People->find('all',$conditions);
-	           
+	            
+	            
+	           //$this->set(compact('query'));
+               //$this->set('_serialize', ['query']);
 	           //se recorre el resultado de la consulta
-                foreach ($query as $row) {
-                    echo $row->nombre.' -> '.$row->nacionalidad.' -> '.$row->estado_civil;
+                
+                foreach ($result as $row) {
+                    echo $row->nombre.' -> '.$row->nacionalidad.' -> '.$row->estado_civil.' -> '.$row->edad.' -> '.$row->escolaridad.' -> '.$row->ocupacion;
                     echo "<br>"; //* Esto es un salto de linea
                 }
 
@@ -66,8 +70,9 @@ class StatisticsController extends AppController
             } else {
                 $this->Flash->error(__('Error, pruebe de nuevo.'));
             }
+            
         }
-        
+          $this->set('result',$query);
     }
     
     
