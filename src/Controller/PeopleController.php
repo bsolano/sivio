@@ -57,14 +57,19 @@ class PeopleController extends AppController
      */
     public function add()
     {
+        $this->loadComponent('StringManipulation');
         $person = $this->People->newEntity();
         if ($this->request->is('post')) {
-            $person = $this->People->patchEntity($person, $this->request->data);
+            $data = $this->request->data;
+            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
+            $person = $this->People->patchEntity($person, $data);
+            $person->genero = 'F';
+            $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
+                $this->Flash->success(__('La información ha sido guardada satisfactoriamente.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The person could not be saved. Please, try again.'));
+                $this->Flash->error(__('No ha sido posible guardar la información, inténtelo nuevamente.'));
             }
         }
         $histories = $this->People->Histories->find('list', ['limit' => 200]);

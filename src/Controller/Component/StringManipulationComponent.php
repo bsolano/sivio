@@ -47,5 +47,13 @@ class StringManipulationComponent extends Component
                 return $arrays;
          }
      
+        public function transformarArrays(& $array, $string){
+            foreach($array as $key => $value){
+                if(is_array($value) && !in_array($key,$string)){
+                    $array[$key] = $this->ArrayToTokenedString($value);
+                } 
+            }
+            return $array;
+        }
     
 }
