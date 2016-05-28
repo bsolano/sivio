@@ -151,7 +151,7 @@
     </div> <!-- row pages-->
        
     
-    <div id="submit"><?= $this->Form->button(__('Submit'), ['class' => 'secondary button']) ?></div>
+    <div id="submit"><?= $this->Form->button(__('Enviar Formulario'), ['class' => 'secondary button']) ?></div>
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
