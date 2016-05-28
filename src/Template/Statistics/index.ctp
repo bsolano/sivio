@@ -1,4 +1,4 @@
-<div class="externalReferences form large-5 medium-5 columns content">
+<div class="externalReferences form large-3 medium-3 columns content">
     <?= $this->Form->create() ?>
     <fieldset>
     
@@ -35,10 +35,10 @@
         
              
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button('Buscar', ['class'  => 'button secondary']) ?>
     <?= $this->Form->end() ?>
 </div>
-<div class="externalReferences large-7 medium-7 columns">
+<div class="externalReferences large-9 medium-9 columns">
 
     <fieldset>
     <h3><?= __('Resultados') ?></h3>
