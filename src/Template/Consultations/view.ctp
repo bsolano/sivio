@@ -1,16 +1,4 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Consultation'), ['action' => 'edit', $consultation->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Consultation'), ['action' => 'delete', $consultation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $consultation->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Consultations'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Consultation'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
 <div class="consultations view large-9 medium-8 columns content">
     <h3>Consulta de <?= h($person->nombre) ?></h3>
     
@@ -20,8 +8,20 @@
     <?php endif ?>
     <table class="vertical-table">
         <tr>
+            <th><?= __('Nombre') ?></th>
+            <td><?= h($consultation->person->nombre) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Apellidos') ?></th>
+            <td><?= h($consultation->person->apellidos) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Identificación') ?></th>
             <td><?= $consultation->has('person') ? $this->Html->link($consultation->person->id, ['controller' => 'People', 'action' => 'view', $consultation->person->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Nacionalidad') ?></th>
+            <td><?= h($consultation->person->nacionalidad)?></td>
         </tr>
         <tr>
             <th><?= __('Funcionario que atendió la consulta') ?></th>
