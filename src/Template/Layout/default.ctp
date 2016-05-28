@@ -59,7 +59,7 @@ $sivioDescription = 'SIVIO';
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
 			  <li><a href="#">Casos asignados</a></li>
-			  <li><a href="#">Referencias</a></li>
+			  <li><?= $this->Html->link('Referencias', ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
 			  <li><a href="#">Asesoría técnica</a></li>
 			  <li><a href="#">Reportes</a></li>
 			  <li>

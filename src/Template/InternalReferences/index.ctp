@@ -1,27 +1,24 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Internal Reference'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="internalReferences index large-9 medium-8 columns content">
-    <h3><?= __('Internal References') ?></h3>
+
+
+<div class="row">
+
+    <h3><?= __('Administración de Referencias Internas') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('person_id') ?></th>
-                <th><?= $this->Paginator->sort('user_id') ?></th>
+                <th><?= $this->Paginator->sort('person_nombre','Persona') ?></th>
+                <th><?= $this->Paginator->sort('user_username', 'Usuario') ?></th>
                 <th><?= $this->Paginator->sort('telefono') ?></th>
                 <th><?= $this->Paginator->sort('oficina') ?></th>
+                <th><?= $this->Paginator->sort('location_id', 'Localizacion') ?></th>
+                <th><?= $this->Paginator->sort('group_id','Grupo') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
+            <?php if  ($internalReferences != null) {  ?>
         <tbody>
+         
             <?php foreach ($internalReferences as $internalReference): ?>
             <tr>
                 <td><?= $this->Number->format($internalReference->id) ?></td>
@@ -29,13 +26,20 @@
                 <td><?= $internalReference->has('user') ? $this->Html->link($internalReference->user->id, ['controller' => 'Users', 'action' => 'view', $internalReference->user->id]) : '' ?></td>
                 <td><?= h($internalReference->telefono) ?></td>
                 <td><?= h($internalReference->oficina) ?></td>
+                <td><?= $internalReference->has('location') ? $this->Html->link($internalReference->location->id, ['controller' => 'Locations', 'action' => 'view', $internalReference->location->id]) : '' ?></td>
+                <td><?= $internalReference->has('group') ? $this->Html->link($internalReference->group->id, ['controller' => 'Groups', 'action' => 'view', $internalReference->group->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $internalReference->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $internalReference->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $internalReference->id], ['confirm' => __('Are you sure you want to delete # {0}?', $internalReference->id)]) ?>
+                <?php if ($groupName == '1') { // ?>
+                    <?= $this->Form->postLink(__('Aceptar'), ['action' => 'add', $internalReference->id], ['confirm' => __('Está segura que desea aceptar a # {0}?', $internalReference->id)]) ?>
+                    <?= $this->Form->postLink(__('Reasignar'), ['action' => 'edit', $internalReference->id], ['confirm' => __('Está segura que desea reasignar a # {0}?', $internalReference->id)]) ?>
+                    <?php } else { ?>
+                    <?= $this->Form->postLink(__('Aceptar'), ['action' => 'add', $internalReference->id], ['confirm' => __('Está segura que desea aceptar a # {0}?', $internalReference->id)]) ?>
+                    <?= $this->Form->postLink(__('Reasignar'), ['action' => 'edit', $internalReference->id], ['confirm' => __('Está segura que desea reasignar a # {0}?', $internalReference->id)]) ?>
+                    <?php } ?>
                 </td>
             </tr>
             <?php endforeach; ?>
+          
         </tbody>
     </table>
     <div class="paginator">
@@ -46,4 +50,7 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
+       <?php } //end del if internalreferences ?>
 </div>
+
+</row>

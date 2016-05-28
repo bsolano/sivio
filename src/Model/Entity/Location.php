@@ -4,21 +4,13 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * InternalReference Entity.
+ * Location Entity.
  *
  * @property int $id
- * @property int $person_id
- * @property \App\Model\Entity\Person $person
- * @property int $user_id
- * @property \App\Model\Entity\User $user
- * @property string $telefono
- * @property string $oficina
- * @property int $location_id
- * @property \App\Model\Entity\Location $location
- * @property int $group_id
- * @property \App\Model\Entity\Group $group
+ * @property string $ubicacion
+ * @property \App\Model\Entity\InternalReference[] $internal_references
  */
-class InternalReference extends Entity
+class Location extends Entity
 {
 
     /**

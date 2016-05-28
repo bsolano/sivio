@@ -12,6 +12,8 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $Locations
+ * @property \Cake\ORM\Association\BelongsTo $Groups
  */
 class InternalReferencesTable extends Table
 {
@@ -35,6 +37,12 @@ class InternalReferencesTable extends Table
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
+        ]);
+        $this->belongsTo('Locations', [
+            'foreignKey' => 'location_id'
+        ]);
+        $this->belongsTo('Groups', [
+            'foreignKey' => 'group_id'
         ]);
     }
 
@@ -70,6 +78,8 @@ class InternalReferencesTable extends Table
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['location_id'], 'Locations'));
+        $rules->add($rules->existsIn(['group_id'], 'Groups'));
         return $rules;
     }
 }

@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Group $group
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+ * @property int $location_id
  * @property \App\Model\Entity\Consultation[] $consultations
  * @property \App\Model\Entity\Entry[] $entries
  * @property \App\Model\Entity\Evaluation[] $evaluations

@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('group_id', ['options' => $groups, 'empty' => true, 'label' => false, 'required' => true]); ?>

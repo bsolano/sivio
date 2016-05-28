@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Groups
+ * @property \Cake\ORM\Association\BelongsTo $Locations
  * @property \Cake\ORM\Association\HasMany $Consultations
  * @property \Cake\ORM\Association\HasMany $Entries
  * @property \Cake\ORM\Association\HasMany $Evaluations
@@ -40,6 +41,10 @@ class UsersTable extends Table
 
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Locations', [
+            'foreignKey' => 'location_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Consultations', [
@@ -88,12 +93,7 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password')
-            ->add('password', 'minimo',array('rule' => array('minLength', 8),'message'=>'8 carácteres mínimo'))
-            ->add('password', 'unaLetra',array('rule' => array('custom','/([a-z]{1,})/i'),'message'=>'Al menos 1 letra'))
-            ->add('password', 'unNumero',array('rule' => array('custom','/([0-9]{1,})/i'),'message'=>'Al menos 1 numero'))
-            ->add('password', 'unNumero',array('rule' => array('custom','/[,.!:]{1,}/'),'message'=>'Al menos un simbolo entre {,!.:}'));
-            
+            ->notEmpty('password');
 
         return $validator;
     }
@@ -109,6 +109,7 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
+        $rules->add($rules->existsIn(['location_id'], 'Locations'));
         return $rules;
     }
 }

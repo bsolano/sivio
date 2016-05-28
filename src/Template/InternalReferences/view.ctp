@@ -9,6 +9,10 @@
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="internalReferences view large-9 medium-8 columns content">
@@ -29,6 +33,14 @@
         <tr>
             <th><?= __('Oficina') ?></th>
             <td><?= h($internalReference->oficina) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Location') ?></th>
+            <td><?= $internalReference->has('location') ? $this->Html->link($internalReference->location->id, ['controller' => 'Locations', 'action' => 'view', $internalReference->location->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Group') ?></th>
+            <td><?= $internalReference->has('group') ? $this->Html->link($internalReference->group->name, ['controller' => 'Groups', 'action' => 'view', $internalReference->group->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>

@@ -23,6 +23,7 @@ class UsersFixture extends TestFixture
         'group_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'location_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'username' => ['type' => 'unique', 'columns' => ['username'], 'length' => []],
@@ -45,8 +46,9 @@ class UsersFixture extends TestFixture
             'username' => 'Lorem ipsum dolor sit amet',
             'password' => 'Lorem ipsum dolor sit amet',
             'group_id' => 1,
-            'created' => '2016-04-29 02:42:24',
-            'modified' => '2016-04-29 02:42:24'
+            'created' => '2016-05-18 22:24:00',
+            'modified' => '2016-05-18 22:24:00',
+            'location_id' => 1
         ],
     ];
 }

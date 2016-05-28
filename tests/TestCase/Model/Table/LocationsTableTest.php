@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use App\Model\Table\LocationsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsersTable Test Case
+ * App\Model\Table\LocationsTable Test Case
  */
-class UsersTableTest extends TestCase
+class LocationsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsersTable
+     * @var \App\Model\Table\LocationsTable
      */
-    public $Users;
+    public $Locations;
 
     /**
      * Fixtures
@@ -24,28 +24,28 @@ class UsersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.users',
-        'app.groups',
-        'app.consultations',
+        'app.locations',
+        'app.internal_references',
         'app.people',
         'app.transfers',
         'app.aggressors',
         'app.histories',
-        'app.external_references',
-        'app.followups',
-        'app.followups_users',
-        'app.advocacies',
-        'app.evaluations',
-        'app.people_advocacies',
-        'app.internal_references',
-        'app.locations',
-        'app.interventions',
-        'app.interventions_people',
+        'app.consultations',
+        'app.users',
+        'app.groups',
         'app.entries',
         'app.people_entries',
+        'app.evaluations',
+        'app.advocacies',
+        'app.followups',
+        'app.followups_users',
+        'app.people_advocacies',
+        'app.users_people',
+        'app.external_references',
+        'app.interventions',
+        'app.interventions_people',
         'app.families',
-        'app.people_families',
-        'app.users_people'
+        'app.people_families'
     ];
 
     /**
@@ -56,8 +56,8 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Users') ? [] : ['className' => 'App\Model\Table\UsersTable'];
-        $this->Users = TableRegistry::get('Users', $config);
+        $config = TableRegistry::exists('Locations') ? [] : ['className' => 'App\Model\Table\LocationsTable'];
+        $this->Locations = TableRegistry::get('Locations', $config);
     }
 
     /**
@@ -67,7 +67,7 @@ class UsersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Users);
+        unset($this->Locations);
 
         parent::tearDown();
     }
@@ -88,16 +88,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
