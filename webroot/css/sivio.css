@@ -765,3 +765,9 @@ article {
 select, [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea {color:inherit;}
 
 /*-EO:OVERRIDES-----*/
+
+/*Para que el texto de las tablas no se amontone*/
+
+td {
+    word-wrap: break-word;
+}

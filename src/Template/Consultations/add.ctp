@@ -12,10 +12,10 @@
 <div class="consultations form small-8 large-centered medium-8 columns content">
     <?= $this->Form->create($consultation) ?>
     <fieldset>
-        <legend><?= __('Add Consultation') ?></legend>
+        <legend><?= __('Añadir consulta') ?></legend>
         <div class = "row page page1">
         <?php
-            echo $this->Form->input('horario');
+            echo $this->Form->input('Horario');
             $tipo = ["Delegación de la Mujer", "PLANOVI"];
             
             echo $this->Form->input('tipo',['label'=>'Tipo','type'=>'select','options'=>$tipo]);
@@ -44,9 +44,9 @@
             $InstitucionRefiere = ["COAVIF","Usuaria","Pariente","Oficina Regional INAMU","IMAS","PANI",
                                     "OFIM", "Red local", "Juzgado", "Def. Habitantes", "CCSS","Ministerio púbilco",
                                     "MSP","IAFA","OAPV","Otro"];
-            echo $this->Form->input('institucion_que_refiere',['label'=>'Institución que refiere','type'=>'select','options'=>$InstitucionRefiere]);
-            echo $this->Form->input('nombre_que_refiere',['label' => 'Nombre que refiere']);
-            echo $this->Form->input('telefono_que_refiere',['label' => 'Teléfono que refiere']);
+            echo $this->Form->input('institucion_que_refiere',['label'=>'Institución referente','type'=>'select','options'=>$InstitucionRefiere]);
+            echo $this->Form->input('nombre_que_refiere',['label' => 'Funcionario de la institución referente']);
+            echo $this->Form->input('telefono_que_refiere',['label' => 'Teléfono del funcionario de la institución referente']);
             $situacion_enfrentada = [
                 'Violencia Sexual' => 'Violencia Sexual',
                 'Violencia Fisica' => 'Violencia Física',
@@ -65,7 +65,7 @@
             ?></div> <!-- page 2 -->
             <div class = "row page page3">
             <?php
-            echo $this->Form->input('ultimo_incidente');
+            echo $this->Form->input('ultimo_incidente', ['label' => 'Último incidente']);
              $riesgo = [
                 'Precaución' => 'Precaución',
                 'Alto Riesgo' => 'Alto Riesgo',
@@ -75,8 +75,8 @@
                     'label' => 'Nivel de riesgo',
                     'type' => 'radio',
                     'options' => $riesgo]);
-            echo $this->Form->input('familiares_en_riesgo');
-            echo $this->Form->input('familiares_requieren_proteccion');?>
+            echo $this->Form->input('familiares_en_riesgo', ['label' => 'Familiares en riesgo']);
+            echo $this->Form->input('familiares_requieren_proteccion', ['label' => '¿Los familiares necesitan protección?']);?>
             </div> <!-- / page3 -->
             <div class = "row page page4">
             <?php
@@ -97,29 +97,29 @@
                 'Desconocido/a' => 'Desconocido/a'
                 ];
                 echo $this->Form->input('vinculo_con_persona_agresora', [
-                    'label' => 'Vinculo con la persona agresora',
+                    'label' => 'Vínculo con la persona agresora',
                     'type' => 'radio',
                     'options' => $vinculo]); ?>
                     
                 </div> <!-- / page 4 vinculo -->
                     <div class = "page page5">
                 
-                    <?php echo $this->Form->input('tiempo_relacion_con_agresor'); ?>
+                    <?php echo $this->Form->input('tiempo_relacion_con_agresor', ['label' => 'Tiempo de relación con el agresor']); ?>
                
                
-                    <?php echo $this->Form->input('tiempo_agresion'); ?>
+                    <?php echo $this->Form->input('tiempo_agresion', ['label' => 'Tiempo de la agresión']); ?>
             
             
             <div class="row">
             <div class="medium-6 columns">
-            <?php echo $this->Form->input('medidas_proteccion');?>
+            <?php echo $this->Form->input('medidas_proteccion', ['label' => 'Medidas de protección']);?>
              </div>
               <div class="medium-6 columns">
-            <?php echo $this->Form->input('denuncia_penal');?>
+            <?php echo $this->Form->input('denuncia_penal', ['label' => '¿Existe denuncia penal?']);?>
                 </div>
             </div> <!--/ row medidas -->
             <?php
-            echo $this->Form->input('fecha_vencimiento', ['empty' => true]);
+            echo $this->Form->input('fecha_vencimiento', ['empty' => true, 'label' => 'Fecha de vencimiento de la denuncia']);
             $apoyo = [
                 'Familiar' => 'Familiar',
                 'Amistad' => 'Amistad',
@@ -151,7 +151,7 @@
     </div> <!-- row pages-->
        
     
-    <div id="submit"><?= $this->Form->button(__('Submit'), ['class' => 'secondary button']) ?></div>
+    <div id="submit"><?= $this->Form->button(__('Enviar Formulario'), ['class' => 'secondary button']) ?></div>
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
