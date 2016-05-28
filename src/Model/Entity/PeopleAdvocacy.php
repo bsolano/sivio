@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Advocacy $advocacy
  * @property string $tipo
  * @property int $id
+ * @property int $attention_id
  */
 class PeopleAdvocacy extends Entity
 {

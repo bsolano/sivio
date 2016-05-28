@@ -31,6 +31,9 @@ class PeopleTableTest extends TestCase
         'app.consultations',
         'app.users',
         'app.groups',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos',
         'app.entries',
         'app.people_entries',
         'app.evaluations',
@@ -39,6 +42,7 @@ class PeopleTableTest extends TestCase
         'app.followups_users',
         'app.people_advocacies',
         'app.internal_references',
+        'app.locations',
         'app.users_people',
         'app.external_references',
         'app.interventions',
@@ -97,6 +101,16 @@ class PeopleTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test find_record method
+     *
+     * @return void
+     */
+    public function testFindRecord()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

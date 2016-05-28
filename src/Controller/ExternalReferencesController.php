@@ -51,21 +51,31 @@ class ExternalReferencesController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id_p = null)
+    
     {
+        
+        
         $externalReference = $this->ExternalReferences->newEntity();
+        
+        
+        
         if ($this->request->is('post')) {
             $externalReference = $this->ExternalReferences->patchEntity($externalReference, $this->request->data);
             if ($this->ExternalReferences->save($externalReference)) {
                 $this->Flash->success(__('The external reference has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $externalReference->id]);
             } else {
                 $this->Flash->error(__('The external reference could not be saved. Please, try again.'));
             }
         }
+        $query = $this->ExternalReferences->People->find('all',['conditions' => ['People.identificacion'  => $id_p]]);
+        $this->set('persona', $query);
+        
         $people = $this->ExternalReferences->People->find('list', ['limit' => 200]);
         $this->set(compact('externalReference', 'people'));
         $this->set('_serialize', ['externalReference']);
+        
     }
 
     /**
@@ -78,7 +88,7 @@ class ExternalReferencesController extends AppController
     public function edit($id = null)
     {
         $externalReference = $this->ExternalReferences->get($id, [
-            'contain' => []
+            'contain' => ['People']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $externalReference = $this->ExternalReferences->patchEntity($externalReference, $this->request->data);
@@ -122,16 +132,20 @@ class ExternalReferencesController extends AppController
       
     }
     
-     public function pdf(){
+     public function pdf($id = null){
+         
+        $externalReference = $this->ExternalReferences->get($id, [
+            'contain' => ['People']
+        ]);
+
+        $this->set('externalReference', $externalReference);
+        $this->set('_serialize', ['externalReference']);
+        
         //$this->layout='ajax';
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
-        
+       
     } 
-      // class to test pdf
-    public function test()
-    {
-
-    }
+    
    
 }

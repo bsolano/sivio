@@ -10,8 +10,8 @@ sudo vi /etc/phpmyadmin/config.inc.php
 	- Agregar el servidor del profe copiando esto:
 
 		$i++;
-$cfg['Servers'][$i]['host'] = 'xxx.com:3306'; //provide hostname and port if other than default
-$cfg['Servers'][$i]['user'] = 'solsofth_sivio';   //user name for your remote server
+$cfg['Servers'][$i]['host'] = 'solsoft-hosting.com:3306'; //provide hostname and port if other than default
+$cfg['Servers'][$i]['user'] = 'solsofth_emplo';   //user name for your remote server
 $cfg['Servers'][$i]['password'] = 'xxx';  //password
 $cfg['Servers'][$i]['auth_type'] = 'config';       // keep it as config
 

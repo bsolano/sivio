@@ -28,6 +28,14 @@
             echo $this->Form->input('medida_proteccion');
             echo $this->Form->input('vencimiento_proteccion', ['empty' => true]);
             echo $this->Form->input('situacion_enfrentada');
+            echo $this->Form->input('person_id');
+            echo $this->Form->input('vinculo_usuaria');
+            echo $this->Form->input('tiempo_relacion');
+            echo $this->Form->input('tiempo_agresion');
+            echo $this->Form->input('num_separaciones');
+            echo $this->Form->input('familiares_en_riesgo');
+            echo $this->Form->input('familiar_requiere_proteccion');
+            echo $this->Form->input('aggressor_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

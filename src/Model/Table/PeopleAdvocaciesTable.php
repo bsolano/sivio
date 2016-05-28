@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Advocacies
+ * @property \Cake\ORM\Association\BelongsTo $Attentions
  */
 class PeopleAdvocaciesTable extends Table
 {
@@ -37,6 +38,9 @@ class PeopleAdvocaciesTable extends Table
         $this->belongsTo('Advocacies', [
             'foreignKey' => 'advocacy_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Attentions', [
+            'foreignKey' => 'attention_id'
         ]);
     }
 
@@ -69,6 +73,7 @@ class PeopleAdvocaciesTable extends Table
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['advocacy_id'], 'Advocacies'));
+        $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         return $rules;
     }
 }

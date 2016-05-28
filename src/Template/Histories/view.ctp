@@ -53,8 +53,32 @@
             <td><?= h($history->medida_proteccion) ?></td>
         </tr>
         <tr>
+            <th><?= __('Vinculo Usuaria') ?></th>
+            <td><?= h($history->vinculo_usuaria) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Tiempo Relacion') ?></th>
+            <td><?= h($history->tiempo_relacion) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Tiempo Agresion') ?></th>
+            <td><?= h($history->tiempo_agresion) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Num Separaciones') ?></th>
+            <td><?= h($history->num_separaciones) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($history->id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Person Id') ?></th>
+            <td><?= $this->Number->format($history->person_id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Aggressor Id') ?></th>
+            <td><?= $this->Number->format($history->aggressor_id) ?></td>
         </tr>
         <tr>
             <th><?= __('Vencimiento Proteccion') ?></th>
@@ -63,6 +87,10 @@
         <tr>
             <th><?= __('Programa Oapvd') ?></th>
             <td><?= $history->programa_oapvd ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Familiar Requiere Proteccion') ?></th>
+            <td><?= $history->familiar_requiere_proteccion ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
     <div class="row">
@@ -84,6 +112,10 @@
     <div class="row">
         <h4><?= __('Situacion Enfrentada') ?></h4>
         <?= $this->Text->autoParagraph(h($history->situacion_enfrentada)); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Familiares En Riesgo') ?></h4>
+        <?= $this->Text->autoParagraph(h($history->familiares_en_riesgo)); ?>
     </div>
     <div class="related">
         <h4><?= __('Related People') ?></h4>
@@ -107,15 +139,18 @@
                 <th><?= __('Experiencia Laboral') ?></th>
                 <th><?= __('Condicion Aseguramiento') ?></th>
                 <th><?= __('Vivienda') ?></th>
-                <th><?= __('Num Hijos Ceaam') ?></th>
                 <th><?= __('Tipo Familia') ?></th>
                 <th><?= __('Embarazo') ?></th>
                 <th><?= __('Condicion Salud') ?></th>
                 <th><?= __('Identificacion') ?></th>
                 <th><?= __('Tipo Identificacion') ?></th>
-                <th><?= __('Transfer Id') ?></th>
-                <th><?= __('Aggressor Id') ?></th>
-                <th><?= __('History Id') ?></th>
+                <th><?= __('Numero De Telefono') ?></th>
+                <th><?= __('Edad') ?></th>
+                <th><?= __('Numero De Hijos') ?></th>
+                <th><?= __('Provincia') ?></th>
+                <th><?= __('Canton') ?></th>
+                <th><?= __('Direccion') ?></th>
+                <th><?= __('Tiene Hijos Doce') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($history->people as $people): ?>
@@ -137,15 +172,18 @@
                 <td><?= h($people->experiencia_laboral) ?></td>
                 <td><?= h($people->condicion_aseguramiento) ?></td>
                 <td><?= h($people->vivienda) ?></td>
-                <td><?= h($people->num_hijos_ceaam) ?></td>
                 <td><?= h($people->tipo_familia) ?></td>
                 <td><?= h($people->embarazo) ?></td>
                 <td><?= h($people->condicion_salud) ?></td>
                 <td><?= h($people->identificacion) ?></td>
                 <td><?= h($people->tipo_identificacion) ?></td>
-                <td><?= h($people->transfer_id) ?></td>
-                <td><?= h($people->aggressor_id) ?></td>
-                <td><?= h($people->history_id) ?></td>
+                <td><?= h($people->numero_de_telefono) ?></td>
+                <td><?= h($people->edad) ?></td>
+                <td><?= h($people->numero_de_hijos) ?></td>
+                <td><?= h($people->provincia) ?></td>
+                <td><?= h($people->canton) ?></td>
+                <td><?= h($people->direccion) ?></td>
+                <td><?= h($people->tiene_hijos_doce) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'People', 'action' => 'view', $people->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'People', 'action' => 'edit', $people->id]) ?>

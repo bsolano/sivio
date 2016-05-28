@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string $tipo_accion
  * @property \Cake\I18n\Time $fecha_accion
  * @property int $id
+ * @property int $attention_id
  * @property string $rechazo
  * @property string $motivo_rechazo
  */

@@ -231,12 +231,14 @@ class InternalReferencesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function initialize()
+
+     public function initialize()
     {
         parent::initialize();
         $this->Auth->allow();
         
         // Json
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('StringManipulation');
     }
 }

@@ -7,14 +7,14 @@ use Cake\ORM\Entity;
  * Aggressor Entity.
  *
  * @property int $person_id
+ * @property \App\Model\Entity\Person $person
  * @property int $id
  * @property string $vinculo
  * @property string $tiempo_relacion
  * @property string $tiempo_agresion
  * @property string $num_separaciones
- * @property int $people_id
- * @property int $people_aggressors_id
- * @property \App\Model\Entity\Person $person
+ * @property string $familiares_en_riesgos
+ * @property bool $familiar_require_proteccion
  */
 class Aggressor extends Entity
 {

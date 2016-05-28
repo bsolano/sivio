@@ -26,6 +26,7 @@ class InterventionsPeopleFixture extends TestFixture
     public $fields = [
         'intervention_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'attention_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'person_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'tipo_intervencion' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         '_indexes' => [
@@ -53,6 +54,7 @@ class InterventionsPeopleFixture extends TestFixture
         [
             'intervention_id' => 1,
             'id' => 1,
+            'attention_id' => 1,
             'person_id' => 1,
             'tipo_intervencion' => 'Lorem ipsum dolor sit amet'
         ],

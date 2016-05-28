@@ -123,13 +123,7 @@ class UsersPeopleController extends AppController
         return $this->redirect(['action' => 'index']);
     }
  
-    public function tabular($id = null){
-        $query = $this->UsersPeople->People->find('all',['conditions' => ['People.id'  => $id]]);
-        $this->set('persona', $query);
-        
-          if ($this->request->is('post')) {
-        }
-    }
+
     
     public function historial(){
         if ($this->request->is('post')) {

@@ -4,6 +4,8 @@
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Generar reporte'), ['action' => 'reports']) ?></li>
+    
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">

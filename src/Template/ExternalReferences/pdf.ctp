@@ -3,14 +3,14 @@
 require_once  ROOT. DS.  'vendor'. DS. 'tcpdf_min'. DS. 'tcpdf.php';
 
 //============================================================+
-// File name   : example_005.php
+// File name   : <nombre de usuario>.php
 // Begin       : 2008-03-04
-// Last Update : 2013-05-14
+// Last Update : 2016-05-14
 //
-// Description : Example 005 for TCPDF class
-//               Multicell
+// Description : Example 006 for TCPDF class
+//               WriteHTML and RTL support
 //
-// Author: Nicola Asuni
+// Author: David Hine
 //
 // (c) Copyright:
 //               Nicola Asuni
@@ -22,26 +22,52 @@ require_once  ROOT. DS.  'vendor'. DS. 'tcpdf_min'. DS. 'tcpdf.php';
 /**
  * Creates an example PDF TEST document using TCPDF
  * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: Multicell
- * @author Nicola Asuni
+ * @abstract TCPDF - reportes Sistema SIVIO
+ * @author David Hine
  * @since 2008-03-04
  */
 
 // Include the main TCPDF library (search for installation path).
+//require_once('tcpdf_include.php');
+class MYPDF extends TCPDF {
+
+    //Page header
+    public function Header() {
+        // Logo
+        $image_file ='/webroot/img/main-logo.png';
+        $this->Image($image_file, 10, 10, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // Set font
+        $this->SetFont('helvetica', 'B', 20);
+        // Title
+        $this->Cell(0, 15, 'Reporte Referencia Externa sistema SIVIO ', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    }
+
+    // Page footer
+    public function Footer() {
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('helvetica', 'I', 8);
+        // Page number
+        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    }
+}
+
 
 
 // create new PDF document
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 005');
+$pdf->SetAuthor('David Hine sivio');
+$pdf->SetTitle('Referencia Externa');
 $pdf->SetSubject('TCPDF Tutorial');
-$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+$pdf->SetKeywords('TCPDF, PDF, Usuario, test, guide');
+
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 005', PDF_HEADER_STRING);
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'ficha de usuario', PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -70,91 +96,88 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('times', '', 10);
+//$pdf->SetFont('dejavusans', '', 10);
 
 // add a page
 $pdf->AddPage();
 
-// set cell padding
-$pdf->setCellPaddings(1, 1, 1, 1);
+// writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
+// writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
+//$idperson =  $externalReference->person->id;
+// create some HTML content
+$html = '<h2>Número de Referencia: '.$externalReference->id.'</h2>
+<h4>Persona</h4>
+<table border="1" cellspacing="3" cellpadding="4">
+   
+    
+    
+     <tr>
+        <td>Identificación:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->identificacion.'</td>
+    </tr>
+    <tr>
+        <td>Dirección:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->direccion.'</td>
+    </tr>
+    <tr>
+        <td>Teléfono:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->telefono.'</td>
+    </tr>
+    <tr>
+        <td>Nombre Referido:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->persona.'</td>
+    </tr>
+    </table>
+    <h4>Institución</h4>
+<table border="1" cellspacing="3" cellpadding="4">
+    <tr>
+        <td>Receptor:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->receptor.'</td>
+    </tr>
+    <tr>
+        <td>Institución:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->institucion.'</td>
+    </tr>
+    <tr>
+        <td>Telefono Receptor:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->telefono_receptor.'</td>
+    </tr>
+    <tr>
+        <td>Correo:</td>
+        <td bgcolor="#cccccc"  colspan="2">'.$externalReference->correo.'</td>
+    </tr>
+    
+    </table>
+        <h4>Observación</h4>
+<table border="1" cellspacing="3" cellpadding="4">
+        <tr>
+        <td bgcolor="#cccccc" align="justify" colspan="2">'.$externalReference->observacion.'</td>
+        </tr>
+    
+</table>';
 
-// set cell margins
-$pdf->setCellMargins(1, 1, 1, 1);
+// output the HTML content
+$pdf->writeHTML($html, true, false, true, false, '');
 
-// set color for background
-$pdf->SetFillColor(255, 255, 127);
 
-// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// set some text for example
-$txt = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+$html = <<<EOF
 
-// Multicell test
-$pdf->MultiCell(55, 5, '[LEFT] '.$txt, 1, 'L', 1, 0, '', '', true);
-$pdf->MultiCell(55, 5, '[RIGHT] '.$txt, 1, 'R', 0, 1, '', '', true);
-$pdf->MultiCell(55, 5, '[CENTER] '.$txt, 1, 'C', 0, 0, '', '', true);
-$pdf->MultiCell(55, 5, '[JUSTIFY] '.$txt."\n", 1, 'J', 1, 2, '' ,'', true);
-$pdf->MultiCell(55, 5, '[DEFAULT] '.$txt, 1, '', 0, 1, '', '', true);
+EOF;
 
-$pdf->Ln(4);
+// output the HTML content
+$pdf->writeHTML($html, true, false, true, false, '');
 
-// set color for background
-$pdf->SetFillColor(220, 255, 220);
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// Vertical alignment
-$pdf->MultiCell(55, 40, '[VERTICAL ALIGNMENT - TOP] '.$txt, 1, 'J', 1, 0, '', '', true, 0, false, true, 40, 'T');
-$pdf->MultiCell(55, 40, '[VERTICAL ALIGNMENT - MIDDLE] '.$txt, 1, 'J', 1, 0, '', '', true, 0, false, true, 40, 'M');
-$pdf->MultiCell(55, 40, '[VERTICAL ALIGNMENT - BOTTOM] '.$txt, 1, 'J', 1, 1, '', '', true, 0, false, true, 40, 'B');
-
-$pdf->Ln(4);
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// set color for background
-$pdf->SetFillColor(215, 235, 255);
-
-// set some text for example
-$txt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue. Sed vel velit erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget velit nulla, eu sagittis elit. Nunc ac arcu est, in lobortis tellus. Praesent condimentum rhoncus sodales. In hac habitasse platea dictumst. Proin porta eros pharetra enim tincidunt dignissim nec vel dolor. Cras sapien elit, ornare ac dignissim eu, ultricies ac eros. Maecenas augue magna, ultrices a congue in, mollis eu nulla. Nunc venenatis massa at est eleifend faucibus. Vivamus sed risus lectus, nec interdum nunc.
-
-Fusce et felis vitae diam lobortis sollicitudin. Aenean tincidunt accumsan nisi, id vehicula quam laoreet elementum. Phasellus egestas interdum erat, et viverra ipsum ultricies ac. Praesent sagittis augue at augue volutpat eleifend. Cras nec orci neque. Mauris bibendum posuere blandit. Donec feugiat mollis dui sit amet pellentesque. Sed a enim justo. Donec tincidunt, nisl eget elementum aliquam, odio ipsum ultrices quam, eu porttitor ligula urna at lorem. Donec varius, eros et convallis laoreet, ligula tellus consequat felis, ut ornare metus tellus sodales velit. Duis sed diam ante. Ut rutrum malesuada massa, vitae consectetur ipsum rhoncus sed. Suspendisse potenti. Pellentesque a congue massa.';
-
-// print a blox of text using multicell()
-$pdf->MultiCell(80, 5, $txt."\n", 1, 'J', 1, 1, '' ,'', true);
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// AUTO-FITTING
-
-// set color for background
-$pdf->SetFillColor(255, 235, 235);
-
-// Fit text on cell by reducing font size
-$pdf->MultiCell(55, 60, '[FIT CELL] '.$txt."\n", 1, 'J', 1, 1, 125, 145, true, 0, false, true, 60, 'M', true);
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// CUSTOM PADDING
-
-// set color for background
-$pdf->SetFillColor(255, 255, 215);
-
-// set font
-$pdf->SetFont('helvetica', '', 8);
-
-// set cell padding
-$pdf->setCellPaddings(2, 4, 6, 8);
-
-$txt = "CUSTOM PADDING:\nLeft=2, Top=4, Right=6, Bottom=8\nLorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue.\n";
-
-$pdf->MultiCell(55, 5, $txt, 1, 'J', 1, 2, 125, 210, true);
-
-// move pointer to last page
+// reset pointer to the last page
 $pdf->lastPage();
 
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_005.pdf', 'D');
+$pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'D');
 
 //============================================================+
 // END OF FILE
