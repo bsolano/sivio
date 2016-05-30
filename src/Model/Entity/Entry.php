@@ -7,18 +7,13 @@ use Cake\ORM\Entity;
  * Entry Entity.
  *
  * @property int $id
- * @property string $provincia
- * @property string $canton
  * @property string $ceaam_ingresa
- * @property string $tipo_ingreso
- * @property string $tipo_egreso
- * @property string $motivo_ingreso
- * @property string $ultimo_episodio
+ * @property string $tipo_ing_eg
+ * @property string $motivo_ing_eg
  * @property string $destino_extranjero
- * @property string $kit
- * @property int $user_id
- * @property \App\Model\Entity\User $user
  * @property string $entidad_traslada
+ * @property string $provincia_destino
+ * @property string $canton_destino
  * @property \App\Model\Entity\Person[] $people
  */
 class Entry extends Entity

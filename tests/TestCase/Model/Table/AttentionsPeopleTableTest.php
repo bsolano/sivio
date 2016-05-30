@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AttentionsTable;
+use App\Model\Table\AttentionsPeopleTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AttentionsTable Test Case
+ * App\Model\Table\AttentionsPeopleTable Test Case
  */
-class AttentionsTableTest extends TestCase
+class AttentionsPeopleTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AttentionsTable
+     * @var \App\Model\Table\AttentionsPeopleTable
      */
-    public $Attentions;
+    public $AttentionsPeople;
 
     /**
      * Fixtures
@@ -24,6 +24,7 @@ class AttentionsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.attentions_people',
         'app.attentions',
         'app.aggressors',
         'app.people',
@@ -60,8 +61,8 @@ class AttentionsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Attentions') ? [] : ['className' => 'App\Model\Table\AttentionsTable'];
-        $this->Attentions = TableRegistry::get('Attentions', $config);
+        $config = TableRegistry::exists('AttentionsPeople') ? [] : ['className' => 'App\Model\Table\AttentionsPeopleTable'];
+        $this->AttentionsPeople = TableRegistry::get('AttentionsPeople', $config);
     }
 
     /**
@@ -71,7 +72,7 @@ class AttentionsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Attentions);
+        unset($this->AttentionsPeople);
 
         parent::tearDown();
     }

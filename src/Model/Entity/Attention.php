@@ -8,12 +8,19 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $aggressor_id
+ * @property \App\Model\Entity\Aggressor $aggressor
  * @property int $history_id
  * @property \App\Model\Entity\History $history
  * @property int $user_id
  * @property \App\Model\Entity\User $user
  * @property string $tipo
- * @property \App\Model\Entity\Agressor $agressor
+ * @property int $identificacion
+ * @property \Cake\I18n\Time $created
+ * @property \App\Model\Entity\Person $person
+ * @property \App\Model\Entity\Followup[] $followups
+ * @property \App\Model\Entity\InterventionsPerson[] $interventions_people
+ * @property \App\Model\Entity\PeopleAdvocacy[] $people_advocacies
+ * @property \App\Model\Entity\PeopleEntry[] $people_entries
  */
 class Attention extends Entity
 {

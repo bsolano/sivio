@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
 /**
  * Entries Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsToMany $People
  */
 class EntriesTable extends Table
@@ -30,9 +29,6 @@ class EntriesTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id'
-        ]);
         $this->belongsToMany('People', [
             'foreignKey' => 'entry_id',
             'targetForeignKey' => 'person_id',
@@ -53,48 +49,26 @@ class EntriesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('provincia');
-
-        $validator
-            ->allowEmpty('canton');
-
-        $validator
             ->allowEmpty('ceaam_ingresa');
 
         $validator
-            ->allowEmpty('tipo_ingreso');
+            ->allowEmpty('tipo_ing_eg');
 
         $validator
-            ->allowEmpty('tipo_egreso');
-
-        $validator
-            ->allowEmpty('motivo_ingreso');
-
-        $validator
-            ->allowEmpty('ultimo_episodio');
+            ->allowEmpty('motivo_ing_eg');
 
         $validator
             ->allowEmpty('destino_extranjero');
 
         $validator
-            ->allowEmpty('kit');
-
-        $validator
             ->allowEmpty('entidad_traslada');
 
-        return $validator;
-    }
+        $validator
+            ->allowEmpty('provincia_destino');
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
-        return $rules;
+        $validator
+            ->allowEmpty('canton_destino');
+
+        return $validator;
     }
 }

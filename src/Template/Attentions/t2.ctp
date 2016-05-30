@@ -20,7 +20,7 @@
                                      'universitaria incompleta'=>'universitaria incompleta',
                                      'ningún grado'=>'ningún grado'
                 );
-                $genero = array('M' => 'Masculino','F'=>'Femenino', 'Mayonesa', 'Tamal de Pollo', 'Doug Dimmadome, owner of the Dimmsdale Dimmadome' );
+                $genero = array('M' => 'Masculino','F'=>'Femenino');
                 $adicciones = [
                 'Alcohol' => 'Alcohol',
                 'Drogas' => 'Drogas',
@@ -62,23 +62,22 @@
                                     'nuclear extendida'=>'nuclear extendida'
                 );
                 $embarazo = [
-                    'No' => 'No',
-                    '1 mes' => '1 mes',
-                    '2 meses' => '2 meses',
-                    '3 meses' => '3 meses',
-                    '4 meses' => '4 meses',
-                    '5 meses' => '5 meses',
-                    '6 meses' => '6 meses',
-                    '7 meses' => '7 meses',
-                    '8 meses' => '8 meses',
-                    '9 meses' => '9 meses'
+                    '0' => 'No',
+                    '1' => '1 mes',
+                    '2' => '2 meses',
+                    '3' => '3 meses',
+                    '4' => '4 meses',
+                    '5' => '5 meses',
+                    '6' => '6 meses',
+                    '7' => '7 meses',
+                    '8' => '8 meses',
+                    '9' => '9 meses'
                 ];                
                 
                 //INPUTS      
-                $p = $persona->toArray();
-                echo $this->Form->input('Person.edad',['value'=>$p[0]['edad'],'type'=>'number']);            
-                echo $this->Form->input('Person.fecha_de_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento','value'=>$p[0]['fecha_de_nacimiento']]);
-                echo $this->Form->input('Person.estado_civil', [
+                echo $this->Form->input('Person.0.edad',['value'=>$persona->edad,'type'=>'number']);            
+                echo $this->Form->input('Person.0.fecha_de_nacimiento', ['type'=>'date','label'=>'Fecha de Nacimiento','value'=>$persona->fecha_de_nacimiento]);
+                echo $this->Form->input('Person.0.estado_civil', [
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
@@ -86,9 +85,9 @@
                   'options' =>  $estadocivil,
                   'required' => 'required',
                   'label' => 'Estado civil',
-                  'value' => $p[0]['estado_civil']
+                  'value' => $persona->estado_civil
                 ]);
-                echo $this->Form->input('Person.escolaridad', [
+                echo $this->Form->input('Person.0.escolaridad', [
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
@@ -96,20 +95,20 @@
                   'options' =>  $escolaridad,
                   'required' => 'required',
                   'label' => 'Escolaridad',
-                  'value' => $p[0]['escolaridad']
+                  'value' => $persona->escolaridad
                 ]);
-                echo $this->Form->input('Person.num_hijos',['value'=>$p[0]['num_hijos'],'label'=>'Número total de hijos','type'=>'number']);            
-                echo $this->Form->input('Person.num_hijos_ceaam',['label'=>'Número de hijos con los que ingresa al CEAAM',
-                    'type'=>'number','value'=>$p[0]['num_hijos_ceaam']
+                echo $this->Form->input('Person.0.num_hijos',['value'=>$persona->num_hijos,'label'=>'Número total de hijos','type'=>'number']);            
+                echo $this->Form->input('Person.0.num_hijos_ceaam',['label'=>'Número de hijos con los que ingresa al CEAAM',
+                    'type'=>'number','value'=>$persona->num_hijos_ceaam
                 ]);
-                echo $this->Form->input('Person[].tipo_familia',array(
+                echo $this->Form->input('Person.0.tipo_familia',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Tipo de Familia',
                   'type' => 'radio',
                   'options' => $familia,
-                  'value' => $p[0]['tipo_familia']
+                  'value' => $persona->tipo_familia
                   )
                 );  
                 
@@ -118,47 +117,48 @@
         <div class="large-4 small-4 columns">
             <?php
                 //Segunda columna
-                echo $this->Form->input('Person.nacionalidad',['default'=>$p[0]['nacionalidad']]);
-                echo $this->Form->input('Person.condicion_migratoria',array(
+                echo $this->Form->input('Person.0.nacionalidad',['value'=>$persona->nacionalidad]);
+                echo $this->Form->input('Person.0.condicion_migratoria',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Condición Migratoria',
                   'type' => 'radio',
                   'options' => $migratoria,
-                  'value' => $p[0]['condicion_migratoria']
+                  'value' => $persona->condicion_migratoria
 
                   )
                 );                
-                echo $this->Form->input('Person.ocupacion',['label'=>'Ocupación','value'=>$p[0]['ocupacion']]);
-                echo $this->Form->input('Person.condicion_laboral',array(
+                echo $this->Form->input('Person.0.ocupacion',['label'=>'Ocupación','value'=>$persona->ocupacion]);
+                echo $this->Form->input('Person.0.condicion_laboral',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Condición Laboral',
                   'type' => 'radio',
                   'options' => $laboral,
-                  'value' => $p[0]['condicion_laboral']
+                  'value' => $persona->condicion_laboral
 
                   )
                 );
-                echo $this->Form->input('Person.experiencia_laboral',array(
+                echo $this->Form->input('Person.0.experiencia_laboral',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Experiencia Laboral',
                   'type' => 'radio',
                   'options' => ['Sí'=>'Sí','No'=>'No'],
-                  'value' => $p[0]['experiencia_laboral']
+                  'value' => $persona->experiencia_laboral
                   )
                 );
-                echo $this->Form->input('Person.lugar_trabajo',['label'=>'Lugar de trabajo','value'=>$p[0]['lugar_trabajo']]);
+                echo $this->Form->input('Person.0.lugar_trabajo',['label'=>'Lugar de trabajo','value'=>$persona->lugar_trabajo]);
                 
-                echo $this->Form->input('Person.adicciones', array(
+                echo $this->Form->input('Person.0.adicciones', array(
                     'label' => 'Adicciones',
                     'type' => 'select',
                     'multiple' => 'checkbox',
-                    'options' => $adicciones
+                    'options' => $adicciones,
+                    'value'=>$persona->adicciones
                     )
                 );
                 
@@ -167,32 +167,34 @@
         <div class="large-4 small-4 columns">
             <?php
                 //Tercera columna
-                echo $this->Form->input('Person.condicion_aseguramiento', array(
+                echo $this->Form->input('Person.0.condicion_aseguramiento', array(
                     'label' => 'Condición de Aseguramiento',
                     'type' => 'select',
                     'multiple' => 'checkbox',
-                    'options' => $aseguramiento
+                    'options' => $aseguramiento,
+                    'value'=>$persona->condicion_aseguramiento
                     )
                 );                
-                echo $this->Form->input('Person.vivienda',array(
+                echo $this->Form->input('Person.0.vivienda',array(
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                   ],
                   'label'=>'Tipo de Vivienda',
                   'type' => 'radio',
                   'options' => $vivienda,
-                  'value' => $p[0]['vivienda']
+                  'value' => $persona->vivienda
 
                   )
                 );
-                echo $this->Form->input('Person.condicion_salud', array(
+                echo $this->Form->input('Person.0.condicion_salud', array(
                     'label' => 'Condición de Salud',
                     'type' => 'select',
                     'multiple' => 'checkbox',
-                    'options' => $salud
+                    'options' => $salud,
+                    'value'=>$persona->condicion_salud
                     )
                 );    
-                echo $this->Form->input('Person.embarazo',['label'=>'Embarazo','type'=>'select','options'=>$embarazo]);
+                echo $this->Form->input('Person.0.embarazo',['label'=>'Embarazo','type'=>'select','options'=>$embarazo,'value'=>$persona->embarazo]);
             
             ?>
 

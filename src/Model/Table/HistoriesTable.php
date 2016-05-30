@@ -127,6 +127,35 @@ class HistoriesTable extends Table
             ->boolean('familiar_requiere_proteccion')
             ->allowEmpty('familiar_requiere_proteccion');
 
+        $validator
+            ->allowEmpty('tipo_maltrato_vivido');
+
+        $validator
+            ->allowEmpty('abuso_sexual');
+
+        $validator
+            ->requirePresence('ultimo_episodio', 'create')
+            ->notEmpty('ultimo_episodio');
+
+        $validator
+            ->requirePresence('vsexual_text', 'create')
+            ->notEmpty('vsexual_text');
+
+        $validator
+            ->requirePresence('vfisica_text', 'create')
+            ->notEmpty('vfisica_text');
+
+        $validator
+            ->requirePresence('vpatrimonial_text', 'create')
+            ->notEmpty('vpatrimonial_text');
+
+        $validator
+            ->requirePresence('vpsicologica_text', 'create')
+            ->notEmpty('vpsicologica_text');
+
+        $validator
+            ->allowEmpty('kit');
+
         return $validator;
     }
 

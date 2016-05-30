@@ -4,21 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PeopleEntry Entity.
+ * AttentionsPerson Entity.
  *
- * @property int $person_id
- * @property \App\Model\Entity\Person $person
- * @property int $entry_id
- * @property \App\Model\Entity\Entry $entry
- * @property string $tipo_accion
- * @property \Cake\I18n\Time $fecha_accion
- * @property int $id
  * @property int $attention_id
  * @property \App\Model\Entity\Attention $attention
- * @property string $rechazo
- * @property string $motivo_rechazo
+ * @property int $person_id
+ * @property \App\Model\Entity\Person $person
+ * @property int $id
  */
-class PeopleEntry extends Entity
+class AttentionsPerson extends Entity
 {
 
     /**

@@ -10,6 +10,7 @@
             /*   VARIABLES                                                    */
             
             $escolaridad = [
+                'null'=>'[Elija una opción]',
                 'ningún grado'=>'ningún grado',
                 'primaria'=>'Primaria',
                 'secundaria'=>'Secundaria',
@@ -31,39 +32,45 @@
                 'Enfermedad_Terminal'       => 'Enfermedad Terminal'
             ];
             $tipoMaltrato = [
-                'psico', 'fisico', 'bullying'
+                'Psicologico', 'Físico', 'Bullying'
             ];
             
             $abusosexual = [
                 'No', 'Si, denunciado', 'Si, no denunciado'
             ];
-            
-            //$p = $persona->toArray();
+            /***********************************************************************/
         ?>
-        
         <div class="large-4 small-4 columns"> <?php
             
-            echo 'Cantidad de Hijos Registrados '.$p[0]['num_hijos_ceaam'];
+            // Usuaria person.0
+            // agresor person.1
             
-            echo $this->Form->input('Person.nombre',['value'=>$p[0]['nombre']]); 
+            echo "<legend>Datos Generales</legend><br>";
+            echo "<h2> Hijo ".$i." </h2>";
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.nombre'
+            //, ['required'=>'required']
+            ); 
             
-            echo $this->Form->input('Person.genero', 
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.genero', 
                 array(
-                    'value'=>$p[0]['genero'], 'label' => 'Género',
+                    'label' => 'Género',
                     'templates' => [ 'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>' ],
                     'type' => 'radio',
                     'options' => $genero
                 )
             );
             
-            echo $this->Form->input('Person.edad',['value'=>$p[0]['edad'],'type'=>'number', 'min'=>'0', 'max'=>'100', 'value'=> '1' ]); 
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.edad', [
+                'type'=>'number', 'min'=>'0', 'max'=>'100' ]); 
             
-            echo $this->Form->input('Person.fecha_de_nacimiento',['value'=>$p[0]['fecha_de_nacimiento'], 'type'=>'date', 'required' ]); 
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.fecha_de_nacimiento',[
+                'type'=>'date', 'required' ,
+                'value'=> 'null'
+            ]); 
             
-            echo $this->Form->input('Person.nacionalidad',['value'=>$p[0]['nacionalidad']]);
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.nacionalidad');
         
-            echo $this->Form->input('Person.escolaridad', [
-                'value'=>$p[0]['escolaridad'],
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.escolaridad', [
                 'label' => 'Escolaridad',
                 'type' => 'select',
                 'options' => $escolaridad,
@@ -73,11 +80,11 @@
         echo '</div>';
         echo '<div class="large-4 small-4 columns">';
             
-            //echo $this->Form->input('PeopleFamily.parentesco',['value'=>$p[0]['cambiar $parentesco'], 'placeholder'=>'Parentesco con usuaria']); 
-            //echo $this->Form->input('PeopleFamily.parentesco',['value'=>$p[0]['cambiar $parentesco'], 'placeholder'=>'Parentesco con agresor']); 
+            //echo $this->Form->input('PeopleFamily.parentesco',['value'=>$p[$i+1]['cambiar $parentesco'], 'placeholder'=>'Parentesco con usuaria']); 
+            //echo $this->Form->input('PeopleFamily.parentesco',['value'=>$p[$i+1]['cambiar $parentesco'], 'placeholder'=>'Parentesco con agresor']); 
             
             echo "<legend>Condición de Salud</legend><br>";
-            echo $this->Form->input('Person.condicion_salud', [
+            echo $this->Form->input('Person.'.'Hijo'.($i).'.condicion_salud', [
                     'label' => '',
                     'multiple' => 'checkbox',
                     'options' => $salud
@@ -87,21 +94,22 @@
         echo '</div>';
         echo '<div class="large-4 small-4 columns">';
             
-            //echo "<legend>Tipo de Maltrato</legend><br>";
-            //echo $this->Form->input('????????????????????????', [
-            //        'type' => 'select',
-            //        'multiple' => 'checkbox',
-            //        'options' => $tipoMaltrato
-            //    ]
-            //);
+            echo "<legend>Tipo de Maltrato</legend><br>";
+            echo $this->Form->input('History.'.'Hijo'.($i).'.tipo_maltrato_vivido', [
+                    'label' => '',
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $tipoMaltrato
+                ]
+            );
             
-            //echo "<legend>Abuso Sexual</legend><br>";
-            //echo $this->Form->input('????????????????????????', [
-            //        'required'  => 'required'                   ,
-            //        'type' => 'select',
-            //        'options' => $abusosexual
-            //    ]
-            //);
+            echo "<legend>Abuso Sexual</legend><br>";
+            echo $this->Form->input('History.'.'Hijo'.($i).'.abuso_sexual', [
+                    'label' => '',
+                    'type' => 'select',
+                    'options' => $abusosexual
+                ]
+            );
         
         ?>
     </div>

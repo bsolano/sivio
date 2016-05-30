@@ -9,12 +9,6 @@ use Cake\ORM\Entity;
  * @property int $person_id
  * @property \App\Model\Entity\Person $person
  * @property int $id
- * @property string $vinculo
- * @property string $tiempo_relacion
- * @property string $tiempo_agresion
- * @property string $num_separaciones
- * @property string $familiares_en_riesgos
- * @property bool $familiar_require_proteccion
  */
 class Aggressor extends Entity
 {
@@ -31,7 +25,5 @@ class Aggressor extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-        'people_id' => false,
-        'people_aggressors_id' => false,
     ];
 }

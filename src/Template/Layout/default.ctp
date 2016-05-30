@@ -20,6 +20,9 @@ $sivioDescription = 'SIVIO';
 <head>
     <?= $this->Html->charset() ?>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+     <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,200,100' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $sivioDescription ?>:
@@ -39,7 +42,6 @@ $sivioDescription = 'SIVIO';
     <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
     <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script>
     
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<!--<header>-->
