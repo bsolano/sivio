@@ -24,6 +24,7 @@ class InternalReferencesFixture extends TestFixture
         'oficina' => ['type' => 'string', 'length' => 50, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'location_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'group_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'professional_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'fk_internal_references_people1_idx' => ['type' => 'index', 'columns' => ['person_id'], 'length' => []],
         ],
@@ -50,7 +51,8 @@ class InternalReferencesFixture extends TestFixture
             'telefono' => 'Lorem ipsum d',
             'oficina' => 'Lorem ipsum dolor sit amet',
             'location_id' => 1,
-            'group_id' => 1
+            'group_id' => 1,
+            'professional_id' => 1
         ],
     ];
 }

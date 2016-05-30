@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
  * Aggressors Model
  *
  * @property \Cake\ORM\Association\BelongsTo $People
+ * @property \Cake\ORM\Association\HasMany $Attentions
+ * @property \Cake\ORM\Association\HasMany $Histories
  */
 class AggressorsTable extends Table
 {
@@ -27,10 +29,16 @@ class AggressorsTable extends Table
 
         $this->table('aggressors');
         $this->displayField('id');
-        $this->primaryKey(['id']);
+        $this->primaryKey('id');
 
         $this->belongsTo('People', [
             'foreignKey' => 'person_id'
+        ]);
+        $this->hasMany('Attentions', [
+            'foreignKey' => 'aggressor_id'
+        ]);
+        $this->hasMany('Histories', [
+            'foreignKey' => 'aggressor_id'
         ]);
     }
 
@@ -45,25 +53,6 @@ class AggressorsTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
-        $validator
-            ->allowEmpty('vinculo');
-
-        $validator
-            ->allowEmpty('tiempo_relacion');
-
-        $validator
-            ->allowEmpty('tiempo_agresion');
-
-        $validator
-            ->allowEmpty('num_separaciones');
-
-        $validator
-            ->allowEmpty('familiares_en_riesgos');
-
-        $validator
-            ->boolean('familiar_require_proteccion')
-            ->allowEmpty('familiar_require_proteccion');
 
         return $validator;
     }

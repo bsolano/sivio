@@ -1,20 +1,19 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\PeopleEntry;
+use App\Model\Entity\AttentionsPerson;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * PeopleEntries Model
+ * AttentionsPeople Model
  *
- * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $Entries
  * @property \Cake\ORM\Association\BelongsTo $Attentions
+ * @property \Cake\ORM\Association\BelongsTo $People
  */
-class PeopleEntriesTable extends Table
+class AttentionsPeopleTable extends Table
 {
 
     /**
@@ -27,20 +26,17 @@ class PeopleEntriesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('people_entries');
+        $this->table('attentions_people');
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->belongsTo('Attentions', [
+            'foreignKey' => 'attention_id',
+            'joinType' => 'INNER'
+        ]);
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
             'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Entries', [
-            'foreignKey' => 'entry_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Attentions', [
-            'foreignKey' => 'attention_id'
         ]);
     }
 
@@ -53,21 +49,8 @@ class PeopleEntriesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('tipo_accion');
-
-        $validator
-            ->dateTime('fecha_accion')
-            ->allowEmpty('fecha_accion');
-
-        $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
-        $validator
-            ->allowEmpty('rechazo');
-
-        $validator
-            ->allowEmpty('motivo_rechazo');
 
         return $validator;
     }
@@ -81,9 +64,8 @@ class PeopleEntriesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['entry_id'], 'Entries'));
         $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
+        $rules->add($rules->existsIn(['person_id'], 'People'));
         return $rules;
     }
 }

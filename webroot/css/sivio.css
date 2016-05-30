@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     overflow: auto;
+    font-family: 'Raleway', sans-serif;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: #707c80;
@@ -14,6 +15,7 @@ body, html {
 
 label {
     color: inherit;
+    font-weight:inherit;
 }
 
 .column, .columns {
@@ -527,7 +529,7 @@ fieldset {
     border: none;
     padding: 1.25rem;
     padding-left: 0;
-    margin: 1.125rem 0;
+    /*margin: 1.125rem 0;*/
 }
 
 fieldset legend {
@@ -691,7 +693,7 @@ ul.tabs li {
   /*border: gray solid 1px;*/
   border-bottom: none;
   float: left;
-  margin: 0 .25em 0 0;
+  margin: 0 -.2em 0 .6em;
   padding: .25em .5em;
   margin-bottom: -1px !important;
   border: 1px solid #dbdbdb !important;
@@ -753,11 +755,10 @@ article {
      width: 80%;
 }
 .box_designees:hover{
-      background-color: grey;
+      background-color: #ccccff;
       cursor: pointer;
 }    
 /* END DESIGNEES VIEW BOXES */
-
 
 
 /*    OVERRIDES     */

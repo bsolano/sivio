@@ -46,7 +46,12 @@ class StringManipulationComponent extends Component
                 }
                 return $arrays;
          }
-     
+         
+        /**
+         * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en array
+         * $array array de datos 
+         * $string array de datos que NO se tienen que cambiar a modo tokenizado, como fechas
+         */ 
         public function transformarArrays(& $array, $string){
             foreach($array as $key => $value){
                 if(is_array($value) && !in_array($key,$string)){

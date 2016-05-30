@@ -4,11 +4,18 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * AggressorsFixture
+ * AttentionsPeopleFixture
  *
  */
-class AggressorsFixture extends TestFixture
+class AttentionsPeopleFixture extends TestFixture
 {
+
+    /**
+     * Table name
+     *
+     * @var string
+     */
+    public $table = 'attentions_people';
 
     /**
      * Fields
@@ -17,13 +24,14 @@ class AggressorsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'person_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'attention_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'person_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
         '_options' => [
-            'engine' => 'InnoDB',
+            'engine' => 'MyISAM',
             'collation' => 'utf8_general_ci'
         ],
     ];
@@ -36,6 +44,7 @@ class AggressorsFixture extends TestFixture
      */
     public $records = [
         [
+            'attention_id' => 1,
             'person_id' => 1,
             'id' => 1
         ],

@@ -3,27 +3,27 @@
 <!--               SEGUIMIENTOS                                               ->
 <!----------------------------------------------------------------------------->
 
-<fieldset>
+
+    <fieldset>
+        <hr>
     <div class="large-4 small-4 columns"> <?php
-            /*   VARIABLES                                                    */
-            
-        echo $this->Form->input('????????????????????????', [
-                'required'  => 'required'                   ,
-                'label'     => 'A la semana del egreso:'    ,
+        use Cake\I18n\Time;
+        echo '<h6>La fecha de este Seguimiento es '.Time::now().'</h6><br>';
+        
+        echo $this->Form->input('Followup.al_xtiempo_del_egreso', [
+                'label'     => 'Seguimiento:'    ,
                 'type'      => 'select'                     ,
-                'multiple'  => 'checkbox'                   ,
-                'options'   => ['Rechaza_Seguimiento', 'N/A']
+                'options'   => ['Aceptado???Preguntar', 'No Aplica', 'Rechaza_Seguimiento']
             ]
         );
-        
-        echo $this->Form->input('Followup.created',['type'=>'date', 'required'=>'required' ]); 
+        //echo $this->Form->input('Followup.created',['type'=>'date', 'required'=>'required', 'value'=>Time::now() ]); 
         
         echo $this->Form->input('Followup.medio_comunicacion', [
-                'required'  => 'required'                   ,
                 //'label'     => 'Medio de Comunicación: '    ,
                 'type'      => 'select'                     ,
                 'options'   => [
-                    'Visita Domiciliar', 'Via Telefónica',
+                    'Visita Domiciliar',
+                    'Via Telefónica',
                     'No fue posible localizarla', 
                     'Interinstitucional',
                     'Visita Domiciliar no localizable'
@@ -33,15 +33,16 @@
         
         echo "<br><h5>Aspectos Abordados </h5><br>";
         
-        echo "<legend>Sociales </legend><br>";
+        echo "<legend>Sociales </legend><br>"; // ------------------------------
 
-        echo $this->Form->input('Followup.seguimiento_referencia: (Efect/rech es parte-de ??????)', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.seguimiento_referencia_social: (Efect/rech es parte-de ??????)', [
+                'label' => 'Seguimiento a la Referencia',
                 'type'      => 'select'                     ,
                 'options'   => [
                     'No aplica'     ,
                     'No la Gestionó',
                     'No'            ,
+                    '**************',
                     'En proceso'    ,
                     'Efectiva'      ,
                     'Rechazada'     ,
@@ -56,46 +57,49 @@
             echo $this->Form->button('Secundaria',['type'=>'button','onClick'=>'addInput(\'redesApoyo\');','class' =>'secondary button']);echo "<br>";
         ?> </div> <?php     /*  fin div  ******************************/
         
-        echo $this->Form->input('Apoyo Institucional ????????????????????????', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.apoyo_institucional???', [
                 'type'      => 'select'                     ,
                 'options'   => [
                     'Subsidio Economico'    ,
                     'Vivienda'              ,
                     'Atención Especializada',
                     'OAPVD'                 ,
+                    '**********************',
+                    'Empleo'                ,
+                    'Situación de Riego'
                 ]
             ]
         );
-        
-        echo "<br>"; echo $this->Form->input('Empleo ????', ['type'=>'checkbox','id'=>'deseaAtencionn','checked'=>false]);
-        
-        echo "<br>"; echo $this->Form->input('Situación de riesgo ????', ['type'=>'checkbox','id'=>'deseaAtencionn','checked'=>false]);
+
 
     ?> </div>
     
     <div class="large-4 small-4 columns"> <?php
         
+        // *********************************************************************
+        echo "<legend>Legales </legend><br>"; 
         
-        echo "<legend>Legales </legend><br>"; /*              LEGALES          */
-        
-        echo $this->Form->input('Seguimiento a la Referencia ????????????????????????', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.seguimiento_referencia_legal', [
+                'label' => 'Seguimiento a la Referencia',
                 'type'      => 'select'                     ,
                 'options'   => [
                     'No aplica'     ,
                     'No la Gestionó',
                     'No'            ,
                     'En proceso'    ,
-                    'Efectiva'      
+                    'Efectiva'      ,
+                    'Rechazada*no viene'     ,
                 ]
             ]
         );
         
-        echo "<br>"; echo $this->Form->input('Medidas de Protección Vigentes ????', ['type'=>'checkbox','id'=>'deseaAtencionn','checked'=>false]); 
+        echo "<br>";
+        echo $this->Form->input('Followup.medidas_protec_vig', 
+            ['type'=>'checkbox',
+            'label' => 'Medidas de protección vigentes',
+            'checked'=>false]); 
         
-        echo $this->Form->input('Incumplimiento de Medidas ????????????????????????', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.incump_medidas', [
                 'type'      => 'select'                     ,
                 'options'   => [
                     'No'            ,
@@ -105,10 +109,8 @@
                 ]
             ]
         );
-        
-        echo "<br>"; echo $this->Form->input('Audiencia pendiente ????', ['type'=>'checkbox', 'checked'=>false]); 
-        
-        echo "<br>"; echo $this->Form->input('En seguimiento con OAPVD ????', ['type'=>'checkbox', 'checked'=>false]); 
+        echo $this->Form->input('Followup.audiencia_pendiente' , ['type'=>'checkbox', 'checked'=>false]); 
+        echo $this->Form->input('Followup.seguimientoOAPVD'    , ['type'=>'checkbox', 'checked'=>false]); 
         
 
         // *********************************************************************
@@ -116,37 +118,35 @@
         
         
         
-        echo "<br>"; echo $this->Form->input('Seguimiento al Plan de Seguridad ????', ['type'=>'checkbox', 'checked'=>false]); 
+        echo "<br>"; echo $this->Form->input('Followup.seguimiento_plan_seguridad', ['type'=>'checkbox', 'checked'=>false]); 
         
-        echo $this->Form->input('Seguimiento al Kit ????????????????????????', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.seguimiento_kit', [
                 'type'      => 'select'                     ,
                 'options'   => [
+                    'No aplica'     ,
                     'En uso'        ,
                     'No lo utiliza' ,
                     'Lo devolvió'   ,
-                    'No'            ,
-                    'No aplica'
+                    'No'            
                 ]
             ]
         );
-        
-        echo $this->Form->input('Seguimiento a la Referencia ????????????????????????', [
-                'required'  => 'required'                   ,
+        echo $this->Form->input('Followup.seguimiento_referencia_psicologico', [
+                'label' => 'Seguimiento a la Referencia',
                 'type'      => 'select'                     ,
                 'options'   => [
-                    'No'            ,
                     'No aplica'     ,
-                    'No la Gestonó' ,
+                    'No la Gestionó',
+                    'No'            ,
                     'En proceso'    ,
                     'Efectiva'      ,
-                    'Rechazada'
+                    'Rechazada*no viene'     ,
                 ]
             ]
         );
         
-        echo "<br>"; echo $this->Form->input('Recibe Atención Especializada ????', ['type'=>'checkbox', 'checked'=>false]); 
-        echo "<br>"; echo $this->Form->input('Donde ????');
+        echo "<br>"; echo $this->Form->input('Followup.atencion_especializada', ['type'=>'checkbox', 'checked'=>false]); 
+        echo "<br>"; echo $this->Form->input('Donde');
         
         echo $this->Form->input('Enfrenta Violencia ????????????????????????', [
                 'required'  => 'required'                   ,
