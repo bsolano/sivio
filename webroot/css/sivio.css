@@ -753,7 +753,7 @@ article {
      width: 80%;
 }
 .box_designees:hover{
-      background-color: grey;
+      background-color: #ccccff;
       cursor: pointer;
 }    
 /* END DESIGNEES VIEW BOXES */
