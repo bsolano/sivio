@@ -79,17 +79,35 @@ class InternalReferencesController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         
         $internalReference = $this->InternalReferences->newEntity();
         if ($this->request->is('post')) {
             $internalReference = $this->InternalReferences->patchEntity($internalReference, $this->request->data);
-            if ($this->InternalReferences->save($internalReference)) {
-                $this->Flash->success(__('The internal reference has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
+            if($internalReference->location_id > 2){
+                $error = false;
+                for($x = 12; $x < 15; $x++){
+                $internalReference->group_id = $x;
+                if (!$this->InternalReferences->save($internalReference)) {
+                    $error = true;
+                    $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
+                } 
+                $internalReference = $this->InternalReferences->newEntity();
+                $internalReference = $this->InternalReferences->patchEntity($internalReference, $this->request->data);
+            }
+            if(!$error){
+                    $this->Flash->success(__('The internal reference has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+            }
+            }
+            else {
+                if ($this->InternalReferences->save($internalReference)) {
+                    $this->Flash->success(__('The internal reference has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
+                }
             }
         }
         
@@ -100,6 +118,7 @@ class InternalReferencesController extends AppController
         //['Locations.ubicacion LIKE' => '%Ovens%']
         $this->loadModel('Locations');
         $this->loadModel('Groups');
+        $this->loadModel('Users');
         $groupNumber = $this->Auth->user('group_id');
         $groupName =  $this->Groups->find()->where(['Groups.id' => $groupNumber])->first(); 
         
@@ -118,25 +137,34 @@ class InternalReferencesController extends AppController
         
         switch($groupCode){
             case '1': //EquipoEstrategico
-                $location_query = $this->Locations->find()->where(['OR' => [['Locations.ubicacion LIKE' => 'Albergue%'],['Locations.ubicacion' => 'DelegacionDeLaMujer']]]);
+                $locations = $this->Locations->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'ubicacion']
+                )->where(['OR' => [['Locations.ubicacion LIKE' => 'Albergue%'],['Locations.ubicacion' => 'DelegacionDeLaMujer']]]);
                 //dele y albergues
                 break;
             case '2': //DelegacionDeLaMujer
-                 $location_query = $this->Locations->find()->where([['Locations.ubicacion LIKE' => 'Albergue%']]);
+                 $locations = $this->Locations->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'ubicacion'])->where(['Locations.ubicacion LIKE' => 'Albergue%']);
                 break;
             case '3': //COAVIF
-                 $location_query = $this->Locations->find()->where(['OR' => [['Locations.ubicacion' => 'DelegacionDeLaMujer'],['Locations.ubicacion' => 'OficinasCentrales']]]);
+                 $locations = $this->Locations->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'ubicacion'])->where(['OR' => [['Locations.ubicacion' => 'DelegacionDeLaMujer'],['Locations.ubicacion' => 'OficinasCentrales']]]);
                 break;
         }
         
-        $locations = array();
-        foreach ($location_query as $location) {
-            array_push($locations, $location->id);
-        }
+      
         
-        $people = $this->InternalReferences->People->find('list', ['limit' => 200]);
+        $people = $this->InternalReferences->People->find('list', [ 'keyField' => 'id',
+                'valueField' => ['id','nombre','apellidos'],'limit' => 200]
+                )->where(['People.id ' => $id]);
        // $users = $this->InternalReferences->Users->find('list', ['limit' => 200]);
-       $users = $this->Auth->user('id');
+       $user_id = $this->Auth->user('id');
+        $users = $this->Users->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'username'])->where(['Users.id' => $user_id ]);
        // $locations = $this->InternalReferences->Locations->find('list', ['limit' => 200]);
         $groups = [];// $this->InternalReferences->Groups->find('list', ['limit' => 200]);
         $this->set(compact('internalReference', 'people', 'users', 'locations', 'groups','groupName'));
@@ -156,22 +184,20 @@ class InternalReferencesController extends AppController
         $locationName =  $this->Locations->find()->where(['Locations.id' => $location_id])->first(); 
         
         if (strpos($locationName['ubicacion'], 'OficinasCentrales') !== false) {
-            $group_query = $this->Groups->find()->where(['Groups.name LIKE' => '%EquipoEstrategico']);
+            $groups = $this->Groups->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'name'])->where(['Groups.name LIKE' => '%Profesional%EquipoEstrategico']);
         }
         else if (strpos($locationName['ubicacion'], 'DelegacionDeLaMujer') !== false) {
-            $group_query = $this->Groups->find()->where(['Groups.name LIKE' => '%DelegacionDeLaMujer']);
+            $groups = $this->Groups->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'name'])->where(['Groups.name LIKE' => '%Profesional%DelegacionDeLaMujer']);
         }
         else if (strpos($locationName['ubicacion'], 'Albergue') !== false) {
-            $group_query = $this->Groups->find()->where(['Groups.name LIKE' => '%Albergue']);
+            $groups = $this->Groups->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'name'])->where(['Groups.name LIKE' => '%Profesional%Albergue']);
         }
-        
-        
-        $groups = array();
-        foreach ($group_query as $group) {
-            array_push($groups, $group->id);
-        }
-        
-        
         
         }
         else {
@@ -179,7 +205,7 @@ class InternalReferencesController extends AppController
         }
         
         //$groups = $this->InternalReferences->Groups->find('list', ['limit' => 200]);
-         $this->set(compact('groups'));
+         $this->set(compact('groups','location_id'));
     
     }
 

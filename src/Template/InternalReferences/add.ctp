@@ -6,8 +6,8 @@
     <fieldset>
         <legend><?= __('Crear Referencia Interna') ?></legend>
         <?php
-            echo $this->Form->input('person_id', ['options' => $people, 'empty' => true]);
-            echo $this->Form->input('user_id', ['options' => $users, 'empty' => true]);
+            echo $this->Form->input('person_id', ['options' => $people, 'empty' => false]);
+            echo $this->Form->input('user_id', ['options' => $users, 'empty' => false]);
             echo $this->Form->input('telefono');
             echo $this->Form->input('oficina');
             echo $this->Form->input('location_id', ['options' => $locations, 'empty' => true, 'onclick' => 'loadResults()', 'required' => true]);
@@ -23,10 +23,12 @@
 <script>
     
 function loadResults(){
-
+    
+    if(!document.getElementById("location-id").options[document.getElementById("location-id").selectedIndex].text.includes("Albergue")){
+        document.getElementById("location-id").disabled = false;
        jQuery.ajax({
              type: "get",  // Request method: post, get
-             url: "/internalReferences/groupsSearch.ajax?keyword=" + document.getElementById("location-id").options[document.getElementById("location-id").selectedIndex].text, // URL to request
+             url: "/internalReferences/groupsSearch.ajax?keyword=" + document.getElementById("location-id").options[document.getElementById("location-id").selectedIndex].value, // URL to request
              //data: data,  // post data
              success: function(response) {
                                   var group = document.getElementById("group-id");
@@ -45,7 +47,17 @@ function loadResults(){
                            }
           });
           return false;
-         
+    }
+    else{
+        var group = document.getElementById("group-id");
+        if (group){
+            group.disabled = true;
+        }
+        var group = document.getElementById("group");
+        if (group){
+            group.disabled = true;
+        }
+    }
 }    
 
 </script>
