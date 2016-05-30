@@ -17,6 +17,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Location $location
  * @property int $group_id
  * @property \App\Model\Entity\Group $group
+ * @property int $professional_id
  */
 class InternalReference extends Entity
 {

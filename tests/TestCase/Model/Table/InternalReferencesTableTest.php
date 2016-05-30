@@ -49,8 +49,7 @@ class InternalReferencesTableTest extends TestCase
         'app.interventions',
         'app.interventions_people',
         'app.families',
-        'app.people_families',
-        'app.locations'
+        'app.people_families'
     ];
 
     /**
