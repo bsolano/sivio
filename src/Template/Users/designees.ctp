@@ -1,9 +1,9 @@
      <title>
         <?php $this->assign('title', 'Personas asignadas'); ?>
-    </title>
-    
-             <strong>Personas asignadas a la profesional: </strong> <?php echo $user->username ?> <br>
-             <hr>
+     </title>
+     <strong>Personas asignadas a la profesional: </strong> <?php echo $user->username ?> <br>
+     <br>
+     
          <table>
             <tr>
                 <th>Nombre Completo</th>
@@ -11,7 +11,7 @@
                 <th>Fecha de Nacimiento</th>
                 <th>Observaciones</th>
             </tr>
-              <?php if ($designeesData != null && $people != null ): ?>
+             <?php if ($designeesData != null && $people != null ): ?>
                   <?php foreach ($designeesData as $designeeData): ?> 
                           <?php $stop = false; ?>
                             <?php foreach ($people as $person): ?>
