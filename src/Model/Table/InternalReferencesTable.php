@@ -45,9 +45,7 @@ class InternalReferencesTable extends Table
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
         ]);
-        $this->belongsTo('Professionals', [
-            'foreignKey' => 'professional_id'
-        ]);
+       
     }
 
     /**
@@ -84,7 +82,7 @@ class InternalReferencesTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['location_id'], 'Locations'));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
-        $rules->add($rules->existsIn(['professional_id'], 'Professionals'));
+        
         return $rules;
     }
 }
