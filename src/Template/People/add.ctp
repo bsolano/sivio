@@ -12,7 +12,7 @@
                     echo $this->Form->input('edad');
                     //echo $this->Form->input('genero', ['type' => 'hidden', 'default' => 'F']);
                     echo $this->Form->input('estado_civil', ['label' => 'Estado civil', 'options' => ['Soltera' => 'Soltera','Casada' => 'Casada','Unión libre' => 'Union libre','Divorciada' => 'Divorciada','Separada' => 'Separada','Viuda' => 'Viuda']]);
-                    echo $this->Form->input('embarazo');
+                    echo $this->Form->input('embarazo', ['options' => ['0' => 'No','1' => '1 mes','2' => '2 meses','3' => '3 meses','4' => '4 meses','5' => '5 meses','6' => '6 meses','7' => '7 meses','8' => '8 meses','9' => '9 meses']]);
                     echo $this->Form->input('telefono', ['label' => 'Teléfono']);
                 ?>
             </div>
@@ -23,7 +23,7 @@
                     echo $this->Form->input('tipo_identificacion', ['label' => 'Tipo de identificación']);
                     echo $this->Form->input('num_familia', ['label' => 'Número de familia']);
                     echo $this->Form->input('tipo_familia', ['label' => 'Tipo de familia', 'options' => ['Nuclear' => 'Nuclear','Uniparental' => 'Uniparental','Nuclear extendida' => 'Nuclear extendida']]);
-                    echo $this->Form->input('num_de_hijos');
+                    echo $this->Form->input('num_de_hijos', ['label' => 'Hijos de la usuaria']);
                     echo $this->Form->input('hijos_mayor_doce', ['label' => '¿Tiene hijos mayores de 12 años?', 'type' => 'radio', 'options' => [1 => 'Sí', 0 => 'No']]);
                 ?>
             </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="large-4 columns">
                 <?php
-                    echo $this->Form->input('condicion_laboral', ['label' => 'Condición laboral', 'type' => 'radio', 'options' => ['Remunerada' => 'Remunerada','No remunerada' => 'No Remunerada','Desempleada' => 'Desempleada']]);
+                    echo $this->Form->input('condicion_laboral', ['label' => 'Condición laboral', 'type' => 'radio', 'options' => ['Remunerada' => 'Remunerada','No remunerada' => 'No Remunerada','Desempleada' => 'Desempleada','Pensionada' => 'Pensionada']]);
                 ?>
             </div>
             <div class="large-4 columns">
