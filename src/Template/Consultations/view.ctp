@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <th><?= __('Nacionalidad') ?></th>
-            <td><?= h($consultation->person->nacionalidad)?></td>
+            <td><?= h($consultation->person->nacionalidadgi)?></td>
         </tr>
         <tr>
             <th><?= __('Funcionario que atendió la consulta') ?></th>
