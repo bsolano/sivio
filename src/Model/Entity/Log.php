@@ -4,9 +4,11 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Person Entity.
+ * Log Entity.
  *
  * @property int $id
+ * @property int $person_id
+ * @property \App\Model\Entity\Person $person
  * @property string $nombre
  * @property string $apellidos
  * @property \Cake\I18n\Time $fecha_de_nacimiento
@@ -39,21 +41,8 @@ use Cake\ORM\Entity;
  * @property string $num_familia
  * @property string $rol_familia
  * @property int $acepta_seguimiento
- * @property \App\Model\Entity\Aggressor[] $aggressors
- * @property \App\Model\Entity\Consultation[] $consultations
- * @property \App\Model\Entity\ExternalReference[] $external_references
- * @property \App\Model\Entity\Followup[] $followups
- * @property \App\Model\Entity\History[] $histories
- * @property \App\Model\Entity\InternalReference[] $internal_references
- * @property \App\Model\Entity\Transfer[] $transfers
- * @property \App\Model\Entity\Attention[] $attentions
- * @property \App\Model\Entity\Intervention[] $interventions
- * @property \App\Model\Entity\Advocacy[] $advocacies
- * @property \App\Model\Entity\Entry[] $entries
- * @property \App\Model\Entity\Family[] $families
- * @property \App\Model\Entity\User[] $users
  */
-class Person extends Entity
+class Log extends Entity
 {
 
     /**

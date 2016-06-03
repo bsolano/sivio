@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * PeopleFixture
+ * LogsFixture
  *
  */
-class PeopleFixture extends TestFixture
+class LogsFixture extends TestFixture
 {
 
     /**
@@ -18,6 +18,7 @@ class PeopleFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'person_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'nombre' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'apellidos' => ['type' => 'string', 'length' => 60, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'fecha_de_nacimiento' => ['type' => 'date', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
@@ -68,6 +69,7 @@ class PeopleFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
+            'person_id' => 1,
             'nombre' => 'Lorem ipsum dolor sit amet',
             'apellidos' => 'Lorem ipsum dolor sit amet',
             'fecha_de_nacimiento' => '2016-06-03',
