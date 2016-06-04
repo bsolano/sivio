@@ -9,17 +9,33 @@
     </ul>
 </nav> -->
 
-<div class="consultations form small-8 large-centered medium-8 columns content">
+<div class="consultations form small-12  large-10 large-centered medium-10 columns content">
     <?= $this->Form->create($consultation) ?>
+    <legend><?= __('Añadir consulta') ?></legend>
+    <section class="wrapper">
+        <ul class="tabs">
+            <li class="active"><a href="#tab1">Página 1</a></li>
+            <li id="page1"><a href="#tab2">Página 2</a></li>
+            <li id="page2"><a href="#tab3">Página 3</a></li>
+            <li id="page3"><a href="#tab4">Página 4</a></li>
+            <li id="page4"><a href="#tab5">Página 5</a></li>
+            <li id="page5"><a href="#tab6">Página 6</a></li>
+            <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
+        </ul>
+    </section>
+    
     <fieldset>
-        <legend><?= __('Añadir consulta') ?></legend>
+        
         <div class = "row page page1">
         <?php
-            echo $this->Form->input('Horario');
             $tipo = ["Delegación de la Mujer", "PLANOVI"];
-            
             echo $this->Form->input('tipo',['label'=>'Tipo','type'=>'select','options'=>$tipo]);
             ?>
+            <?php
+            echo $this->Form->input('Horario', ['label' => 'Horario', 'type' => 'radio','options'=>['Laboral','Disponibilidad']]);
+            
+            ?>
+            
             <div class = "row">
                 <div class = "large-6 medium-6 columns">
                     <?php echo $this->Form->input('fecha', ['empty' => true, 'label' => 'Fecha de inicio']); ?>
@@ -85,7 +101,7 @@
                 'Esposo' => 'Esposo',
                 'Novio/a' => 'Novio/a',
                 'Ex pareja' => 'Ex pareja',
-                'Suegro/a' => 'Suengro/a',
+                'Suegro/a' => 'Suegro/a',
                 'Yerno' => 'Yerno',
                 'Hijo/a' => 'Hijo/a',
                 'Padre' => 'Padre',
@@ -137,19 +153,7 @@
             <?php  echo $this->Form->input('observaciones');?>
         
     </fieldset>
-    <div class= "row">
-        <div class= "small-4 large-3 large-offset-1 medium-4">
-              <span id="num_page"></span>
-         </div>
-   </div>
-    <div class = "row">
-        
-        <div class="medium-4 large-4 large-offset-4 columns">
-        <button id="backward" class="secondary button" type="button">Regresar</button>
-        <button id="foward" class="secondary button" type="button">Siguiente</button>
-        </div>
-    </div> <!-- row pages-->
-       
+
     
     <div id="submit"><?= $this->Form->button(__('Enviar Formulario'), ['class' => 'secondary button']) ?></div>
     <?= $this->Form->end() ?>

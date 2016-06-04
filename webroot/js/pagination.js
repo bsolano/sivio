@@ -51,5 +51,6 @@ $(document).ready(function(){
         }
         $("#num_page").html("Página " + current_page + " de " + num_pages);
         $(".page"+current_page).show();
+        
     });
 });
