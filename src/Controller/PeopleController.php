@@ -67,7 +67,7 @@ class PeopleController extends AppController
             $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información ha sido guardada satisfactoriamente.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $person->id]);
             } else {
                 $this->Flash->error(__('No ha sido posible guardar la información, inténtelo nuevamente.'));
             }
@@ -97,10 +97,10 @@ class PeopleController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $person = $this->People->patchEntity($person, $this->request->data);
             if ($this->People->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
+                return $this->redirect(['action' => 'view', $person->id]);
             } else {
-                $this->Flash->error(__('The person could not be saved. Please, try again.'));
+                $this->Flash->error('No se pudo actualizar la información, inténtelo nuevamente.');
             }
         }
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
@@ -125,9 +125,9 @@ class PeopleController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $person = $this->People->get($id);
         if ($this->People->delete($person)) {
-            $this->Flash->success(__('The person has been deleted.'));
+            $this->Flash->error('La persona fue eliminada');
         } else {
-            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
+            $this->Flash->error('No se pudo eliminar la usuaria, inténtelo nuevamente.');
         }
         return $this->redirect(['action' => 'index']);
     }

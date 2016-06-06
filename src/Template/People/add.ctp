@@ -88,7 +88,7 @@
                     echo $this->Form->input('adicciones', ['label' => 'Adiccion(es)', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Alcohol' => 'Alcohol','Drogas' => 'Drogas','Medicamentos' => 'Medicamentos','Ninguna' => 'Ninguna']]);
                 ?>
             </div>
-            <div class="large-4 columns">
+            <div class="large-5 columns">
                 <?php
                     echo $this->Form->input('condicion_salud', ['label' => 'Condición de salud', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Discapacidad Física' => 'Discapacidad Física','Discapacidad Cognitiva' => 'Discapacidad Cognitiva','Discapacidad Sensorial' => 'Discapacidad Sensorial','Discapacidad Mental' => 'Discapacidad Mental','Padecimientos Crónicos' => 'Padecimientos Crónicos','VIH-SIDA' => 'VIH-SIDA','ITS' => 'ITS','Condición Psiquíatrica' => 'Condición Psiquíatrica','Enfermedad Terminal' => 'Enfermedad Terminal']]);
                 ?>
@@ -96,6 +96,6 @@
             <div></div>
         </div>
     </fieldset>
-    <?= $this->Form->button('Enviar', ['class' => 'secondary button']) ?>
+    <?= $this->Form->button('Guardar', ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>

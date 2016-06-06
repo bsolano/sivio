@@ -205,12 +205,14 @@ class PeopleTable extends Table
 
         $validator
             ->integer('num_hijos_ceaam')
-            ->requirePresence('num_hijos_ceaam', 'create')
-            ->notEmpty('num_hijos_ceaam');
+            ->allowEmpty('num_hijos_ceaam');
+            //->requirePresence('num_hijos_ceaam', 'create')
+            //->notEmpty('num_hijos_ceaam');
 
         $validator
-            ->requirePresence('num_familia', 'create')
-            ->notEmpty('num_familia');
+            ->allowEmpty('num_familia');
+            //->requirePresence('num_familia', 'create')
+            //->notEmpty('num_familia');
 
         $validator
             ->requirePresence('rol_familia', 'create')
