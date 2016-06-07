@@ -14,12 +14,12 @@
     <legend><?= __('Añadir consulta') ?></legend>
     <section class="wrapper">
         <ul class="tabs">
-            <li class="active"><a href="#tab1">Página 1</a></li>
-            <li id="page1"><a href="#tab2">Página 2</a></li>
-            <li id="page2"><a href="#tab3">Página 3</a></li>
-            <li id="page3"><a href="#tab4">Página 4</a></li>
-            <li id="page4"><a href="#tab5">Página 5</a></li>
-            <li id="page5"><a href="#tab6">Página 6</a></li>
+            <li id="page1" class="active" onclick='switchTabs()'><a href="#tab1">Página 1</a></li>
+            <li id="page2" onclick='switchTabs()'><a href="#tab2">Página 2</a></li>
+            <li id="page3" onclick='switchTabs()'><a href="#tab3">Página 3</a></li>
+            <li id="page4" onclick='switchTabs()'><a href="#tab4">Página 4</a></li>
+            <li id="page5" onclick='switchTabs()'><a href="#tab5">Página 5</a></li>
+            <li id="page6" onclick='switchTabs()'><a href="#tab6">Página 6</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
         </ul>
     </section>
@@ -152,12 +152,14 @@
             <div class="row page page6">
             <?php  echo $this->Form->input('observaciones');?>
         
-    </fieldset>
+ 
 
     
     <div id="submit"><?= $this->Form->button(__('Enviar Formulario'), ['class' => 'secondary button']) ?></div>
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
+   </fieldset>
 <?php echo $this->Html->script('jquery');?>
-<?php echo $this->Html->script('pagination');?>
+
+<?php echo $this->Html->script('tabs');?>
