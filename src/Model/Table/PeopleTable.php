@@ -129,9 +129,6 @@ class PeopleTable extends Table
             ->allowEmpty('escolaridad');
 
         $validator
-            ->allowEmpty('atencion_especializada');
-
-        $validator
             ->allowEmpty('nacionalidad');
 
         $validator

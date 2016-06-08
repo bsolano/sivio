@@ -1,35 +1,3 @@
-<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li></li>
-        <li><?= $this->Html->link(__('List People'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Histories'), ['controller' => 'Histories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New History'), ['controller' => 'Histories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Transfers'), ['controller' => 'Transfers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Transfer'), ['controller' => 'Transfers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Aggressors'), ['controller' => 'Aggressors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Aggressor'), ['controller' => 'Aggressors', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Consultations'), ['controller' => 'Consultations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Consultation'), ['controller' => 'Consultations', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List External References'), ['controller' => 'ExternalReferences', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New External Reference'), ['controller' => 'ExternalReferences', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Followups'), ['controller' => 'Followups', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Followup'), ['controller' => 'Followups', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Internal References'), ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Internal Reference'), ['controller' => 'InternalReferences', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Interventions'), ['controller' => 'Interventions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Intervention'), ['controller' => 'Interventions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Advocacies'), ['controller' => 'Advocacies', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Advocacy'), ['controller' => 'Advocacies', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Entries'), ['controller' => 'Entries', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Entry'), ['controller' => 'Entries', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Families'), ['controller' => 'Families', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Family'), ['controller' => 'Families', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
--->
 <div class="large-12 large-offset-9 columns content">
     <!--if (UsuarioActual == Admin)-->
     <?= 
@@ -138,8 +106,18 @@
                 <div></div>
             </div>
         </fieldset>
-        <?= $this->Form->button('Actualizar', ['class' => 'secondary button']) ?>
+        <div class="large-4 large-offset-0 columns">
+            <input type="button" value="REGRESAR" class="secondary button" onclick="atras()"/>
+        </div>
+        <div class="large-4 large-offset-1 columns">
+            <?= $this->Form->button('Actualizar', ['class' => 'secondary button']) ?>
+        </div>
         <?= $this->Form->end() ?>
     </div>
 </div>
 
+<script type="text/javascript">
+    function atras() {
+        document.location = "/people/view/" + "<?php echo $person->id ?>";
+    }
+</script>

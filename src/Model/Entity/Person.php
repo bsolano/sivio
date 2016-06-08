@@ -12,7 +12,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $fecha_de_nacimiento
  * @property string $estado_civil
  * @property string $escolaridad
- * @property string $atencion_especializada
  * @property string $nacionalidad
  * @property string $genero
  * @property string $ocupacion

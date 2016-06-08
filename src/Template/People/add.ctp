@@ -96,6 +96,6 @@
             <div></div>
         </div>
     </fieldset>
-    <?= $this->Form->button('Guardar', ['class' => 'secondary button']) ?>
+    <?= $this->Form->button("Guardar", ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -50,12 +50,18 @@ function loadResults(){
     function usuariaSelect() {
         //var user_name = "<?php echo $group_name ?>";
         if( "<?php echo $group_name ?>" == 'RecepcionistaDelegacionDeLaMujer' ) {
+            document.getElementById("bnt_Vista").style.display = "block";
             document.getElementById("bnt_Atencion").style.display = "none";
             document.getElementById("bnt_Consulta").style.display = "block";
         } else {
+            document.getElementById("bnt_Vista").style.display = "block";
             document.getElementById("bnt_Atencion").style.display = "block";
             document.getElementById("bnt_Consulta").style.display = "block";
         }
+    }
+    
+    function ver() {
+        document.location = "/people/view/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }
     
     function esConsulta() {
