@@ -152,12 +152,23 @@ class ExternalReferencesController extends AppController
        
     } 
     
-    public function correo($id = null){
+    public function enviarCorreo($id = null){
         
-        
+      $externalReference = $this->ExternalReferences->get($id, [
+            'contain' => ['People']
+        ]);  
         
       
-        
+      $id= $externalReference->id;
+      $identificacion = $externalReference->identificacion;
+      $nombre_referido = $externalReference->persona;
+      $telefono = $externalReference->telefono;
+      $receptor = $externalReference->receptor;
+      $direccion = $externalReference->direccion;
+      $institucion = $externalReference-> institucion;
+      $telefono_receptor = $externalReference->telefono_receptor;
+      $correo = ($externalReference->correo);
+      $observacion = $externalReference->observacion;
     /*Para este ejemplo no necesito de renderizar
       una vista por lo que autorender lo pongo a false
      */
@@ -191,8 +202,8 @@ class ExternalReferencesController extends AppController
     
     
     /*enviando el correo*/
-    $correo = new Email(); //instancia de correo
-    $correo
+    $enviarCorreo = new Email(); //instancia de correo
+    $enviarCorreo
       ->transport('mail') //nombre del configTrasnport que acabamos de configurar
       ->template('correo_plantilla') //plantilla a utilizar
       ->emailFormat('html') //formato de correo
@@ -200,12 +211,19 @@ class ExternalReferencesController extends AppController
       ->from('hinedavid@gmail.com') //correo de
       ->subject('Correo de prueba en cakephp3') //asunto
       ->viewVars([ //enviar variables a la plantilla
-        'var1' => 'Hugo',
-        'var2' => 'Kiuvox',
-        'var3' => 'http://blog.kiuvox.com'
+        'id' => $id,
+        'identificacion' => $identificacion,
+        'nombre_referido' => $nombre_referido,
+        'telefono' => $telefono,
+        'direccion' => $direccion,
+        'receptor' => $receptor,
+        'institucion' => $institucion,
+        'telefono_receptor' => $telefono_receptor,
+        'correo' => $correo,
+        'observacion' => $observacion
       ]);
     
-    if($correo->send()){
+    if($enviarCorreo->send()){
       echo "Correo enviado";
     }else{
       echo "Ups error man";
