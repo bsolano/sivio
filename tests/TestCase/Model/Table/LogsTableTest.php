@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PeopleTable;
+use App\Model\Table\LogsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PeopleTable Test Case
+ * App\Model\Table\LogsTable Test Case
  */
-class PeopleTableTest extends TestCase
+class LogsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PeopleTable
+     * @var \App\Model\Table\LogsTable
      */
-    public $People;
+    public $Logs;
 
     /**
      * Fixtures
@@ -24,6 +24,7 @@ class PeopleTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.logs',
         'app.people',
         'app.aggressors',
         'app.attentions',
@@ -61,8 +62,8 @@ class PeopleTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('People') ? [] : ['className' => 'App\Model\Table\PeopleTable'];
-        $this->People = TableRegistry::get('People', $config);
+        $config = TableRegistry::exists('Logs') ? [] : ['className' => 'App\Model\Table\LogsTable'];
+        $this->Logs = TableRegistry::get('Logs', $config);
     }
 
     /**
@@ -72,7 +73,7 @@ class PeopleTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->People);
+        unset($this->Logs);
 
         parent::tearDown();
     }
@@ -98,11 +99,11 @@ class PeopleTableTest extends TestCase
     }
 
     /**
-     * Test find_record method
+     * Test buildRules method
      *
      * @return void
      */
-    public function testFindRecord()
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

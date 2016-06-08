@@ -177,8 +177,14 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'D');
+$pdfs = $pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'S');
 
+
+
+
+//$this->setAction('correo');
+//return redirect(['controller' => 'ExternalReferences', 'action' => 'correo'],$pdfs);
 //============================================================+
 // END OF FILE
 //============================================================+
+

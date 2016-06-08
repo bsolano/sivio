@@ -164,7 +164,7 @@
                     'label' => 'Entrega del kit de emergencia'
                     ]
                 );
-                
+                echo $this->Form->input('Person.0.acepta_seguimiento',['type'=>'combobox']);
 
             ?>
         </div>        
