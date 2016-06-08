@@ -50,23 +50,26 @@
                 <th><?= $this->Paginator->sort('Estado Civil') ?></th>
                 <th><?= $this->Paginator->sort('Escolaridad') ?></th>
                 <th><?= $this->Paginator->sort('Edad') ?></th>
+                <th><?= $this->Paginator->sort('created') ?></th>
             </tr>
         </thead>
         <tbody>
            <?php 
-          // print_r($result);
+          //print_r(array($result));
            
+
             foreach ($result as $results): ?>
                 <tr>
+                    <td><?= h($results->id) ?></td>
                     <td><?= h($results->identificacion) ?></td>
-                    <td><?= h($results->nombre) ?></td>
                     <td><?= h($results->nacionalidad) ?></td>
                     <td><?= h($results->ocupacion) ?></td>
                     <td><?= h($results->estado_civil) ?></td>
                     <td><?= h($results->escolaridad) ?></td>
                     <td><?= h($results->edad) ?></td>
-            </tr>
+                    <td><?= h($results->created) ?></td>
             <?php endforeach; ?>
+          
         </tbody>
     </table>
          <div class="paginator">

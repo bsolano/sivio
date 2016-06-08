@@ -6,6 +6,7 @@
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+<input type="button" value="Nueva Referencia" class="primary button float-right" onclick='()'/>
 <div class="externalReferences form large-9 medium-8 columns content">
     <?= $this->Form->create($externalReference) ?>
     <fieldset>
@@ -23,9 +24,10 @@
             echo $this->Form->input('edad', ['value' => $p[0]['edad'], 'empty' => true,'label' => 'Edad' ]);
             echo $this->Form->input('telefono', ['value' => $p[0]['numero_de_telefono'], 'empty' => true,'label' => 'Teléfono' ]);
             echo $this->Form->input('direccion', ['value' => $p[0]['provincia'].' '.$p[0]['canton'], 'empty' => true,'label' => 'Dirección' ]);
-            
-            
             ?>
+             
+            
+            
             <legend><?= __('Institución') ?></legend>
             <?php
             echo $this->Form->input('receptor');
