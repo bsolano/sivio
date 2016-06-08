@@ -8,16 +8,13 @@
             echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Desde']);
             echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Hasta']);
             echo $this->Form->input('nacionalidad',['empty' => true, 'label' => 'Nacionalidad' ]);
-           
             echo $this->Form->input('ocupacion',['empty' => true, 'label' => 'Ocupación' ]);
             echo 'Estado Civil';
             $options = ['','soltera' => 'Soltera', 'casada' => 'Casada', 'union libre' => 'Unión libre','soltera' => 'Soltera','divorciada' => 'Divorciada','separada' => 'Separada'];
             echo $this->Form->select('estado_civil', $options, ['value' => 0]);
-
             echo 'Escolaridad';
             $options = ['','ningún grado' => 'Ningún grado','primaria completa' => 'Primaria completa', 'primaria incompleta' => 'Primaria incompleta', 'secundaria completa' => 'Secundaria completa','secundaria incompleta' => 'Secundaria incompleta','parauniversitario/técnico' => 'Parauniversitario/Técnico','universitaria completa' => 'Universitaria completa','universitaria incompleta' => 'Universitaria incompleta'];
             echo $this->Form->select('escolaridad', $options,['value' => 0]);
-            
             echo 'Edad:'; 
         ?>
             
