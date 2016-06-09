@@ -24,6 +24,7 @@ class AttentionsFixture extends TestFixture
         'tipo' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'identificacion' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'date', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'log_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -47,7 +48,8 @@ class AttentionsFixture extends TestFixture
             'user_id' => 1,
             'tipo' => 'Lorem ipsum dolor sit amet',
             'identificacion' => 1,
-            'created' => '2016-05-30'
+            'created' => '2016-06-08',
+            'log_id' => 1
         ],
     ];
 }

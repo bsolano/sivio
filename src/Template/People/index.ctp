@@ -9,9 +9,9 @@
             Filtre expedientes
         </legend>
         <?php
-            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '',]);
+            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '']);
         ?>
-        <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'class' => 'button secondary']) ?>
+        <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'id'=> 'btnBExp', 'class' => 'button secondary']) ?>
         <div id="results">Por favor ingrese su criterio de búsqueda.</div>
     </div>
     
@@ -19,20 +19,39 @@
 
 <script>
 
+var lastKwd;
 function loadResults(){
+    
+    var keywd = document.getElementById("keyword").value;
+    var rslts = document.getElementById("results")      ;
+    
+    if ( lastKwd == keywd ) { return false; }
+    if ( keywd == ""      ) {
+        rslts.innerHTML = 'Ingrese un criterio de busqueda';
+        return false;
+    }
+    lastKwd = keywd;
+    
+    // animacion mientras se espera la respuesta del query
+    rslts.innerHTML = "\
+        <div class=\"cssload-container\">\
+	    <div class=\"cssload-whirlpool\"></div>\
+        </div>\ "
+    ;
+    
+    jQuery.ajax({
+        type: "get",  // Request method: post, get
+        url: "/people/recordsSearch.ajax?keyword=" + keywd, // URL to request
+        //data: data,  // post data
+        success: function(response) {
+            rslts.innerHTML = response;
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            rslts.innerHTML = 'No es posible obtener un respuesta, intente de nuevo.';
+        }
+    });
 
-       jQuery.ajax({
-             type: "get",  // Request method: post, get
-             url: "/people/recordsSearch.ajax?keyword=" + document.getElementById("keyword").value, // URL to request
-             //data: data,  // post data
-             success: function(response) {
-                                  document.getElementById("results").innerHTML = response;
-                           },
-                           error:function (XMLHttpRequest, textStatus, errorThrown) {
-                                   document.getElementById("results").innerHTML = 'No es posible obtener un respuesta, intente de nuevo.';
-                           }
-          });
-          return false;
+    return false;
 }
 </script>
 <script type="text/javascript">

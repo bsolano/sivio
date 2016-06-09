@@ -13,7 +13,7 @@
         echo $this->Form->input('Followup.al_xtiempo_del_egreso', [
                 'label'     => 'Seguimiento:'    ,
                 'type'      => 'select'                     ,
-                'options'   => ['Aceptado???Preguntar', 'No Aplica', 'Rechaza_Seguimiento']
+                'options'   => ['No Aplica', 'Aceptado', 'Rechaza_Seguimiento']
             ]
         );
         //echo $this->Form->input('Followup.created',['type'=>'date', 'required'=>'required', 'value'=>Time::now() ]); 
@@ -42,7 +42,6 @@
                     'No aplica'     ,
                     'No la Gestionó',
                     'No'            ,
-                    '**************',
                     'En proceso'    ,
                     'Efectiva'      ,
                     'Rechazada'     ,
@@ -50,12 +49,17 @@
             ]
         );
         
-        echo "<br>";
-        echo $this->Form->input('RecursosApoyo', ['type'=>'checkbox','id'=>'RecursosApoyo','checked'=>false]);echo "<br>";
-        ?>  <div class="row" id= "RecursosAp">  <?php
-            echo $this->Form->button('Primaria'  ,['type'=>'button','onClick'=>'addInput(\'redesApoyo\');','class' =>'secondary button']);echo "<br>";
-            echo $this->Form->button('Secundaria',['type'=>'button','onClick'=>'addInput(\'redesApoyo\');','class' =>'secondary button']);echo "<br>";
+        echo "<br><hr>";
+        echo $this->Form->input('RecursosApoyo', [
+            'type'=>'checkbox','id'=>'RecursosApoyo','checked'=>false
+        ]);
+        ?>
+        <div class="row" id= "RecursosAp">  <?php
+            include 't3.ctp';
         ?> </div> <?php     /*  fin div  ******************************/
+        echo "<hr>";
+        
+        
         
         echo $this->Form->input('Followup.apoyo_institucional???', [
                 'type'      => 'select'                     ,
@@ -63,13 +67,16 @@
                     'Subsidio Economico'    ,
                     'Vivienda'              ,
                     'Atención Especializada',
-                    'OAPVD'                 ,
-                    '**********************',
-                    'Empleo'                ,
-                    'Situación de Riego'
+                    'OAPVD'                 
                 ]
             ]
         );
+        echo "<br>";
+        echo $this->Form->input('Empleo', [
+            'type'=>'checkbox','checked'=>false ]); 
+            
+        echo $this->Form->input('Situación de Riego', [
+            'type'=>'checkbox','checked'=>false ]);
 
 
     ?> </div>
@@ -93,7 +100,6 @@
             ]
         );
         
-        echo "<br>";
         echo $this->Form->input('Followup.medidas_protec_vig', 
             ['type'=>'checkbox',
             'label' => 'Medidas de protección vigentes',
@@ -112,13 +118,12 @@
         echo $this->Form->input('Followup.audiencia_pendiente' , ['type'=>'checkbox', 'checked'=>false]); 
         echo $this->Form->input('Followup.seguimientoOAPVD'    , ['type'=>'checkbox', 'checked'=>false]); 
         
-
+        echo "<br>";
         // *********************************************************************
         echo "<legend>Psicológicos </legend><br>";
         
         
-        
-        echo "<br>"; echo $this->Form->input('Followup.seguimiento_plan_seguridad', ['type'=>'checkbox', 'checked'=>false]); 
+        echo $this->Form->input('Followup.seguimiento_plan_seguridad', ['type'=>'checkbox', 'checked'=>false]); 
         
         echo $this->Form->input('Followup.seguimiento_kit', [
                 'type'      => 'select'                     ,
@@ -145,11 +150,12 @@
             ]
         );
         
-        echo "<br>"; echo $this->Form->input('Followup.atencion_especializada', ['type'=>'checkbox', 'checked'=>false]); 
-        echo "<br>"; echo $this->Form->input('Donde');
+        echo "<br><hr>";
+        echo $this->Form->input('Followup.atencion_especializada', ['type'=>'checkbox', 'checked'=>false]); 
+        echo $this->Form->input('Donde');
+        echo "<hr><br>";
         
         echo $this->Form->input('Enfrenta Violencia ????????????????????????', [
-                'required'  => 'required'                   ,
                 'type'      => 'select'                     ,
                 'multiple'  => 'checkbox'                   ,
                 'options'   => [
@@ -171,7 +177,6 @@
         echo "<legend> Hijos </legend><br>";
         
         echo $this->Form->input('Escolarización ????????????????????????', [
-                'required'  => 'required'                   ,
                 'type'      => 'select'                     ,
                 'multiple'  => 'checkbox'                   ,
                 'options'   => [
@@ -184,7 +189,6 @@
         );
         
         echo $this->Form->input('Recibe Atención Especializada ????????????????????????', [
-                'required'  => 'required'                   ,
                 'type'      => 'select'                     ,
                 'multiple'  => 'checkbox'                   ,
                 'options'   => [
