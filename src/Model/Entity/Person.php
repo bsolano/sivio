@@ -44,6 +44,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Followup[] $followups
  * @property \App\Model\Entity\History[] $histories
  * @property \App\Model\Entity\InternalReference[] $internal_references
+ * @property \App\Model\Entity\Log[] $logs
  * @property \App\Model\Entity\Transfer[] $transfers
  * @property \App\Model\Entity\Attention[] $attentions
  * @property \App\Model\Entity\Intervention[] $interventions

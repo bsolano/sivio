@@ -48,6 +48,7 @@ class PeopleTableTest extends TestCase
         'app.interventions',
         'app.attentions_people',
         'app.external_references',
+        'app.logs',
         'app.transfers',
         'app.families',
         'app.people_families'
