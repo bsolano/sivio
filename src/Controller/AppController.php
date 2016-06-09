@@ -30,6 +30,11 @@ class AppController extends Controller {
     public function beforeFilter(Event $event)
     {
         /*$this->Auth->Allow(['index']);*/
+        $this->loadModel('Groups');
+        $ugid = $this->request->session()->read('Auth.User.group_id');
+		$group = $this->Groups->find()->where(['Groups.id' => $ugid])->first();
+		$this->request->session()->write('group', $group);
+		
     }
     
     public $components = [

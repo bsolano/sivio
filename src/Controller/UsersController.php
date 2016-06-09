@@ -171,10 +171,12 @@ class UsersController extends AppController {
      * Busca las personas asignadas a la usuaria logueada.
      */ 
     public function designees($user = null) {
+        $uid = $this->request->session()->read('Auth.User.id');
+        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
+        if ($uid == $user) {
         $this->loadModel('UsersPeople'); //Carga la tabla Users_People en en este controlador.
         $this->loadModel('People'); //Carga la tabla People en en este controlador.
         //$designeePeople = array();
-        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
         $designeesData = $this->UsersPeople->find('all', [
         'conditions' => ['UsersPeople.user_id' => $user]
         ]); //Obtiene el id de las personas asignadas al usuario logeado.
@@ -194,9 +196,10 @@ class UsersController extends AppController {
         }*/
         //$this->set(['designeePeople' => $designeePeople]); //Guarda en variable accesible desde la vista.
         
-        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
         $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
         $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
+        }
+        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
     }
 
 }

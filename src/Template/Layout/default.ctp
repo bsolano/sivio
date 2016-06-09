@@ -67,8 +67,11 @@ $sivioDescription = 'SIVIO';
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
 			  <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
-			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
-			 <li><?= $this->Html->link('Referencias', ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
+
+			  <?php if (preg_match("/Profesional(.)*/", $this->request->session()->read('group.name'))): ?>
+			  	<li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
+			  <?php endif ?>
+			 <li><?= $this->Html->link("Referencias", ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
 			 
 			  <li><a href="#">Asesoría técnica</a>
 			  	<ul class="menu vertical">
