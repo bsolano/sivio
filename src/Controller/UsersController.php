@@ -112,6 +112,10 @@ class UsersController extends AppController {
     }
     
     public function login() {
+        if($this->request->session()->read('Auth.User')) {
+            // si ya esta loggeado, redirija a la pagina de expedientes
+            return $this->redirect($this->Auth->redirectUrl());
+		}
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {

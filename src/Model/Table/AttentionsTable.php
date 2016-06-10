@@ -81,8 +81,7 @@ class AttentionsTable extends Table
             ->allowEmpty('tipo');
 
         $validator
-            ->integer('identificacion')
-            ->allowEmpty('identificacion');
+            ->allowEmpty('datos_adicionales');
 
         return $validator;
     }

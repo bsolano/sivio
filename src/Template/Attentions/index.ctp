@@ -25,12 +25,17 @@
                 <td><?php echo $attention['tipo']; ?></td>
                 <td>
                     <div class= "event" >
-                        <?php if($attention['log']['acepta_seguimiento'] == 1): ?>
-                            <button name="at" class = "secondary button" style ="width: 20%" onclick="darSeguimiento()">1</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">2</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">3</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">4</button>
-                        <?php else: ?>
+                        <?php 
+                            if($attention['log']['acepta_seguimiento'] == 1): 
+                                $numSegs = sizeof($attention['followups']);
+                                for($i = 1; $i <=4 ; $i++){
+                                    $claseBoton = ($i <= $numSegs) ? "secondary button" : "hollow secondary button";
+                        ?>
+                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick="darSeguimiento()"><?= $i ?></button> 
+                        <?php
+                                }
+                            else: 
+                        ?>
                             <b style = "color:red"> No acepta seguimientos </b>
                         <?php endif; ?>
                     </div>

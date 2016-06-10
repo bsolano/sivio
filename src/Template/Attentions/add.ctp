@@ -1,14 +1,3 @@
-<!--
-<html>
-<head>
-    <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
-</head>
-    
-<body>
--->
-
     <?= $this->Form->create(); ?>
     <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
     <!-- TABS -->
@@ -22,6 +11,7 @@
             <li><a href="#tab6">Intervenciones</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
         </ul>
+        <?php include 'arrays.ctp'; /** todos los arrays de las diferentes preguntas del cuestionario **/ ?>
         <section class="block">
             <article id="tab1"> <?php include 't1.ctp';?> </article>
             <article id="tab2"> <?php include 't2.ctp';?> </article>
@@ -139,8 +129,4 @@
            document.getElementById('divName').remove();
         }
 	</script>
-	
-<!--
-</body>
-</html>
--->
+

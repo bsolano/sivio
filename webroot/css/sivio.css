@@ -766,9 +766,17 @@ article {
 
 select, [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea {color:inherit;}
 
+option {
+    padding: .75rem;
+    border-right: 1px solid gray;
+}
+
+.button {margin:0;}
+
+hr {margin:.5rem auto;}
+
 /*-EO:OVERRIDES-----*/
 
-/*Para que el texto de las tablas no se amontone*/
 
 td {
     word-wrap: break-word;
@@ -814,8 +822,3 @@ td {
 	}
 }
 /*              FIN animacion  cargando ---------------------------------------*/
-
-option {
-    padding: .75rem;
-    border-right: 1px solid gray;
-}

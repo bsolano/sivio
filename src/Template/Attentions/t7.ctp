@@ -3,17 +3,20 @@
 <!--               SEGUIMIENTOS                                               ->
 <!----------------------------------------------------------------------------->
 
-
-    <fieldset>
-        <hr>
-    <div class="large-4 small-4 columns"> <?php
+    <fieldset><hr>
+<div style= 'width: 100%;border: 1px solid rgb(236, 236, 236);padding: 1rem; padding: .4rem 1rem;'>
+    <?php
         use Cake\I18n\Time;
-        echo '<h6>La fecha de este Seguimiento es '.Time::now().'</h6><br>';
+        
         
         echo $this->Form->input('Followup.al_xtiempo_del_egreso', [
                 'label'     => 'Seguimiento:'    ,
                 'type'      => 'select'                     ,
-                'options'   => ['No Aplica', 'Aceptado', 'Rechaza_Seguimiento']
+                'options'   => ['No Aplica', 'Aceptado', 'Rechaza_Seguimiento'],
+                'style'     => 'display:inline-table; width: auto; margin:0; margin-right:1rem;',
+                'templates' => [
+                    'inputContainer' => '<div style="display: inline-block;" >{{content}}</div>'
+                ]
             ]
         );
         //echo $this->Form->input('Followup.created',['type'=>'date', 'required'=>'required', 'value'=>Time::now() ]); 
@@ -27,9 +30,19 @@
                     'No fue posible localizarla', 
                     'Interinstitucional',
                     'Visita Domiciliar no localizable'
+                ],
+                'style'     => 'display:inline-table; width: auto; margin:0; margin-right:1rem; ',
+                'templates' => [
+                    'inputContainer' => '<div style="display: inline-block;" >{{content}}</div>'
                 ]
             ]
         );
+        
+        echo '<h6 style="display: inline-block; margin-right:.5rem;">La fecha de este Seguimiento es '.Time::now().'</h6>';
+        ?>
+    <input style="" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
+</div>
+    <div class="large-4 small-4 columns"> <?php
         
         echo "<br><h5>Aspectos Abordados </h5><br>";
         

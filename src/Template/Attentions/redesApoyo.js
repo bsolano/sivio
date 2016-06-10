@@ -1,20 +1,5 @@
-
-
-
-
-
-<?= $this->Form->create(); ?>
-<div class="attentions form large-9 medium-8 columns content" style="width: 100%;" >
-    <section class="wrapper">
-        <?php include 't7.ctp';?>
-    </section>
-</div>
-<?= $this->Form->end(); ?>
-
-
-
-<script type="text/javascript" >
-    var numAd = 2;
+// JavaScript File
+ var numAd = 2;
         function addInput(divName) {
             if (numAd++ < 30) {
                 var newdiv = document.createElement('div');
@@ -50,4 +35,3 @@
                 document.getElementById(divName).appendChild(newdiv);
              }
         }
-</script>

@@ -46,7 +46,10 @@ $sivioDescription = 'SIVIO';
 <body>
 	<!--<header>-->
 	<div class="title-bar" style="background-color:white;">
-		<?= $this->Html->image('main-logo.png', ['alt' => 'SIVIO']) ?>
+		<?= $this->Html->image('main-logo.png', [
+			'alt' => 'SIVIO',
+			'url' => ['controller' => 'Users', 'action' => 'login']
+		]) ?>
 		<div style="float:right;">
 			<?php
 				// User is logged in, shows logout.

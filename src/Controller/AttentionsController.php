@@ -17,10 +17,9 @@ class AttentionsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Logs','Aggressors', 'Histories', 'Users','Followups.Attentions']
-        ];
-        $attentions = $this->paginate($this->Attentions);
+        $atenciones = $this->Attentions->find('all')->contain(['Logs', 'Users','Followups']);
+
+        $attentions = $this->paginate($atenciones);
         $this->set(compact('attentions'));
         $this->set('_serialize', ['attentions']);
     }
