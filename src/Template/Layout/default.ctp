@@ -24,6 +24,9 @@ $sivioDescription = 'SIVIO';
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,200,100' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery!  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <title>
         <?= $sivioDescription ?>:
         <?= $this->fetch('title') ?>
@@ -34,9 +37,6 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    
-    <!-- JQuery!  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
     <!-- Para attentions/add/  -->
     <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
@@ -67,8 +67,11 @@ $sivioDescription = 'SIVIO';
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
 			  <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
-			  <li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
-			 <li><?= $this->Html->link('Referencias', ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
+
+			  <?php if (preg_match("/Profesional(.)*/", $this->request->session()->read('group.name'))): ?>
+			  	<li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
+			  <?php endif ?>
+			 <li><?= $this->Html->link("Referencias", ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
 			 
 			  <li><a href="#">Asesoría técnica</a>
 			  	<ul class="menu vertical">
@@ -105,7 +108,7 @@ $sivioDescription = 'SIVIO';
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>
 
-    <?= $this->Html->script('jquery.js') ?>
+    <!-- <\?= $this->Html->script('jquery.js') ?> ya se carga al principio -->
     <?= $this->Html->script('what-input.js') ?>
     <?= $this->Html->script('foundation.min.js') ?>
     <?= $this->Html->script('sivio.js') ?>

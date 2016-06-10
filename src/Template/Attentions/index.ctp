@@ -4,23 +4,37 @@
     <table cellpadding="0" cellspacing="0" span="1" width="100%">
         <thead>
             <tr>
-                <th width="10%"><?php echo "Selección"; ?></th>
-                <th width="15%"><?php echo "Cédula"; ?></th>
+                <th width="10%"><?php echo "Acción"; ?></th>
+                <th width="10%"><?php echo "Cédula"; ?></th>
                 <th width="25%"><?= $this->Paginator->sort('Persona') ?></th>
-                <th width="30%"><?= $this->Paginator->sort('Encargado') ?></th>
-                <th width="10%"><?= $this->Paginator->sort('Tipo') ?></th>
-                <th width="10%"><?php echo "Seguimientos"; ?></th>
+                <th width="25%"><?= $this->Paginator->sort('Encargado') ?></th>
+                <th width="15%"><?= $this->Paginator->sort('Tipo') ?></th>
+                <th width="20%"><?php echo "Seguimientos"; ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($attentions as $attention): ?>
+        
+            <?php 
+                foreach ($attentions as $attention): 
+            ?>
             <tr>
-                <tr><td class="text-center"><input type="radio" name="at" value="<?php echo $attention->person->id; ?>" onclick='selectAtencion()'/></td>                
-                <td><?php echo $attention->attention->identificacion; ?></td>
-                <td><?php echo $attention->person->nombre." ".$attention->person->apellidos; ?></td>
-                <td><?php echo $attention->attention->user->username; ?></td>
-                <td><?php echo $attention->attention->tipo; ?></td>
-                <td><?php echo 3;?></td> <!-- por arreglar -->
+                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>)'>Editar</button> </td>
+                <td><?php echo $attention['log']['identificacion']; ?></td>
+                <td><?php echo $attention['log']['nombre']." ".$attention['Logs']['apellidos']; ?></td>
+                <td><?php echo $attention['user']['username']; ?></td>
+                <td><?php echo $attention['tipo']; ?></td>
+                <td>
+                    <div class= "event" >
+                        <?php if($attention['log']['acepta_seguimiento'] == 1): ?>
+                            <button name="at" class = "secondary button" style ="width: 20%" onclick="darSeguimiento()">1</button> 
+                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">2</button> 
+                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">3</button> 
+                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">4</button>
+                        <?php else: ?>
+                            <b style = "color:red"> No acepta seguimientos </b>
+                        <?php endif; ?>
+                    </div>
+                </td> <!-- por arreglar -->
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -35,13 +49,14 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
-    function selectAtencion(){
-        document.getElementById("botonSeg").style.display = "block";
-
-    }
-
     function darSeguimiento() {
-        document.location = "/attentions/followup/" + document.querySelector('input[name = "at"]:checked').value;
+        document.location = "/attentions/followup/";
     }
+    
+    function editarAtencion(id) {
+        document.location = "/attentions/add/" + id;
+    }
+    
 </script>

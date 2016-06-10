@@ -164,7 +164,7 @@
                     'label' => 'Entrega del kit de emergencia'
                     ]
                 );
-                echo $this->Form->input('Person.0.acepta_seguimiento',['type'=>'combobox']);
+                echo $this->Form->input('Person.0.acepta_seguimiento',['type'=>'checkbox', 'label'=>'¿Acepta los seguimientos? De no marcarse, se toma como un no. ']);
 
             ?>
         </div>        

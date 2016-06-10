@@ -16,11 +16,12 @@ use Cake\ORM\Entity;
  * @property string $tipo
  * @property int $identificacion
  * @property \Cake\I18n\Time $created
- * @property \App\Model\Entity\Person $person
+ * @property int $log_id
  * @property \App\Model\Entity\Followup[] $followups
  * @property \App\Model\Entity\InterventionsPerson[] $interventions_people
  * @property \App\Model\Entity\PeopleAdvocacy[] $people_advocacies
  * @property \App\Model\Entity\PeopleEntry[] $people_entries
+ * @property \App\Model\Entity\Person[] $people
  */
 class Attention extends Entity
 {

@@ -18,7 +18,7 @@
             <li><a href="#tab2">Perfil de Usuaria</a></li>
             <li><a href="#tab3">Redes de Apoyo</a></li>
             <li><a href="#tab4">Historia de Violencia</a></li>
-            <li><a href="#tab5">Hijos</a></li>
+            <li><a href="#tab5">Hijos e Hijas</a></li>
             <li><a href="#tab6">Intervenciones</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
         </ul>
@@ -36,6 +36,10 @@
     </div>
     <?= $this->Form->end() ?>
 
+
+<!----------------------------------------------------------------------------->
+<!--               JS's                                                       ->
+<!----------------------------------------------------------------------------->
 	<script type="text/javascript" id='scpts'>
 	    $(window).load( function () {
 	            //tab 1
@@ -99,6 +103,7 @@
             if (numAd++ < 30) {
                 var newdiv = document.createElement('div');
                 newdiv.innerHTML = 
+                
                     "<legend> Red de apoyo</legend><br>"+
                       
                     //Input de seleccion de red de apoyo
@@ -121,11 +126,11 @@
                     "<div class=\"input text\">"+
                         "<label for=\"advocacy-"+numAd+"-telefono\">Teléfono</label>"+
                         "<input name=\"Advocacy["+numAd+"][telefono]\" id=\"advocacy-"+numAd+"-telefono\" value=\"\" type=\"text\">"+
-                    "</div>"+
+                    "</div>" ;
                     
                     //Boton de eliminar red de apoyo
-                    "<input id='eliminarAdv' style='margin: 10px 5px;' type='button' value='Elminar red' class='button float-right' onclick='deleteInput(\'redesApoyo\')'/><br></br>";
-                      
+                    //+"<input id='eliminarAdv' style='margin: 10px 5px;' type='button' value='Elminar red' class='button float-right' onclick='deleteInput(\'redesApoyo\')'/><br></br>";
+                
                 document.getElementById(divName).appendChild(newdiv);
              }
         }

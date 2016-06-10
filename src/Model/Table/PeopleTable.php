@@ -217,7 +217,13 @@ class PeopleTable extends Table
     */
     public function find_record($keyword) {
         return $this->find()
-            ->where(['identificacion LIKE' => '%'.$keyword.'%'])
+            ->where([
+                'identificacion LIKE' => '%'.$keyword.'%',
+                'identificacion !='   => '0'             , 
+                /*  ya se cambio para que identificacion sea nullable, pero aun hay algunos en 0
+                    se deben cambiar a mano. Por mientras, hasta que se hable, eso.
+                */
+                ])
             ->orWhere(['nombre LIKE' => '%'.$keyword.'%'])
             ->orWhere(['apellidos LIKE' => '%'.$keyword.'%']);
     }

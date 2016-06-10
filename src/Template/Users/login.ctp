@@ -2,7 +2,6 @@
 <div class="large-4 large-centered small-4 columns">
     <fieldset>
         <legend>Acceso de usuario</legend>
-        <div>
             <?= $this->Form->input('username', ['label' => 'Nombre de usuario']) ?>
             <?= $this->Form->input('password', ['label' => 'Clave']) ?>
         </div>
