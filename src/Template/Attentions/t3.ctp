@@ -10,7 +10,7 @@
             echo $this->Form->input('Advocacy.'.$numAdv.'.nombre',['label'=>'Nombre de la persona o instutición','value'=>$a['advocacy']['nombre']]);
             echo $this->Form->input('Advocacy.'.$numAdv.'.telefono',['label'=>'Teléfono','value'=>$a['advocacy']['telefono']]);
             echo "&nbsp";
-            ?><input id="eliminarAdv" style="margin: 10px 5px;" type="button" value="Elminar red" class="button float-right" onclick='deleteInput("redesApoyo")'/><br></br> <?php
+            
         }    
         
     ?></div>

@@ -24,6 +24,9 @@ $sivioDescription = 'SIVIO';
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,200,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,200,100' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery!  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <title>
         <?= $sivioDescription ?>:
         <?= $this->fetch('title') ?>
@@ -34,9 +37,6 @@ $sivioDescription = 'SIVIO';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    
-    <!-- JQuery!  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
     <!-- Para attentions/add/  -->
     <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
@@ -108,7 +108,7 @@ $sivioDescription = 'SIVIO';
         <!-- <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>  -->
     </footer>
 
-    <?= $this->Html->script('jquery.js') ?>
+    <!-- <\?= $this->Html->script('jquery.js') ?> ya se carga al principio -->
     <?= $this->Html->script('what-input.js') ?>
     <?= $this->Html->script('foundation.min.js') ?>
     <?= $this->Html->script('sivio.js') ?>

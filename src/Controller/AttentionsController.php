@@ -17,10 +17,10 @@ class AttentionsController extends AppController
      */
     public function index()
     {
-        $this->loadModel('AttentionsPeople');
-        
-        $atP = $this->AttentionsPeople->find('all')->contain(['Attentions','People','Attentions.Users']);
-        $attentions = $this->paginate($atP);
+        $this->paginate = [
+            'contain' => ['Logs','Aggressors', 'Histories', 'Users','Followups.Attentions']
+        ];
+        $attentions = $this->paginate($this->Attentions);
         $this->set(compact('attentions'));
         $this->set('_serialize', ['attentions']);
     }
@@ -44,8 +44,10 @@ class AttentionsController extends AppController
     
     /** metodo para realizar seguimientos a una atencion **/
     public function followup($id = null){
+        $this->loadModel('PeopleAdvocacies');
         
-        
+        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
+        $this->set('advo',$advo);
         if($this->request->is('post')){
             
         }
@@ -69,7 +71,6 @@ class AttentionsController extends AppController
         $this->loadModel('Interventions');
         $this->loadModel('Entries');
         $this->loadModel('PeopleEntries');
-        $this->loadModel('AttentionsPeople');
 
         //se cargan las tablas
         $peopleTable           = TableRegistry::get('People');
@@ -78,7 +79,6 @@ class AttentionsController extends AppController
         $attentionsTable       = TableRegistry::get('Attentions');
         $entriesTable          = TableRegistry::get('Entries');
         $peopleEntriesTable    = TableRegistry::get('PeopleEntries');
-        $attentionsPeopleTable = TableRegistry::get('AttentionsPeople');
 
         //obtener una persona y dar formato a sus datos para llenar en el formulario
         $per = $peopleTable->get($id);
