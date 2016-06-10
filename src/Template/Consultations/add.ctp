@@ -159,7 +159,29 @@
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
+<div class = "">
+       
+       <ol>
+      <li><input class="Alto_riesgo" type="checkbox" value="1">¿Han habido agresiones físicas graves que
+      causaron lesiones a la víctima o ameritaron una intervención médica?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="2">¿Ha usado o amenazado con usar un arma
+      de fuego, cuchillo y otra arma letal contra la víctima?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="3">¿Ha intentado el agresor ahorcar a la víctima?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="4">¿Ha forzado a la víctima a tener relaciones
+      o practicar actos de contenido sexual en contra de su voluntad?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="5">¿Ha amenazado con matar a la víctima?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="6">¿Presenta el agresor celos muy intensos,
+      violentos y/o conductas controladoras sobre la pareja?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="7">¿Ha habido un aumento en la frecuencia y/o
+      gravedad de los incidentes violentos en el último mes?</li><br>
+      <li><input class="Alto_riesgo" type="checkbox"  value="8">El agresor NO expresa responsabilidad ni culpa por su conducta.</li><br>
+      
+       </ol>
+   
+</div> <!-- /end modal -->        
    </fieldset>
+   
+
 <?php echo $this->Html->script('jquery');?>
 
 <?php echo $this->Html->script('tabs');?>
