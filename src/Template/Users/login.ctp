@@ -5,7 +5,7 @@
             <?= $this->Form->input('username', ['label' => 'Nombre de usuario']) ?>
             <?= $this->Form->input('password', ['label' => 'Clave']) ?>
         </div>
-        <div class="large-4 large-right columns">
+        <div class="large-5 large-right columns">
             <?= $this->Form->button('Acceder', ['class' => 'button']); ?>
         </div>
     </fieldset>

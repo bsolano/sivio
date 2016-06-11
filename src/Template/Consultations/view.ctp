@@ -1,4 +1,3 @@
-
 <div class="consultations view large-9 medium-8 columns content">
     <h3>Consulta de <?= h($person->nombre) ?></h3>
     

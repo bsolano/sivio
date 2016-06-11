@@ -45,6 +45,9 @@ class PeopleController extends AppController
         $person = $this->People->get($id, [
             'contain' => ['Histories', 'Interventions', 'Advocacies', 'Entries', 'Families', 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
         ]);
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
 
         $this->set('person', $person);
         $this->set('_serialize', ['person']);
@@ -57,12 +60,15 @@ class PeopleController extends AppController
      */
     public function add()
     {
-        $this->loadComponent('StringManipulation');
         $person = $this->People->newEntity();
         if ($this->request->is('post')) {
             $data = $this->request->data;
-            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
-            $person = $this->People->patchEntity($person, $data);
+            debug($person->adicciones);
+            debug($person->condicion_salud);
+            $stringAdicciones = $this->StringManipulation->ArrayToTokenedString($person->get('adicciones'));
+            $stringCondicionSalud = $this->StringManipulation->ArrayToTokenedString($person->get('condicion_salud'));
+            $people->adicciones = $stringAdicciones;
+            $people->condicion_salud = $stringCondicionSalud;
             $person->genero = 'F';
             $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
@@ -95,6 +101,11 @@ class PeopleController extends AppController
             'contain' => ['Interventions', 'Advocacies', 'Entries', 'Families', 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            debug($person->adicciones);
+            $stringAdicciones = $this->StringManipulation->ArrayToTokenedString($person->get('adicciones'));
+            $stringCondicionSalud = $this->StringManipulation->ArrayToTokenedString($person->get('condicion_salud'));
+            $person->adicciones = $stringAdicciones;
+            $person->condicion_salud = $stringCondicionSalud;
             $person = $this->People->patchEntity($person, $this->request->data);
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
@@ -103,6 +114,10 @@ class PeopleController extends AppController
                 $this->Flash->error('No se pudo actualizar la información, inténtelo nuevamente.');
             }
         }
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
+        
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
         $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
         $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
@@ -201,6 +216,7 @@ class PeopleController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('StringManipulation');
     }
     
 }

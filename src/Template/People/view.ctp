@@ -49,10 +49,6 @@
                 <td><?= h($person->lugar_trabajo) ?></td>
             </tr>
             <tr>
-                <th><?= __('Adicciones') ?></th>
-                <td><?= h($person->adicciones) ?></td>
-            </tr>
-            <tr>
                 <th><?= 'Condición Migratoria' ?></th>
                 <td><?= h($person->condicion_migratoria) ?></td>
             </tr>
@@ -71,10 +67,6 @@
             <tr>
                 <th><?= 'Tipo de Familia' ?></th>
                 <td><?= h($person->tipo_familia) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Condición de Salud' ?></th>
-                <td><?= h($person->condicion_salud) ?></td>
             </tr>
             <tr>
                 <th><?= 'Identificación' ?></th>
@@ -96,18 +88,30 @@
             -->
             <tr>
                 <th><?= __('Experiencia Laboral') ?></th>
-                <td><?= $this->Number->format($person->experiencia_laboral) ?></td>
+                <?php if ($person->experiencia_laboral > 1): ?>
+                    <td><?= $this->Number->format($person->experiencia_laboral).' años' ?></td>
+                <?php else: ?> 
+                    <?php if ($person->experiencia_laboral != 1): ?>
+                        <td>No tiene</td>
+                    <?php else: ?>
+                        <td><?= $this->Number->format($person->experiencia_laboral).' año' ?></td>
+                    <?php endif; ?>
+                <?php endif; ?>
             </tr>
             <tr>
                 <th><?= 'Cantidad de hijos en CEAAM' ?></th>
-                <td><?= $this->Number->format($person->num_hijos_ceaam) ?></td>
+                <?php if ($person->num_hijos_ceaam != 0): ?>
+                    <td><?= $this->Number->format($person->num_hijos_ceaam) ?></td>
+                <?php else: ?>
+                    <td>No tiene</td>
+                <?php endif; ?>
             </tr>
             <tr>
                 <th><?= __('Embarazo') ?></th>
                 <td>
                     <?php
                         if ($person->embarazo == 0)
-                            echo "No";
+                            echo "No tiene";
                         else
                             echo $person->embarazo.' meses';
                     ?>
@@ -126,6 +130,22 @@
             <tr>
                 <th><?= __('Fecha De Nacimiento') ?></th>
                 <td><?= h($person->fecha_de_nacimiento) ?></td>
+            </tr>
+            <tr>
+                <th><?= 'Adiccion(es)' ?></th>
+                <td>
+                    <?php foreach($person->adicciones as $adiccion): ?> 
+                    <ul><?= h($adiccion) ?></ul>
+                    <?php endforeach ?>
+                </td>
+            </tr>
+            <tr>
+                <th><?= 'Condición de Salud' ?></th>
+                <td>
+                    <?php foreach($person->condicion_salud as $condicion): ?> 
+                    <ul><?= h($condicion) ?></ul>
+                    <?php endforeach ?>
+                </td>
             </tr>
         </table>
         <div class="related">
