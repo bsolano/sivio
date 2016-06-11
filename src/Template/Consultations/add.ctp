@@ -27,15 +27,18 @@
     <fieldset>
         
         <div class = "row page page1">
-        <?php
-            $tipo = ["Delegación de la Mujer", "PLANOVI"];
-            echo $this->Form->input('tipo',['label'=>'Tipo','type'=>'select','options'=>$tipo]);
+            
+            <?php
+            $tipo = ["-Seleccione una opción-","Delegación de la Mujer", "PLANOVI"];
+            echo $this->Form->input('tipo',['label'=>'Tipo','type'=>'select','options'=>$tipo,'id'=>'tipo']);
             ?>
+            
+            <div id="horario">
             <?php
             echo $this->Form->input('Horario', ['label' => 'Horario', 'type' => 'radio','options'=>['Laboral','Disponibilidad']]);
             
             ?>
-            
+            </div>
             <div class = "row">
                 <div class = "large-6 medium-6 columns">
                     <?php echo $this->Form->input('fecha', ['empty' => true, 'label' => 'Fecha de inicio']); ?>
@@ -159,9 +162,26 @@
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
-<div class = "">
-       
+<a onclick="$('#myModal').foundation('open');"href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
+
+
+   </fieldset>
+   
+<div class="reveal" id="myModal" data-reveal>
+  <div class="row">
+      <div class="medium-8-columns">
+     <h2 id="modalTitle">Valoración de Riesgo</h2>  
+      <section class="wrapper">
+        <ul class="tabs">
+            <li id="page1" class="active" onclick='switchTabs()'><a href="#tab1">Página 1</a></li>
+            <li id="page2" onclick='switchTabs()'><a href="#tab2">Página 2</a></li>
+            <li id="page3" onclick='switchTabs()'><a href="#tab3">Página 3</a></li>
+        </ul>
+        </section>
+    <fieldset>
        <ol>
+     
       <li><input class="Alto_riesgo" type="checkbox" value="1">¿Han habido agresiones físicas graves que
       causaron lesiones a la víctima o ameritaron una intervención médica?</li><br>
       <li><input class="Alto_riesgo" type="checkbox"  value="2">¿Ha usado o amenazado con usar un arma
@@ -176,12 +196,13 @@
       gravedad de los incidentes violentos en el último mes?</li><br>
       <li><input class="Alto_riesgo" type="checkbox"  value="8">El agresor NO expresa responsabilidad ni culpa por su conducta.</li><br>
       
+      
        </ol>
-   
-</div> <!-- /end modal -->        
-   </fieldset>
-   
-
+    </fieldset>
+  
+   </div>
+   </div>
+</div> <!-- /end modal -->    
 <?php echo $this->Html->script('jquery');?>
 
 <?php echo $this->Html->script('tabs');?>
