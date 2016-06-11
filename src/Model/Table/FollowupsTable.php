@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Advocacies
  * @property \Cake\ORM\Association\BelongsTo $Attentions
  * @property \Cake\ORM\Association\BelongsToMany $Users
  */
@@ -41,9 +40,6 @@ class FollowupsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
-        $this->belongsTo('Advocacies', [
-            'foreignKey' => 'advocacy_id'
-        ]);
         $this->belongsTo('Attentions', [
             'foreignKey' => 'attention_id'
         ]);
@@ -70,23 +66,14 @@ class FollowupsTable extends Table
             ->allowEmpty('medio_comunicacion');
 
         $validator
-            ->allowEmpty('aspectos_sociales');
-
-        $validator
             ->allowEmpty('apoyo_institucional');
 
         $validator
-            ->allowEmpty('legales');
-
-        $validator
-            ->boolean('seguridad')
-            ->allowEmpty('seguridad');
+            ->boolean('seguimiento_plan_seguridad')
+            ->allowEmpty('seguimiento_plan_seguridad');
 
         $validator
             ->allowEmpty('seguimiento_kit');
-
-        $validator
-            ->allowEmpty('seguimiento_referencia');
 
         $validator
             ->allowEmpty('lugar_atencion');
@@ -95,11 +82,38 @@ class FollowupsTable extends Table
             ->allowEmpty('enfrenta_violencia');
 
         $validator
-            ->boolean('convivencia')
-            ->allowEmpty('convivencia');
+            ->boolean('convive_agresor')
+            ->allowEmpty('convive_agresor');
 
         $validator
             ->allowEmpty('atencion_especializada');
+
+        $validator
+            ->allowEmpty('al_xtiempo_del_egreso');
+
+        $validator
+            ->allowEmpty('seguimiento_referencia_social');
+
+        $validator
+            ->allowEmpty('seguimiento_referencia_legal');
+
+        $validator
+            ->allowEmpty('seguimiento_referencia_psicologico');
+
+        $validator
+            ->boolean('medidas_protec_vig')
+            ->allowEmpty('medidas_protec_vig');
+
+        $validator
+            ->boolean('audiencia_pendiente')
+            ->allowEmpty('audiencia_pendiente');
+
+        $validator
+            ->boolean('seguimientoOAPVD')
+            ->allowEmpty('seguimientoOAPVD');
+
+        $validator
+            ->allowEmpty('incump_medidas');
 
         return $validator;
     }
@@ -115,7 +129,6 @@ class FollowupsTable extends Table
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['advocacy_id'], 'Advocacies'));
         $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         return $rules;
     }

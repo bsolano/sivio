@@ -48,7 +48,7 @@
         
         echo "<legend>Sociales </legend><br>"; // ------------------------------
 
-        echo $this->Form->input('Followup.seguimiento_referencia_social: (Efect/rech es parte-de ??????)', [
+        echo $this->Form->input('Followup.seguimiento_referencia_social', [
                 'label' => 'Seguimiento a la Referencia',
                 'type'      => 'select'                     ,
                 'options'   => [
@@ -62,19 +62,23 @@
             ]
         );
         
-        echo "<br><hr>";
-        echo $this->Form->input('RecursosApoyo', [
-            'type'=>'checkbox','id'=>'RecursosApoyo','checked'=>false
-        ]);
         ?>
-        <div class="row" id= "RecursosAp">  <?php
-            include 't3.ctp';
-        ?> </div> <?php     /*  fin div  ******************************/
-        echo "<hr>";
         
         
+        <a class="hollow secondary button" href="#openModal">Ver Redes de Apoyo</a> 
         
-        echo $this->Form->input('Followup.apoyo_institucional???', [
+        <div id="openModal" class="modalDialog">
+            <a href="#close" title="Close" class="close">X</a>
+            <?php
+                include 't3.ctp';
+            ?>
+        </div>
+        <br><br>
+
+        <?php
+        
+        
+        echo $this->Form->input('Followup.apoyo_institucional', [
                 'type'      => 'select'                     ,
                 'options'   => [
                     'Subsidio Economico'    ,
@@ -85,10 +89,10 @@
             ]
         );
         echo "<br>";
-        echo $this->Form->input('Empleo', [
+        echo $this->Form->input('Followup.apoyo_empleo', [
             'type'=>'checkbox','checked'=>false ]); 
             
-        echo $this->Form->input('Situación de Riego', [
+        echo $this->Form->input('Followup.situacion_riesgo', [
             'type'=>'checkbox','checked'=>false ]);
 
 
@@ -129,7 +133,7 @@
             ]
         );
         echo $this->Form->input('Followup.audiencia_pendiente' , ['type'=>'checkbox', 'checked'=>false]); 
-        echo $this->Form->input('Followup.seguimientoOAPVD'    , ['type'=>'checkbox', 'checked'=>false]); 
+        echo $this->Form->input('Followup.seguimientoOAPVD'    , ['type'=>'checkbox', 'checked'=>false, 'label'=> 'Seguimiento OAPVD']); 
         
         echo "<br>";
         // *********************************************************************
@@ -168,7 +172,7 @@
         echo $this->Form->input('Donde');
         echo "<hr><br>";
         
-        echo $this->Form->input('Enfrenta Violencia ????????????????????????', [
+        echo $this->Form->input('Followup.enfrenta_violencia', [
                 'type'      => 'select'                     ,
                 'multiple'  => 'checkbox'                   ,
                 'options'   => [
@@ -180,7 +184,7 @@
             ]
         );
         
-        echo "<br>"; echo $this->Form->input('Convive con la persona agresora ????', ['type'=>'checkbox', 'checked'=>false]); 
+        echo "<br>"; echo $this->Form->input('Followup.convive_agresor', ['type'=>'checkbox', 'checked'=>false]); 
         
         
     ?> </div>

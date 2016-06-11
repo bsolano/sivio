@@ -18,7 +18,7 @@
                 foreach ($attentions as $attention): 
             ?>
             <tr>
-                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>)'>Editar</button> </td>
+                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>, <?= $attention['id'] ?>)'>Editar</button> </td>
                 <td><?php echo $attention['log']['identificacion']; ?></td>
                 <td><?php echo $attention['log']['nombre']." ".$attention['Logs']['apellidos']; ?></td>
                 <td><?php echo $attention['user']['username']; ?></td>
@@ -30,8 +30,9 @@
                                 $numSegs = sizeof($attention['followups']);
                                 for($i = 1; $i <=4 ; $i++){
                                     $claseBoton = ($i <= $numSegs) ? "secondary button" : "hollow secondary button";
+                                    $fId        = ($i <= $numSegs) ? $attention['followups'][$i-1]['id'] : null;
                         ?>
-                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick="darSeguimiento()"><?= $i ?></button> 
+                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick="darSeguimiento(<?= $attention['log']['person_id'].",".$fId ?>)"><?= $i ?></button> 
                         <?php
                                 }
                             else: 
@@ -56,12 +57,12 @@
 
 
 <script type="text/javascript">
-    function darSeguimiento() {
-        document.location = "/attentions/followup/";
+    function darSeguimiento(id, fId) {
+        document.location = "/attentions/followup/" + id+ "/" + fId;
     }
     
-    function editarAtencion(id) {
-        document.location = "/attentions/add/" + id;
+    function editarAtencion(id, atId) {
+        document.location = "/attentions/add/" + id + "/" + atId;
     }
     
 </script>

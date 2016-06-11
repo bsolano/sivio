@@ -12,7 +12,6 @@
               ],
               'type' => 'radio',
               'options' =>  $estadocivil,
-              'required' => 'required',
               'label' => 'Estado civil',
               'value' => $persona->estado_civil
             ]);
@@ -23,7 +22,6 @@
               ],
               'type' => 'radio',
               'options' =>  $escolaridad,
-              'required' => 'required',
               'label' => 'Escolaridad',
               'value' => $persona->escolaridad
             ]);

@@ -42,13 +42,15 @@ class AttentionsController extends AppController
     }
     
     /** metodo para realizar seguimientos a una atencion **/
-    public function followup($id = null){
+    public function followup($id, $fId = null){
         $this->loadModel('PeopleAdvocacies');
         
-        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
+        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
+                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
+                                            ->contain(['Advocacies']);
         $this->set('advo',$advo);
         if($this->request->is('post')){
-            
+            $this->set('satanas',$this->request->data);
         }
     }
     /**
@@ -56,7 +58,7 @@ class AttentionsController extends AppController
      * a las convenciones pre-establecidas. 
      * $id es el id de la persona en la base de datos
      */
-    public function add($id)
+    public function add($id, $atId = null)
     {
         //concatenar y desconcatenar strings con &
         $this->loadComponent('StringManipulation'); 
@@ -72,12 +74,12 @@ class AttentionsController extends AppController
         $this->loadModel('PeopleEntries');
 
         //se cargan las tablas
-        $peopleTable           = TableRegistry::get('People');
-        $aggressorsTable       = TableRegistry::get('Aggressors');
-        $historiesTable        = TableRegistry::get('Histories');
-        $attentionsTable       = TableRegistry::get('Attentions');
-        $entriesTable          = TableRegistry::get('Entries');
-        $peopleEntriesTable    = TableRegistry::get('PeopleEntries');
+        $peopleTable         = TableRegistry::get(  'People'         );
+        $aggressorsTable     = TableRegistry::get(  'Aggressors'     );
+        $historiesTable      = TableRegistry::get(  'Histories'      );
+        $attentionsTable     = TableRegistry::get(  'Attentions'     );
+        $entriesTable        = TableRegistry::get(  'Entries'        );
+        $peopleEntriesTable  = TableRegistry::get(  'PeopleEntries'  );
 
         //obtener una persona y dar formato a sus datos para llenar en el formulario
         $per = $peopleTable->get($id);
@@ -86,13 +88,22 @@ class AttentionsController extends AppController
         $per->adicciones                = $this->StringManipulation->StringTokenedToArray($per->adicciones);
         $this->set('persona', $per);
 
+
         //para saber cuales redes de apoyo tiene actualmente una persona
-        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
+        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
+                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
         $this->set('advo',$advo);
         
         //hijos 
         $iHijo = $this->People->find('all',['conditions' => ['num_familia' => $per->num_familia, 'rol_familia'=>'hijo' ]])->select('id');
         $iHijo = $iHijo->toArray();
+        if($atId != null){
+            $aten = $attentionsTable->get($atId);
+            $hist = $historiesTable->get($aten->history_id);
+            $hist = $this->StringManipulation->transformarStrings($hist, ['vencimiento_proteccion']);
+            $this->set('histV',$hist);
+            
+        }
 
         if ($this->request->is('post')) {
             $this->set('data',$this->request->data);
@@ -144,9 +155,6 @@ class AttentionsController extends AppController
             //             $atn = $this->Attentions->newEntity($datosAtencion);
             //             if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
             //                 $attention_id = $atencion->id;
-            //                 $datosAtnP = ['attention_id'=>$attention_id,'person_id'=>$id];
-            //                 $attnP = $this->AttentionsPeople->newEntity($datosAtnP);
-            //                 ($guardado = $guardado && $attentionsPeopleTable->save($attnP));
             //             }
             //         }
             //     }
