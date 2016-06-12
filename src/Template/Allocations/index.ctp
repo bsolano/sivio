@@ -12,7 +12,7 @@
 
 
 <div class="internalReferences index large-9 medium-8 columns content">
-    <h3><?= __('Asignación de Profesional') ?></h3>
+    <h3><?= __('Administración de Asignaciones') ?></h3>
 
 
     <table cellpadding="0" cellspacing="0">
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($internalReferences as $internalReference): ?>
+            <?php foreach ($usersPeople as $internalReference): ?>
              <!-- <pre> <?=  print_r($internalReference); ?></pre>  -->
             
             
@@ -40,7 +40,7 @@
                 <td><?= h($internalReference->telefono) ?></td>
                 <td><?= h($internalReference->oficina) ?></td>
                 <td><?= $internalReference->has('user') ? $this->Html->link($internalReference->user->id, ['controller' => 'Users', 'action' => 'view', $internalReference->user->id]) : '' ?></td>
-                <td><?= h($internalReference->group->name) ?></td>
+                <td><?php echo "Psychology"; //h($internalReference->group->name) ?></td>
                 <td><?php 
                 
                     echo $this->Form->create(null, [
@@ -52,8 +52,8 @@
 
                     foreach ($users as $user)
                     {
-                        if ($user->group_id == $internalReference->group_id) $profArr[] = $user->username;
-                        //array_push($profArr, $user->username);
+                        // @@@@@
+                        //if ($user->group_id == $internalReference->group_id) $profArr[] = $user->username;
                     }
                 
 
