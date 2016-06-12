@@ -60,9 +60,22 @@
             </div> <!--/page 1-->
             <div class = "row page page2">
             <?php
-            $InstitucionRefiere = ["COAVIF","Usuaria","Pariente","Oficina Regional INAMU","IMAS","PANI",
-                                    "OFIM", "Red local", "Juzgado", "Def. Habitantes", "CCSS","Ministerio púbilco",
-                                    "MSP","IAFA","OAPV","Otro"];
+            $InstitucionRefiere = ["COAVIF" => "COAVIF",
+            "Usuaria" => "Usuaria",
+            "Pariente" => "Pariente",
+            "Oficina Regional INAMU" => "Oficina Regional INAMU",
+            "IMAS" => "IMAS",
+            "PANI" => "PANI",
+            "OFIM" => "OFIM", 
+            "Red local" => "Red local",
+            "Juzgado" => "Juzgado",
+            "Def. Habitantes" => "Def. Habitantes",
+            "CCSS" => "CCSS",
+            "Ministerio púbilco" => "Ministerio púbilco",
+            "MSP" => "MSP",
+            "IAFA" => "IAFA",
+            "OAPV" => "OAPV"
+            ,"Otro" => "Otro"];
             echo $this->Form->input('institucion_que_refiere',['label'=>'Institución referente','type'=>'select','options'=>$InstitucionRefiere]);
             echo $this->Form->input('nombre_que_refiere',['label' => 'Funcionario de la institución referente']);
             echo $this->Form->input('telefono_que_refiere',['label' => 'Teléfono del funcionario de la institución referente']);
@@ -88,7 +101,7 @@
             echo $this->Form->input('ultimo_incidente',['label'=>' ']);?>
             
             <a class="secondary button" onclick="$('#myModal').foundation('open');"href="#" data-reveal-id="myModal">Nivel de Riesgo</a>
-            <b>Indeterminado</b>
+            <p id="nivel_de_riesgo"><b>Indeterminado</b></p>
             
             <legend>Familiares en riesgo</legend>
             <?php
