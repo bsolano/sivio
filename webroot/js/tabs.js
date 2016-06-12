@@ -35,6 +35,44 @@ $('.tab_page1').show();
                 $('.'+activeTab).show();
                 
               });
-
+              
+  $('#calcular').on('click',function(){
+  
+   var AltoRiesgo = $('.Alto_riesgo');
+   var RiesgoSevero = $('.Riesgo_severo');
+   var Precaucion= $('.Precaucion');
+   var AltoRiesgoResult = false;
+   var RiesgoSeveroResult = false;
+   var PrecaucionResult = false;
+   
+   for (var i = 0; i < AltoRiesgo.length; i++) {
+    
+    if(AltoRiesgo[i].checked){
+     AltoRiesgoResult = true;
+     }
+    }
+   for (var i = 0; i < RiesgoSevero.length; i++) {
+    if(RiesgoSevero[i].checked){
+     RiesgoSeveroResult = true;
+     }
+    }
+   for (var i = 0; i < Precaucion.length; i++) {
+    if(Precaucion[i].checked){
+     PrecaucionResult = true;
+     }
+    }
+    
+   if(AltoRiesgoResult && RiesgoSeveroResult){
+    $("#nivel_de_riesgo").html("Riesgo Severo");
+   }
+   else if(AltoRiesgoResult){
+    $("#nivel_de_riesgo").html("Alto Riesgo");
+   }
+   else if(PrecaucionResult){
+    $("#nivel_de_riesgo").html("Precaución");
+   }
+   
+   $('#myModal').foundation('close');
+  });
 });
 

@@ -61,6 +61,9 @@ class ConsultationsController extends AppController
             $consultation = $this->Consultations->patchEntity($consultation, $this->request->data);
             /*Transforma el array del input a una string con el token & para ser guardada */
             $string_SituacionEnfrentada = $this->StringManipulation->ArrayToTokenedString($consultation->get('situacion-enfrentada'));
+          
+            
+            
             $consultation->situacion_enfrentada = $string_SituacionEnfrentada;
         
             if ($this->Consultations->save($consultation)) {

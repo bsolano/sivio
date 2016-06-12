@@ -14,12 +14,12 @@
     <legend><?= __('Añadir consulta') ?></legend>
     <section class="wrapper">
         <ul class="tabs">
-            <li id="page1" class="active" onclick='switchTabs()'><a href="#tab1">Página 1</a></li>
-            <li id="page2" onclick='switchTabs()'><a href="#tab2">Página 2</a></li>
-            <li id="page3" onclick='switchTabs()'><a href="#tab3">Página 3</a></li>
-            <li id="page4" onclick='switchTabs()'><a href="#tab4">Página 4</a></li>
-            <li id="page5" onclick='switchTabs()'><a href="#tab5">Página 5</a></li>
-            <li id="page6" onclick='switchTabs()'><a href="#tab6">Página 6</a></li>
+            <li id="page1" class="active"><a href="#tab1">Página 1</a></li>
+            <li id="page2"><a href="#tab2">Página 2</a></li>
+            <li id="page3"><a href="#tab3">Página 3</a></li>
+            <li id="page4"><a href="#tab4">Página 4</a></li>
+            <li id="page5"><a href="#tab5">Página 5</a></li>
+            <li id="page6"><a href="#tab6">Página 6</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
         </ul>
     </section>
@@ -101,7 +101,7 @@
             echo $this->Form->input('ultimo_incidente',['label'=>' ']);?>
             
             <a class="secondary button" onclick="$('#myModal').foundation('open');"href="#" data-reveal-id="myModal">Nivel de Riesgo</a>
-            <p id="nivel_de_riesgo"><b>Indeterminado</b></p>
+            <p id="nivel_de_riesgo">Indeterminado</p>
             
             <legend>Familiares en riesgo</legend>
             <?php
@@ -167,9 +167,6 @@
             <?php  echo $this->Form->input('observaciones');?>
         
  
-
-    
-    <div id="submit"><?= $this->Form->button(__('Enviar Formulario'), ['class' => 'secondary button']) ?></div>
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
@@ -181,8 +178,16 @@
    
 <div class="reveal" id="myModal" data-reveal>
   <div class="row">
-      <div class="medium-8-columns">
-     <h2 id="modalTitle">Valoración de Riesgo</h2>  
+      <div class="small-2-columns">
+     <h2 id="modalTitle">Valoración de Riesgo</h2>
+     </div>
+     <div class="small-2-columns">
+         <button id="calcular" class="secondary button">
+             Calcular nivel de riesgo
+         </button>
+     </div>
+     </div>
+     <div class="row">
       <section class="wrapper">
         <ul class="tabs_modal">
             <li id="tab_page1" class="active"><a href="#tab1">Página 1</a></li>
@@ -191,7 +196,7 @@
             <li id="tab_page4" ><a href="#tab3">Página 4</a></li>
         </ul>
         </section>
-        </div>
+        
         </div>
     <div class="row">
       <div class="medium-8-columns">
@@ -219,17 +224,17 @@
            <li><input class="Riesgo_severo" type="checkbox"  value="12">¿Siente la víctima que el agresor es capaz de matarla personalmente o a través de terceras personas?</li><br>
          </div>
          <div class="page tab_page3">
-          <li><input class="Riesgo_severo" type="checkbox"  value="13">¿Ha habido intentos o ideas de suicidio de parte del agresor?</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="14">El agresor tiene antecedentes penales relacionados con violencia hacia las mujeres y/o delitos sexuales.</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="15">Al agresor le han interpuesto medidas de protección anteriormente u otras medidas relacionadas con violencia contra la pareja</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="16">El agresor ha incumplido medidas de protección o de libertad condicional.</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="17">Ha existido violencia física hacia la pareja en presencia de los hijos (as) u otros familiares</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="18">Ha existido violencia física hacia los hijos(as) u otros familiares.</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="13">¿Ha habido intentos o ideas de suicidio de parte del agresor?</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="14">El agresor tiene antecedentes penales relacionados con violencia hacia las mujeres y/o delitos sexuales.</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="15">Al agresor le han interpuesto medidas de protección anteriormente u otras medidas relacionadas con violencia contra la pareja</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="16">El agresor ha incumplido medidas de protección o de libertad condicional.</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="17">Ha existido violencia física hacia la pareja en presencia de los hijos (as) u otros familiares</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="18">Ha existido violencia física hacia los hijos(as) u otros familiares.</li><br>
           </div>
          <div class="page tab_page4">
-          <li><input class="Riesgo_severo" type="checkbox"  value="19">El agresor presenta historial de conductas violentas contra otras personas NO familiares, conocidas o desconocidas.</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="20">El agresor ha realizado conductas de crueldad contra animales</li><br>
-          <li><input class="Riesgo_severo" type="checkbox"  value="21">El agresor tiene historial de reaccionar violentamente frente a las figuras de autoridad ( policías, jueces, etc.)</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="19">El agresor presenta historial de conductas violentas contra otras personas NO familiares, conocidas o desconocidas.</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="20">El agresor ha realizado conductas de crueldad contra animales</li><br>
+          <li><input class="Precaucion" type="checkbox"  value="21">El agresor tiene historial de reaccionar violentamente frente a las figuras de autoridad ( policías, jueces, etc.)</li><br>
           </div>
            </ol>
         </fieldset>
