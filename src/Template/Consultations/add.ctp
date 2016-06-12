@@ -83,18 +83,16 @@
                     ));   
             ?></div> <!-- page 2 -->
             <div class = "row page page3">
+            <legend>Último incidente</legend>
             <?php
-            echo $this->Form->input('ultimo_incidente', ['label' => 'Último incidente']);
-             $riesgo = [
-                'Precaución' => 'Precaución',
-                'Alto Riesgo' => 'Alto Riesgo',
-                 'Riesgo Severo' => 'Riesgo Severo',
-                ];
-            echo $this->Form->input('valoracion_de_riesgo', [
-                    'label' => 'Nivel de riesgo',
-                    'type' => 'radio',
-                    'options' => $riesgo]);
-            echo $this->Form->input('familiares_en_riesgo', ['label' => 'Familiares en riesgo']);
+            echo $this->Form->input('ultimo_incidente',['label'=>' ']);?>
+            
+            <a class="secondary button" onclick="$('#myModal').foundation('open');"href="#" data-reveal-id="myModal">Nivel de Riesgo</a>
+            <b>Indeterminado</b>
+            
+            <legend>Familiares en riesgo</legend>
+            <?php
+            echo $this->Form->input('familiares_en_riesgo', ['label' => '']);
             echo $this->Form->input('familiares_requieren_proteccion', ['label' => '¿Los familiares necesitan protección?']);?>
             </div> <!-- / page3 -->
             <div class = "row page page4">
@@ -162,7 +160,7 @@
     <?= $this->Form->end() ?>
   
 </div> <!-- /page 6-->
-<a onclick="$('#myModal').foundation('open');"href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
 
 
 
@@ -173,32 +171,55 @@
       <div class="medium-8-columns">
      <h2 id="modalTitle">Valoración de Riesgo</h2>  
       <section class="wrapper">
-        <ul class="tabs">
-            <li id="page1" class="active" onclick='switchTabs()'><a href="#tab1">Página 1</a></li>
-            <li id="page2" onclick='switchTabs()'><a href="#tab2">Página 2</a></li>
-            <li id="page3" onclick='switchTabs()'><a href="#tab3">Página 3</a></li>
+        <ul class="tabs_modal">
+            <li id="tab_page1" class="active"><a href="#tab1">Página 1</a></li>
+            <li id="tab_page2" ><a href="#tab2">Página 2</a></li>
+            <li id="tab_page3" ><a href="#tab3">Página 3</a></li>
+            <li id="tab_page4" ><a href="#tab3">Página 4</a></li>
         </ul>
         </section>
-    <fieldset>
-       <ol>
-     
-      <li><input class="Alto_riesgo" type="checkbox" value="1">¿Han habido agresiones físicas graves que
-      causaron lesiones a la víctima o ameritaron una intervención médica?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="2">¿Ha usado o amenazado con usar un arma
-      de fuego, cuchillo y otra arma letal contra la víctima?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="3">¿Ha intentado el agresor ahorcar a la víctima?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="4">¿Ha forzado a la víctima a tener relaciones
-      o practicar actos de contenido sexual en contra de su voluntad?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="5">¿Ha amenazado con matar a la víctima?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="6">¿Presenta el agresor celos muy intensos,
-      violentos y/o conductas controladoras sobre la pareja?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="7">¿Ha habido un aumento en la frecuencia y/o
-      gravedad de los incidentes violentos en el último mes?</li><br>
-      <li><input class="Alto_riesgo" type="checkbox"  value="8">El agresor NO expresa responsabilidad ni culpa por su conducta.</li><br>
-      
-      
-       </ol>
-    </fieldset>
+        </div>
+        </div>
+    <div class="row">
+      <div class="medium-8-columns">
+        <fieldset>
+           <ol>
+         <div class="page tab_page1">
+          <li><input class="Alto_riesgo" type="checkbox" value="1">¿Han habido agresiones físicas graves que
+          causaron lesiones a la víctima o ameritaron una intervención médica?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="2">¿Ha usado o amenazado con usar un arma
+          de fuego, cuchillo y otra arma letal contra la víctima?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="3">¿Ha intentado el agresor ahorcar a la víctima?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="4">¿Ha forzado a la víctima a tener relaciones
+          o practicar actos de contenido sexual en contra de su voluntad?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="5">¿Ha amenazado con matar a la víctima?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="6">¿Presenta el agresor celos muy intensos,
+          violentos y/o conductas controladoras sobre la pareja?</li><br>
+        </div>
+        <div class="page tab_page2">
+          <li><input class="Alto_riesgo" type="checkbox"  value="7">¿Ha habido un aumento en la frecuencia y/o
+          gravedad de los incidentes violentos en el último mes?</li><br>
+          <li><input class="Alto_riesgo" type="checkbox"  value="8">El agresor NO expresa responsabilidad ni culpa por su conducta.</li><br>
+           <li><input class="Riesgo_severo" type="checkbox"  value="9">¿Hay consumo reciente y abusivo de alcohol y/o drogas por parte del agresor?</li><br>
+           <li><input class="Riesgo_severo" type="checkbox"  value="10">¿Ha interpuesto la víctima medidas de protección, pensión alimentaria o denuncia penal contra el agresor?</li><br>
+           <li><input class="Riesgo_severo" type="checkbox"  value="11">¿Está o ha estado vinculado el agresor con actividades delictivas como pandillas,narcotráfico o crimen organizado?</li><br>
+           <li><input class="Riesgo_severo" type="checkbox"  value="12">¿Siente la víctima que el agresor es capaz de matarla personalmente o a través de terceras personas?</li><br>
+         </div>
+         <div class="page tab_page3">
+          <li><input class="Riesgo_severo" type="checkbox"  value="13">¿Ha habido intentos o ideas de suicidio de parte del agresor?</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="14">El agresor tiene antecedentes penales relacionados con violencia hacia las mujeres y/o delitos sexuales.</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="15">Al agresor le han interpuesto medidas de protección anteriormente u otras medidas relacionadas con violencia contra la pareja</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="16">El agresor ha incumplido medidas de protección o de libertad condicional.</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="17">Ha existido violencia física hacia la pareja en presencia de los hijos (as) u otros familiares</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="18">Ha existido violencia física hacia los hijos(as) u otros familiares.</li><br>
+          </div>
+         <div class="page tab_page4">
+          <li><input class="Riesgo_severo" type="checkbox"  value="19">El agresor presenta historial de conductas violentas contra otras personas NO familiares, conocidas o desconocidas.</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="20">El agresor ha realizado conductas de crueldad contra animales</li><br>
+          <li><input class="Riesgo_severo" type="checkbox"  value="21">El agresor tiene historial de reaccionar violentamente frente a las figuras de autoridad ( policías, jueces, etc.)</li><br>
+          </div>
+           </ol>
+        </fieldset>
   
    </div>
    </div>

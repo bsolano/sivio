@@ -2,6 +2,7 @@ $(document).ready(function(){
 $('#horario').hide();
 $('.page').hide(); 
 $('.page1').show();
+$('.tab_page1').show();
 
  $('#tipo').on('change', function() {
   
@@ -17,6 +18,17 @@ $('.page1').show();
                 var current_tab = $('ul.tabs li.active').attr('id');
                 $('.'+current_tab).hide();
                 $('ul.tabs li').removeClass('active');
+                $(this).addClass('active')
+                
+                var activeTab = $(this).attr('id');
+                $('.'+activeTab).show();
+                
+              });
+              
+  $('ul.tabs_modal li').on('click',function(){
+                var current_tab = $('ul.tabs_modal li.active').attr('id');
+                $('.'+current_tab).hide();
+                $('ul.tabs_modal li').removeClass('active');
                 $(this).addClass('active')
                 
                 var activeTab = $(this).attr('id');
