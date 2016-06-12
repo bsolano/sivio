@@ -416,6 +416,7 @@ pre {
     margin-right: 9px;
 }
 
+
 .top-bar.expanded .title-area {
     background: #01545b;
 }
@@ -445,6 +446,7 @@ pre {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;  /* Para evitar que se divida en varias filas*/
 }
 .top-bar ul li:not(.has-form) a:not(.button):before {
   content: "";
@@ -631,6 +633,9 @@ div.message.hidden {
     /*min-height: 92%; */
     
     /*display: inline-block;*/
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Force equal height by overflowing */
@@ -780,14 +785,19 @@ http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-c
 	border-radius:15px;
 	
 	padding:2rem;
-	background: rgb(69, 69, 69);
+	background: rgba(255, 255, 255, .9);
 	z-index: 99999;
 	opacity:0;
+	
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
+	
 	pointer-events: none;
 	overflow-y: auto;
+	
+	margin-left: 20rem;
+    margin-right: 20rem;
 	
 	-webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.8);
     -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.8);
@@ -819,20 +829,20 @@ http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-c
 	background: #606061;
 	color: #FFFFFF;
 	line-height: 25px;
-	position: absolute;
-	right: -12px;
+	
+	position: fixed;
+	right: 24rem;
+    top: 4rem;
+	
 	text-align: center;
 	margin:2rem;
-	top: -10px;
 	width: 24px;
 	text-decoration: none;
-	font-weight: bold;
+	
 	-webkit-border-radius: 12px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
+
 }
 
 .close:hover { background: #00d9ff; }
@@ -844,6 +854,12 @@ http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-c
 
 select, [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea {color:inherit;}
 
+.select > .checkbox {
+    border-left: 1px solid rgba(220, 220, 220, .6);
+    padding-left: .5em;
+    /*margin-top: .5rem;*/
+}
+
 option {
     padding: .75rem;
     border-right: 1px solid gray;
@@ -854,11 +870,60 @@ option {
 hr {margin:.5rem auto;}
 
 .menu {
-    max-width: 80rem;
-    margin-right: auto;
+    width: 90%;
     margin-left: auto;
+    margin-right: auto;
 }
 
+[type="checkbox"], [type="file"], [type="radio"] {
+    margin-bottom: .5rem;
+    margin-top   : .5rem;
+}
+
+.title-bar {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.large-12 {
+    width: calc(100% + 2rem);
+}
+
+
+
+            /* PLACEHOLDERS */
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: gray;
+}
+
+input:-ms-input-placeholder { /* IE 10+ */
+  color: gray;
+}
+
+                            /* Firefox 19+ */
+input::-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus::-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Firefox 4 - 18 */
+input:-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus:-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
 /*-EO:OVERRIDES-----*/
 
 

@@ -43,12 +43,12 @@
 	            hideOrShow( $('#deseaAtencionn') , $('#atencionn') );/*psico (niños)*/
 	            hideOrShow( $('#trabajosocial') , $('#tsocial') );/*psico (niños)*/
 	            hideOrShow( $('#RecursosApoyo') , $('#RecursosAp') );/*psico (niños)*/
-	            
-
 	    })
+	    
+	    
         //tab 1
-        $('#dextranjero'      ).change (function () { showOrHide( $(this), $('#direccion_extranjero'  ) );  });
-        $('#ddconfidencial'      ).change (function () { showOrHide( $(this), $('#direccion_destino'  ) );  });
+        $('#dextranjero'        ).change (function () { showOrHide( $(this), $('#direccion_extranjero'  ) );  });
+        $('#ddconfidencial'     ).change (function () { showOrHide( $(this), $('#direccion_destino'  ) );  });
         $('#dconfidencial'      ).change (function () { showOrHide( $(this), $('#direccion'  ) );  });
         $('#desea_intervencion' ).change (function () { hideOrShow( $(this), $('#atencionl'  ) );  });
         $('#trabajosocial'      ).change (function () { hideOrShow( $(this), $('#tsocial'    ) );  });

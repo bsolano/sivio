@@ -44,10 +44,17 @@ class AttentionsController extends AppController
     /** metodo para realizar seguimientos a una atencion **/
     public function followup($id, $fId = null){
         $this->loadModel('PeopleAdvocacies');
+        $this->loadModel('People');
+        
+        $peopleTable         = TableRegistry::get(  'People'         );
         
         $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
                                             ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
                                             ->contain(['Advocacies']);
+        
+        $per = $peopleTable->get($id);
+        $this->set('persona', $per);
+        
         $this->set('advo',$advo);
         if($this->request->is('post')){
             $this->set('satanas',$this->request->data);
