@@ -1,25 +1,6 @@
 <fieldset>
         <div class="large-6 medium-6 columns">
             <?php
-                //Primera columna
-                /**Arrays y declaraciones a las preguntas **/
-                
-                $ceaam = ['AM'=>'AM','OCC'=>'OCC','HC'=>'HC'];
-                $motivoIngreso = array(
-                    'Abuso sexual' => 'Abuso sexual',
-                    'Intento femicidio' => 'Intento femicidio',
-                    'Orden Judicial' => 'Orden Judicial',
-                    'Recomendación de PANI' => 'Recomendación de PANI',
-                    'Trata' => 'Trata',
-                    'Violencia contra las mujeres' => 'Violencia contra las mujeres',
-                    'Violencia intrafamiliar' => 'Violencia intrafamiliar',
-                    'Vulnerabilidad social' => 'Vulnerabilidad social'
-                     
-                );
-                $kit = ['Sí'=>'Sí','No'=>'No','Rechaza el kit'=>'Rechaza el kit'];
-
-                //INPUTS      
-                //$p = $persona->toArray();
                 echo $this->Form->input('Person.0.num_familia',['label'=>'Número de familia','value'=>$persona->num_familia]); 
 
                 echo "<legend>Datos de la usuaria</legend>";
@@ -40,7 +21,7 @@
                     ?> 
                 </div> 
             <?php 
-                echo "<br><legend>Datos de ingreso/egrso</legend><br>";
+                echo "<br><legend>Datos de ingreso/egreso</legend><br>";
                 echo $this->Form->input('Entry.0.ceaam_ingresa', [
                   'templates' => [
                         'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
@@ -141,7 +122,7 @@
                 echo $this->Form->input('ddconfidencial', ['type'=>'checkbox','id'=>'ddconfidencial', 'label'=>'¿La ubicación es confidencial o no la indica?','checked'=>false]);
                 echo "<br>";
             ?>  
-                <div class="row" id= "direccion_destino">  
+                <div id= "direccion_destino" style = "margin-left: auto">  
                     <?php
                         echo $this->Form->input('dextranjero', ['type'=>'checkbox','id'=>'dextranjero', 'label'=>'¿Su destino es fuera del país?','checked'=>false]);
                         ?><div class="row" id= "direccion_extranjero"><?php
@@ -164,7 +145,7 @@
                     'label' => 'Entrega del kit de emergencia'
                     ]
                 );
-                
+                echo $this->Form->input('Person.0.acepta_seguimiento',['type'=>'checkbox', 'label'=>'¿Acepta los seguimientos? De no marcarse, se toma como un no. ']);
 
             ?>
         </div>        

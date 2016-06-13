@@ -208,6 +208,7 @@ select[multiple] {
 input[type=checkbox],
 input[type=radio] {
     margin-right: 0.5em;
+    opacity:0.5; /*  En windows se ve muy feo en 1  */
 }
 
 .date select,
@@ -415,6 +416,7 @@ pre {
     margin-right: 9px;
 }
 
+
 .top-bar.expanded .title-area {
     background: #01545b;
 }
@@ -444,6 +446,7 @@ pre {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;  /* Para evitar que se divida en varias filas*/
 }
 .top-bar ul li:not(.has-form) a:not(.button):before {
   content: "";
@@ -630,6 +633,9 @@ div.message.hidden {
     /*min-height: 92%; */
     
     /*display: inline-block;*/
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Force equal height by overflowing */
@@ -761,14 +767,207 @@ article {
 /* END DESIGNEES VIEW BOXES */
 
 
+
+/*   MODAL DIALOG --------------------------------------------------------------
+tomado de 
+http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-css3/
+*/
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	
+	top:     4rem;
+	right:   4rem;
+	bottom:  4rem;
+	left:    4rem;
+	
+	border-radius:15px;
+	
+	padding:2rem;
+	background: rgba(255, 255, 255, .9);
+	z-index: 99999;
+	opacity:0;
+	
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	
+	pointer-events: none;
+	overflow-y: auto;
+	
+	margin-left: 20rem;
+    margin-right: 20rem;
+	
+	-webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.8);
+    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.8);
+}
+
+
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+
+
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	
+	position: fixed;
+	right: 24rem;
+    top: 4rem;
+	
+	text-align: center;
+	margin:2rem;
+	width: 24px;
+	text-decoration: none;
+	
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+
+}
+
+.close:hover { background: #00d9ff; }
+
+/*     END OF MODAL DIALOG ---------------------------------------------------*/
+
+
 /*    OVERRIDES     */
 
 select, [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea {color:inherit;}
 
+.select > .checkbox {
+    border-left: 1px solid rgba(220, 220, 220, .6);
+    padding-left: .5em;
+    /*margin-top: .5rem;*/
+}
+
+option {
+    padding: .75rem;
+    border-right: 1px solid gray;
+}
+
+.button {margin:0;}
+
+hr {margin:.5rem auto;}
+
+.menu {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+[type="checkbox"], [type="file"], [type="radio"] {
+    margin-bottom: .5rem;
+    margin-top   : .5rem;
+}
+
+.title-bar {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.large-12 {
+    width: calc(100% + 2rem);
+}
+
+
+
+            /* PLACEHOLDERS */
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: gray;
+}
+
+input:-ms-input-placeholder { /* IE 10+ */
+  color: gray;
+}
+
+                            /* Firefox 19+ */
+input::-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus::-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Firefox 4 - 18 */
+input:-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus:-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
 /*-EO:OVERRIDES-----*/
 
-/*Para que el texto de las tablas no se amontone*/
 
 td {
     word-wrap: break-word;
 }
+
+
+/*        Animacion Cargando -----------------------------------------         */
+
+.cssload-container{ position:relative; }
+.cssload-whirlpool,
+.cssload-whirlpool::before,
+.cssload-whirlpool::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid rgb(204,204,204);
+	border-left-color: rgb(0,0,0);
+	border-radius: 974px;
+}
+.cssload-whirlpool {
+	margin: -24px 0 0 -24px;
+	height: 49px;
+	width: 49px;
+	animation: cssload-rotate 1150ms linear infinite;
+}
+.cssload-whirlpool::before {
+	content: "";
+	margin: -22px 0 0 -22px;
+	height: 43px;
+	width: 43px;
+	animation: cssload-rotate 1150ms linear infinite;
+}
+.cssload-whirlpool::after {
+	content: "";
+	margin: -28px 0 0 -28px;
+	height: 55px;
+	width: 55px;
+	animation: cssload-rotate 2300ms linear infinite;
+}
+@keyframes cssload-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/*              FIN animacion  cargando ---------------------------------------*/

@@ -12,20 +12,25 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $created
  * @property int $user_id
  * @property string $medio_comunicacion
- * @property string $aspectos_sociales
  * @property string $apoyo_institucional
- * @property string $legales
- * @property bool $seguridad
+ * @property bool $seguimiento_plan_seguridad
  * @property string $seguimiento_kit
- * @property string $seguimiento_referencia
  * @property string $lugar_atencion
  * @property string $enfrenta_violencia
- * @property bool $convivencia
+ * @property bool $convive_agresor
  * @property string $atencion_especializada
- * @property int $advocacy_id
- * @property \App\Model\Entity\Advocacy $advocacy
  * @property int $attention_id
+ * @property \App\Model\Entity\Attention $attention
+ * @property string $al_xtiempo_del_egreso
+ * @property string $seguimiento_referencia_social
+ * @property string $seguimiento_referencia_legal
+ * @property string $seguimiento_referencia_psicologico
+ * @property bool $medidas_protec_vig
+ * @property bool $audiencia_pendiente
+ * @property bool $seguimientoOAPVD
+ * @property string $incump_medidas
  * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\Advocacy $advocacy
  */
 class Followup extends Entity
 {

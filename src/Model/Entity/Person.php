@@ -20,28 +20,33 @@ use Cake\ORM\Entity;
  * @property string $adicciones
  * @property string $condicion_migratoria
  * @property string $condicion_laboral
- * @property int $experiencia_laboral
+ * @property bool $experiencia_laboral
  * @property string $condicion_aseguramiento
  * @property string $vivienda
  * @property string $tipo_familia
  * @property int $embarazo
  * @property string $condicion_salud
- * @property string $identificacion
+ * @property int $identificacion
  * @property string $tipo_identificacion
- * @property string $numero_de_telefono
+ * @property string $telefono
  * @property int $edad
- * @property int $numero_de_hijos
+ * @property int $num_de_hijos
  * @property string $provincia
  * @property string $canton
  * @property string $direccion
- * @property bool $tiene_hijos_doce
- * @property \App\Model\Entity\Transfer[] $transfers
+ * @property bool $hijos_mayor_doce
+ * @property int $num_hijos_ceaam
+ * @property string $num_familia
+ * @property string $rol_familia
+ * @property int $acepta_seguimiento
  * @property \App\Model\Entity\Aggressor[] $aggressors
- * @property \App\Model\Entity\History[] $histories
  * @property \App\Model\Entity\Consultation[] $consultations
  * @property \App\Model\Entity\ExternalReference[] $external_references
  * @property \App\Model\Entity\Followup[] $followups
+ * @property \App\Model\Entity\History[] $histories
  * @property \App\Model\Entity\InternalReference[] $internal_references
+ * @property \App\Model\Entity\Transfer[] $transfers
+ * @property \App\Model\Entity\Attention[] $attentions
  * @property \App\Model\Entity\Intervention[] $interventions
  * @property \App\Model\Entity\Advocacy[] $advocacies
  * @property \App\Model\Entity\Entry[] $entries

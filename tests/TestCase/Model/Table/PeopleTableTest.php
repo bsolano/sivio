@@ -25,15 +25,17 @@ class PeopleTableTest extends TestCase
      */
     public $fixtures = [
         'app.people',
-        'app.transfers',
         'app.aggressors',
+        'app.attentions',
         'app.histories',
-        'app.consultations',
         'app.users',
         'app.groups',
         'app.aros',
         'app.acos',
         'app.aros_acos',
+        'app.locations',
+        'app.internal_references',
+        'app.consultations',
         'app.entries',
         'app.people_entries',
         'app.evaluations',
@@ -41,12 +43,12 @@ class PeopleTableTest extends TestCase
         'app.followups',
         'app.followups_users',
         'app.people_advocacies',
-        'app.internal_references',
-        'app.locations',
         'app.users_people',
-        'app.external_references',
-        'app.interventions',
         'app.interventions_people',
+        'app.interventions',
+        'app.attentions_people',
+        'app.external_references',
+        'app.transfers',
         'app.families',
         'app.people_families'
     ];
@@ -91,16 +93,6 @@ class PeopleTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

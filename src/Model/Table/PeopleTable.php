@@ -16,7 +16,9 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\HasMany $Followups
  * @property \Cake\ORM\Association\HasMany $Histories
  * @property \Cake\ORM\Association\HasMany $InternalReferences
+ * @property \Cake\ORM\Association\HasMany $Logs
  * @property \Cake\ORM\Association\HasMany $Transfers
+ * @property \Cake\ORM\Association\BelongsToMany $Attentions
  * @property \Cake\ORM\Association\BelongsToMany $Interventions
  * @property \Cake\ORM\Association\BelongsToMany $Advocacies
  * @property \Cake\ORM\Association\BelongsToMany $Entries
@@ -58,11 +60,16 @@ class PeopleTable extends Table
         $this->hasMany('InternalReferences', [
             'foreignKey' => 'person_id'
         ]);
+        $this->hasMany('Logs', [
+            'foreignKey' => 'person_id'
+        ]);
         $this->hasMany('Transfers', [
             'foreignKey' => 'person_id'
         ]);
-        $this->hasMany('Attentions', [
-            'foreignKey' => 'person_id'
+        $this->belongsToMany('Attentions', [
+            'foreignKey' => 'person_id',
+            'targetForeignKey' => 'attention_id',
+            'joinTable' => 'attentions_people'
         ]);
         $this->belongsToMany('Interventions', [
             'foreignKey' => 'person_id',
@@ -146,7 +153,7 @@ class PeopleTable extends Table
             ->allowEmpty('condicion_laboral');
 
         $validator
-            ->integer('experiencia_laboral')
+            ->boolean('experiencia_laboral')
             ->allowEmpty('experiencia_laboral');
 
         $validator
@@ -166,21 +173,22 @@ class PeopleTable extends Table
             ->allowEmpty('condicion_salud');
 
         $validator
+            ->integer('identificacion')
             ->allowEmpty('identificacion');
 
         $validator
             ->allowEmpty('tipo_identificacion');
 
         $validator
-            ->allowEmpty('numero_de_telefono');
+            ->allowEmpty('telefono');
 
         $validator
             ->integer('edad')
             ->allowEmpty('edad');
 
         $validator
-            ->integer('numero_de_hijos')
-            ->allowEmpty('numero_de_hijos');
+            ->integer('num_de_hijos')
+            ->allowEmpty('num_de_hijos');
 
         $validator
             ->allowEmpty('provincia');
@@ -192,8 +200,25 @@ class PeopleTable extends Table
             ->allowEmpty('direccion');
 
         $validator
-            ->boolean('tiene_hijos_doce')
-            ->allowEmpty('tiene_hijos_doce');
+            ->boolean('hijos_mayor_doce')
+            ->allowEmpty('hijos_mayor_doce');
+
+        $validator
+            ->integer('num_hijos_ceaam')
+            ->requirePresence('num_hijos_ceaam', 'create')
+            ->notEmpty('num_hijos_ceaam');
+
+        $validator
+            ->requirePresence('num_familia', 'create')
+            ->notEmpty('num_familia');
+
+        $validator
+            ->requirePresence('rol_familia', 'create')
+            ->notEmpty('rol_familia');
+
+        $validator
+            ->integer('acepta_seguimiento')
+            ->allowEmpty('acepta_seguimiento');
 
         return $validator;
     }
@@ -204,7 +229,13 @@ class PeopleTable extends Table
     */
     public function find_record($keyword) {
         return $this->find()
-            ->where(['identificacion LIKE' => '%'.$keyword.'%'])
+            ->where([
+                'identificacion LIKE' => '%'.$keyword.'%',
+                'identificacion !='   => '0'             , 
+                /*  ya se cambio para que identificacion sea nullable, pero aun hay algunos en 0
+                    se deben cambiar a mano. Por mientras, hasta que se hable, eso.
+                */
+                ])
             ->orWhere(['nombre LIKE' => '%'.$keyword.'%'])
             ->orWhere(['apellidos LIKE' => '%'.$keyword.'%']);
     }
