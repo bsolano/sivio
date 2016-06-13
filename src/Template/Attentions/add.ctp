@@ -1,14 +1,3 @@
-<!--
-<html>
-<head>
-    <link type="text/css" rel="stylesheet" href="/webroot/css/responsive-tabs.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/webroot/js/jquery.responsiveTabs.js" type="text/javascript"></script> 
-</head>
-    
-<body>
--->
-
     <?= $this->Form->create(); ?>
     <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
     <!-- TABS -->
@@ -18,10 +7,11 @@
             <li><a href="#tab2">Perfil de Usuaria</a></li>
             <li><a href="#tab3">Redes de Apoyo</a></li>
             <li><a href="#tab4">Historia de Violencia</a></li>
-            <li><a href="#tab5">Hijos</a></li>
+            <li><a href="#tab5">Hijos e Hijas</a></li>
             <li><a href="#tab6">Intervenciones</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
         </ul>
+        <?php include 'arrays.ctp'; /** todos los arrays de las diferentes preguntas del cuestionario **/ ?>
         <section class="block">
             <article id="tab1"> <?php include 't1.ctp';?> </article>
             <article id="tab2"> <?php include 't2.ctp';?> </article>
@@ -36,6 +26,10 @@
     </div>
     <?= $this->Form->end() ?>
 
+
+<!----------------------------------------------------------------------------->
+<!--               JS's                                                       ->
+<!----------------------------------------------------------------------------->
 	<script type="text/javascript" id='scpts'>
 	    $(window).load( function () {
 	            //tab 1
@@ -49,12 +43,12 @@
 	            hideOrShow( $('#deseaAtencionn') , $('#atencionn') );/*psico (niños)*/
 	            hideOrShow( $('#trabajosocial') , $('#tsocial') );/*psico (niños)*/
 	            hideOrShow( $('#RecursosApoyo') , $('#RecursosAp') );/*psico (niños)*/
-	            
-
 	    })
+	    
+	    
         //tab 1
-        $('#dextranjero'      ).change (function () { showOrHide( $(this), $('#direccion_extranjero'  ) );  });
-        $('#ddconfidencial'      ).change (function () { showOrHide( $(this), $('#direccion_destino'  ) );  });
+        $('#dextranjero'        ).change (function () { showOrHide( $(this), $('#direccion_extranjero'  ) );  });
+        $('#ddconfidencial'     ).change (function () { showOrHide( $(this), $('#direccion_destino'  ) );  });
         $('#dconfidencial'      ).change (function () { showOrHide( $(this), $('#direccion'  ) );  });
         $('#desea_intervencion' ).change (function () { hideOrShow( $(this), $('#atencionl'  ) );  });
         $('#trabajosocial'      ).change (function () { hideOrShow( $(this), $('#tsocial'    ) );  });
@@ -99,6 +93,7 @@
             if (numAd++ < 30) {
                 var newdiv = document.createElement('div');
                 newdiv.innerHTML = 
+                
                     "<legend> Red de apoyo</legend><br>"+
                       
                     //Input de seleccion de red de apoyo
@@ -121,11 +116,11 @@
                     "<div class=\"input text\">"+
                         "<label for=\"advocacy-"+numAd+"-telefono\">Teléfono</label>"+
                         "<input name=\"Advocacy["+numAd+"][telefono]\" id=\"advocacy-"+numAd+"-telefono\" value=\"\" type=\"text\">"+
-                    "</div>"+
+                    "</div>" ;
                     
                     //Boton de eliminar red de apoyo
-                    "<input id='eliminarAdv' style='margin: 10px 5px;' type='button' value='Elminar red' class='button float-right' onclick='deleteInput(\'redesApoyo\')'/><br></br>";
-                      
+                    //+"<input id='eliminarAdv' style='margin: 10px 5px;' type='button' value='Elminar red' class='button float-right' onclick='deleteInput(\'redesApoyo\')'/><br></br>";
+                
                 document.getElementById(divName).appendChild(newdiv);
              }
         }
@@ -134,8 +129,4 @@
            document.getElementById('divName').remove();
         }
 	</script>
-	
-<!--
-</body>
-</html>
--->
+

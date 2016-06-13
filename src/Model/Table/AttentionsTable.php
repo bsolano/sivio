@@ -13,11 +13,11 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Aggressors
  * @property \Cake\ORM\Association\BelongsTo $Histories
  * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $Logs
  * @property \Cake\ORM\Association\HasMany $Followups
  * @property \Cake\ORM\Association\HasMany $InterventionsPeople
  * @property \Cake\ORM\Association\HasMany $PeopleAdvocacies
  * @property \Cake\ORM\Association\HasMany $PeopleEntries
- * @property \Cake\ORM\Association\BelongsToMany $People
  */
 class AttentionsTable extends Table
 {
@@ -47,6 +47,10 @@ class AttentionsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+        $this->belongsTo('Logs', [
+            'foreignKey' => 'log_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Followups', [
             'foreignKey' => 'attention_id'
         ]);
@@ -58,11 +62,6 @@ class AttentionsTable extends Table
         ]);
         $this->hasMany('PeopleEntries', [
             'foreignKey' => 'attention_id'
-        ]);
-        $this->belongsToMany('People', [
-            'foreignKey' => 'attention_id',
-            'targetForeignKey' => 'person_id',
-            'joinTable' => 'attentions_people'
         ]);
     }
 
@@ -82,8 +81,7 @@ class AttentionsTable extends Table
             ->allowEmpty('tipo');
 
         $validator
-            ->integer('identificacion')
-            ->allowEmpty('identificacion');
+            ->allowEmpty('datos_adicionales');
 
         return $validator;
     }
@@ -100,6 +98,7 @@ class AttentionsTable extends Table
         $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
         $rules->add($rules->existsIn(['history_id'], 'Histories'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['log_id'], 'Logs'));
         return $rules;
     }
 }

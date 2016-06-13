@@ -1,7 +1,9 @@
-<h2>Resultados</h2>
 
-<?php if($people->count()): ?>
+<?php 
+if($people->count()): 
+?>
     
+    <h2 style="margin: 10px 5px;" > Resultados (<?php echo $people->count(); ?>)</h2>
     <input id="bnt_Atencion" style="margin: 10px 5px; display: none;" type="button" value="Atención" class="secondary button float-right" onclick='esAtencion()'/>
     <input id="bnt_Consulta" style="margin: 10px 5px; display: none;" type="button" value="Consulta" class="secondary button float-right" onclick='esConsulta()'/>
     

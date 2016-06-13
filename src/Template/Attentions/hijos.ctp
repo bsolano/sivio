@@ -46,7 +46,6 @@
             // agresor person.1
             
             echo "<legend>Datos Generales</legend><br>";
-            echo "<h2> Hijo ".$i." </h2>";
             echo $this->Form->input('Person.'.'Hijo'.($i).'.nombre'
             //, ['required'=>'required']
             ); 

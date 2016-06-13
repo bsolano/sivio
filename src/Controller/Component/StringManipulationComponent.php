@@ -25,10 +25,10 @@ class StringManipulationComponent extends Component
                  
                   
               }
-              /**
-               * Get an sigle string tokened with "&" and split it
-               * Return array 
-               */
+        /**
+         * Get an sigle string tokened with "&" and split it
+         * Return array 
+        */
          public function StringTokenedToArray($string){
                 return  $array = explode("&",$string,-1);
          }
@@ -48,7 +48,7 @@ class StringManipulationComponent extends Component
          }
          
         /**
-         * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en array
+         * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en string concatenada
          * $array array de datos 
          * $string array de datos que NO se tienen que cambiar a modo tokenizado, como fechas
          */ 
@@ -56,6 +56,20 @@ class StringManipulationComponent extends Component
             foreach($array as $key => $value){
                 if(is_array($value) && !in_array($key,$string)){
                     $array[$key] = $this->ArrayToTokenedString($value);
+                } 
+            }
+            return $array;
+        }
+        
+        /**
+         * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en array
+         * $array array de datos 
+         * $string array de datos que NO se tienen que cambiar a modo array, como fechas
+         */ 
+        public function transformarStrings(& $array, $string){
+            foreach($array as $key => $value){
+                if((substr($value,0,1) == '&') && !in_array($key,$string)){
+                    $array[$key] = $this->StringTokenedtoArray($value);
                 } 
             }
             return $array;
