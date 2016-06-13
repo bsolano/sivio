@@ -22,7 +22,7 @@ class InternalReferencesController extends AppController
         /*<p> <?= $referencias[0] ?> </p>*/
         
          $this->paginate = [
-            'contain' => ['People', 'Users','Locations', 'Groups']
+            'contain' => ['People', 'Users','Locations']
         ];
         
         $this->loadModel('Groups');
@@ -31,13 +31,12 @@ class InternalReferencesController extends AppController
         
         $groupNumber = $this->Auth->user('group_id');
         
-        
         $groupName =  $this->Groups->find()->where(['Groups.id' => $groupNumber])->first(); 
         
         //$groupName = $groupName->toArray();
         
-        if ( strcmp($groupName['name'], 'Admin') == 0){
-            $referencias = $this->InternalReferences->find()->where(['InternalReferences.location_id' => $userLocation]);
+        if (strcmp($groupName['name'], 'Admin') == 0 || strcmp($groupName['name'], 'JefaturaEquipoEstrategico') == 0){
+            $referencias = $this->InternalReferences->find()->where(['AND' => [['InternalReferences.location_id' => $userLocation],['InternalReferences.estado' => 0]]]);
         
         //$this->set(compact('referencias'));
         
@@ -79,13 +78,14 @@ class InternalReferencesController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add($id = null)
+    public function add($id = null, $consultation_id = null)
     {
         
         $internalReference = $this->InternalReferences->newEntity();
         if ($this->request->is('post')) {
             $internalReference = $this->InternalReferences->patchEntity($internalReference, $this->request->data);
-            if($internalReference->location_id > 2){
+            $internalReference->estado = 0;
+            /*if($internalReference->location_id > 2){
                 $error = false;
                 for($x = 12; $x < 15; $x++){
                 $internalReference->group_id = $x;
@@ -98,18 +98,19 @@ class InternalReferencesController extends AppController
             }
             if(!$error){
                     $this->Flash->success(__('The internal reference has been saved.'));
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', 'internalReference_id' => $internalReference->id]);
             }
             }
             else {
+            */
                 if ($this->InternalReferences->save($internalReference)) {
                     $this->Flash->success(__('The internal reference has been saved.'));
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', 'internalReference_id' => $internalReference->id]);
                 } else {
                     $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
                 }
             }
-        }
+       // }
         
           /*
         Cambiar que no muestre todas las localizaciones. 
@@ -155,11 +156,36 @@ class InternalReferencesController extends AppController
                 break;
         }
         
-      
         
-        $people = $this->InternalReferences->People->find('list', [ 'keyField' => 'id',
-                'valueField' => ['id','nombre','apellidos'],'limit' => 200]
-                )->where(['People.id ' => $id]);
+        if ($consultation_id != null){
+            $tipoProcedencia = 0; //0 si proviene de una consulta
+            $idProcedencia = $consulta_id;
+        }
+        /*else if (){
+         Caso de que la referencia interna provenga de otro lado que no sea una consulta  
+        }
+        */
+        
+        $accesoDenegado = ['No hay espacio en el CEEAM','No hay recursos para para el traslado','Usuaria rechaza recurso'];
+        //$people = $this->InternalReferences->People->find('list', [ 'keyField' => 'id',      'valueField' => ['id','nombre','apellidos'],'limit' => 200])->where(['People.id ' => $id]);
+        $people = $this->InternalReferences->People
+        ->find('list', [
+        'keyField' => 'id',
+        'valueField' => 'concatenated'
+        ]);
+        $people
+        ->select([
+        'id',
+        'concatenated' => $people->func()->concat([
+            'id' => 'literal',
+            ' ',
+            'nombre' => 'literal',
+            ' ',
+            'apellidos' => 'literal'
+        ])
+    ])
+    ->where(['People.id' => $id]);
+        //$people = $this->InternalReferences->People->find()->where(['People.id ' => $id])->first();
        // $users = $this->InternalReferences->Users->find('list', ['limit' => 200]);
        $user_id = $this->Auth->user('id');
         $users = $this->Users->find('list', [
@@ -167,9 +193,8 @@ class InternalReferencesController extends AppController
                 'valueField' => 'username'])->where(['Users.id' => $user_id ]);
        // $locations = $this->InternalReferences->Locations->find('list', ['limit' => 200]);
         $groups = [];// $this->InternalReferences->Groups->find('list', ['limit' => 200]);
-        $this->set(compact('internalReference', 'people', 'users', 'locations', 'groups','groupName'));
+        $this->set(compact('internalReference', 'people', 'users', 'locations', 'groups','groupName','idProcedencia','tipoProcedencia','accesoDenegado','$consultation_id'));
         $this->set('_serialize', ['internalReference']);
-        
     }
     
     public function groupsSearch(){
