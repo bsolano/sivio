@@ -62,7 +62,7 @@ class FollowupsController extends AppController
             }
         }
         $people = $this->Followups->People->find('list', ['limit' => 200]);
-        $advocacies = $this->Followups->Advocacies->find('list', ['limit' => 200]);
+        //$advocacies = $this->Followups->Advocacies->find('list', ['limit' => 200]);
         $users = $this->Followups->Users->find('list', ['limit' => 200]);
         $this->set(compact('followup', 'people', 'advocacies', 'users'));
         $this->set('_serialize', ['followup']);

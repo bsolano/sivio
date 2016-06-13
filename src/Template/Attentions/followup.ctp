@@ -1,11 +1,53 @@
-<div class="attentions form large-9 medium-8 columns content" style="width: 100%;" >
+
+
+
+
+
 <?= $this->Form->create(); ?>
-
-    <?php include 't7.ctp';?>
-
-<?= $this->Form->end(); ?>
+<div class="attentions form large-9 medium-8 columns content" style="width: 100%;" >
+    <section class="wrapper">
+        <?php include 't7.ctp';?>
+    </section>
 </div>
+<?= $this->Form->end(); ?>
+
+
+
 <script type="text/javascript" >
+    $(window).load( function () {
+	    hideOrShow( $('#atencion_especializada') , $('#dondeatencion') );/*legal*/
+	})
+	
+	$('#atencion_especializada'      ).change (function () { hideOrShow( $(this), $('#dondeatencion' ) );  });
+	
+    function hideOrShow ($checkbname, $containerName ) {
+        if ( $checkbname.is(":checked")) {
+            $containerName.fadeIn();
+            return;
+        }
+        $containerName.fadeOut();
+        return;
+    }       
+    
+    function cancelarfollow() {
+        swal({
+          title: "Cancelar",
+          text: "¿Está Segura?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Sí",
+          cancelButtonText: "No",
+          closeOnConfirm: false
+        },
+        
+        // si la respuesta es 'si'
+        function(){
+          document.location = "/attentions/";
+        });
+    }
+        
+	
     var numAd = 2;
         function addInput(divName) {
             if (numAd++ < 30) {

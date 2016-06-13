@@ -1,4 +1,5 @@
 <div class="attentions index large-9 medium-8 columns content" style = "width: 100%">
+    
     <h3><?= __('Atenciones') ?></h3>
     <input id="botonSeg" style="margin: 10px 5px; display: none;" type="button" value="Dar Seguimiento" class="secondary button float-right" onclick='darSeguimiento()'/>
     <table cellpadding="0" cellspacing="0" span="1" width="100%">
@@ -18,21 +19,30 @@
                 foreach ($attentions as $attention): 
             ?>
             <tr>
-                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>)'>Editar</button> </td>
+                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>, <?= $attention['id'] ?>)'>Editar</button> </td>
                 <td><?php echo $attention['log']['identificacion']; ?></td>
                 <td><?php echo $attention['log']['nombre']." ".$attention['Logs']['apellidos']; ?></td>
                 <td><?php echo $attention['user']['username']; ?></td>
                 <td><?php echo $attention['tipo']; ?></td>
                 <td>
                     <div class= "event" >
-                        <?php if($attention['log']['acepta_seguimiento'] == 1): ?>
-                            <button name="at" class = "secondary button" style ="width: 20%" onclick="darSeguimiento()">1</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">2</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">3</button> 
-                            <button name="at" class = "hollow secondary button" style ="width: 20%" onclick="darSeguimiento()">4</button>
-                        <?php else: ?>
-                            <b style = "color:red"> No acepta seguimientos </b>
-                        <?php endif; ?>
+                        <?php 
+                            if($attention['log']['acepta_seguimiento'] == 1): 
+                                $numSegs = sizeof($attention['followups']);
+                                for($i = 1; $i <=4 ; $i++){
+                                    $claseBoton = ($i <= $numSegs) ? "secondary button" : "hollow secondary button";
+                                    $fId        = ($i <= $numSegs) ? $attention['followups'][$i-1]['id'] : null; 
+                                    $funct =  ($fId == null) ?  
+                                            "noHay(".$attention['log']['person_id'].','.$i.')'     :
+                                            "darSeguimiento(".$attention['log']['person_id'].','.$fId.')' ; ?>
+                        
+                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick= "<?= $funct ?>" ><?= $i ?></button>  <?php
+                                }
+                            else:
+                                echo '<b style = "color:red"> No acepta seguimientos </b>';
+                            endif; 
+                        ?>
+                            
                     </div>
                 </td> <!-- por arreglar -->
             </tr>
@@ -48,15 +58,32 @@
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
-
-
+    
 <script type="text/javascript">
-    function darSeguimiento() {
-        document.location = "/attentions/followup/";
+    function darSeguimiento(id, fId) {
+        document.location = "/attentions/followup/" + id+ "/" + fId;
     }
     
-    function editarAtencion(id) {
-        document.location = "/attentions/add/" + id;
+    function noHay(id, fId) {
+        swal({
+          title: "No existe esta atención",
+          text: "Desea Crearla?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Sí",
+          cancelButtonText: "No",
+          closeOnConfirm: false
+        },
+        
+        // si la respuesta es 'si'
+        function(){
+          document.location = "/attentions/followup/" + id+ "/" + fId;
+        });
+    }
+    
+    function editarAtencion(id, atId) {
+        document.location = "/attentions/add/" + id + "/" + atId;
     }
     
 </script>
