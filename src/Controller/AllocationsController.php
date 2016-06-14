@@ -22,14 +22,14 @@ class AllocationsController extends AppController
         $proID = $this->request->data['professional_id'];
         
 
-       $irTable = TableRegistry::get('InternalReferences');
+       $irTable = TableRegistry::get('UsersPeople');
        /* $ir = $irTable->get($irID); // Return article with id 12
         
         $ir->professional_id = $proID;
         $irTable->save($ir);*/
         
         
-        $ir = TableRegistry::get('InternalReferences');
+        $ir = TableRegistry::get('UsersPeople');
         $query = $ir->query();
         $query->update()
             ->set(['professional_id' => $proID])
@@ -51,14 +51,10 @@ class AllocationsController extends AppController
     public function index()
     {
         $location = -1;
-        $model = $this->loadModel('InternalReferences');
+        $model = $this->loadModel('UsersPeople');
         
          
-         // Get all users for current user location_id
-        $users = $this->loadModel('Users')->find()
-            ->where([
-                'Users.location_id' => 2
-            ]);
+
             
 
         // Obtiene la locacion del usuario activo, ejemplo: Delegacion de la Mujer.
@@ -70,9 +66,14 @@ class AllocationsController extends AppController
         }
             
         
+                 // Get all users for current user location_id
+        $users = $this->loadModel('Users')->find()
+            ->where([
+                'Users.location_id' => $location
+            ]);
         
         $this->paginate = [
-            'contain' => ['People', 'Users', 'Groups']
+            'contain' => ['People', 'Users'/* @@@ , 'Groups'*/]
         ];
         
         
@@ -80,17 +81,18 @@ class AllocationsController extends AppController
         /*$this->InternalReferences */
         
         // Solo traemos referencias internas para la locacion del usuario activo.
-        $internalReferences = $this->paginate(
+        $usersPeople = $this->paginate(
             
-            $this->InternalReferences->find()
+            $this->UsersPeople->find()
             ->where([
-                'InternalReferences.location_id' => $location,
-                'InternalReferences.professional_id IS' => null
+                // @@@ enable these filters
+                //'UsersPeople.location_id' => $location//,
+                //'UsersPeople.professional_id IS' => null
             ])
         );
 
-        $this->set(compact('internalReferences'));
-        $this->set('_serialize', ['internalReferences']);
+        $this->set(compact('usersPeople'));
+        $this->set('_serialize', ['usersPeople']);
         
         
         $this->set(compact('users'));
