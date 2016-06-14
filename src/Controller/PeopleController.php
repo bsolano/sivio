@@ -175,6 +175,14 @@ class PeopleController extends AppController
         //$atentions = [1,2,3,4,5];
         $years = array();
         $this->loadModel('Evaluations'); //Carga el modelo Evaluation en la base
+        $this->loadModel('Attentions'); //Carga el modelo Attention en la base
+        $this->loadModel('Logs');
+
+        $deOCe = $this->Attentions->find();
+        $deOCe->matching('Logs', function ($q) use ($person) {
+        return $q->where(['Logs.person_id' => $person]);
+         });
+        
         $eva = $this->Evaluations->find('all', [
         'conditions' => ['Evaluations.people_id' => $person] 
         ]); //Busca todas las evaluaciones con el id de la persona seleccionada anteriormente.
@@ -187,11 +195,17 @@ class PeopleController extends AppController
                 array_push($years,$date->fecha_inicio->format('Y'));
             }
         }
-        
+        foreach ($deOCe as $dateDeOCe){
+            if(!in_array($dateDeOCe->created->format('Y'), $years)){
+                array_push($years,$dateDeOCe->created->format('Y'));
+            }
+        }
+        arsort($years);
         $person_data = $this->People->get($person);
         $this->set(['atentions' => $eva]);
         $this->set(['years' => $years]);
         $this->set(['person' => $person_data]);
+        $this->set(['deOCes' => $deOCe]);
     }
     
     public function initialize()
