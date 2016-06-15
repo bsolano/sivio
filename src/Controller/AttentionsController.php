@@ -43,22 +43,53 @@ class AttentionsController extends AppController
     
     /** metodo para realizar seguimientos a una atencion **/
     public function followup($id, $fId = null){
+        //concatenar y desconcatenar strings con &
+        $this->loadComponent('StringManipulation'); 
+        
         $this->loadModel('PeopleAdvocacies');
         $this->loadModel('People');
+        $this->loadModel('Followups');
         
         $peopleTable         = TableRegistry::get(  'People'         );
+        $followTable         = TableRegistry::get(  'Followups'         );
         
-        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
-                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
-                                            ->contain(['Advocacies']);
+        $advo = $this->PeopleAdvocacies->find(
+            'all',['conditions' => ['person_id' => $id]])
+            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
+            ->contain(['Advocacies']);
         
         $per = $peopleTable->get($id);
-        $this->set('persona', $per);
         
+        $this->set('persona', $per);
         $this->set('advo',$advo);
-        if($this->request->is('post')){
+        
+        $user = $this->Followups->newEntity();
+        if ($this->request->is('post')) {
             $this->set('satanas',$this->request->data);
+            $followup =  $this->request->data['Followup'];
+            
+            if ( $user->apoyo_institucional != '' ) {
+                $followup['apoyo_institucional']  = implode("&",$followup['apoyo_institucional']);
+            }
+
+            $user = $this->Followups->patchEntity($user, $followup );
+            $user->person_id = $id;
+            
+            
+            debug( $user->apoyo_institucional );
+           
+            if ( empty( $user->apoyo_institucional   ) ) { debug('no hay apoyo!!!'); }
+            
+            debug($fId);
+            /*
+            if ($this->Followups->save($user)) {
+                $this->Flash->success(__('saved.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('could not be saved. Please, try again.'));
+            }*/
         }
+
     }
     /**
      * Agrega las atenciones en la base de datos manipulando los resultados de acuerdo 

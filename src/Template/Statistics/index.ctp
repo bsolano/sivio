@@ -5,8 +5,8 @@
         <legend><?= __('Reporte de Estadísticas de Atenciones') ?></legend>
         <?php
            
-            echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Desde']);
-            echo $this->Form->input('edad', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Hasta']);
+            echo $this->Form->input('desde', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Desde']);
+            echo $this->Form->input('hasta', ['type' => 'date','empty' => true, 'minYear' => 2010,'label' =>'Hasta']);
             echo $this->Form->input('nacionalidad',['empty' => true, 'label' => 'Nacionalidad' ]);
            
             echo $this->Form->input('ocupacion',['empty' => true, 'label' => 'Ocupación' ]);

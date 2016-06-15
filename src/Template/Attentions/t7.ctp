@@ -3,15 +3,15 @@
 <!--               SEGUIMIENTOS                                               ->
 <!----------------------------------------------------------------------------->
 
-    <fieldset>
 <div style= 'width: 100%;border: 1px solid rgb(236, 236, 236);padding: 1rem; padding: .4rem 1rem;'>
     <?php
         use Cake\I18n\Time;
         echo '<h style=\'margin-right:1em;\'> '.$persona->nombre.' '.$persona->apellidos.'    '.'</h>';
         
         echo $this->Form->input('Followup.al_xtiempo_del_egreso', [
-                'label'     => 'Seguimiento:'    ,
+                'label'     => 'Seguimiento:'               ,
                 'type'      => 'select'                     ,
+                'id'        => 'acepta_seguimiento'         ,
                 'options'   => [
                     null                    => '[No Aplica]'           ,
                     'Aceptado'              => 'Aceptado'              ,
@@ -45,12 +45,13 @@
             ]
         );
         
-        echo '<h style="display: inline-block; margin-right:.5rem;">La fecha de este Seguimiento es '.Time::now().'</h>';
         ?>
     <input type="submit" value="Guardar" class="hollow button float-right" onclick='submit'style='margin-left:1em;' />
     <input type="button" value="Cancelar" class="hollow button float-right" onclick='cancelarfollow()'/>
+    <h style="display: inline-block; margin-right:.5rem;">La fecha de este Seguimiento es <?=Time::now()?> </h>
 </div>
     <br>
+    <fieldset id="fldst">
     <div class="large-4 small-4 columns"> <?php
         /*echo "<br><h5>Aspectos Abordados </h5><br>";*/
         
@@ -198,10 +199,10 @@
                 'type'      => 'select'                     ,
                 'multiple'  => 'checkbox'                   ,
                 'options'   => [
-                    'Fisica', 
-                    'Psicológica',
-                    'Patrimonial', 
-                    'Sexual'
+                    'Fisica'        =>  'Fisica'        ,
+                    'Psicológica'   =>  'Psicológica'   ,
+                    'Patrimonial'   =>  'Patrimonial'   ,
+                    'Sexual'        =>  'Sexual'        ,
                 ]
             ]
         );
@@ -235,21 +236,16 @@
                     'Psicológica'       => 'Psicológica'       , 
                     'Médica'            => 'Médica'            ,
                     'Apoyo Escolar'     => 'Apoyo Escolar'     ,
+                    'Enseñanza Especial'                 => 'Enseñanza Especial'                ,
                     'PANI'                               => 'PANI'                              ,
                     'OAVPD'                              => 'OAVPD'                             ,
-                    'Enseñanza Especial'                 => 'Enseñanza Especial'                ,
-                    'Seguimiento al plan de Seguridad'   => 'Seguimiento al plan de Seguridad'  , 
-                    'Situación de riesgo'                => 'Situación de riesgo'               ,
+
                 ]
             ]
         );
-        /*
+        
         echo '<hr>';
-        echo $this->Form->input('PANI ????', ['type'=>'checkbox', 'checked'=>false]);
-        echo $this->Form->input('OAPVD ????', ['type'=>'checkbox', 'checked'=>false]);
-        echo $this->Form->input('Enseñanza especial ????', ['type'=>'checkbox', 'checked'=>false]);
-        echo $this->Form->input('Seguimiento al plan de seguridad ????', ['type'=>'checkbox', 'checked'=>false]);
-        echo $this->Form->input('Situación de Riesgo ????', ['type'=>'checkbox', 'checked'=>false]); 
-        */
+        echo $this->Form->input('Followup.hijos_seguimiento_plan_seguridad', ['type'=>'checkbox', 'checked'=>false]);
+        echo $this->Form->input('Followup.hijos_situacion_riesgo', ['type'=>'checkbox', 'checked'=>false]); 
     ?> </div>
 </fieldset>
