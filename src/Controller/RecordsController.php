@@ -16,15 +16,27 @@ class RecordsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+    public function index($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Transfers']
-        ];
-        $records = $this->paginate($this->Records);
-
-        $this->set(compact('records'));
-        $this->set('_serialize', ['records']);
+        //acá recupero a la usuaria y envío los datos a la vista 
+         $this->loadModel('People');
+         $campos = array('People.identificacion' => $id);
+                
+                // Elimina los campos en blanco del query
+                
+                $opciones= array_filter($campos);
+                
+                $conditions=array('conditions'=> (array($opciones)));
+                //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
+           
+                //se construye el query
+	            
+	           // $query = $this->People->find('all',$conditions);
+	            $query = $this->paginate($this->People->find('all',$conditions)); 
+	             $this->set('persona', $query);
+	             
+	             
+        
     }
 
     /**
@@ -110,4 +122,15 @@ class RecordsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+      public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow();
+        
+        // Json
+        $this->loadComponent('RequestHandler');
+    }
+    
+    
 }
