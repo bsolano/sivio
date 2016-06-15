@@ -20,7 +20,7 @@ class RecordsController extends AppController
     {
         //acá recupero a la usuaria y envío los datos a la vista 
          $this->loadModel('People');
-         $campos = array('People.identificacion' => $id);
+         $campos = array('People.id' => $id);
                 
                 // Elimina los campos en blanco del query
                 
