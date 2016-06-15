@@ -89,7 +89,7 @@ class AppController extends Controller {
                 'element' => 'error'
             ]
         ]);
-    }
+    } 
 
     /**
      * Before render callback.

@@ -19,13 +19,23 @@ class FollowupsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People', 'Advocacies']
+            'contain' => ['People'
+            //, 'Advocacies'
+            ]
         ];
         $followups = $this->paginate($this->Followups);
 
         $this->set(compact('followups'));
         $this->set('_serialize', ['followups']);
     }
+    
+    public function initialize()
+    {
+        parent::initialize();
+    
+        $this->Auth->allow();
+    }
+    
 
     /**
      * View method

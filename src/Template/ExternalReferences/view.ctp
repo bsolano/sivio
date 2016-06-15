@@ -1,9 +1,9 @@
 
 
 <div class="externalReferences view large-9 medium-8 columns content">
-    <input type="button" value="Generar PDF" class="primary button float-right" onclick="pdf(<?= h($externalReference->id) ?>)"/>
+    <input type="button" value="Generar PDF" display:"block" class="primary button float-right" onclick="pdf(<?= h($externalReference->id) ?>)"/>
     
-    <input type="button" value="Enviar Correo" class="primary button float-right" onclick="correo(<?= h($externalReference->id) ?>)"/>
+    <input type="button" value="Enviar Correo" display:"block" class="primary button float-right" onclick="correo(<?= h($externalReference->id) ?>)"/>
     <h3><?= h($externalReference->id) ?></h3>
     
     <table class="vertical-table">
@@ -75,7 +75,7 @@
     
     function correo(id) {
        
-                document.location = "/ExternalReferences/correo/"+id;
+                document.location = "/ExternalReferences/enviarCorreo/"+id;
        
     }
 </script>
