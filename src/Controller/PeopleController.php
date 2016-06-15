@@ -63,12 +63,8 @@ class PeopleController extends AppController
         $person = $this->People->newEntity();
         if ($this->request->is('post')) {
             $data = $this->request->data;
-            debug($person->adicciones);
-            debug($person->condicion_salud);
-            $stringAdicciones = $this->StringManipulation->ArrayToTokenedString($person->get('adicciones'));
-            $stringCondicionSalud = $this->StringManipulation->ArrayToTokenedString($person->get('condicion_salud'));
-            $people->adicciones = $stringAdicciones;
-            $people->condicion_salud = $stringCondicionSalud;
+            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
+            $person = $this->People->patchEntity($person, $data);
             $person->genero = 'F';
             $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
@@ -101,12 +97,9 @@ class PeopleController extends AppController
             'contain' => ['Interventions', 'Advocacies', 'Entries', 'Families', 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            debug($person->adicciones);
-            $stringAdicciones = $this->StringManipulation->ArrayToTokenedString($person->get('adicciones'));
-            $stringCondicionSalud = $this->StringManipulation->ArrayToTokenedString($person->get('condicion_salud'));
-            $person->adicciones = $stringAdicciones;
-            $person->condicion_salud = $stringCondicionSalud;
-            $person = $this->People->patchEntity($person, $this->request->data);
+            $data = $this->request->data;
+            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
+            $person = $this->People->patchEntity($person, $data);
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
                 return $this->redirect(['action' => 'view', $person->id]);

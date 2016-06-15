@@ -1,24 +1,58 @@
-<div class="large-9 large-offset-9 columns content">
-    <?=
-        $this->Html->link('Editar Perfil', ['action' => 'edit', $person->id], ['class' => 'secondary button']) 
-    ?>
+<div class="large-8 large-offset-1 columns content">
+    <h3><?= h($person->nombre) ?> <?= h($person->apellidos) ?></h3>
+</div>
+<div class="large-3 large-right columns content">
+    <?= $this->Html->link('Editar Perfil', ['action' => 'edit', $person->id], ['class' => 'secondary button']) ?>
 </div>
 <div class="people view large-12 medium-8 columns">
-    <div class="large-9 large-centered columns content">
-        <h3><?= h($person->nombre) ?> <?= h($person->apellidos) ?></h3>
-        <table class="vertical-table">
-            <!--
+    <div class="large-9 large-centered columns">
+        <div class="callout">
+            <div class="large-3">
+                <dl>
+                    <dt style="display: inline;"><?= __('Estado Civil') ?></dt>
+                    <dd><?= h($person->estado_civil) ?></dd>
+                    
+                    <dt style="display: inline;"><?= __('Escolaridad') ?></dt>
+                    <dd><?= h($person->escolaridad) ?></dd>
+                </dl>
+            </div>
+            <div class="large-3">
+                <dl>
+                    <dt style="display: inline;"><?= __('Nacionalidad') ?></dt>
+                    <dd><?= h($person->nacionalidad) ?></dd>
+                    
+                    <dt style="display: inline;"><?= 'Género' ?></dt>
+                    <dd>
+                        <?php
+                            if ($person->genero == 'F')
+                                echo 'Femenino';
+                            else
+                                echo 'Masculino';
+                        ?>
+                    </dd>
+                </dl>
+            </div>
+            <div class="large-3">
+                <dl>
+                    <dt style="display: inline;"><?= 'Ocupación' ?></dt>
+                    <dd><?= h($person->ocupacion) ?></dd>
+                    
+                    <dt style="display: inline;"><?= 'Lugar de Trabajo' ?></dt>
+                    <dd><?= h($person->lugar_trabajo) ?></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="callout">
+            
+        </div>
+        <div class="callout">
+            
+        </div>
+        
+        
+        <table class="hover">
             <tr>
-                <th><?= __('Nombre') ?></th>
-                <td><?= h($person->nombre) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Apellidos') ?></th>
-                <td><?= h($person->apellidos) ?></td>
-            </tr>
-            -->
-            <tr>
-                <th><?= __('Estado Civil') ?></th>
+                <td><?= __('Estado Civil') ?></td>
                 <td><?= h($person->estado_civil) ?></td>
             </tr>
             <tr>
@@ -290,15 +324,15 @@
             </table>
             <?php endif; ?>
         </div>
-        <div class="related">
+        <div class="table-scroll">
             <h4><?= __('Related Followups') ?></h4>
             <?php if (!empty($person->followups)): ?>
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <th><?= __('Id') ?></th>
+                    <!--<th><?= __('Id') ?></th>
                     <th><?= __('Person Id') ?></th>
+                    <th><?= __('User Id') ?></th>-->
                     <th><?= __('Created') ?></th>
-                    <th><?= __('User Id') ?></th>
                     <th><?= __('Medio Comunicacion') ?></th>
                     <th><?= __('Aspectos Sociales') ?></th>
                     <th><?= __('Apoyo Institucional') ?></th>

@@ -1,11 +1,16 @@
 <?php 
     if($people->count()): 
 ?>
-    <h2 style="margin: 10px 5px;" > Resultados (<?php echo $people->count(); ?>)</h2>
-    <input id="bnt_Vista" style="margin: 10px 5px; display: none;" type="button" value="Ver Perfil" class="secondary button float-right" onclick='ver()'/>
-    <input id="bnt_Atencion" style="margin: 10px 5px; display: none;" type="button" value="Atención" class="secondary button float-right" onclick='esAtencion()'/>
-    <input id="bnt_Consulta" style="margin: 10px 5px; display: none;" type="button" value="Consulta" class="secondary button float-right" onclick='esConsulta()'/>
-    
+    <div class="row">
+        <div class="large-6 large-left columns">
+            <h2 style="margin: 10px 5px;" > Resultados (<?php echo $people->count(); ?>)</h2>
+        </div>    
+        <div class="large-6 large-right columns">
+            <input id="bnt_Vista" style="margin: 10px 5px; display: none;" type="button" value="Ver Perfil" class="secondary button float-right" onclick='ver()'/>
+            <input id="bnt_Atencion" style="margin: 10px 5px; display: none;" type="button" value="Atención" class="secondary button float-right" onclick='esAtencion()'/>
+            <input id="bnt_Consulta" style="margin: 10px 5px; display: none;" type="button" value="Consulta" class="secondary button float-right" onclick='esConsulta()'/>        
+        </div>
+    </div>
     <table>
         <tr><th width="100">Seleccione</th><th>Nombre Completo</th><th>Fecha de Nacimiento</th><th>Identificacion</th></tr>
         <?php foreach ($people as $person): ?>

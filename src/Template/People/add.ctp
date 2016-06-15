@@ -1,4 +1,3 @@
-<!-- Se agrega large-centered para que el form se encuentre centrado. -->
 <div class="people form large-10 large-centered medium-10 columns content">
     <?= $this->Form->create($person) ?>
     <fieldset>
@@ -10,7 +9,6 @@
                     echo $this->Form->input('apellidos');
                     echo $this->Form->input('fecha_de_nacimiento', ['label' => 'Fecha de nacimiento', 'empty' => true, 'minYear' => 1940]);
                     echo $this->Form->input('edad');
-                    //echo $this->Form->input('genero', ['type' => 'hidden', 'default' => 'F']);
                     echo $this->Form->input('estado_civil', ['label' => 'Estado civil', 'options' => ['Soltera' => 'Soltera','Casada' => 'Casada','Unión libre' => 'Union libre','Divorciada' => 'Divorciada','Separada' => 'Separada','Viuda' => 'Viuda']]);
                     echo $this->Form->input('embarazo', ['options' => ['0' => 'No','1' => '1 mes','2' => '2 meses','3' => '3 meses','4' => '4 meses','5' => '5 meses','6' => '6 meses','7' => '7 meses','8' => '8 meses','9' => '9 meses']]);
                     echo $this->Form->input('telefono', ['label' => 'Teléfono']);
@@ -43,7 +41,6 @@
         </div>
         <div class="large-12 columns content">
             <?php
-                //echo $this->Form->input('atencion_especializada', ['label' => 'Atención especializada']);
                 echo $this->Form->input('ocupacion', ['label' => 'Ocupación']);
                 echo $this->Form->input('lugar_trabajo', ['label' => 'Lugar de trabajo']);
             ?>
@@ -88,7 +85,7 @@
                     echo $this->Form->input('adicciones', ['label' => 'Adiccion(es)', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Alcohol' => 'Alcohol','Drogas' => 'Drogas','Medicamentos' => 'Medicamentos','Ninguna' => 'Ninguna']]);
                 ?>
             </div>
-            <div class="large-5 columns">
+            <div class="large-4 columns">
                 <?php
                     echo $this->Form->input('condicion_salud', ['label' => 'Condición de salud', 'type' => 'select', 'multiple' => 'checkbox', 'options' => ['Discapacidad Física' => 'Discapacidad Física','Discapacidad Cognitiva' => 'Discapacidad Cognitiva','Discapacidad Sensorial' => 'Discapacidad Sensorial','Discapacidad Mental' => 'Discapacidad Mental','Padecimientos Crónicos' => 'Padecimientos Crónicos','VIH-SIDA' => 'VIH-SIDA','ITS' => 'ITS','Condición Psiquíatrica' => 'Condición Psiquíatrica','Enfermedad Terminal' => 'Enfermedad Terminal']]);
                 ?>
@@ -96,6 +93,7 @@
             <div></div>
         </div>
     </fieldset>
-    <?= $this->Form->button("Guardar", ['class' => 'secondary button']) ?>
+    <?= $this->Form->button('Enviar', ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>
+<div class="large-4 large-centered columns content"></div>
