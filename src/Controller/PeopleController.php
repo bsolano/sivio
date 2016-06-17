@@ -105,6 +105,10 @@ class PeopleController extends AppController
                 return $this->redirect(['action' => 'view', $person->id]);
             } else {
                 $this->Flash->error('No se pudo actualizar la información, inténtelo nuevamente.');
+            /*    $this->Flash->success(__('Datos Actualizados.'));
+                return $this->redirect(['controller' => 'Records','action' => 'index']);
+            } else {
+                $this->Flash->error(__('Error, por favor intente de nuevo.')); */
             }
         }
         
