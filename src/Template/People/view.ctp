@@ -4,167 +4,107 @@
 <div class="large-3 large-right columns content">
     <?= $this->Html->link('Editar Perfil', ['action' => 'edit', $person->id], ['class' => 'secondary button']) ?>
 </div>
-<div class="people view large-12 medium-8 columns">
-    <div class="large-9 large-centered columns">
-        <div class="callout">
-            <div class="large-3">
-                <dl>
-                    <dt style="display: inline;"><?= __('Estado Civil') ?></dt>
-                    <dd><?= h($person->estado_civil) ?></dd>
-                    
-                    <dt style="display: inline;"><?= __('Escolaridad') ?></dt>
-                    <dd><?= h($person->escolaridad) ?></dd>
-                </dl>
-            </div>
-            <div class="large-3">
-                <dl>
-                    <dt style="display: inline;"><?= __('Nacionalidad') ?></dt>
-                    <dd><?= h($person->nacionalidad) ?></dd>
-                    
-                    <dt style="display: inline;"><?= 'Género' ?></dt>
-                    <dd>
-                        <?php
-                            if ($person->genero == 'F')
-                                echo 'Femenino';
-                            else
-                                echo 'Masculino';
-                        ?>
-                    </dd>
-                </dl>
-            </div>
-            <div class="large-3">
-                <dl>
-                    <dt style="display: inline;"><?= 'Ocupación' ?></dt>
-                    <dd><?= h($person->ocupacion) ?></dd>
-                    
-                    <dt style="display: inline;"><?= 'Lugar de Trabajo' ?></dt>
-                    <dd><?= h($person->lugar_trabajo) ?></dd>
-                </dl>
-            </div>
-        </div>
-        <div class="callout">
-            
-        </div>
-        <div class="callout">
-            
-        </div>
+<div class="people view large-12 large-centered medium-8 columns">
+    <div class="large-11 large-centered columns">
         
-        
-        <table class="hover">
-            <tr>
-                <td><?= __('Estado Civil') ?></td>
-                <td><?= h($person->estado_civil) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Escolaridad') ?></th>
-                <td><?= h($person->escolaridad) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Nacionalidad') ?></th>
-                <td><?= h($person->nacionalidad) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Género' ?></th>
-                <td>
-                    <?php
-                        if ($person->genero == 'F')
-                            echo 'Femenino';
-                        else
-                            echo 'Masculino';
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <th><?= 'Ocupación' ?></th>
-                <td><?= h($person->ocupacion) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Lugar de Trabajo' ?></th>
-                <td><?= h($person->lugar_trabajo) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Condición Migratoria' ?></th>
-                <td><?= h($person->condicion_migratoria) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Condición Laboral' ?></th>
-                <td><?= h($person->condicion_laboral) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Condición Aseguramiento' ?></th>
-                <td><?= h($person->condicion_aseguramiento) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Vivienda') ?></th>
-                <td><?= h($person->vivienda) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Tipo de Familia' ?></th>
-                <td><?= h($person->tipo_familia) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Identificación' ?></th>
-                <td><?= h($person->identificacion) ?></td>
-            </tr>
-            <tr>
-                <th><?= 'Tipo de Identificación' ?></th>
-                <td><?= h($person->tipo_identificacion) ?></td>
-            </tr>
-            <!--
-            <tr>
-                <th><?= __('History') ?></th>
-                <td><?= $person->has('history') ? $this->Html->link($person->history->id, ['controller' => 'Histories', 'action' => 'view', $person->history->id]) : '' ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Id') ?></th>
-                <td><?= $this->Number->format($person->id) ?></td>
-            </tr>
-            -->
-            <tr>
-                <th><?= __('Experiencia Laboral') ?></th>
-                <?php if ($person->experiencia_laboral > 1): ?>
-                    <td><?= $this->Number->format($person->experiencia_laboral).' años' ?></td>
-                <?php else: ?> 
-                    <?php if ($person->experiencia_laboral != 1): ?>
-                        <td>No tiene</td>
-                    <?php else: ?>
-                        <td><?= $this->Number->format($person->experiencia_laboral).' año' ?></td>
-                    <?php endif; ?>
-                <?php endif; ?>
-            </tr>
-            <tr>
-                <th><?= 'Cantidad de hijos en CEAAM' ?></th>
-                <?php if ($person->num_hijos_ceaam != 0): ?>
-                    <td><?= $this->Number->format($person->num_hijos_ceaam) ?></td>
-                <?php else: ?>
-                    <td>No tiene</td>
-                <?php endif; ?>
-            </tr>
-            <tr>
-                <th><?= __('Embarazo') ?></th>
-                <td>
+        <div class="large-4 columns">
+            <dl>
+                <dt><?= 'Ocupación:' ?></dt>
+                <dd><?= h($person->ocupacion) ?></dd>
+                </br>
+                <dt><?= 'Lugar de Trabajo:' ?></dt>
+                <dd><?= h($person->lugar_trabajo) ?></dd>
+                </br>
+                <dt><?= 'Condición Migratoria:' ?></dt>
+                <dd><?= h($person->condicion_migratoria) ?></dd>
+                </br>
+                <dt><?= __('Vivienda:') ?></dt>
+                <dd><?= h($person->vivienda) ?></dd>
+                </br>
+                <dt><?= 'Tipo de Familia:' ?></dt>
+                <dd><?= h($person->tipo_familia) ?></dd>
+                </br>
+                <dt><?= __('Embarazo:') ?></dt>
+                <dd>
                     <?php
                         if ($person->embarazo == 0)
                             echo "No tiene";
                         else
                             echo $person->embarazo.' meses';
                     ?>
-                </td>
-            </tr>
-            <!--
-            <tr>
-                <th><?= __('Transfer Id') ?></th>
-                <td><?= $this->Number->format($person->transfer_id) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Aggressor Id') ?></th>
-                <td><?= $this->Number->format($person->aggressor_id) ?></td>
-            </tr>
-            -->
-            <tr>
-                <th><?= __('Fecha De Nacimiento') ?></th>
-                <td><?= h($person->fecha_de_nacimiento) ?></td>
-            </tr>
+                </dd>
+            </dl>
+        </div>
+        
+        
+        <div class="large-4 columns">
+            <dl>
+                <dt><?= __('Estado Civil:') ?></dt>
+                <dd><?= h($person->estado_civil) ?></dd>
+                </br>
+                <dt><?= __('Escolaridad:') ?></dt>
+                <dd><?= h($person->escolaridad) ?></dd>
+                </br>
+                <dt><?= 'Condición Laboral:' ?></dt>
+                <dd><?= h($person->condicion_laboral) ?></dd>
+                </br>
+                <dt><?= 'Identificación:' ?></dt>
+                <dd><?= h($person->identificacion) ?></dd>
+                </br>
+                <dt><?= 'Tipo de Identificación:' ?></dt>
+                <dd><?= h($person->tipo_identificacion) ?></dd>
+                </br>
+                <dt><?= __('Fecha De Nacimiento:') ?></dt>
+                <dd><?= h($person->fecha_de_nacimiento) ?></dd>
+            </dl>
+        </div>
+        
+        
+        <div class="large-4 columns">
+            <dl>
+                <dt><?= __('Nacionalidad:') ?></dt>
+                <dd><?= h($person->nacionalidad) ?></dd>
+                </br>
+                <dt><?= 'Género:' ?></dt>
+                <dd>
+                    <?php
+                        if ($person->genero == 'F')
+                            echo 'Femenino';
+                        else
+                            echo 'Masculino';
+                    ?>
+                </dd>
+                </br>
+                <dt><?= 'Condición Aseguramiento:' ?></dt>
+                <dd><?= h($person->condicion_aseguramiento) ?></dd>
+                </br>
+                <dt><?= __('Experiencia Laboral:') ?></dt>
+                <?php if ($person->experiencia_laboral > 1): ?>
+                    <dd><?= $this->Number->format($person->experiencia_laboral).' años' ?></dd>
+                <?php else: ?> 
+                    <?php if ($person->experiencia_laboral != 1): ?>
+                        <dd>No tiene</dd>
+                    <?php else: ?>
+                        <dd><?= $this->Number->format($person->experiencia_laboral).' año' ?></dd>
+                    <?php endif; ?>
+                <?php endif; ?>
+                </br>
+                <dt><?= 'Cantidad de hijos en CEAAM:' ?></dt>
+                <?php if ($person->num_hijos_ceaam != 0): ?>
+                    <dd><?= $this->Number->format($person->num_hijos_ceaam) ?></dd>
+                <?php else: ?>
+                    <dd>No tiene</dd>
+                <?php endif; ?>
+                </br>
+                <dt><?= 'Dirección:' ?></dt>
+                <dd><?= h($person->tipo_familia) ?></dd>
+            </dl>
+        </div>
+    </div>
+        
+        
+    <div class="large-10 large-centered columns">
+        <table class="hover">
             <tr>
                 <th><?= 'Adiccion(es)' ?></th>
                 <td>

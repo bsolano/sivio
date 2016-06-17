@@ -27,6 +27,11 @@
             </div>
         </div>
         <div class="large-12 columns">
+                <div class="large-12 columns">
+                    <?php
+                        echo $this->Form->input('direccion_oculta', ['label' => '¿La dirección es oculta?', 'type' => 'radio', 'options' => [1 => 'Sí', 0 => 'No']]);
+                    ?>
+                </div>
             <div class="large-6 columns">
                 <?php
                     echo $this->Form->input('provincia', ['options' => ['San José' => 'San José','Alajuela' => 'Alajuela','Heredia' => 'Heredia','Cartago' => 'Cartago','Puntarenas' => 'Puntarenas','Guanacaste' => 'Guanacaste','Limón' => 'Limón']]);

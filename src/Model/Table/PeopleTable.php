@@ -182,6 +182,10 @@ class PeopleTable extends Table
             ->allowEmpty('num_de_hijos');
 
         $validator
+            ->integer('direccion_oculta')
+            ->allowEmpty('direccion_oculta');
+
+        $validator
             ->allowEmpty('provincia');
 
         $validator

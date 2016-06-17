@@ -30,6 +30,7 @@ use Cake\ORM\Entity;
  * @property string $telefono
  * @property int $edad
  * @property int $num_de_hijos
+ * @property int $direccion_oculta
  * @property string $provincia
  * @property string $canton
  * @property string $direccion
