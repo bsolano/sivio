@@ -20,14 +20,24 @@
 <div class="externalReferences large-4 medium-9 columns">
      <?php
              
-         
+         if($p[0]['genero']=='F')
+            $genero = "Femenino";
+        else {
+            $genero = "Masculino";
+        }
+        
+        if($p[0]['experiencia_laboral'])
+            $e_laboral = "Sí";
+        else {
+            $e_laboral = "No";
+        }
                 
                 echo $this->Form->input('lugar_trabajo',array('label'=>'Lugar de Trabajo','value'=>$p[0]['lugar_trabajo'],'readonly' => 'readonly'));
                 echo $this->Form->input('Nacionalidad',array('label'=>'Nacionalidad','value'=>$p[0]['nacionalidad'],'readonly' => 'readonly'));
-                 echo $this->Form->input('Género',array('value'=>$p[0]['genero'],'readonly' => 'readonly' )); 
+                 echo $this->Form->input('Género',array('value'=>$genero,'readonly' => 'readonly' )); 
                 echo $this->Form->input('Ocupación',array('value'=>$p[0]['ocupacion'],'readonly' => 'readonly' ));
                 echo $this->Form->input('condicion_laboral',array('label'=>'Condición Laboral','value'=>$p[0]['condicion_laboral'],'readonly' => 'readonly'));
-                echo $this->Form->input('experiencia_laboral',array('label'=>'Experiencia Laboral','value'=>$p[0]['experiencia_laboral'],'readonly' => 'readonly'));
+                echo $this->Form->input('experiencia_laboral',array('label'=>'Experiencia Laboral','value'=>$e_laboral,'readonly' => 'readonly'));
 
             ?>  
     </div>
@@ -47,4 +57,12 @@
 
             ?>  
     </div>
+    <input type="button" value="Editar" display:"block" class="primary button float-right" onclick="editar(<?= $p[0]['id'] ?>)"/>
 </fieldset>
+<script type="text/javascript">
+    function editar(id) {
+       
+                document.location = "/People/edit/"+id;
+       
+    }
+</script>
