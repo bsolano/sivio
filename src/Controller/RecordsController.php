@@ -34,8 +34,6 @@ class RecordsController extends AppController
 	           // $query = $this->People->find('all',$conditions);
 	            $query = $this->paginate($this->People->find('all',$conditions)); 
 	             $this->set('persona', $query);
-	             
-	             
         
     }
 

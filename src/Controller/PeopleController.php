@@ -97,10 +97,10 @@ class PeopleController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $person = $this->People->patchEntity($person, $this->request->data);
             if ($this->People->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('Datos Actualizados.'));
+                return $this->redirect(['controller' => 'Records','action' => 'index']);
             } else {
-                $this->Flash->error(__('The person could not be saved. Please, try again.'));
+                $this->Flash->error(__('Error, por favor intente de nuevo.'));
             }
         }
         $histories = $this->People->Histories->find('list', ['limit' => 200]);

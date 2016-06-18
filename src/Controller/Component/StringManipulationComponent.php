@@ -66,10 +66,10 @@ class StringManipulationComponent extends Component
          * $array array de datos 
          * $string array de datos que NO se tienen que cambiar a modo array, como fechas
          */ 
-        public function transformarStrings(& $array, $string){
+        public function transformarStrings($array){
             foreach($array as $key => $value){
-                if((substr($value,0,1) == '&') && !in_array($key,$string)){
-                    $array[$key] = $this->StringTokenedtoArray($value);
+                if($value[0] === '&' && $value != null){
+                    $array[$key] = $this->StringTokenedToArray($value);
                 } 
             }
             return $array;

@@ -1,5 +1,6 @@
     <?= $this->Form->create(); ?>
     <?= $this->Html->css('toggle-switch.css') ?>
+    <?= $this->Html->css('sivio.tabs.css') ?>
     <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
     <!-- TABS -->
 
