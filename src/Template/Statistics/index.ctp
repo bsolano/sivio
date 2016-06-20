@@ -44,7 +44,7 @@
        <!--/ end Filters--------------------------------------------------------------------------------------------->      
 
  <div class="usersPeople form large-10 medium-6 columns content" style="width: 75%;">
-     
+        <?= $this->Html->css('sivio.tabs.css') ?>
         
         
     <!-- TABS -->
