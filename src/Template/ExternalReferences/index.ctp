@@ -5,11 +5,7 @@
         
     </ul>
 </nav>
-<div class="externalReferences index large-9 medium-8 columns content">
-    <input type="button" value="Nueva Referencia" class="primary button float-right" onclick='add()'/>
-
-    
-    
+<div class="externalReferences index large-11 medium-8 columns content">
     
     <h3><?= __('Referencia Externa') ?></h3>
     <table cellpadding="0" cellspacing="0">
@@ -17,10 +13,10 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('receptor') ?></th>
-                <th><?= $this->Paginator->sort('telefono') ?></th>
-                <th><?= $this->Paginator->sort('person_id') ?></th>
-                <th><?= $this->Paginator->sort('direccion') ?></th>
-                <th><?= $this->Paginator->sort('persona') ?></th>
+                <th><?= $this->Paginator->sort('Teléfono') ?></th>
+                <th><?= $this->Paginator->sort('Identificación') ?></th>
+                <th><?= $this->Paginator->sort('Dirección') ?></th>
+                <th><?= $this->Paginator->sort('Nombre') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>

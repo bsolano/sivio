@@ -19,13 +19,23 @@ class FollowupsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People', 'Advocacies']
+            'contain' => ['People'
+            //, 'Advocacies'
+            ]
         ];
         $followups = $this->paginate($this->Followups);
 
         $this->set(compact('followups'));
         $this->set('_serialize', ['followups']);
     }
+    
+    public function initialize()
+    {
+        parent::initialize();
+    
+        $this->Auth->allow();
+    }
+    
 
     /**
      * View method
@@ -62,7 +72,7 @@ class FollowupsController extends AppController
             }
         }
         $people = $this->Followups->People->find('list', ['limit' => 200]);
-        $advocacies = $this->Followups->Advocacies->find('list', ['limit' => 200]);
+        //$advocacies = $this->Followups->Advocacies->find('list', ['limit' => 200]);
         $users = $this->Followups->Users->find('list', ['limit' => 200]);
         $this->set(compact('followup', 'people', 'advocacies', 'users'));
         $this->set('_serialize', ['followup']);

@@ -22,12 +22,28 @@ class StatisticsController extends AppController
        $query = $this->paginate($this->Attentions->find('all'));
         $this->set('result',$query);
         $statistic = $this->Statistics->newEntity();
+
         if ($this->request->is('post')) {
             
             // Código de las consultas
            
             $s = $this->request->data;
 
+            $desde = $s['desde'];
+            $hasta = $s['hasta'];
+            
+            $logs = $this->Attentions->find('all')->select('Logs.person_id')->contain(['Logs']);
+            //$this->set('logs', $logs);
+            
+            $personIds = array();
+            foreach($logs as $l){
+                array_push($personIds, $l['Logs']['person_id'] );
+                
+            }
+            
+            $personIds = array_unique($personIds);
+            debug($personIds);
+            echo $personIds[0];
             // Carga el arreglo de datos
             
             $data = array($s);
@@ -49,16 +65,30 @@ class StatisticsController extends AppController
                 
                 // Elimina los campos en blanco del query
                 
-                $opciones= array_filter($campos);
+                $opciones = array_filter($campos);
                 
                 $conditions=array('conditions'=> (array($opciones)));
                 //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
            
                 //se construye el query
-	            
+
 	           // $query = $this->People->find('all',$conditions);
-	            $query = $this->paginate($this->People->find('all',$conditions)); 
-                $this->set('result',$query);
+	            $personas = $this->People->find('all',$conditions);
+	            $query = $this->paginate($personas); 
+	            
+	            $resultado = array();
+	            
+	            foreach($personIds as $ids){
+	                foreach($query as $row){
+	                   if ($ids == $row ->id)
+                         array_push($resultado, $row );
+	                }     
+                
+              }
+	            
+	            
+	            
+                $this->set('result',$resultado);
 
                 $this->Flash->success(__('Éxito en consulta de estadísticas'));
 

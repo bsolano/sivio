@@ -2,6 +2,10 @@
 namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use App\Model\Entity\Person;
+use App\Model\Entity\History;
+use App\Model\Entity\Followup;
+
 /**
  * Attentions Controller
  *
@@ -17,51 +21,109 @@ class AttentionsController extends AppController
      */
     public function index()
     {
-        $this->loadModel('AttentionsPeople');
-        
-        $atP = $this->AttentionsPeople->find('all')->contain(['Attentions','People','Attentions.Users']);
-        $attentions = $this->paginate($atP);
+        $atenciones = $this->Attentions->find('all')->contain(['Logs', 'Users','Followups']);
+        $attentions = $this->paginate($atenciones);
         $this->set(compact('attentions'));
         $this->set('_serialize', ['attentions']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Attention id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $attention = $this->Attentions->get($id, [
-            'contain' => ['Aggressors', 'Histories', 'Users']
-        ]);
 
-        $this->set('attention', $attention);
-        $this->set('_serialize', ['attention']);
-    }
-    
-    /** metodo para realizar seguimientos a una atencion **/
-    public function followup($id = null){
+    /** Metodo que realiza los seguimientos de una atención, si ya el seguimiento existe, 
+     * edita sus datos, y de no ser así, crea el nuevo seguimiento según lo que sea necesario
+     * 
+     * @id ID de la persona
+     * @atId ID de la atención a la que pertenece el followup
+     * @fId ID del followup (en caso que exista uno)
+    */
+    public function followup($id, $atId = null, $fId = null){
+        //concatenar y desconcatenar strings con &
+        $this->loadComponent('StringManipulation'); 
         
+        $this->loadModel('PeopleAdvocacies');
+        $this->loadModel('People');
+        $this->loadModel('Followups');
         
-        if($this->request->is('post')){
-            
+        $peopleTable         = TableRegistry::get(  'People'         );
+        $followTable         = TableRegistry::get(  'Followups'         );
+        
+        $advo = $this->PeopleAdvocacies->find(
+            'all',['conditions' => ['person_id' => $id]])
+            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
+            ->contain(['Advocacies']
+        );
+        
+        $user = $this->Followups->newEntity();
+        
+        $per = $peopleTable->get($id);
+        $this->set('persona',$per);
+        
+        $fol = new Followup();
+        if($fId != null){
+            $fol = $followTable->get($fId);
+            $fol->apoyo_institucional = explode("&",$fol->apoyo_institucional,-1);
+            $fol->enfrenta_violencia = explode("&",$fol->enfrenta_violencia,-1);
+            $fol->hijos_atencion_especializada = explode("&",$fol->hijos_atencion_especializada,-1);
         }
+        
+        $this->set('seg',$fol);
+        
+        
+        /*           On Post  ------------------------------------------------*/
+        if ($this->request->is('post')) {
+            $this->set('satanas',$this->request->data);
+            $followup =  $this->request->data['Followup'];
+            $followup['attention_id'] = $atId;
+            
+            if ( $followup['apoyo_institucional'] != '' ) {
+                $followup['apoyo_institucional']  = array_filter($followup['apoyo_institucional']);
+                $followup['apoyo_institucional']  = $this->StringManipulation->ArrayToTokenedString($followup['apoyo_institucional']);
+            }
+            
+            if ( $followup['enfrenta_violencia'] != '' ) {
+                $followup['enfrenta_violencia']  = array_filter($followup['enfrenta_violencia']);
+                $followup['enfrenta_violencia']  = $this->StringManipulation->ArrayToTokenedString($followup['enfrenta_violencia']);
+            }
+            
+            if ( $followup['hijos_atencion_especializada'] != '' ) {
+                $followup['hijos_atencion_especializada'] = array_filter($followup['hijos_atencion_especializada']);
+                $followup['hijos_atencion_especializada'] = $this->StringManipulation->ArrayToTokenedString($followup['hijos_atencion_especializada']);
+            }
+
+            $user = ($fId != null)? $this->Followups->get($fId): $user;
+            $user = $this->Followups->patchEntity($user, $followup );
+            $user->person_id = $id;
+            
+            
+           
+            if ( empty( $user->apoyo_institucional   ) ) { 
+                $user->apoyo_institucional = null;
+            }
+                
+            //debug($user);
+            
+            if ($this->Followups->save($user)) {
+                $this->Flash->success(__('saved.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('could not be saved. Please, try again.'));
+            }
+        }
+
     }
     /**
      * Agrega las atenciones en la base de datos manipulando los resultados de acuerdo 
      * a las convenciones pre-establecidas. 
      * $id es el id de la persona en la base de datos
      */
-    public function add($id)
+    public function add($id, $atId = null)
     {
+        
         //concatenar y desconcatenar strings con &
         $this->loadComponent('StringManipulation'); 
 
         //se cargan los modelos que se necesiten
         $this->loadModel('People');
+        $this->loadModel('Logs');
         $this->loadModel('Aggressors');
         $this->loadModel('Histories');
         $this->loadModel('PeopleAdvocacies');
@@ -69,16 +131,15 @@ class AttentionsController extends AppController
         $this->loadModel('Interventions');
         $this->loadModel('Entries');
         $this->loadModel('PeopleEntries');
-        $this->loadModel('AttentionsPeople');
 
         //se cargan las tablas
-        $peopleTable           = TableRegistry::get('People');
-        $aggressorsTable       = TableRegistry::get('Aggressors');
-        $historiesTable        = TableRegistry::get('Histories');
-        $attentionsTable       = TableRegistry::get('Attentions');
-        $entriesTable          = TableRegistry::get('Entries');
-        $peopleEntriesTable    = TableRegistry::get('PeopleEntries');
-        $attentionsPeopleTable = TableRegistry::get('AttentionsPeople');
+        $logsTable           = TableRegistry::get(  'Logs'           );
+        $peopleTable         = TableRegistry::get(  'People'         );
+        $aggressorsTable     = TableRegistry::get(  'Aggressors'     );
+        $historiesTable      = TableRegistry::get(  'Histories'      );
+        $attentionsTable     = TableRegistry::get(  'Attentions'     );
+        $entriesTable        = TableRegistry::get(  'Entries'        );
+        $peopleEntriesTable  = TableRegistry::get(  'PeopleEntries'  );
 
         //obtener una persona y dar formato a sus datos para llenar en el formulario
         $per = $peopleTable->get($id);
@@ -87,13 +148,32 @@ class AttentionsController extends AppController
         $per->adicciones                = $this->StringManipulation->StringTokenedToArray($per->adicciones);
         $this->set('persona', $per);
 
+
         //para saber cuales redes de apoyo tiene actualmente una persona
-        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
+        $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
+                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])->contain(['Advocacies']);
         $this->set('advo',$advo);
         
         //hijos 
         $iHijo = $this->People->find('all',['conditions' => ['num_familia' => $per->num_familia, 'rol_familia'=>'hijo' ]])->select('id');
         $iHijo = $iHijo->toArray();
+        
+        $agrs = new Person();
+        $hist = new History();
+        
+        if($atId != null){
+            $aten = $attentionsTable->get($atId);
+            $agrsID = $aggressorsTable->get($aten->aggressor_id);
+            
+            //obtiene el agresor
+            $agrs = $peopleTable->get($agrsID->person_id);
+            //obtiene la historia de violencia
+            $hist = $historiesTable->get($aten->history_id);
+            $hist = $this->StringManipulation->transformarStrings($hist->toArray());
+            $hist = new History($hist);
+        }
+        $this->set('histV',$hist);
+        $this->set('agrsr',$agrs);
 
         if ($this->request->is('post')) {
             $this->set('data',$this->request->data);
@@ -145,9 +225,6 @@ class AttentionsController extends AppController
             //             $atn = $this->Attentions->newEntity($datosAtencion);
             //             if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
             //                 $attention_id = $atencion->id;
-            //                 $datosAtnP = ['attention_id'=>$attention_id,'person_id'=>$id];
-            //                 $attnP = $this->AttentionsPeople->newEntity($datosAtnP);
-            //                 ($guardado = $guardado && $attentionsPeopleTable->save($attnP));
             //             }
             //         }
             //     }

@@ -25,6 +25,6 @@
             echo $this->Form->input('persona');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button('Buscar', ['class'  => 'button secondary']) ?>
     <?= $this->Form->end() ?>
 </div>

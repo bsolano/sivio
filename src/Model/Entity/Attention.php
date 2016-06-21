@@ -14,9 +14,10 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property \App\Model\Entity\User $user
  * @property string $tipo
- * @property int $identificacion
  * @property \Cake\I18n\Time $created
- * @property \App\Model\Entity\Person $person
+ * @property int $log_id
+ * @property \App\Model\Entity\Log $log
+ * @property string $datos_adicionales
  * @property \App\Model\Entity\Followup[] $followups
  * @property \App\Model\Entity\InterventionsPerson[] $interventions_people
  * @property \App\Model\Entity\PeopleAdvocacy[] $people_advocacies
