@@ -32,11 +32,12 @@
                                 for($i = 1; $i <=4 ; $i++){
                                     $claseBoton = ($i <= $numSegs) ? "primary button" : "hollow primary button";
                                     $fId        = ($i <= $numSegs) ? $attention['followups'][$i-1]['id'] : null; 
+                                    $disabled   = ($i >  $numSegs+1) ? "disabled" : " ";
                                     $funct =  ($fId == null) ?  
-                                            "noHay(".$attention['log']['person_id'].','.$i.')'     :
-                                            "darSeguimiento(".$attention['log']['person_id'].','.$fId.')' ; ?>
+                                            "noHay(".$attention['log']['person_id'].','.$attention['id'].')'     :
+                                            "darSeguimiento(".$attention['log']['person_id'].','.$fId.','.$attention['id'].')' ; ?>
                         
-                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick= "<?= $funct ?>" ><?= $i ?></button>  <?php
+                                    <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick= "<?= $funct ?>" <?= $disabled ?> ><?= $i ?> </button>  <?php
                                 }
                             else:
                                 echo '<b style = "color:red"> No acepta seguimientos </b>';
@@ -60,11 +61,11 @@
 </div>
     
 <script type="text/javascript">
-    function darSeguimiento(id, fId) {
-        document.location = "/attentions/followup/" + id+ "/" + fId;
+    function darSeguimiento(id, fId, aId) {
+        document.location = "/attentions/followup/" + id + "/" + aId + "/" + fId;
     }
     
-    function noHay(id, fId) {
+    function noHay(id, aId) {
         swal({
           title: "No existe este seguimiento",
           text: "Desea Crearlo?",
@@ -79,7 +80,7 @@
         
         // si la respuesta es 'si'
         function(){
-          document.location = "/attentions/followup/" + id+ "/" + fId;
+            document.location = "/attentions/followup/" + id + "/" + aId;
         });
     }
     

@@ -33,15 +33,17 @@ class StatisticsController extends AppController
             $hasta = $s['hasta'];
             
             $logs = $this->Attentions->find('all')->select('Logs.person_id')->contain(['Logs']);
-            $this->set('logs', $logs);
+            //$this->set('logs', $logs);
             
             $personIds = array();
             foreach($logs as $l){
                 array_push($personIds, $l['Logs']['person_id'] );
+                
             }
             
             $personIds = array_unique($personIds);
             debug($personIds);
+            echo $personIds[0];
             // Carga el arreglo de datos
             
             $data = array($s);
@@ -74,9 +76,19 @@ class StatisticsController extends AppController
 	            $personas = $this->People->find('all',$conditions);
 	            $query = $this->paginate($personas); 
 	            
+	            $resultado = array();
+	            
+	            foreach($personIds as $ids){
+	                foreach($query as $row){
+	                   if ($ids == $row ->id)
+                         array_push($resultado, $row );
+	                }     
+                
+              }
 	            
 	            
-                $this->set('result',$query);
+	            
+                $this->set('result',$resultado);
 
                 $this->Flash->success(__('Éxito en consulta de estadísticas'));
 
@@ -95,11 +107,4 @@ class StatisticsController extends AppController
         // Json
         $this->loadComponent('RequestHandler');
     }
-    
-    
-    
-        
-            
-
-    
 }

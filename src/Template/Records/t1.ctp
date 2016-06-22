@@ -52,7 +52,7 @@
                  echo $this->Form->input('Condición de Salud',array('value'=>$p[0]['condicion_salud'],'readonly' => 'readonly')); 
                 echo $this->Form->input('telefono',array('value'=>$p[0]['telefono'],'readonly' => 'readonly'));
                 echo $this->Form->input('edad',array('label'=>'Edad','value'=>$p[0]['edad'],'readonly' => 'readonly'));
-                echo $this->Form->input('num_de_hijos',array('label'=>'Número de Hijos','value'=>$p[0]['num_de_hijos]'],'readonly' => 'readonly'));
+                echo $this->Form->input('num_de_hijos',array('label'=>'Número de Hijos','value'=>$p[0]['num_de_hijos'],'readonly' => 'readonly'));
 
 
             ?>  
