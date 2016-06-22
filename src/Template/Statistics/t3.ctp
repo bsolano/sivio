@@ -1,7 +1,6 @@
 
-
 <fieldset>
-    <h3><?= __('Resultados') ?></h3>
+    <!--Aquí iba el título -->
     <table cellpadding="0" cellspacing="0">
 
         <thead>

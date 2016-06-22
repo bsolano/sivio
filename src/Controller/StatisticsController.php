@@ -107,11 +107,4 @@ class StatisticsController extends AppController
         // Json
         $this->loadComponent('RequestHandler');
     }
-    
-    
-    
-        
-            
-
-    
 }
