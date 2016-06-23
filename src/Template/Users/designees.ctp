@@ -1,3 +1,11 @@
+<?php 
+    /** 
+    * designees ctp
+    * Vista de designees, construye una tabla a partir de las personas asignadas al usuario logueado.
+    * @author Brandon Madrigal
+    */
+?>
+     
      <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
      <?php if ($uid == $user->id): ?>
      <title>
