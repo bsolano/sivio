@@ -14,7 +14,10 @@
 
 
 <script type="text/javascript" >
+    if (document.getElementById("acepta_seguimiento").selectedIndex != 1) { $('#fldst').hide(); }
+    
     $(window).load( function () {
+	    
 	    hideOrShow( $('#atencion_especializada') , $('#dondeatencion') );/*legal*/
 	})
 	
@@ -27,7 +30,14 @@
         }
         $containerName.fadeOut();
         return;
-    }       
+    }
+    
+    document.getElementById("acepta_seguimiento").onchange = function(){
+      if (this.selectedIndex != 1) {
+          $('#fldst').fadeOut();
+      } else { $('#fldst').fadeIn(); }
+      
+    }
     
     function cancelarfollow() {
         swal({
@@ -38,7 +48,8 @@
           confirmButtonColor: "#DD6B55",
           confirmButtonText: "Sí",
           cancelButtonText: "No",
-          closeOnConfirm: false
+          closeOnConfirm: false     ,
+          showLoaderOnConfirm: true
         },
         
         // si la respuesta es 'si'

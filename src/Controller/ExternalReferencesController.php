@@ -37,7 +37,7 @@ class ExternalReferencesController extends AppController
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id = null,$Cid)
     {
         $externalReference = $this->ExternalReferences->get($id, [
             'contain' => ['People']
@@ -45,6 +45,7 @@ class ExternalReferencesController extends AppController
 
         $this->set('externalReference', $externalReference);
         $this->set('_serialize', ['externalReference']);
+        $this->set('Cid', $Cid);
     }
 
     /**
@@ -52,7 +53,7 @@ class ExternalReferencesController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add($id_p = null)
+    public function add($id_p = null,$Cid)
     
     {
         
@@ -64,8 +65,8 @@ class ExternalReferencesController extends AppController
         if ($this->request->is('post')) {
             $externalReference = $this->ExternalReferences->patchEntity($externalReference, $this->request->data);
             if ($this->ExternalReferences->save($externalReference)) {
-                $this->Flash->success(__('The external reference has been saved.'));
-                return $this->redirect(['action' => 'view', $externalReference->id]);
+                $this->Flash->success(__('Referencia Externa guardada.'));
+                return $this->redirect(['action' => 'view', $externalReference->id,$Cid]);
             } else {
                 $this->Flash->error(__('The external reference could not be saved. Please, try again.'));
             }
@@ -121,7 +122,7 @@ class ExternalReferencesController extends AppController
         } else {
             $this->Flash->error(__('The external reference could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Consultations', 'action' => 'view', $Cid]);
     }
     
     
@@ -147,12 +148,29 @@ class ExternalReferencesController extends AppController
         //$this->layout='ajax';
         $this->viewBuilder()->layout('ajax');
         $this->response->type('pdf');
+        
+         $this->Flash->success(__('PDF Generado correctamente'));
        
         
        
     } 
     
-    public function enviarCorreo($id = null){
+    
+    public function continuar($Cid)
+    
+    {
+        
+         return $this->redirect(array("controller" => "Consultations", 
+                          "action" => "view",
+                          $Cid,
+                          "redirect" => "True"));
+        
+        
+    }
+    
+    
+    
+    public function enviarCorreo($id = null,$Cid){
         
       $externalReference = $this->ExternalReferences->get($id, [
             'contain' => ['People']
@@ -224,10 +242,11 @@ class ExternalReferencesController extends AppController
       ]);
     
     if($enviarCorreo->send()){
-      echo "Correo enviado";
+         $this->Flash->success(__('Correo Enviado con Éxito'));
     }else{
-      echo "Ups error man";
-    }    
+        $this->Flash->error(__('Error al enviar el Correo.'));
+    }
+   return $this->redirect(['action' => 'view', $id,$Cid]);
   }
     
    

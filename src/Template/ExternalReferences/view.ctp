@@ -1,9 +1,13 @@
 
 
 <div class="externalReferences view large-9 medium-8 columns content">
-    <input type="button" value="Generar PDF" display:"block" class="primary button float-right" onclick="pdf(<?= h($externalReference->id) ?>)"/>
     
-    <input type="button" value="Enviar Correo" display:"block" class="primary button float-right" onclick="correo(<?= h($externalReference->id) ?>)"/>
+    
+    
+    
+    <input type="button" value="Generar PDF" display:"block" class="primary button float-right" onclick="pdf(<?= h($externalReference->id) ?> )" />
+   
+    <input type="button" value="Enviar Correo" display:"block" class="primary button float-right" onclick="correo(<?= h($externalReference->id)?>, <?= h($Cid)?>)"/>
     <h3><?= h($externalReference->id) ?></h3>
     
     <table class="vertical-table">
@@ -65,6 +69,7 @@
         <h4><?= __('Observacion') ?></h4>
         <?= $this->Text->autoParagraph(h($externalReference->observacion)); ?>
     </div>
+    <input type="button" value="Continuar" display:"block" class="primary button float-right" onclick="continuar(<?= h($Cid) ?>)"/>
 </div>
 <script type="text/javascript">
     function pdf(referencia) {
@@ -73,9 +78,17 @@
        
     }
     
-    function correo(id) {
+    function correo(id,Cid) {
+        
+      
        
-                document.location = "/ExternalReferences/enviarCorreo/"+id;
+                document.location = "/ExternalReferences/enviarCorreo/"+id+"/"+Cid;
+       
+    }
+    
+     function continuar(Cid) {
+       
+                document.location = "/ExternalReferences/continuar/"+Cid;
        
     }
 </script>

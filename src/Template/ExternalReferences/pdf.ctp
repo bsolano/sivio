@@ -177,7 +177,7 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdfs = $pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'S');
+$pdfs = $pdf->Output('Referencia Externa'.$externalReference->id.'.pdf', 'D');
 
 
 
