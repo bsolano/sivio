@@ -1,13 +1,13 @@
 <?php 
     /** 
-    * designees ctp
-    * Vista de designees, construye una tabla a partir de las personas asignadas al usuario logueado.
-    * @author Brandon Madrigal
-    */
+     * designees ctp
+     * Vista de designees, construye una tabla a partir de las personas asignadas al usuario logueado.
+     * @author Brandon Madrigal B33906
+     */
 ?>
-     
-     <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
-     <?php if ($uid == $user->id): ?>
+
+     <?php $uid = $this->request->session()->read('Auth.User.id');  ?>
+     <?php if ($uid == $user->id): /*Por seguridad cersiora que el id del usuario consultado sea el mismo que el usuario logueado*/?>
      <title>
         <?php $this->assign('title', 'Personas asignadas'); ?>
      </title>
@@ -23,6 +23,7 @@
                 <th>Atención</th>
                 <th>Perfil</th>
             </tr>
+            <!-- Se verifica que existan los datos a mostrar, en caso de existir se muestran como entradas de la tabla -->
              <?php if ($designeesData != null && $people != null ): ?>
                   <?php foreach ($designeesData as $designeeData): ?> 
                           <?php $stop = false; ?>

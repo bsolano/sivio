@@ -1,10 +1,10 @@
 <?php 
 /** 
-* summaryview ctp
-* Vista de summaryview, construye contenedores anidados a partir de los a;os de las atencions y evaluaciones
-* @author Brandon Madrigal
-* @author Erick
-*/
+ * summaryview ctp
+ * Vista de summaryview, construye contenedores anidados a partir de los a;os de las atencions y evaluaciones
+ * @author Brandon Madrigal B33906
+ * @author Erick
+ */
 ?>
      <!--Encabezado, contiene los datos de la persona consultada-->
      <div class = "row">

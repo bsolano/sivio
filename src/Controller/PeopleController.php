@@ -168,9 +168,13 @@ class PeopleController extends AppController
     }
     
      /**
-     * records_search method
-     * Busca las atenciones de la persona solicitada.
-     */ 
+      * summaryview method
+      * Busca las atenciones y evaluaciones de la persona solicitada, por medio del id enviado.
+      * @param string|null $id Person id.
+      * @return void
+      * @author Brandon Madrigal B33906
+      * @author Erick
+      */ 
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
         $years = array();
