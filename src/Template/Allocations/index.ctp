@@ -22,30 +22,32 @@
                 <th><?= $this->Paginator->sort('person_id') ?></th>
                 <th><?= $this->Paginator->sort('telefono') ?></th>
                 <th><?= $this->Paginator->sort('oficina') ?></th>
-                <th><?= $this->Paginator->sort('user_id') ?></th>
+                <th><?= $this->Paginator->sort('Profesional') ?></th>
+                <!-- <th><?= $this->Paginator->sort('user_id') ?></th> -->
                 <th>Tipo de Profesional</th>
                 <th>Profesional Asignado</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($usersPeople as $internalReference): ?>
-             <!-- <pre> <?=  print_r($internalReference); ?></pre>  -->
+            <?php foreach ($usersPeople as $userPeople): ?>
+             <!-- <pre> <?=  print_r($userPeople); ?></pre>  -->
             
             
 
             
             <tr>
-                <td><?= $this->Number->format($internalReference->id) ?></td>
-                <td><?= $internalReference->has('person') ? $this->Html->link($internalReference->person->nombre . ' '. $internalReference->person->apellidos, ['controller' => 'People', 'action' => 'view', $internalReference->person->id]) : '' ?></td>
-                <td><?= h($internalReference->telefono) ?></td>
-                <td><?= h($internalReference->oficina) ?></td>
-                <td><?= $internalReference->has('user') ? $this->Html->link($internalReference->user->id, ['controller' => 'Users', 'action' => 'view', $internalReference->user->id]) : '' ?></td>
-                <td><?php echo "Psychology"; //h($internalReference->group->name) ?></td>
+                <td><?= $this->Number->format($userPeople->id) ?></td>
+                <td><?= $userPeople->has('person') ? $this->Html->link($userPeople->person->nombre . ' '. $userPeople->person->apellidos, ['controller' => 'People', 'action' => 'view', $userPeople->person->id]) : '' ?></td>
+                <td><?= h($userPeople->telefono) ?></td>
+                <td><?= h($userPeople->user->location_id) ?></td>
+                <td><?= h($userPeople->user->fullname) ?></td>
+                <!-- <td><?= $userPeople->has('user') ? $this->Html->link($userPeople->user->id, ['controller' => 'Users', 'action' => 'view', $userPeople->user->id]) : '' ?></td> -->
+                <td><?php echo "Psicología"; //h($userPeople->group->name) ?></td>
                 <td><?php 
                 
                     echo $this->Form->create(null, [
-    'url' => ['controller' => 'Allocations', 'action' => 'updateProfessional.json']
-]);
+                    'url' => ['controller' => 'Allocations', 'action' => 'updateProfessional.json']
+                    ]);
                     
                     $profArr = [];
                     $profArr[] = '(No Asignada)';
@@ -53,7 +55,7 @@
                     foreach ($users as $user)
                     {
                         // @@@@@
-                        //if ($user->group_id == $internalReference->group_id) $profArr[] = $user->username;
+                        /*if ($user->group_id == $userPeople->group_id)*/ $profArr[$user->id] = $user->username;
                     }
                 
 
@@ -64,7 +66,7 @@
                     );     
                     
                     
-                    echo $this->Form->hidden('internalreference_id', ['value'=>$internalReference->id]);
+                    echo $this->Form->hidden('userpeople_id', ['value'=>$userPeople->id]);
                     //echo $this->Form->hidden('professional_id', ['value'=>$id]);
                     
                     echo $this->Form->end();
@@ -89,6 +91,12 @@
 
 <script type="text/javascript">
     
+    <?php
+    /** 
+     * AJAX que sirve para actualizar el profesional asignado a una usuaria
+     * 
+     */
+     ?>
     $('form .proClass').change(function () {
 
             var frms = $(this.form);
