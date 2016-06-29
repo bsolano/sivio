@@ -3,8 +3,8 @@
     <h3>Consulta de <?= h($person->nombre) ?></h3>
     
     <?php if($references != null):?> 
-        <?=$this->Html->link("Referencia Externa", ['controller' => 'ExternalReferences', 'action' => 'add', $consultation->person->id], ['class' => 'button']) ?>
-        <?=$this->Html->link("Referencia Interna", ['controller' => 'InternalReferences', 'action' => 'add', $consultation->person->id], ['class' => 'button']) ?>
+        <?=$this->Html->link("Referencia Externa", ['controller' => 'ExternalReferences', 'action' => 'add', $consultation->person->id, 'consultation_id' => $consultation->id], ['class' => 'button']) ?>
+        <?=$this->Html->link("Referencia Interna", ['controller' => 'InternalReferences', 'action' => 'add', $consultation->person->id, 'consultation_id' => $consultation->id], ['class' => 'button']) ?>
     <?php endif ?>
     <table class="vertical-table">
         <tr>
