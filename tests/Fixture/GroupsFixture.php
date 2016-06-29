@@ -40,8 +40,8 @@ class GroupsFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2016-04-29 02:41:07',
-            'modified' => '2016-04-29 02:41:07'
+            'created' => '2016-05-18 00:05:09',
+            'modified' => '2016-05-18 00:05:09'
         ],
     ];
 }

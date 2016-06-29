@@ -44,7 +44,10 @@ class GroupsTableTest extends TestCase
         'app.people_entries',
         'app.families',
         'app.people_families',
-        'app.users_people'
+        'app.users_people',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos'
     ];
 
     /**
