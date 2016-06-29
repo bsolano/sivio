@@ -1,3 +1,8 @@
+/*
+* Clase que maneja el JS de la consultas (Consultations)
+* @author Erick
+*/
+
 $(document).ready(function(){
 $('#horario').hide();
 $('.page').hide(); 
@@ -35,7 +40,10 @@ $('.tab_page1').show();
                 $('.'+activeTab).show();
                 
               });
-              
+  /*
+  * Calcula el nivel de riesgo que tiene una persona según las respuestas del sub-formulario de valoración de riesgo
+  * @author Erick
+  */
   $('#calcular').on('click',function(){
   
    var AltoRiesgo = $('.Alto_riesgo');
