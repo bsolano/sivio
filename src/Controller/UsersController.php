@@ -112,15 +112,30 @@ class UsersController extends AppController {
     }
     
     public function login() {
+        
+        $locations = $this->loadModel('Locations')->find('list');
+        
+        $locations = $locations->toArray();
+       //$locations = [];
+        
+        
+        $this->set('locations', $locations);
+        //$this->set(compact('locations'));
+        //$this->set('_serialize', ['locations']);
+        
         if($this->request->session()->read('Auth.User')) {
             // si ya esta loggeado, redirija a la pagina de expedientes
             return $this->redirect($this->Auth->redirectUrl());
 		}
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
+            $loc = $this->request->data('location_id');
+            print_r($loc);
             if ($user) {
                 $this->Auth->setUser($user);
+                $this->request->session()->write('Config.location', $loc);
                 return $this->redirect($this->Auth->redirectUrl());
+                
             }
             $this->Flash->error('Su nombre de usuario y clave son incorrectos.');
         }
