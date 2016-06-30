@@ -9,10 +9,19 @@ use App\Controller\AppController;
  * @property \App\Model\Table\ExternalReferencesTable $ExternalReferences
  */
  
+  
+ 
 class StatisticsController extends AppController
 {
   
-    
+    /**
+      * index method
+      * Busca las atenciones de la persona en un rango de fecha.
+      * @param string|null $id Person id.
+      * @return datos usuarias
+      * @author DavidHine
+     
+      */ 
       public function index()
     {
        // $this->Statistic->$useTable = '';
