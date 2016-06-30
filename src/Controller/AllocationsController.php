@@ -90,7 +90,7 @@ class AllocationsController extends AppController
                 // @@@ enable these filters
                 //'UsersPeople.location_id' => $location//,
                 //'UsersPeople.professional_id IS' => null
-            ])
+            ])->contain(['Users', 'Users.Groups', 'Users.Locations'])
         );
 
         $this->set(compact('usersPeople'));

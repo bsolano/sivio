@@ -97,10 +97,11 @@ $sivioDescription = 'SIVIO';
 			 <li><?= $this->Html->link("Referencias", ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
 			 
 			  <li><a href="#">Asesoría técnica</a>
-			  	<ul class="menu vertical">
-			  		<li><?= $this->Html->link('Asignaciones', ['controller' => 'Allocations', 'action' => 'index']) ?></li>
-			  	</ul>
+
+
 			  </li>
+  	  		  <li><?= $this->Html->link('Asignaciones', ['controller' => 'Allocations', 'action' => 'index']) ?></li>
+
 			  <li><?= $this->Html->link('Reportes', ['controller' => 'Statistics', 'action' => 'index']) ?></li>
 			  <li>
 			      <a href="#">Administración</a>
