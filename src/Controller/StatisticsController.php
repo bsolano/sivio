@@ -4,9 +4,42 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
+ * 
+ * Index de Reportes
+ *
+ * @category   
+ * @package    
+ * @author     David Hine
+ * @author     José López
+ * @author     Eduardo Solórzano
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    
+ * @link       http://sivio-edsv.c9users.io/statistics
+ * @see        
+ * @since      Release 2
+ */
+
+/**
  * ExternalReferences Controller
  *
  * @property \App\Model\Table\ExternalReferencesTable $ExternalReferences
+ */
+ 
+ 
+ /**
+ * Vista para reportes
+ *
+ *
+ * @category   CategoryName
+ * @package    PackageName
+ * @author     Original Author <author@example.com>
+ * @author     Another Author <another@example.com>
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: 2
+ * @link       http://sivio-edsv.c9users.io/statistics
+ * @since      Disponible desde release 2
  */
  
 class StatisticsController extends AppController

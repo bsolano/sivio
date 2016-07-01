@@ -5,6 +5,7 @@
 
         <thead>
             <tr>
+                <th><?= $this->Paginator->sort('Id de atención')       ?></th>
                 <th><?= $this->Paginator->sort('Identificación')       ?></th>
                 <th><?= $this->Paginator->sort('Nombre') ?></th>
                 <th><?= $this->Paginator->sort('Nacionalidad') ?></th>
