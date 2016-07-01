@@ -39,10 +39,10 @@
                 <td><?= $this->Number->format($userPeople->id) ?></td>
                 <td><?= $userPeople->has('person') ? $this->Html->link($userPeople->person->nombre . ' '. $userPeople->person->apellidos, ['controller' => 'People', 'action' => 'view', $userPeople->person->id]) : '' ?></td>
                 <td><?= h($userPeople->telefono) ?></td>
-                <td><?= h($userPeople->user->location_id) ?></td>
+                <td><?= h($userPeople->user->location->ubicacion) ?></td>
                 <td><?= h($userPeople->user->fullname) ?></td>
                 <!-- <td><?= $userPeople->has('user') ? $this->Html->link($userPeople->user->id, ['controller' => 'Users', 'action' => 'view', $userPeople->user->id]) : '' ?></td> -->
-                <td><?php echo "Psicología"; //h($userPeople->group->name) ?></td>
+                <td><?php echo h($userPeople->user->group->name); ?></td>
                 <td><?php 
                 
                     echo $this->Form->create(null, [
@@ -115,11 +115,13 @@
                     //document.getElementById("results").innerHTML = response;
                     //console.log(response.result.code);
                     
-                    alert('Respuesta del servidor: ' + response.result.code)
+                    $('<div class="message success" onclick="this.classList.add(\'hidden\')">¡El profesional asignado ha sido actualizado!</div>' ).insertBefore("div.content");
+                    //alert('Respuesta del servidor: ' + response.result.code)
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('Error actualizando el registro...');
                     console.log(errorThrown);
+                    
                 }
             });
             

@@ -31,12 +31,13 @@ class ExternalReferencesController extends AppController
  
 
     /**
-     * View method
-     *
-     * @param string|null $id External Reference id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+      * index method
+      * Busca las atenciones de la persona en un rango de fecha.
+      * @param string|null $id Person id.
+      * @return datos de la referencia externa
+      * @author DavidHine
+     
+      */ 
     public function view($id = null,$Cid)
     {
         $externalReference = $this->ExternalReferences->get($id, [
@@ -133,7 +134,14 @@ class ExternalReferencesController extends AppController
         $this->Auth->allow();
       
     }
-    
+    /**
+      * pdf method
+      * genera un PDF con los datos de la consulta externa.
+      * @param string|null $id Person id.
+      * @return PDF
+      * @author DavidHine
+     
+      */ 
      public function pdf($id = null){
          
         $externalReference = $this->ExternalReferences->get($id, [
@@ -168,7 +176,14 @@ class ExternalReferencesController extends AppController
         
     }
     
-    
+    /**
+      * enviarcorreo method
+      * envia correo al personal de la instituciòn externa.
+      * @param string|null $id CID.
+      * @return true
+      * @author DavidHine
+     
+      */ 
     
     public function enviarCorreo($id = null,$Cid){
         

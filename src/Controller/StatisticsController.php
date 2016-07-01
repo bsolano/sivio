@@ -41,11 +41,19 @@ use App\Controller\AppController;
  * @link       http://sivio-edsv.c9users.io/statistics
  * @since      Disponible desde release 2
  */
+
  
 class StatisticsController extends AppController
 {
   
-    
+    /**
+      * index method
+      * Busca las atenciones de la persona en un rango de fecha.
+      * @param string|null $id Person id.
+      * @return datos usuarias
+      * @author DavidHine
+     
+      */ 
       public function index()
     {
        // $this->Statistic->$useTable = '';
