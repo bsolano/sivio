@@ -27,8 +27,8 @@
                 <td><?= h($internalReference->telefono) ?></td>
                 <td><?= $internalReference->has('location') ? $this->Html->link($internalReference->location->ubicacion, ['controller' => 'Locations', 'action' => 'view', $internalReference->location->id]) : '' ?></td>
                  <td class="actions">
-                    <?= $this->Form->postLink(__('Aceptar'), ['controller' => 'Consultations', 'action' => 'add', $internalReference->id], ['confirm' => __('Está segura que desea aceptar la referencia interna de # {0}?', $internalReference->person->id.' '.$internalReference->person->nombre.' '.$internalReference->person->apellidos)]) ?>
-                     <?= $this->Form->postLink(__('Rechazar'), ['action' => 'delete', $internalReference->id], ['confirm' => __('Are you sure you want to delete # {0}?', $internalReference->id)]) ?>
+                    <?= $this->Form->postLink(__('Aceptar'), ['action' => 'aceptarReferencia', $internalReference->id], ['confirm' => __('Está segura que desea aceptar la referencia interna de Cédula: {0}?', $internalReference->person->id.' Nombre: '.$internalReference->person->nombre.' '.$internalReference->person->apellidos)]) ?>
+                     <?= $this->Form->postLink(__('Rechazar'), ['action' => 'rechazarReferencia', $internalReference->id], ['confirm' => __('Está segura que desea cancelar la referencia interna de Cédula: {0}?', $internalReference->person->id.' Nombre: '.$internalReference->person->nombre.' '.$internalReference->person->apellidos)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

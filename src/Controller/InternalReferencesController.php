@@ -18,27 +18,23 @@ class InternalReferencesController extends AppController
      */
     public function index()
     {
-        
-        /*<p> <?= $referencias[0] ?> </p>*/
-        
          $this->paginate = [
             'contain' => ['People', 'Users','Locations']
         ];
         
         $this->loadModel('Groups');
         
+        //localizacion del usuario
         $userLocation = $this->Auth->user('location_id');
         
+        //nombre del grupo al que pertenece
         $groupNumber = $this->Auth->user('group_id');
-        
         $groupName =  $this->Groups->find()->where(['Groups.id' => $groupNumber])->first(); 
         
-        //$groupName = $groupName->toArray();
-        
-        if (strcmp($groupName['name'], 'Admin') == 0 || strcmp($groupName['name'], 'JefaturaEquipoEstrategico') == 0){
+        //Solamente el administrador, las jefaturas o la recepcionista puede aceptar o rechazar la referencia interna
+        if (strcmp($groupName['name'], 'Admin') == 0 || strpos($groupName['name'], 'Jefatura') !== false || strpos($groupName['name'], 'Recepcionista') !== false){
+            //encontrar las referencias de mi ubicacion y que aun no hayan sido aceptadas o rechazadas => "estado == 0"
             $referencias = $this->InternalReferences->find()->where(['AND' => [['InternalReferences.location_id' => $userLocation],['InternalReferences.estado' => 0]]]);
-        
-        //$this->set(compact('referencias'));
         
         $internalReferences = $this->paginate($referencias);
         
@@ -49,11 +45,6 @@ class InternalReferencesController extends AppController
         
         $this->set(compact('internalReferences'));
         $this->set(compact('userLocation','groupName'));
-        
-        
-        //$this->set('_serialize', ['internalReferences']);
-        
-    
     }
 
     /**
@@ -84,90 +75,62 @@ class InternalReferencesController extends AppController
         $internalReference = $this->InternalReferences->newEntity();
         if ($this->request->is('post')) {
             $internalReference = $this->InternalReferences->patchEntity($internalReference, $this->request->data);
+            //Se le asiga un estado de 0 para la nueva referencia interna 
             $internalReference->estado = 0;
-            /*if($internalReference->location_id > 2){
-                $error = false;
-                for($x = 12; $x < 15; $x++){
-                $internalReference->group_id = $x;
-                if (!$this->InternalReferences->save($internalReference)) {
-                    $error = true;
-                    $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
-                } 
-                $internalReference = $this->InternalReferences->newEntity();
-                $internalReference = $this->InternalReferences->patchEntity($internalReference, $this->request->data);
+            if ($this->InternalReferences->save($internalReference)) {
+                $this->Flash->success(__('The internal reference has been saved.'));
+                //Se retorna a la consulta que genero la referencia interna
+                return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', $internalReference->consultation_id, $internalReference->id]);
+            } else {
+                $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
             }
-            if(!$error){
-                    $this->Flash->success(__('The internal reference has been saved.'));
-                    return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', 'internalReference_id' => $internalReference->id]);
-            }
-            }
-            else {
-            */
-                if ($this->InternalReferences->save($internalReference)) {
-                    $this->Flash->success(__('The internal reference has been saved.'));
-                    return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', 'internalReference_id' => $internalReference->id]);
-                } else {
-                    $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
-                }
-            }
-       // }
+        }
         
           /*
         Cambiar que no muestre todas las localizaciones. 
         */
         
-        //['Locations.ubicacion LIKE' => '%Ovens%']
         $this->loadModel('Locations');
         $this->loadModel('Groups');
         $this->loadModel('Users');
+        //nombre del grupo que pertenece el usuario que inicio sesion
         $groupNumber = $this->Auth->user('group_id');
         $groupName =  $this->Groups->find()->where(['Groups.id' => $groupNumber])->first(); 
         
-        //ER para groupName
-        //if (strpos($groupName, 'EquipoEstrategico') !== false) {
         
-        if (strpos($groupName['name'], 'Admin') !== false) {
-            $groupCode = 1;
-        }
-        else if (strpos($groupName['name'], 'DelegacionDeLaMujer') !== false) {
-            $groupCode = 2;
-        }
-        else if (strpos($groupName['name'], 'COAVIF') !== false) {
-            $groupCode = 3;
-        }
-        
-        switch($groupCode){
-            case '1': //EquipoEstrategico
-                $locations = $this->Locations->find('list', [
+        //Selecciona solamente a las instancias debidas a las que el profesional puede hacer la referencia interna
+        if (strpos($groupName, 'EquipoEstrategico') !== false) {
+        //if (strpos($groupName['name'], 'Admin') !== false) {
+            $locations = $this->Locations->find('list', [
                 'keyField' => 'id',
                 'valueField' => 'ubicacion']
                 )->where(['OR' => [['Locations.ubicacion LIKE' => 'Albergue%'],['Locations.ubicacion' => 'DelegacionDeLaMujer']]]);
                 //dele y albergues
-                break;
-            case '2': //DelegacionDeLaMujer
-                 $locations = $this->Locations->find('list', [
+        }
+        else if (strpos($groupName['name'], 'DelegacionDeLaMujer') !== false) {
+            $locations = $this->Locations->find('list', [
                 'keyField' => 'id',
                 'valueField' => 'ubicacion'])->where(['Locations.ubicacion LIKE' => 'Albergue%']);
-                break;
-            case '3': //COAVIF
-                 $locations = $this->Locations->find('list', [
+        }
+        else if (strpos($groupName['name'], 'COAVIF') !== false) {
+            $locations = $this->Locations->find('list', [
                 'keyField' => 'id',
                 'valueField' => 'ubicacion'])->where(['OR' => [['Locations.ubicacion' => 'DelegacionDeLaMujer'],['Locations.ubicacion' => 'OficinasCentrales']]]);
-                break;
         }
         
         
         if ($consultation_id != null){
-            $tipoProcedencia = 0; //0 si proviene de una consulta
-            $idProcedencia = $consulta_id;
+            $tipoProcedencia = 0; // 0 si proviene de una consulta
+            $idProcedencia = $consultation_id;
         }
         /*else if (){
          Caso de que la referencia interna provenga de otro lado que no sea una consulta  
         }
         */
         
-        $accesoDenegado = ['No hay espacio en el CEEAM','No hay recursos para para el traslado','Usuaria rechaza recurso'];
-        //$people = $this->InternalReferences->People->find('list', [ 'keyField' => 'id',      'valueField' => ['id','nombre','apellidos'],'limit' => 200])->where(['People.id ' => $id]);
+        //Opciones por la cual se deniega el acceso. 
+        $accesoDenegado = ['No hay espacio en el CEEAM' => 'No hay espacio en el CEEAM', 'No hay recursos para para el traslado' => 'No hay recursos para para el traslado', 'Usuaria rechaza recurso' => 'Usuaria rechaza recurso'];
+        //selecciona a las usuarias del sistema
         $people = $this->InternalReferences->People
         ->find('list', [
         'keyField' => 'id',
@@ -185,18 +148,72 @@ class InternalReferencesController extends AppController
         ])
     ])
     ->where(['People.id' => $id]);
-        //$people = $this->InternalReferences->People->find()->where(['People.id ' => $id])->first();
-       // $users = $this->InternalReferences->Users->find('list', ['limit' => 200]);
        $user_id = $this->Auth->user('id');
         $users = $this->Users->find('list', [
                 'keyField' => 'id',
                 'valueField' => 'username'])->where(['Users.id' => $user_id ]);
-       // $locations = $this->InternalReferences->Locations->find('list', ['limit' => 200]);
-        $groups = [];// $this->InternalReferences->Groups->find('list', ['limit' => 200]);
-        $this->set(compact('internalReference', 'people', 'users', 'locations', 'groups','groupName','idProcedencia','tipoProcedencia','accesoDenegado','$consultation_id'));
+        $groups = [];
+        $this->set(compact('internalReference', 'people', 'users', 'locations', 'groups','groupName','idProcedencia','tipoProcedencia','accesoDenegado','consultation_id'));
         $this->set('_serialize', ['internalReference']);
     }
     
+      /**
+      * rechazarReferencia method
+      * Busca la referencia interna relacionada con el id. Le cambia el estado a rechazada(1)
+      * Verifica el grupo
+      * @param string|null $id InternalReference id.
+      * @return void
+      */ 
+    public function aceptarReferencia($id = null){
+        
+        $internalReference = $this->InternalReferences->find()->where(['InternalReferences.id' => $id])->first(); 
+        $internalReference->estado = 1; //se acepta la referencia
+        
+        $this->loadModel('Groups');
+        $this->loadModel('Users');
+        //nombre del grupo que pertenece el usuario que inicio sesion
+        $groupNumber = $this->Auth->user('group_id');
+        $groupName =  $this->Groups->find()->where(['Groups.id' => $groupNumber])->first(); 
+        
+        //Selecciona solamente a las instancias debidas a las que el profesional puede hacer la referencia interna
+        //if (strpos($groupName['name'], 'Admin') !== false) {
+        if (strpos($groupName, 'EquipoEstrategico') !== false) {
+            $redirectTo = ['controller' => 'Consultations', 'action' => 'add', $internalReference->person_id];
+        }
+        else if (strpos($groupName['name'], 'DelegacionDeLaMujer') !== false) {
+            $redirectTo = ['controller' => 'Consultations', 'action' => 'add', $internalReference->person_id];
+        }
+        else if (strpos($groupName['name'], 'Albergue') !== false) {
+            $redirectTo = ['controller' => 'Consultations', 'action' => 'add', $internalReference->person_id];
+        }
+        
+        if ($this->InternalReferences->save($internalReference)) {
+                $this->Flash->success(__('Se aceptó la referencia interna.'));
+                return $this->redirect($redirectTo);
+        }
+        
+    }
+    
+     /**
+      * rechazarReferencia method
+      * Busca la referencia interna relacionada con el id. Le cambia el estado a rechazada(2)
+      * @param string|null $id InternalReference id.
+      * @return void
+      */ 
+    public function rechazarReferencia($id = null){
+        $internalReference = $this->InternalReferences->find()->where(['InternalReferences.id' => $id])->first(); 
+        $internalReference->estado = 2; //se cancela la referencia
+        if ($this->InternalReferences->save($internalReference)) {
+                $this->Flash->success(__('Se canceló la referencia interna.'));
+                return $this->redirect(['action' => 'index']);
+        }
+    }
+    
+     /**
+      * groupsSearch method
+      * Busca los grupos que pertenecen a la ubicacion que se envia como 'keyword'
+      * Retorna los grupos pertenecientes a la ubicacion
+      */
     public function groupsSearch(){
         
         $this->loadModel('Locations');
@@ -229,7 +246,6 @@ class InternalReferencesController extends AppController
             $groups = [];
         }
         
-        //$groups = $this->InternalReferences->Groups->find('list', ['limit' => 200]);
          $this->set(compact('groups','location_id'));
     
     }
