@@ -2,7 +2,7 @@
         <h3><?= __('Historial de Consultas') ?></h3>
             <div class="externalReferences index large-6 medium-6 columns content">
             <?php
-             $c= $consulta->toArray(); 
+            /* $c= $consulta->toArray(); 
           //   print_r(array($c));
          //  echo '<pre>'; print_r($consulta); echo '</pre>';
             $n = 0;
@@ -16,7 +16,7 @@
                     echo $this->Form->input('vinculo_con_persona_agresora',['value'=>$consulta[$n]['vinculo_con_persona_agresora']]); 
                 }
                 $n++;
-            }
+            }*/
             ?>  
     </div>
       <h3><?= __('') ?></h3>

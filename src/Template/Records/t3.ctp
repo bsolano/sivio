@@ -1,7 +1,7 @@
 <fieldset>
         <h3><?= __('Historial de Atenciones') ?></h3>
          <div class="externalReferences index large-6 medium-6 columns content">
-           <?php
+           <?php/*
              $a= $atenciones->toArray(); 
           //  print_r(array($c));
           //  echo '<pre>'; print_r($a); echo '</pre>';
@@ -15,7 +15,7 @@
                     echo $this->Form->input('Motivo de ingreso',['value'=>$a[$n]['institucion_que_refiere']]); 
                 }
                 $n++;
-            }
+            }*/
             ?>  
     </div>
       <h3><?= __('') ?></h3>

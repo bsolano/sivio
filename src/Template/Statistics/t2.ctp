@@ -6,10 +6,12 @@
       $nacionales = 0;
       foreach ($result as $results): 
                
-            if (fnmatch("costarricense", $results->nacionalidad)) {
+            if (fnmatch("*costarricense*", $results->nacionalidad)) {
+               
                 $nacionales = $nacionales + 1;
              }else {
                $extranjeras = $extranjeras + 1;
+                echo $results->nacionalidad;
              }
                    
     
@@ -28,7 +30,7 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
+      var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['costarricenses',<?= $nacionales ?>],
           ['extranjeras',      <?= $extranjeras ?>],

@@ -1,8 +1,8 @@
-reo_plantilla.ctpPHP
 
-<p>Este es un correo de ejemplo para cakephp 3</p>
 
-<p>Imprimimos las variables enviadas desde el controlador:</p>
+<p>Correo enviado automàticamente desde sistema SIVIO</p>
+
+<p>REFERENCIA GENERADAS:</p>
 <h2>Número de Referencia: <?= $id; ?></h2>
 <h4>Persona</h4>
 <table border="1" cellspacing="3" cellpadding="4">

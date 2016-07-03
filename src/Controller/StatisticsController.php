@@ -69,16 +69,23 @@ class StatisticsController extends AppController
             // Código de las consultas
            
             $s = $this->request->data;
-
-            $desde = $s['desde'];
-            $hasta = $s['hasta'];
+            $data = array($s);
             
-            $logs = $this->Attentions->find('all')->select('Logs.person_id')->contain(['Logs']);
+            $desde = $data[0]['desde'];
+            $hasta = $data[0]['hasta'];
+            
+            debug($hasta);
+            $campos = array('Attentions.created >=' => $desde, 'Attentions.created <=' => $hasta );
+            $opciones = array_filter($campos);
+            $conditions=array('conditions'=> (array($opciones)));
+
+            debug($logs = $this->Attentions->find('all')->select('Attentions.created')->contain(['Logs']));
             //$this->set('logs', $logs);
             
             $personIds = array();
             foreach($logs as $l){
                 array_push($personIds, $l['Logs']['person_id'] );
+                debug($l['Attentions']['created']);
                 
             }
             
@@ -87,7 +94,7 @@ class StatisticsController extends AppController
             echo $personIds[0];
             // Carga el arreglo de datos
             
-            $data = array($s);
+            
             
             // Saca los datos de los campos de texto en los que se escribió
             
@@ -98,7 +105,7 @@ class StatisticsController extends AppController
             $estado_civil = $data[0]['estado_civil'];
             $ocupacion = $data[0]['ocupacion'];
           
-            if ($data[0] != NULL) { // Si se ingresó algo en los campos
+            if (1) { // Si se ingresó algo en los campos
             
                 // Se declaran los criterios de búsqueda
                 
