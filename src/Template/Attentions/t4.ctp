@@ -6,26 +6,27 @@
     <div class="large-4 small-4 columns"> 
         <legend>Perfil del agresor</legend>
         <?php
-    
-            echo $this->Form->input('Person.1.nombre'); 
             
-            echo $this->Form->input('Person.1.apellidos');
+            echo $this->Form->input('Person.1.nombre',['value' => $agrsr->nombre]); 
             
-            echo $this->Form->input('Person.1.edad',['type'=>'number','min'=>'0']);
+            echo $this->Form->input('Person.1.apellidos',['value' => $agrsr->apellidos]);
+            
+            echo $this->Form->input('Person.1.edad',['type'=>'number','min'=>'0','value' => $agrsr->edad]);
             
             echo $this->Form->input('Person.1.genero', array(
                 'templates' => [
                   'radioWrapper' => '<div class="radio-inline screen-center screen-radio">{{label}}</div>'
                 ],
-                'label' => 'Género',
-                'type' => 'radio',
+                'label'   => 'Género',
+                'type'    => 'radio',
+                'value'   => $agrsr->genero,
                 'options' => $genero
                 )
             );
             
-            echo $this->Form->input('Person.1.ocupacion',['label'=>'Ocupación']);
+            echo $this->Form->input('Person.1.ocupacion',['label'=>'Ocupación','value' => $agrsr->ocupacion]);
             
-            echo $this->Form->input('Person.1.lugar_trabajo',['label'=>'Lugar de trabajo']);
+            echo $this->Form->input('Person.1.lugar_trabajo',['label'=>'Lugar de trabajo','value' => $agrsr->lugar_trabajo]);
             
             echo $this->Form->input('Person.1.adicciones', array(
                 'label' => 'Adicciones',
@@ -37,11 +38,11 @@
         ?>
         <legend>Relación entre agesor y usuaria</legend>
         <?php
-            echo $this->Form->input('History.0.vinculo',['label'=>'Vínculo con el agresor']);
+            echo $this->Form->input('History.0.vinculo_usuaria',['label'=>'Vínculo con el agresor','value' => $histV->vinculo_usuaria]);
             
-            echo $this->Form->input('History.0.tiempo_relacion',['label'=>'Tiempo de la relación']);
+            echo $this->Form->input('History.0.tiempo_relacion',['label'=>'Tiempo de la relación','value' => $histV->tiempo_relacion]);
             
-            echo $this->Form->input('History.0.tiempo_agresion',['label'=>'Tiempo de la agresión']);
+            echo $this->Form->input('History.0.tiempo_agresion',['label'=>'Tiempo de la agresión','value' => $histV->tiempo_agresion]);
             
             echo $this->Form->input('History.0.num_separaciones',array(
               'templates' => [
@@ -49,7 +50,8 @@
               ],
               'label'=>'Número de separaciones de la persona agresora',
               'type' => 'radio',
-              'options' => $sep,
+              'value' => $histV->num_separaciones,
+              'options' => $sep
               )
             );             
                  
@@ -57,12 +59,13 @@
             <legend>Historia de violencia</legend>
             <?php 
             
-            echo $this->Form->input('History.0.situacion_enfrentada',['label'=>'Situación enfrentada','type'=>'textarea']);
+            echo $this->Form->input('History.0.situacion_enfrentada',['label'=>'Situación enfrentada','type'=>'textarea','value' => $histV->situacion_enfrentada]);
     
             echo $this->Form->input('History.0.motivo_regreso', array(
                 'label' => 'Motivos para regresar',
                 'type' => 'select',
                 'multiple' => 'checkbox',
+                'value' => $histV->motivo_regreso,
                 'options' => $motivos
                 )
             );   
@@ -94,6 +97,7 @@
               'label'=>'Antecedentes Psiquiátricos',
               'type' => 'radio',
               'options' => $apsiq,
+              'value' => $histV->antecedente_psiquiatrico
               )
             );  
             
@@ -101,11 +105,12 @@
                 'label' => 'Atención médica producto de agresión',
                 'type' => 'select',
                 'multiple' => 'checkbox',
+                'value' => $histV->atencion_por_agresion,
                 'options' => $atencionMedica
                 )
             );                
             
-            echo $this->Form->input('History.0.centro_salud',['label'=>'Nombre del centro de salud']);                              
+            echo $this->Form->input('History.0.centro_salud',['label'=>'Nombre del centro de salud','value' => $histV->centro_salud]);                              
         ?>
                 
     </div>
@@ -119,11 +124,12 @@
                 'label' => 'Violencia física',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $vfisica
+                'options' => $vfisica,
+                'value' => $histV->violencia_fisica
                 )
             );
             
-            echo $this->Form->input('History.0.vfisica_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia física?']);
+            echo $this->Form->input('History.0.vfisica_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia física?','value' => $histV->vfisica_text]);
             
             echo "<br><legend></legend><br>";
             
@@ -131,11 +137,12 @@
                 'label' => 'Violencia psicológica',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $vpsic
+                'options' => $vpsic,
+                'value' => $histV->violencia_psicologica
                 )
             );                 
             
-            echo $this->Form->input('History.0.vpsicologica_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia psicológica?']);
+            echo $this->Form->input('History.0.vpsicologica_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia psicológica?','value' => $histV->vpsicologica_text]);
     
             echo "<br><legend></legend><br>";
     
@@ -143,10 +150,11 @@
                 'label' => 'Violencia patrimonial',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $vpat
+                'options' => $vpat,
+                'value' => $histV->violencia_patrimonial
                 )
             );
-            echo $this->Form->input('History.0.vpatrimonial_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia patrimonial?']);
+            echo $this->Form->input('History.0.vpatrimonial_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia patrimonial?','value' => $histV->vpatrimonial_text]);
     
         ?>
     </div>
@@ -162,11 +170,12 @@
                 'label' => 'Violencia sexual',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $vsex
+                'options' => $vsex,
+                'value' => $histV->violencia_sexual
                 )
             );
             
-            echo $this->Form->input('History.0.vsexual_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia sexual?']);
+            echo $this->Form->input('History.0.vsexual_text',['type'=>'text','label' =>'¿Alguna otra situación de violencia sexual?','value' => $histV->vsexual_text]);
             
     
             echo "<br><legend></legend><br>";
@@ -175,7 +184,8 @@
                 'label' => 'Impacto de la violencia',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $impacto
+                'options' => $impacto,
+                'value' => $histV->impacto_violencia
                 )
             );                             
 
@@ -186,6 +196,7 @@
               'label'=>'Valoración de riesgo',
               'type' => 'radio',
               'options' => $riesgo,
+              'value' => $histV->valoracion_riesgo
               )
             );                 
             
@@ -194,11 +205,12 @@
                 'label' => 'Medidas de protección',
                 'type' => 'select',
                 'multiple' => 'checkbox',
-                'options' => $medidasProteccion
+                'options' => $medidasProteccion,
+                'value' => $histV->medida_proteccion
                 )
             ); 
             
-            echo $this->Form->input('History.0.vencimiento_proteccion',['type'=>'date','label'=>'Fecha de vencimiento de la protección']);
+            echo $this->Form->input('History.0.vencimiento_proteccion',['type'=>'date','label'=>'Fecha de vencimiento de la protección','value' => $histV->vencimiento_proteccion]);
     
             echo $this->Form->input('History.0.programa_oapvd',array(
               'templates' => [
@@ -207,6 +219,7 @@
               'label'=>'Se encuentra en el programa OAPVD',
               'type' => 'radio',
               'options' => $oapvd,
+              'value' => $histV->programa_oapvd
               )
             );      
         ?>

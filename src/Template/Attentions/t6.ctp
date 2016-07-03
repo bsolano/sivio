@@ -172,6 +172,24 @@
 
                 echo "<legend></legend><br>";
                 /* checkbox para atencion psicologica  ------------------------*/
+                
+                ?>
+                
+                <div class="switch-toggle switch-3 switch-holo">
+                    <input id="on" name="state-d" type="radio" checked="">
+                    <label for="on" onclick="">Sí</label>
+                    
+                    <input id="na" name="state-d" type="radio" disabled checked="checked">
+                    <label id = "nalbl" for="na" onclick="">N/A</label>
+                
+                    <input id="off" name="state-d" type="radio">
+                    <label for="off" onclick="">No</label>
+                
+                    <a></a>
+                </div>
+                
+                <?php
+                
                 echo $this->Form->input('InterventionsPerson.trabajosocial.tipo_intervencion', [
                     'type'=>'checkbox','id'=>'trabajosocial', 
                     'label'=>'¿Desea recibir atención de una trabajadora social?', 

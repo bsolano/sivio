@@ -97,10 +97,10 @@ class PeopleController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $person = $this->People->patchEntity($person, $this->request->data);
             if ($this->People->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('Datos Actualizados.'));
+                return $this->redirect(['controller' => 'Records','action' => 'index']);
             } else {
-                $this->Flash->error(__('The person could not be saved. Please, try again.'));
+                $this->Flash->error(__('Error, por favor intente de nuevo.'));
             }
         }
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
@@ -168,13 +168,25 @@ class PeopleController extends AppController
     }
     
      /**
-     * records_search method
-     * Busca las atenciones de la persona solicitada.
-     */ 
+      * summaryview method
+      * Busca las atenciones y evaluaciones de la persona solicitada, por medio del id enviado.
+      * @param string|null $id Person id.
+      * @return void
+      * @author Brandon Madrigal B33906
+      * @author Erick
+      */ 
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
         $years = array();
         $this->loadModel('Evaluations'); //Carga el modelo Evaluation en la base
+        $this->loadModel('Attentions'); //Carga el modelo Attention en la base
+        $this->loadModel('Logs');
+
+        $deOCe = $this->Attentions->find();
+        $deOCe->matching('Logs', function ($q) use ($person) {
+        return $q->where(['Logs.person_id' => $person]);
+         });
+        
         $eva = $this->Evaluations->find('all', [
         'conditions' => ['Evaluations.people_id' => $person] 
         ]); //Busca todas las evaluaciones con el id de la persona seleccionada anteriormente.
@@ -187,11 +199,17 @@ class PeopleController extends AppController
                 array_push($years,$date->fecha_inicio->format('Y'));
             }
         }
-        
+        foreach ($deOCe as $dateDeOCe){
+            if(!in_array($dateDeOCe->created->format('Y'), $years)){
+                array_push($years,$dateDeOCe->created->format('Y'));
+            }
+        }
+        arsort($years);
         $person_data = $this->People->get($person);
         $this->set(['atentions' => $eva]);
         $this->set(['years' => $years]);
         $this->set(['person' => $person_data]);
+        $this->set(['deOCes' => $deOCe]);
     }
     
     public function initialize()

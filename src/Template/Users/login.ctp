@@ -4,6 +4,16 @@
         <legend>Acceso de usuario</legend>
             <?= $this->Form->input('username', ['label' => 'Nombre de usuario']) ?>
             <?= $this->Form->input('password', ['label' => 'Clave']) ?>
+            
+            <?=
+           //print_r($locations);
+            $this->Form->input(
+                        'location_id',
+                        array('label' => 'Unidad de Trabajo','class' => 'proClass','options' => $locations)
+                        
+                    );
+            ?>
+            
             <?= $this->Form->button('Acceder', ['class' => 'button']); ?>
 
     </fieldset>

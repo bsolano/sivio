@@ -11,20 +11,33 @@ use App\Controller\AppController;
 class RecordsController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
+     /**
+      * index method
+      * Busca los datos de la usuaria y los muestra en el expediente.
+      * @param string|null $id Person id.
+      * @return datos usuaria
+      * @author DavidHine
+     
+      */ 
+    public function index($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Transfers']
-        ];
-        $records = $this->paginate($this->Records);
-
-        $this->set(compact('records'));
-        $this->set('_serialize', ['records']);
+        //acá recupero a la usuaria y envío los datos a la vista 
+         $this->loadModel('People');
+         $campos = array('People.id' => $id);
+                
+                // Elimina los campos en blanco del query
+                
+                $opciones= array_filter($campos);
+                
+                $conditions=array('conditions'=> (array($opciones)));
+                //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
+           
+                //se construye el query
+	            
+	           // $query = $this->People->find('all',$conditions);
+	            $query = $this->paginate($this->People->find('all',$conditions)); 
+	             $this->set('persona', $query);
+        
     }
 
     /**
@@ -69,10 +82,12 @@ class RecordsController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Record id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @param string|null $id Person id.
+     * @return \Cake\Network\Response|void Redirige exitosamente a edit, si no renderiza view .
+     * @throws \Cake\Network\Exception\NotFoundException When record not found
+     * @author DavidHine
      */
+     
     public function edit($id = null)
     {
         $record = $this->Records->get($id, [
@@ -110,4 +125,15 @@ class RecordsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+    
+      public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow();
+        
+        // Json
+        $this->loadComponent('RequestHandler');
+    }
+    
+    
 }

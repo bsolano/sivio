@@ -1,6 +1,9 @@
     <?= $this->Form->create(); ?>
+    <?= $this->Html->css('toggle-switch.css') ?>
+    <?= $this->Html->css('sivio.tabs.css') ?>
     <div class="usersPeople form large-9 medium-8 columns content" style="width: 100%;">
     <!-- TABS -->
+
     <section class="wrapper">
         <ul class="tabs">
             <li><a href="#tab1">Ingresos y Egresos</a></li>
@@ -10,6 +13,7 @@
             <li><a href="#tab5">Hijos e Hijas</a></li>
             <li><a href="#tab6">Intervenciones</a></li>
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
+            <input type="button"  style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important; margin-right:.5rem;" value="Cancelar" class="hollow button float-right" onclick='cancelar()'/>
         </ul>
         <?php include 'arrays.ctp'; /** todos los arrays de las diferentes preguntas del cuestionario **/ ?>
         <section class="block">
@@ -128,5 +132,24 @@
         function deleteInput(divName){
            document.getElementById('divName').remove();
         }
+        
+    function cancelar() {
+        swal({
+          title: "Cancelar",
+          text: "¿Está Segura?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Sí",
+          cancelButtonText: "No",
+          closeOnConfirm: false     ,
+          showLoaderOnConfirm: true
+        },
+        
+        // si la respuesta es 'si'
+        function(){
+          document.location = "/attentions/";
+        });
+    }
 	</script>
 
