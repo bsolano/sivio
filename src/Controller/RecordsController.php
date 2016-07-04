@@ -24,6 +24,7 @@ class RecordsController extends AppController
         //acá recupero a la usuaria y envío los datos a la vista 
          $this->loadModel('People');
          $this->loadModel('Attentions');
+         $this->loadModel('Consultations');
          $campos = array('People.id' => $id);
                 // Elimina los campos en blanco del query
                 
@@ -41,10 +42,13 @@ class RecordsController extends AppController
 
                 //Consulta atenciones 
 	            $logs = $this->Attentions->find('all')->select('Logs.person_id')->contain(['Logs']);
-	           
 	            $this->set('logs', $logs);
+	            
+	            $consult = $this->Consultations->find('all');
+	             $this->set('con', $consult);
+	            
 	            ///////////////////////////////////////////// 
-	            $atenciones = $this->Attentions->find('all');   
+	          //  $atenciones = $this->Attentions->find('all');   
 	            
                 $p_id = array();
                 $arr = $logs->toArray();
@@ -56,7 +60,7 @@ class RecordsController extends AppController
                 }
                 $p_id = array_unique($p_id);
                 $this->set('pi', $id);
-                 $this->set('a', $atenciones);
+             //    $this->set('att', $atenciones);
          //415289720 satanas
     }
 

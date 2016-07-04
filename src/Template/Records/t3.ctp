@@ -4,8 +4,8 @@
            <?php
                 $p= $logs->toArray();
                 
-             $at= $a->toArray();
-       //   echo '<pre>'; print_r($at); echo '</pre>';  
+           //  $at= $att->toArray();
+          echo '<pre>'; print_r($p); echo '</pre>';  
           $n = 0;
             foreach($p as $a){
                 if($pi == $p[$n]['Logs']['person_id'] ){
