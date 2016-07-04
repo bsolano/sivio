@@ -67,7 +67,7 @@
           ['casada',9],
           ['divorciada',<?= $divorciada ?>],
           ['separada',      8],
-          ['Unión Libre',      <?= $soltera ?>],
+          ['soltera',      <?= $soltera ?>],
          
         ]);
 
