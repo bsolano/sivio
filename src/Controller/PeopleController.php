@@ -100,6 +100,13 @@ class PeopleController extends AppController
             $data = $this->request->data;
             $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
             $person = $this->People->patchEntity($person, $data);
+            
+            if ($person->direccion_oculta == 1) {
+                $person->provincia = "Oculto";
+                $person->canton = "Oculto";
+                $person->direccion = "Oculto";
+            }
+            
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
                 return $this->redirect(['action' => 'view', $person->id]);

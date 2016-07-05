@@ -6,23 +6,62 @@
 </div>
 <div class="people view large-12 large-centered medium-8 columns">
     <div class="large-11 large-centered columns">
-        
         <div class="large-4 columns">
             <dl>
                 <dt><?= 'Ocupación:' ?></dt>
-                <dd><?= h($person->ocupacion) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->ocupacion != null):
+                            echo $person->ocupacion;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Lugar de Trabajo:' ?></dt>
-                <dd><?= h($person->lugar_trabajo) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->lugar_trabajo != null):
+                            echo $person->lugar_trabajo;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Condición Migratoria:' ?></dt>
-                <dd><?= h($person->condicion_migratoria) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->condicion_migratoria != null):
+                            echo $person->condicion_migratoria;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= __('Vivienda:') ?></dt>
-                <dd><?= h($person->vivienda) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->vivienda != null):
+                            echo $person->vivienda;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Tipo de Familia:' ?></dt>
-                <dd><?= h($person->tipo_familia) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->tipo_familia != null):
+                            echo $person->tipo_familia;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= __('Embarazo:') ?></dt>
                 <dd>
@@ -33,6 +72,17 @@
                             echo $person->embarazo.' meses';
                     ?>
                 </dd>
+                </br>
+                <dt><?= 'Provincia:' ?></dt>
+                <dd>
+                    <?php
+                        if ($person->provincia != null):
+                            echo $person->provincia;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
             </dl>
         </div>
         
@@ -40,22 +90,81 @@
         <div class="large-4 columns">
             <dl>
                 <dt><?= __('Estado Civil:') ?></dt>
-                <dd><?= h($person->estado_civil) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->estado_civil != null):
+                            echo $person->estado_civil;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= __('Escolaridad:') ?></dt>
-                <dd><?= h($person->escolaridad) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->escolaridad != null):
+                            echo $person->escolaridad;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Condición Laboral:' ?></dt>
-                <dd><?= h($person->condicion_laboral) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->condicion_laboral != null):
+                            echo $person->condicion_laboral;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Identificación:' ?></dt>
-                <dd><?= h($person->identificacion) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->identificacion != null):
+                            echo $person->identificacion;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= 'Tipo de Identificación:' ?></dt>
-                <dd><?= h($person->tipo_identificacion) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->tipo_identificacion != null):
+                            echo $person->tipo_identificacion;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
                 </br>
                 <dt><?= __('Fecha De Nacimiento:') ?></dt>
-                <dd><?= h($person->fecha_de_nacimiento) ?></dd>
+                <dd>
+                    <?php
+                        if ($person->fecha_de_nacimiento != null):
+                            echo $person->fecha_de_nacimiento;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
+                </br>
+                <dt><?= 'Cantón:' ?></dt>
+                <dd>
+                    <?php
+                        if ($person->canton != null):
+                            echo $person->canton;
+                        else:
+                            echo "No hay datos";
+                        endif;
+                    ?>
+                </dd>
             </dl>
         </div>
         
@@ -98,30 +207,37 @@
                 </br>
                 <dt><?= 'Dirección:' ?></dt>
                 <dd><?= h($person->tipo_familia) ?></dd>
+                </br>
+                <dt><?= 'Dirección exacta:' ?></dt>
+                <dd><?= h($person->direccion) ?></dd>
             </dl>
         </div>
     </div>
-        
-        
+    <div class="large-12 columns"></div>
     <div class="large-10 large-centered columns">
-        <table class="hover">
-            <tr>
-                <th><?= 'Adiccion(es)' ?></th>
-                <td>
+        <div class="large-5 columns">
+            <dl>
+                <dt><?= 'Adiccion(es)' ?></dt>
+                <dd>
                     <?php foreach($person->adicciones as $adiccion): ?> 
-                    <ul><?= h($adiccion) ?></ul>
+                        <ul><?= h($adiccion) ?></ul>
                     <?php endforeach ?>
-                </td>
-            </tr>
-            <tr>
-                <th><?= 'Condición de Salud' ?></th>
-                <td>
+                </dd>
+            </dl>
+        </div>
+        <div class="large-5 columns">
+            <dl>
+                <dt><?= 'Condición de Salud' ?></dt>
+                <dd>
                     <?php foreach($person->condicion_salud as $condicion): ?> 
-                    <ul><?= h($condicion) ?></ul>
+                        <ul><?= h($condicion) ?></ul>
                     <?php endforeach ?>
-                </td>
-            </tr>
-        </table>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="large-12 columns"></br></br></div>
+    <div class="large-11 large-centered columns">
         <div class="related">
             <h4><?= __('Related Transfers') ?></h4>
             <?php if (!empty($person->transfers)): ?>
@@ -138,7 +254,7 @@
                     <th><?= __('Dependientes Directos') ?></th>
                     <th><?= __('Testigos') ?></th>
                     <th><?= __('Acta Observacion') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"><?= 'Acciones' ?></th>
                 </tr>
                 <?php foreach ($person->transfers as $transfers): ?>
                 <tr>
@@ -154,13 +270,15 @@
                     <td><?= h($transfers->testigos) ?></td>
                     <td><?= h($transfers->acta_observacion) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Transfers', 'action' => 'view', $transfers->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['controller' => 'Transfers', 'action' => 'edit', $transfers->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Transfers', 'action' => 'delete', $transfers->id], ['confirm' => __('Are you sure you want to delete # {0}?', $transfers->id)]) ?>
+                        <?= $this->Html->link('Ver', ['controller' => 'Transfers', 'action' => 'view', $transfers->id]) ?>
+                        <?= $this->Html->link('Editar', ['controller' => 'Transfers', 'action' => 'edit', $transfers->id]) ?>
+                        <?= $this->Form->postLink('Eliminar', ['controller' => 'Transfers', 'action' => 'delete', $transfers->id], ['confirm' => __('Are you sure you want to delete # {0}?', $transfers->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -176,7 +294,7 @@
                     <th><?= __('Num Separaciones') ?></th>
                     <th><?= __('People Id') ?></th>
                     <th><?= __('People Aggressors Id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"><?= 'Acciones' ?></th>
                 </tr>
                 <?php foreach ($person->aggressors as $aggressors): ?>
                 <tr>
@@ -189,13 +307,15 @@
                     <td><?= h($aggressors->people_id) ?></td>
                     <td><?= h($aggressors->people_aggressors_id) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Aggressors', 'action' => 'view', $aggressors->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['controller' => 'Aggressors', 'action' => 'edit', $aggressors->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Aggressors', 'action' => 'delete', $aggressors->id], ['confirm' => __('Are you sure you want to delete # {0}?', $aggressors->id)]) ?>
+                        <?= $this->Html->link('Ver', ['controller' => 'Aggressors', 'action' => 'view', $aggressors->id]) ?>
+                        <?= $this->Html->link('Editar', ['controller' => 'Aggressors', 'action' => 'edit', $aggressors->id]) ?>
+                        <?= $this->Form->postLink('Eliminar', ['controller' => 'Aggressors', 'action' => 'delete', $aggressors->id], ['confirm' => __('Are you sure you want to delete # {0}?', $aggressors->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -227,6 +347,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -262,6 +384,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="table-scroll">
@@ -313,6 +437,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -342,6 +468,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -417,6 +545,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -442,6 +572,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -485,6 +617,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -508,6 +642,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
         <div class="related">
@@ -539,6 +675,8 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
+            <?php else: ?>
+                <ul>No hay registros</ul>
             <?php endif; ?>
         </div>
     </div>
