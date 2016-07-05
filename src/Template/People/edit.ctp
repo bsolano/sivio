@@ -1,3 +1,13 @@
+<!--
+    Author: Brayan Salas Concepción|B26050
+    
+    Editar la información personal de la usuaria seleccionada.
+    Solo información personal.
+-->
+
+<!--
+    Permite eliminar a la persona del sistema
+-->
 <div class="large-12 large-offset-9 columns content">
     <!--if (UsuarioActual == Admin)-->
     <?= 
@@ -8,6 +18,10 @@
         )
     ?>
 </div>
+
+<!--
+    Espacios donde se ingresa o actualiza la información de la usuaria.
+-->
 <div class="large-12 columns">
     <div class="people form large-9 large-centered medium-8 columns">
         <?= $this->Form->create($person) ?>
@@ -121,10 +135,15 @@
 <div class="large-4 columns content"></div>
 
 <script type="text/javascript">
+    /*
+        Permite devolverse a la vista de la usuaria.
+    */
     function atras() {
         document.location = "/people/view/" + "<?php echo $person->id ?>";
     }
-    
+    /*
+        Permite ocultar o mostrar los campos de direccion si así lo requiere.
+    */
     function hayDireccion() {
         var valor = document.getElementById('dir_oculta').checked;
         if (valor == true) {

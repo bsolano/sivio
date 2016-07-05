@@ -1,3 +1,13 @@
+<!--
+    Author: Brayan Salas Concepción|B26050
+    
+    Editar la información personal de la usuaria seleccionada.
+    Solo información personal.
+-->
+
+<!--
+    Campos donde se ingresa la infromación personal de la usuaria a agregar en el sistema.
+-->
 <div class="people form large-10 large-centered medium-10 columns content">
     <?= $this->Form->create($person) ?>
     <fieldset>
