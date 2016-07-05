@@ -13,8 +13,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $Locations
- * @property \Cake\ORM\Association\BelongsTo $Groups
- * @property \Cake\ORM\Association\BelongsTo $Professionals
+ * @property \Cake\ORM\Association\BelongsTo $Consultations
  */
 class InternalReferencesTable extends Table
 {
@@ -42,10 +41,9 @@ class InternalReferencesTable extends Table
         $this->belongsTo('Locations', [
             'foreignKey' => 'location_id'
         ]);
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'group_id'
+        $this->belongsTo('Consultations', [
+            'foreignKey' => 'consultation_id'
         ]);
-       
     }
 
     /**
@@ -64,7 +62,14 @@ class InternalReferencesTable extends Table
             ->allowEmpty('telefono');
 
         $validator
-            ->allowEmpty('oficina');
+            ->allowEmpty('persona_coordina');
+
+        $validator
+            ->allowEmpty('se_deniega_acceso');
+
+        $validator
+            ->integer('estado')
+            ->allowEmpty('estado');
 
         return $validator;
     }
@@ -81,8 +86,7 @@ class InternalReferencesTable extends Table
         $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['location_id'], 'Locations'));
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
-        
+        $rules->add($rules->existsIn(['consultation_id'], 'Consultations'));
         return $rules;
     }
 }

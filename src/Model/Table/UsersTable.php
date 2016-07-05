@@ -75,8 +75,6 @@ class UsersTable extends Table
             'targetForeignKey' => 'person_id',
             'joinTable' => 'users_people'
         ]);
-        
-        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
     }
 
     /**

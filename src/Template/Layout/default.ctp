@@ -85,17 +85,23 @@ $sivioDescription = 'SIVIO';
 			<ul class="dropdown menu" data-dropdown-menu>
 			  <li><?= $this->Html->link('Expediente', ['controller' => 'People', 'action' => 'index']) ?></li>
 			  <?php $uid = $this->request->session()->read('Auth.User.id'); ?>
-
+			  <?php
+				/**
+				 * Condicion para mostrar o no el link a Personas asignadas, mediante una expresion regular
+				 * @author Brandon Madrigal B33906
+				 */
+			  ?>
 			  <?php if (preg_match("/Profesional(.)*/", $this->request->session()->read('group.name'))): ?>
 			  	<li><?= $this->Html->link('Personas asignadas', ['controller' => 'Users', 'action' => 'designees', $uid]) ?></li>
 			  <?php endif ?>
 			 <li><?= $this->Html->link("Referencias", ['controller' => 'InternalReferences', 'action' => 'index']) ?></li>
 			 
 			  <li><a href="#">Asesoría técnica</a>
-			  	<ul class="menu vertical">
-			  		<li><?= $this->Html->link('Asignaciones', ['controller' => 'Allocations', 'action' => 'index']) ?></li>
-			  	</ul>
+
+
 			  </li>
+  	  		  <li><?= $this->Html->link('Asignaciones', ['controller' => 'Allocations', 'action' => 'index']) ?></li>
+
 			  <li><?= $this->Html->link('Reportes', ['controller' => 'Statistics', 'action' => 'index']) ?></li>
 			  <li>
 			      <a href="#">Administración</a>

@@ -112,15 +112,30 @@ class UsersController extends AppController {
     }
     
     public function login() {
+        
+        $locations = $this->loadModel('Locations')->find('list');
+        
+        $locations = $locations->toArray();
+       //$locations = [];
+        
+        
+        $this->set('locations', $locations);
+        //$this->set(compact('locations'));
+        //$this->set('_serialize', ['locations']);
+        
         if($this->request->session()->read('Auth.User')) {
             // si ya esta loggeado, redirija a la pagina de expedientes
             return $this->redirect($this->Auth->redirectUrl());
 		}
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
+            $loc = $this->request->data('location_id');
+            print_r($loc);
             if ($user) {
                 $this->Auth->setUser($user);
+                $this->request->session()->write('Config.location', $loc);
                 return $this->redirect($this->Auth->redirectUrl());
+                
             }
             $this->Flash->error('Su nombre de usuario y clave son incorrectos.');
         }
@@ -171,8 +186,11 @@ class UsersController extends AppController {
     
     
     /**
-     * designees
-     * Busca las personas asignadas a la usuaria logueada.
+     * designees method
+     * Por medio del id enviado, busca las personas asignadas al respesctivo usuario
+     * @param string|null $id Person id.
+     * @return void
+     * @author Brandon Madrigal B33906
      */ 
     public function designees($user = null) {
         $uid = $this->request->session()->read('Auth.User.id');
@@ -185,21 +203,7 @@ class UsersController extends AppController {
         'conditions' => ['UsersPeople.user_id' => $user]
         ]); //Obtiene el id de las personas asignadas al usuario logeado.
         $people = $this->People->find('all');
-        
-       /*$flag = false;
-       foreach ($designeesData as $designeeData){
-            foreach ($people as $person) {
-                if($designeeData->person_id == $person->id){
-                    $tempPerson = (array) $person;
-                    $tempDesignee = (array) $designeeData;
-                    $tempDesigneePerson = (object) array_merge_recursive($tempPerson, $tempDesignee); //Combina las instancias.
-                    
-                    array_push($designeePeople, $tempDesigneePerson);
-                }
-             }
-        }*/
-        //$this->set(['designeePeople' => $designeePeople]); //Guarda en variable accesible desde la vista.
-        
+    
         $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
         $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
         }

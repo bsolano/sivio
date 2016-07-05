@@ -5,8 +5,21 @@
         <div>
             <?= $this->Form->input('username', ['label' => 'Nombre de usuario']) ?>
             <?= $this->Form->input('password', ['label' => 'Clave']) ?>
+<<<<<<< HEAD
         </div>
         <div class="large-4 large-right columns">
+=======
+            
+            <?=
+           //print_r($locations);
+            $this->Form->input(
+                        'location_id',
+                        array('label' => 'Unidad de Trabajo','class' => 'proClass','options' => $locations)
+                        
+                    );
+            ?>
+            
+>>>>>>> d3c7720f98a777efc7dd9f942734a12d61793bc8
             <?= $this->Form->button('Acceder', ['class' => 'button']); ?>
         </div>
     </fieldset>
