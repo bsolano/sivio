@@ -85,7 +85,7 @@
                         echo 'Aceptada';
                     }
                     else if ($internalReference->estado == 2){
-                        echo 'Rechazada';
+                        echo 'Rechazada: ' . $internalReference->se_deniega_acceso ;
                     }
                     ?>
                 </td>
