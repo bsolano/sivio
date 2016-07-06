@@ -99,22 +99,39 @@
     
     // Aquí muestra un solo boton a oficinisita, es codigo quemado, preguntando si el grupo es 3 = recepcionista delegacion de la mujer.
     function usuariaSelect() {
-        //var user_name = "<?php echo $group_name ?>";
+        /*
+            Permite mostrar u ocultar los botones necesarios si no se tiene permisos.
+        */
         if( "<?php echo $group_name ?>" == 'RecepcionistaDelegacionDeLaMujer' ) {
+            document.getElementById("bnt_Vista").style.display = "block";
             document.getElementById("bnt_Atencion").style.display = "none";
             document.getElementById("bnt_Consulta").style.display = "block";
             document.getElementById("bnt_Expediente").style.display = "block";
         } else {
+            document.getElementById("bnt_Vista").style.display = "block";
             document.getElementById("bnt_Atencion").style.display = "block";
             document.getElementById("bnt_Consulta").style.display = "block";
             document.getElementById("bnt_Expediente").style.display = "block";
         }
     }
     
+    /*
+        Redirecciona hacia la vista de la usuaria seleccionada
+    */
+    function ver() {
+        document.location = "/people/view/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    }
+    
+    /*
+        Crea una consulta para la usuaria seleccionada.
+    */
     function esConsulta() {
         document.location = "/consultations/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }
     
+    /*
+        Crea una atención para la usuaria seleccionada.
+    */
     function esAtencion() {
         document.location = "/attentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }

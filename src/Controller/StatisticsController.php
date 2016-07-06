@@ -73,25 +73,24 @@ class StatisticsController extends AppController
             
             $desde = $data[0]['desde'];
             $hasta = $data[0]['hasta'];
-            
-            debug($hasta);
-            $campos = array('Attentions.created >=' => $desde, 'Attentions.created <=' => $hasta );
+            $hasta = $hasta['year'].'-'.$hasta['month'].'-'.$hasta['day'];
+            $desde = $desde['year'].'-'.$desde['month'].'-'.$desde['day'];
+            $campos = array('date(Attentions.created) >=' => date($desde), 'date(Attentions.created) <=' => date($hasta),'Attentions.tipo'=>'CEAAM' );
             $opciones = array_filter($campos);
             $conditions=array('conditions'=> (array($opciones)));
 
-            debug($logs = $this->Attentions->find('all')->select('Attentions.created')->contain(['Logs']));
-            //$this->set('logs', $logs);
+            $logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id','Attentions.created')->contain(['Logs']);
+           
             
             $personIds = array();
             foreach($logs as $l){
                 array_push($personIds, $l['Logs']['person_id'] );
-                debug($l['Attentions']['created']);
                 
             }
             
             $personIds = array_unique($personIds);
-            debug($personIds);
-            echo $personIds[0];
+            
+           
             // Carga el arreglo de datos
             
             
