@@ -13,7 +13,7 @@ class InternalReferencesController extends AppController
 
     /**
      * Index method
-     *
+     * Muestra las referencias internas asiganadas a mi ubicacion y a los profesionales con los permisos para aceptarlas o rechazarlas. 
      * @return \Cake\Network\Response|null
      */
     public function index()
@@ -35,15 +35,18 @@ class InternalReferencesController extends AppController
         if (strcmp($groupName['name'], 'Admin') == 0 || strpos($groupName['name'], 'Jefatura') !== false || strpos($groupName['name'], 'Recepcionista') !== false){
             //encontrar las referencias de mi ubicacion y que aun no hayan sido aceptadas o rechazadas => "estado == 0"
             $referencias = $this->InternalReferences->find()->where(['AND' => [['InternalReferences.location_id' => $userLocation],['InternalReferences.estado' => 0]]]);
+            //encontrar las referencias que fueron rechazadas o aceptadas
+            $otrasReferencias = $this->InternalReferences->find()->where(['AND' => ['InternalReferences.location_id' => $userLocation], ['OR' => [['InternalReferences.estado' => 1],['InternalReferences.estado' => 2]]]]);
         
         $internalReferences = $this->paginate($referencias);
+        $otherInternalReferences = $this->paginate($otrasReferencias);
         
         }
         else {
             $internalReferences = null;
         }
         
-        $this->set(compact('internalReferences'));
+        $this->set(compact('internalReferences','otherInternalReferences'));
         $this->set(compact('userLocation','groupName'));
     }
 
@@ -78,11 +81,11 @@ class InternalReferencesController extends AppController
             //Se le asiga un estado de 0 para la nueva referencia interna 
             $internalReference->estado = 0;
             if ($this->InternalReferences->save($internalReference)) {
-                $this->Flash->success(__('The internal reference has been saved.'));
+                $this->Flash->success(__('La referencia interna fue creada con éxito.'));
                 //Se retorna a la consulta que genero la referencia interna
                 return $this->redirect(['controller' => 'Consultations' , 'action' => 'view', $internalReference->consultation_id, $internalReference->id]);
             } else {
-                $this->Flash->error(__('The internal reference could not be saved. Please, try again.'));
+                $this->Flash->error(__('Error al crear la referencia interna.'));
             }
         }
         
@@ -159,7 +162,7 @@ class InternalReferencesController extends AppController
     
       /**
       * rechazarReferencia method
-      * Busca la referencia interna relacionada con el id. Le cambia el estado a rechazada(1)
+      * Busca la referencia interna relacionada con el id. Le cambia el estado a aceptada(1)
       * Verifica el grupo
       * @param string|null $id InternalReference id.
       * @return void
@@ -299,7 +302,7 @@ class InternalReferencesController extends AppController
     }
     
 
-     public function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->Auth->allow();
