@@ -69,12 +69,18 @@ class StatisticsController extends AppController
             // Código de las consultas
            
             $s = $this->request->data;
-
-            $desde = $s['desde'];
-            $hasta = $s['hasta'];
+            $data = array($s);
             
-            $logs = $this->Attentions->find('all')->select('Logs.person_id')->contain(['Logs']);
-            //$this->set('logs', $logs);
+            $desde = $data[0]['desde'];
+            $hasta = $data[0]['hasta'];
+            $hasta = $hasta['year'].'-'.$hasta['month'].'-'.$hasta['day'];
+            $desde = $desde['year'].'-'.$desde['month'].'-'.$desde['day'];
+            $campos = array('date(Attentions.created) >=' => date($desde), 'date(Attentions.created) <=' => date($hasta),'Attentions.tipo'=>'CEAAM' );
+            $opciones = array_filter($campos);
+            $conditions=array('conditions'=> (array($opciones)));
+
+            $logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id','Attentions.created')->contain(['Logs']);
+           
             
             $personIds = array();
             foreach($logs as $l){
@@ -83,11 +89,11 @@ class StatisticsController extends AppController
             }
             
             $personIds = array_unique($personIds);
-            debug($personIds);
-            echo $personIds[0];
+            
+           
             // Carga el arreglo de datos
             
-            $data = array($s);
+            
             
             // Saca los datos de los campos de texto en los que se escribió
             
@@ -98,7 +104,7 @@ class StatisticsController extends AppController
             $estado_civil = $data[0]['estado_civil'];
             $ocupacion = $data[0]['ocupacion'];
           
-            if ($data[0] != NULL) { // Si se ingresó algo en los campos
+            if (1) { // Si se ingresó algo en los campos
             
                 // Se declaran los criterios de búsqueda
                 

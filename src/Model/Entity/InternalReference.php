@@ -12,12 +12,12 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property \App\Model\Entity\User $user
  * @property string $telefono
- * @property string $oficina
  * @property int $location_id
  * @property \App\Model\Entity\Location $location
- * @property int $group_id
- * @property \App\Model\Entity\Group $group
- * @property int $professional_id
+ * @property string $persona_coordina
+ * @property string $se_deniega_acceso
+ * @property int $estado
+ * @property int $consultation_id
  */
 class InternalReference extends Entity
 {
