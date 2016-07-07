@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\PeopleEntry;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -13,6 +12,14 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Entries
  * @property \Cake\ORM\Association\BelongsTo $Attentions
+ *
+ * @method \App\Model\Entity\PeopleEntry get($primaryKey, $options = [])
+ * @method \App\Model\Entity\PeopleEntry newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\PeopleEntry[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleEntry|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\PeopleEntry patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleEntry[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleEntry findOrCreate($search, callable $callback = null)
  */
 class PeopleEntriesTable extends Table
 {
@@ -68,6 +75,27 @@ class PeopleEntriesTable extends Table
 
         $validator
             ->allowEmpty('motivo_rechazo');
+
+        $validator
+            ->allowEmpty('ceaam_ingresa');
+
+        $validator
+            ->allowEmpty('tipo_ing_eg');
+
+        $validator
+            ->allowEmpty('motivo_ing_eg');
+
+        $validator
+            ->allowEmpty('destino_extranjero');
+
+        $validator
+            ->allowEmpty('entidad_traslada');
+
+        $validator
+            ->allowEmpty('provincia_destino');
+
+        $validator
+            ->allowEmpty('canton_destino');
 
         return $validator;
     }

@@ -177,7 +177,7 @@
             ]
         );
         
-        echo $this->Form->input('Followup.seguimiento_plan_seguridad', ['type'=>'checkbox','value' => $seg->seguimiento_plan_seguridad ,]); 
+        echo $this->Form->input('Followup.seguimiento_plan_seguridad', ['type'=>'checkbox','value' => $seg->seguimiento_plan_seguridad]); 
         
         echo $this->Form->input('Followup.seguimiento_kit', [
                 'type'      => 'select'                     ,

@@ -85,7 +85,7 @@
     }
     
     function editarAtencion(id, atId) {
-        document.location = "/attentions/add/" + id + "/" + atId;
+        document.location = "/attentions/edit/" + id + "/" + atId;
     }
     
 </script>

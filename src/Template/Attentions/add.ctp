@@ -12,8 +12,10 @@
             <li><a href="#tab4">Historia de Violencia</a></li>
             <li><a href="#tab5">Hijos e Hijas</a></li>
             <li><a href="#tab6">Intervenciones</a></li>
+
             <input id="agregarAt" style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important;" type="submit" value="Guardar" class="button float-right" onclick='submit'/>
             <input type="button"  style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important; margin-right:.5rem;" value="Cancelar" class="hollow button float-right" onclick='cancelar()'/>
+            <input type="button"  style="line-height: unset; padding: 0.25em 0.5em; margin-bottom: -1px !important; margin-right:.5rem;" value="Ver persona" class="hollow button float-right" onclick='verPersona(<?= $persona->id ?>)'/>
         </ul>
         <?php include 'arrays.ctp'; /** todos los arrays de las diferentes preguntas del cuestionario **/ ?>
         <section class="block">
@@ -25,8 +27,7 @@
             <article id="tab6"> <?php include 't6.ctp';?> </article> <!-- TAB de Intervenciones -->
         </section>
     </section>
-    <!-- $this->Form->submit('Guardar',['class'=>'shallow secondary button'])  -->
-    
+
     </div>
     <?= $this->Form->end() ?>
 
@@ -35,7 +36,8 @@
 <!--               JS's                                                       ->
 <!----------------------------------------------------------------------------->
 	<script type="text/javascript" id='scpts'>
-	    $(window).load( function () {
+	    $(window).load( 
+	        function () {
 	            //tab 1
                 showOrHide( $('#dconfidencial') , $('#direccion') );/*legal*/
                 showOrHide( $('#ddconfidencial') , $('#direccion_destino') );/*legal*/
@@ -47,8 +49,8 @@
 	            hideOrShow( $('#deseaAtencionn') , $('#atencionn') );/*psico (niños)*/
 	            hideOrShow( $('#trabajosocial') , $('#tsocial') );/*psico (niños)*/
 	            hideOrShow( $('#RecursosApoyo') , $('#RecursosAp') );/*psico (niños)*/
-	    })
-	    
+	        }
+	    )
 	    
         //tab 1
         $('#dextranjero'        ).change (function () { showOrHide( $(this), $('#direccion_extranjero'  ) );  });
@@ -92,6 +94,16 @@
               });
         })
         
+        
+        function chgcheck (id, state, container) {
+            var chkbx = document.getElementById( id );
+            chkbx.checked = state;
+        }
+        
+        function verPersona (id) {
+            document.location = "/records/index/" + id;
+        }
+        
         var numAd = 2;
         function addInput(divName) {
             if (numAd++ < 30) {
@@ -129,27 +141,23 @@
              }
         }
         
-        function deleteInput(divName){
-           document.getElementById('divName').remove();
+        function cancelar() {
+            swal({
+              title: "Cancelar",
+              text: "¿Está Segura?",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Sí",
+              cancelButtonText: "No",
+              closeOnConfirm: false     ,
+              showLoaderOnConfirm: true
+            },
+            
+            // si la respuesta es 'si'
+            function(){
+              document.location = "/attentions/";
+            });
         }
-        
-    function cancelar() {
-        swal({
-          title: "Cancelar",
-          text: "¿Está Segura?",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Sí",
-          cancelButtonText: "No",
-          closeOnConfirm: false     ,
-          showLoaderOnConfirm: true
-        },
-        
-        // si la respuesta es 'si'
-        function(){
-          document.location = "/attentions/";
-        });
-    }
 	</script>
 

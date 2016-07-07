@@ -89,12 +89,13 @@
               closeOnConfirm: false     ,
               showLoaderOnConfirm: true
             },
-            
             // si la respuesta es 'si'
             function(){
               document.location = "/people/add";
             });
-        } 
+        } else {
+            document.location = "/people/add";
+        }
     }
     
     // Aquí muestra un solo boton a oficinisita, es codigo quemado, preguntando si el grupo es 3 = recepcionista delegacion de la mujer.
