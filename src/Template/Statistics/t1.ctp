@@ -18,7 +18,6 @@
         </thead>
         <tbody>
            <?php 
-          //print_r(array($result));
            
 
             foreach ($result as $results): ?>

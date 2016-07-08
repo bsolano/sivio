@@ -45,6 +45,9 @@ class PeopleController extends AppController
         $person = $this->People->get($id, [
             'contain' => ['Histories', 'Interventions', 'Advocacies', 'Entries', 'Families', 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
         ]);
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
 
         $this->set('person', $person);
         $this->set('_serialize', ['person']);
@@ -57,7 +60,6 @@ class PeopleController extends AppController
      */
     public function add()
     {
-        $this->loadComponent('StringManipulation');
         $person = $this->People->newEntity();
         if ($this->request->is('post')) {
             $data = $this->request->data;
@@ -67,7 +69,7 @@ class PeopleController extends AppController
             $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información ha sido guardada satisfactoriamente.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $person->id]);
             } else {
                 $this->Flash->error(__('No ha sido posible guardar la información, inténtelo nuevamente.'));
             }
@@ -95,14 +97,31 @@ class PeopleController extends AppController
             'contain' => ['Interventions', 'Advocacies', 'Entries', 'Families', 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $person = $this->People->patchEntity($person, $this->request->data);
+            $data = $this->request->data;
+            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
+            $person = $this->People->patchEntity($person, $data);
+            
+            if ($person->direccion_oculta == 1) {
+                $person->provincia = "Oculto";
+                $person->canton = "Oculto";
+                $person->direccion = "Oculto";
+            }
+            
             if ($this->People->save($person)) {
-                $this->Flash->success(__('Datos Actualizados.'));
+                $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
+                return $this->redirect(['action' => 'view', $person->id]);
+            } else {
+                $this->Flash->error('No se pudo actualizar la información, inténtelo nuevamente.');
+            /*    $this->Flash->success(__('Datos Actualizados.'));
                 return $this->redirect(['controller' => 'Records','action' => 'index']);
             } else {
-                $this->Flash->error(__('Error, por favor intente de nuevo.'));
+                $this->Flash->error(__('Error, por favor intente de nuevo.')); */
             }
         }
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
+        
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
         $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
         $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
@@ -125,9 +144,9 @@ class PeopleController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $person = $this->People->get($id);
         if ($this->People->delete($person)) {
-            $this->Flash->success(__('The person has been deleted.'));
+            $this->Flash->error('La persona fue eliminada');
         } else {
-            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
+            $this->Flash->error('No se pudo eliminar la usuaria, inténtelo nuevamente.');
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -219,6 +238,7 @@ class PeopleController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('StringManipulation');
     }
     
 }

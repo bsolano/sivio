@@ -1,4 +1,13 @@
-<!-- Se agrega large-centered para que el form se encuentre centrado. -->
+<!--
+    Author: Brayan Salas Concepción|B26050
+    
+    Editar la información personal de la usuaria seleccionada.
+    Solo información personal.
+-->
+
+<!--
+    Campos donde se ingresa la infromación personal de la usuaria a agregar en el sistema.
+-->
 <div class="people form large-10 large-centered medium-10 columns content">
     <?= $this->Form->create($person) ?>
     <fieldset>
@@ -10,7 +19,6 @@
                     echo $this->Form->input('apellidos');
                     echo $this->Form->input('fecha_de_nacimiento', ['label' => 'Fecha de nacimiento', 'empty' => true, 'minYear' => 1940]);
                     echo $this->Form->input('edad');
-                    //echo $this->Form->input('genero', ['type' => 'hidden', 'default' => 'F']);
                     echo $this->Form->input('estado_civil', ['label' => 'Estado civil', 'options' => ['Soltera' => 'Soltera','Casada' => 'Casada','Unión libre' => 'Union libre','Divorciada' => 'Divorciada','Separada' => 'Separada','Viuda' => 'Viuda']]);
                     echo $this->Form->input('embarazo', ['options' => ['0' => 'No','1' => '1 mes','2' => '2 meses','3' => '3 meses','4' => '4 meses','5' => '5 meses','6' => '6 meses','7' => '7 meses','8' => '8 meses','9' => '9 meses']]);
                     echo $this->Form->input('telefono', ['label' => 'Teléfono']);
@@ -29,6 +37,11 @@
             </div>
         </div>
         <div class="large-12 columns">
+                <div class="large-12 columns">
+                    <?php
+                        echo $this->Form->input('direccion_oculta', ['label' => '¿La dirección es oculta?', 'type' => 'radio', 'options' => [1 => 'Sí', 0 => 'No']]);
+                    ?>
+                </div>
             <div class="large-6 columns">
                 <?php
                     echo $this->Form->input('provincia', ['options' => ['San José' => 'San José','Alajuela' => 'Alajuela','Heredia' => 'Heredia','Cartago' => 'Cartago','Puntarenas' => 'Puntarenas','Guanacaste' => 'Guanacaste','Limón' => 'Limón']]);
@@ -43,7 +56,6 @@
         </div>
         <div class="large-12 columns content">
             <?php
-                //echo $this->Form->input('atencion_especializada', ['label' => 'Atención especializada']);
                 echo $this->Form->input('ocupacion', ['label' => 'Ocupación']);
                 echo $this->Form->input('lugar_trabajo', ['label' => 'Lugar de trabajo']);
             ?>
@@ -99,3 +111,4 @@
     <?= $this->Form->button('Enviar', ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>
+<div class="large-4 large-centered columns content"></div>

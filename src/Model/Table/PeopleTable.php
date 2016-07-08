@@ -18,7 +18,6 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\HasMany $InternalReferences
  * @property \Cake\ORM\Association\HasMany $Logs
  * @property \Cake\ORM\Association\HasMany $Transfers
- * @property \Cake\ORM\Association\BelongsToMany $Attentions
  * @property \Cake\ORM\Association\BelongsToMany $Interventions
  * @property \Cake\ORM\Association\BelongsToMany $Advocacies
  * @property \Cake\ORM\Association\BelongsToMany $Entries
@@ -65,11 +64,6 @@ class PeopleTable extends Table
         ]);
         $this->hasMany('Transfers', [
             'foreignKey' => 'person_id'
-        ]);
-        $this->belongsToMany('Attentions', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'attention_id',
-            'joinTable' => 'attentions_people'
         ]);
         $this->belongsToMany('Interventions', [
             'foreignKey' => 'person_id',
@@ -127,9 +121,6 @@ class PeopleTable extends Table
 
         $validator
             ->allowEmpty('escolaridad');
-
-        $validator
-            ->allowEmpty('atencion_especializada');
 
         $validator
             ->allowEmpty('nacionalidad');
@@ -191,6 +182,10 @@ class PeopleTable extends Table
             ->allowEmpty('num_de_hijos');
 
         $validator
+            ->integer('direccion_oculta')
+            ->allowEmpty('direccion_oculta');
+
+        $validator
             ->allowEmpty('provincia');
 
         $validator
@@ -205,16 +200,13 @@ class PeopleTable extends Table
 
         $validator
             ->integer('num_hijos_ceaam')
-            ->requirePresence('num_hijos_ceaam', 'create')
-            ->notEmpty('num_hijos_ceaam');
+            ->allowEmpty('num_hijos_ceaam');
 
         $validator
-            ->requirePresence('num_familia', 'create')
-            ->notEmpty('num_familia');
+            ->allowEmpty('num_familia');
 
         $validator
-            ->requirePresence('rol_familia', 'create')
-            ->notEmpty('rol_familia');
+            ->allowEmpty('rol_familia');
 
         $validator
             ->integer('acepta_seguimiento')

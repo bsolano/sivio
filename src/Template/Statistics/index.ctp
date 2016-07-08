@@ -52,7 +52,7 @@
         
         <ul class="tabs">
             <li><a href="#tab1">Personas</a></li>
-            <li><a href="#tab2">características sociodemográficas</a></li>
+            <li><a href="#tab2">Indicadores Sociodemográficos</a></li>
             <li><a href="#tab3">Historial de Atenciones</a></li>
             
           
