@@ -25,11 +25,15 @@
                          <hr>
                     </div>
           </div>
-                    <div class = "small-9 large-push-1"> <strong>Consultas: </strong> </div>
+                   <?php $primeraEntrada = false; ?>
                     <!--Arma el contenedor de las evaluaciones-->
                     <?php foreach ($atentions as $atention): ?>
                      <?php 
                         if ($atention->fecha_inicio->format('Y') == $year): ?>
+                            <?php if ($primeraEntrada == false): ?>
+                                 <div class = "small-9 large-push-1"> <strong>Consultas: </strong> </div>
+                                 <?php $primeraEntrada = true; ?>
+                             <?php endif; ?>
                             <div class = "row">
                                  <div class = "small-6 large-centered columns box_summary"> 
                                         <!--Each atenttion will be a row-->
@@ -44,10 +48,14 @@
                     <?php endforeach; ?>
                     <!--Cersiora que exista alguna atencion-->
                     <?php if ($deOCes != null): ?>
-                       <div class = "small-9 large-push-1"> <strong>Atenciones: </strong> </div>
+                        <?php $primeraEntrada = false; ?>
                        <!--Arma el contenedor de atenciones-->
                        <?php foreach ($deOCes as $deOCe): ?>
                             <?php if ($deOCe->created->format('Y') == $year): ?>
+                            <?php if ($primeraEntrada == false): ?>
+                                 <div class = "small-9 large-push-1"> <strong>Atenciones: </strong> </div>
+                                 <?php $primeraEntrada = true; ?>
+                             <?php endif; ?>
                                 <div class = "row">
                                      <div class = "small-6 large-centered columns box_summary"> 
                                             <!--Each atenttion will be a row-->

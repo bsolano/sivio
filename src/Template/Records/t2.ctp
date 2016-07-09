@@ -6,18 +6,57 @@
              $c= $con->toArray(); 
          //      echo '<pre>'; print_r($c); echo '</pre>';  
              $n = 0;
-            foreach($c as $consulta){
-                if($consulta['person_id'] == $pi){
-                    echo "<legend> Consulta </legend><br>";
-                    echo $this->Form->input('Id persona',['value'=>$c[$n]['person_id']]); 
-                    echo $this->Form->input('fecha',['value'=>$c[$n]['fecha']]); 
-                    echo $this->Form->input('institucion referente',['value'=>$c[$n]['institucion_que_refiere']]); 
-                    echo $this->Form->input('valoracion_de_riesgo',['value'=>$c[$n]['valoracion_de_riesgo']]); 
-                    echo $this->Form->input('vinculo_con_persona_agresora',['value'=>$c[$n]['vinculo_con_persona_agresora']]); 
-                }
-                $n++;
+            ?> 
+            
+            </div>
+        <h3><?= __('') ?></h3>
+      
+
+    <table cellpadding="0" cellspacing="0">
+
+        <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('Id persona')       ?></th>
+                <th><?= $this->Paginator->sort('Fecha') ?></th>
+                <th><?= $this->Paginator->sort('Institución referente') ?></th>
+                <th><?= $this->Paginator->sort('Valoracion de riesgo') ?></th>
+                <th><?= $this->Paginator->sort('Vinculo con la persona agresora') ?></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           <?php 
+           
+
+            foreach ($c as $consulta):
+            
+            if($consulta['person_id'] == $pi){
+            ?>
+            <tr>
+        
+                    <td><?= h($consulta->person_id) ?></td>
+                    <td><?= h($consulta->fecha) ?></td>
+                    <td><?= h($consulta->institucion_que_refiere) ?></td>
+                    <td><?= h($consulta->valoracion_de_riesgo) ?></td>
+                    <td><?= h($consulta->vinculo_con_persona_agresora) ?></td>
+             </tr>
+                   
+            <?php
             }
-            ?>  
+            $n++;
+            endforeach; ?>
+          
+        </tbody>
+    </table>
+         <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
     </div>
-      <h3><?= __('') ?></h3>
+
 </fieldset>
+
+

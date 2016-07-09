@@ -686,7 +686,7 @@ div.message.hidden {
      width: 80%;
 }
 .box_summary:hover{
-      background-color: grey;
+      background-color: #DCDCDC;
       cursor: pointer;
 }    
 /* END SUMMARY VIEW BOXES */
