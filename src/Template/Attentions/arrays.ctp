@@ -220,8 +220,8 @@
             'Riesgo severo' => 'Riesgo severo'
         );
         $oapvd = array(
-            'Sí' => 'Sí',
-            'No' => 'No',
+            '1' => 'Sí',
+            '0' => 'No',
         );
         $medidasProteccion = array(
             'No tiene' => 'No tiene',

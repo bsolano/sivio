@@ -65,26 +65,6 @@ class PeopleTable extends Table
         $this->hasMany('Transfers', [
             'foreignKey' => 'person_id'
         ]);
-        $this->belongsToMany('Interventions', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'intervention_id',
-            'joinTable' => 'interventions_people'
-        ]);
-        $this->belongsToMany('Advocacies', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'advocacy_id',
-            'joinTable' => 'people_advocacies'
-        ]);
-        $this->belongsToMany('Entries', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'entry_id',
-            'joinTable' => 'people_entries'
-        ]);
-        $this->belongsToMany('Families', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'family_id',
-            'joinTable' => 'people_families'
-        ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'person_id',
             'targetForeignKey' => 'user_id',

@@ -1,3 +1,4 @@
+<!--
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -6,7 +7,8 @@
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="logs index large-9 medium-8 columns content">
+-->
+<div class="logs index columns content">
     <h3><?= __('Logs') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>

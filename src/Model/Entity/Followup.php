@@ -4,13 +4,11 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Followup Entity.
+ * Followup Entity
  *
  * @property int $id
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
  * @property \Cake\I18n\Time $created
- * @property int $user_id
  * @property string $medio_comunicacion
  * @property string $apoyo_institucional
  * @property bool $seguimiento_plan_seguridad
@@ -18,9 +16,8 @@ use Cake\ORM\Entity;
  * @property string $lugar_atencion
  * @property string $enfrenta_violencia
  * @property bool $convive_agresor
- * @property string $atencion_especializada
+ * @property bool $atencion_especializada
  * @property int $attention_id
- * @property \App\Model\Entity\Attention $attention
  * @property string $al_xtiempo_del_egreso
  * @property string $seguimiento_referencia_social
  * @property string $seguimiento_referencia_legal
@@ -29,8 +26,15 @@ use Cake\ORM\Entity;
  * @property bool $audiencia_pendiente
  * @property bool $seguimientoOAPVD
  * @property string $incump_medidas
+ * @property bool $apoyo_empleo
+ * @property bool $situacion_riesgo
+ * @property string $hijos_atencion_especializada
+ * @property bool $hijo_seguimiento_plan_seguridad
+ * @property bool $hijos_situacion_riesgo
+ *
+ * @property \App\Model\Entity\Person $person
  * @property \App\Model\Entity\User[] $users
- * @property \App\Model\Entity\Advocacy $advocacy
+ * @property \App\Model\Entity\Attention $attention
  */
 class Followup extends Entity
 {
@@ -46,6 +50,6 @@ class Followup extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

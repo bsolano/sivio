@@ -7,7 +7,6 @@ use Cake\ORM\Entity;
  * PeopleEntry Entity
  *
  * @property int $person_id
- * @property int $entry_id
  * @property string $tipo_accion
  * @property \Cake\I18n\Time $fecha_accion
  * @property int $id
@@ -21,6 +20,7 @@ use Cake\ORM\Entity;
  * @property string $entidad_traslada
  * @property string $provincia_destino
  * @property string $canton_destino
+ * @property bool $direccion_oculta
  *
  * @property \App\Model\Entity\Person $person
  * @property \App\Model\Entity\Entry $entry

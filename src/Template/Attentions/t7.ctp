@@ -106,7 +106,7 @@
         
         echo $this->Form->input('Followup.apoyo_empleo', [
             'type'=>'checkbox',
-            'value'     => $seg->apoyo_empleo ,
+            'value'     => (bool) $seg->apoyo_empleo ,
             ]); 
             
         echo $this->Form->input('Followup.situacion_riesgo', [

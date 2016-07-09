@@ -4,10 +4,11 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * History Entity.
+ * History Entity
  *
  * @property string $motivo_regreso
  * @property string $antecedente_legal
+ * @property string $antecedente_legal_cuales
  * @property string $antecedente_psiquiatrico
  * @property string $atencion_por_agresion
  * @property string $centro_salud
@@ -25,7 +26,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $vencimiento_proteccion
  * @property string $situacion_enfrentada
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
  * @property string $vinculo_usuaria
  * @property string $tiempo_relacion
  * @property string $tiempo_agresion
@@ -33,7 +33,6 @@ use Cake\ORM\Entity;
  * @property string $familiares_en_riesgo
  * @property bool $familiar_requiere_proteccion
  * @property int $aggressor_id
- * @property \App\Model\Entity\Aggressor $aggressor
  * @property string $tipo_maltrato_vivido
  * @property string $abuso_sexual
  * @property string $ultimo_episodio
@@ -42,6 +41,8 @@ use Cake\ORM\Entity;
  * @property string $vpatrimonial_text
  * @property string $vpsicologica_text
  * @property string $kit
+ *
+ * @property \App\Model\Entity\Person $person
  * @property \App\Model\Entity\Attention[] $attentions
  */
 class History extends Entity
@@ -58,6 +59,6 @@ class History extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\History;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -13,6 +12,14 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Aggressors
  * @property \Cake\ORM\Association\HasMany $Attentions
+ *
+ * @method \App\Model\Entity\History get($primaryKey, $options = [])
+ * @method \App\Model\Entity\History newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\History[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\History|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\History patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\History[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\History findOrCreate($search, callable $callback = null)
  */
 class HistoriesTable extends Table
 {
@@ -34,10 +41,10 @@ class HistoriesTable extends Table
         $this->belongsTo('People', [
             'foreignKey' => 'person_id'
         ]);
-        $this->belongsTo('Aggressors', [
-            'foreignKey' => 'aggressor_id',
-            'joinType' => 'INNER'
-        ]);
+        // $this->belongsTo('Aggressors', [
+        //     'foreignKey' => 'aggressor_id',
+        //     'joinType' => 'INNER'
+        // ]);
         $this->hasMany('Attentions', [
             'foreignKey' => 'history_id'
         ]);
@@ -56,6 +63,9 @@ class HistoriesTable extends Table
 
         $validator
             ->allowEmpty('antecedente_legal');
+
+        $validator
+            ->allowEmpty('antecedente_legal_cuales');
 
         $validator
             ->allowEmpty('antecedente_psiquiatrico');
@@ -134,24 +144,19 @@ class HistoriesTable extends Table
             ->allowEmpty('abuso_sexual');
 
         $validator
-            ->requirePresence('ultimo_episodio', 'create')
-            ->notEmpty('ultimo_episodio');
+            ->allowEmpty('ultimo_episodio');
 
         $validator
-            ->requirePresence('vsexual_text', 'create')
-            ->notEmpty('vsexual_text');
+            ->allowEmpty('vsexual_text');
 
         $validator
-            ->requirePresence('vfisica_text', 'create')
-            ->notEmpty('vfisica_text');
+            ->allowEmpty('vfisica_text');
 
         $validator
-            ->requirePresence('vpatrimonial_text', 'create')
-            ->notEmpty('vpatrimonial_text');
+            ->allowEmpty('vpatrimonial_text');
 
         $validator
-            ->requirePresence('vpsicologica_text', 'create')
-            ->notEmpty('vpsicologica_text');
+            ->allowEmpty('vpsicologica_text');
 
         $validator
             ->allowEmpty('kit');
@@ -169,7 +174,7 @@ class HistoriesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
+        // $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
         return $rules;
     }
 }

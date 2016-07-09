@@ -104,15 +104,17 @@
             Permite mostrar u ocultar los botones necesarios si no se tiene permisos.
         */
         if( "<?php echo $group_name ?>" == 'RecepcionistaDelegacionDeLaMujer' ) {
-            document.getElementById("bnt_Vista").style.display = "block";
-            document.getElementById("bnt_Atencion").style.display = "none";
-            document.getElementById("bnt_Consulta").style.display = "block";
+            document.getElementById("bnt_Vista"     ).style.display = "block";
+            document.getElementById("bnt_Atencion"  ).style.display = "none";
+            document.getElementById("bnt_Consulta"  ).style.display = "block";
             document.getElementById("bnt_Expediente").style.display = "block";
+            document.getElementById("bnt_logs"      ).style.display = "block";
         } else {
-            document.getElementById("bnt_Vista").style.display = "block";
-            document.getElementById("bnt_Atencion").style.display = "block";
-            document.getElementById("bnt_Consulta").style.display = "block";
+            document.getElementById("bnt_Vista"     ).style.display = "block";
+            document.getElementById("bnt_Atencion"  ).style.display = "block";
+            document.getElementById("bnt_Consulta"  ).style.display = "block";
             document.getElementById("bnt_Expediente").style.display = "block";
+            document.getElementById("bnt_logs"      ).style.display = "block";
         }
     }
     
@@ -139,5 +141,9 @@
     
     function expediente() {
         document.location = "/records/index/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    }
+    
+    function verLogs() {
+        document.location = "logs/view/"+document.querySelector('input[name = "usuaria"]:checked').value;
     }
 </script>

@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\PeopleAdvocacy;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -11,8 +10,15 @@ use Cake\Validation\Validator;
  * PeopleAdvocacies Model
  *
  * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $Advocacies
  * @property \Cake\ORM\Association\BelongsTo $Attentions
+ *
+ * @method \App\Model\Entity\PeopleAdvocacy get($primaryKey, $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\PeopleAdvocacy findOrCreate($search, callable $callback = null)
  */
 class PeopleAdvocaciesTable extends Table
 {
@@ -29,14 +35,10 @@ class PeopleAdvocaciesTable extends Table
 
         $this->table('people_advocacies');
         $this->displayField('id');
-        $this->primaryKey(['id', 'person_id', 'advocacy_id']);
+        $this->primaryKey('id');
 
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Advocacies', [
-            'foreignKey' => 'advocacy_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Attentions', [
@@ -59,6 +61,12 @@ class PeopleAdvocaciesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator
+            ->allowEmpty('nombre');
+
+        $validator
+            ->allowEmpty('telefono');
+
         return $validator;
     }
 
@@ -72,7 +80,6 @@ class PeopleAdvocaciesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['advocacy_id'], 'Advocacies'));
         $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         return $rules;
     }

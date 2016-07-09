@@ -60,10 +60,9 @@ class AttentionsController extends AppController
         $peopleTable         = TableRegistry::get(  'People'         );
         $followTable         = TableRegistry::get(  'Followups'         );
         
-        $advo = $this->PeopleAdvocacies->find(
-            'all',['conditions' => ['person_id' => $id]])
-            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
-            ->contain(['Advocacies']
+        $advo = $this->PeopleAdvocacies->
+            find('all',['conditions' => ['person_id' => $id]])->
+                select(['PeopleAdvocacies.tipo','PeopleAdvocacies.nombre' , 'PeopleAdvocacies.telefono']
         );
         
         $user = $this->Followups->newEntity();
@@ -83,6 +82,7 @@ class AttentionsController extends AppController
             $fol->hijos_atencion_especializada = explode("&",$fol->hijos_atencion_especializada,-1);
         }
         debug( $fol );
+        debug( $fol->apoyo_empleo );
         
         $this->set('seg',$fol);
         
@@ -145,7 +145,6 @@ class AttentionsController extends AppController
         $this->loadModel('People');
         $this->loadModel('Logs');        
         $this->loadModel('Users');
-        $this->loadModel('Aggressors');
         $this->loadModel('Histories');
         $this->loadModel('PeopleAdvocacies');
         $this->loadModel('InterventionsPeople');
@@ -156,31 +155,31 @@ class AttentionsController extends AppController
         //se cargan las tablas
         $logsTable           = TableRegistry::get(  'Logs'           );
         $peopleTable         = TableRegistry::get(  'People'         );
-        $aggressorsTable     = TableRegistry::get(  'Aggressors'     );
         $historiesTable      = TableRegistry::get(  'Histories'      );
         $attentionsTable     = TableRegistry::get(  'Attentions'     );
         $entriesTable        = TableRegistry::get(  'Entries'        );
         $peopleEntriesTable  = TableRegistry::get(  'PeopleEntries'  );
 
         //atencion existente
-        $atencion = $this->Attentions->get($atId, ['contain'=>['Logs', 'Histories','Aggressors.People']]);
+        $atencion = $this->Attentions->get($atId, ['contain'=>['Logs', 'Histories']]);
+        
         //persona
         $persona = $atencion['log'];
         $persona = $this->StringManipulation->transformarStrings($persona->toArray(),['fecha_de_nacimiento']);
         $persona = new Log($persona);
         //historia de violencia
         $historia = $atencion['history'];
+        $id_agresor = $historia['aggressor_id'];
         $historia = $this->StringManipulation->transformarStrings($historia->toArray(),['vencimiento_proteccion']);
         $historia = new History($historia);
         //agresor
-        $agresor = $atencion['aggressor']['person'];
+        $agresor = $this->People->get($id_agresor);
         $agresor = $this->StringManipulation->transformarStrings($agresor->toArray(),['fecha_de_nacimiento']);
         $agresor = new Person($agresor);
 
         //para saber cuales redes de apoyo tiene actualmente una persona
         $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
-                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
-                                            ->contain(['Advocacies']);
+                                            ->select(['PeopleAdvocacies.tipo','PeopleAdvocacies.nombre' , 'PeopleAdvocacies.telefono']);
         
         //hijos 
         $iHijo = $this->People->find('all',['conditions' => ['num_familia' => $persona->num_familia, 'rol_familia'=>'hijo' ]])
@@ -197,18 +196,19 @@ class AttentionsController extends AppController
         if ($this->request->is('post')) {
             
             //se recupera todas las personas e historias
-            $personas = $this->request->data['Person'];
+            $personas  = $this->request->data['Person'];
             $historias = $this->request->data['History'];
             
             //Persona, en formato DB
             $log = $personas[0]; //obtiene la persona
             $log = $this->StringManipulation->transformarArrays($log,['fecha_de_nacimiento']);//transforma todos los datos que sean arrays en string tokenizados, menos los que esten en el array del segundo parametro
-            if($this->request->data['dconfidencial'] == 1){//si la direccion es confidencial
+            if($log['direccion_oculta'] == 1){//si la direccion es confidencial
                 $log['provincia'] = "Confidencial/No indica";
                 $log['canton'   ] = "Confidencial/No indica";
                 $log['direccion'] = "Confidencial/No indica";
             }
             $log['person_id'] = $id; //LOG
+            $log['es_agresor'] = '0'; //LOG
             $logFinal = $this->People->newEntity($log);
 
             //Agresor final, formato DB
@@ -228,8 +228,12 @@ class AttentionsController extends AppController
             //     $aggressor_id = $aggressor_id;
             // }
             
+            $diferencia = array_diff((array)json_decode(json_encode($logFinal,true)),(array)json_decode(json_encode($atencion->log,true)));
+            if(!empty($diferencia)){
+                
+            }
             
-            debug(array_diff($log,$atencion->log->toArray()));
+            
             //Historia de violencia, formato DB
             // $historiaViolencia = $historias[0];
             // $historiaViolencia = $this->StringManipulation->transformarArrays($historiaViolencia,['vencimiento_proteccion']);
@@ -251,6 +255,8 @@ class AttentionsController extends AppController
      * campos ya existentes al usuario. 
      * 
      * @param $id id de la persona en la base de datos
+     * @author Jason Anchía
+     * @author Juan Diego Araya
      */ 
     public function add($id)
     {
@@ -266,18 +272,17 @@ class AttentionsController extends AppController
         $this->loadModel('Histories');
         $this->loadModel('PeopleAdvocacies');
         $this->loadModel('InterventionsPeople');
-        $this->loadModel('Interventions');
-        $this->loadModel('Entries');
         $this->loadModel('PeopleEntries');
 
+
         //se cargan las tablas
-        $logsTable           = TableRegistry::get(  'Logs'           );
-        $peopleTable         = TableRegistry::get(  'People'         );
-        $aggressorsTable     = TableRegistry::get(  'Aggressors'     );
-        $historiesTable      = TableRegistry::get(  'Histories'      );
-        $attentionsTable     = TableRegistry::get(  'Attentions'     );
-        $entriesTable        = TableRegistry::get(  'Entries'        );
-        $peopleEntriesTable  = TableRegistry::get(  'PeopleEntries'  );
+        $logsTable              = TableRegistry::get(  'Logs'            );
+        $peopleTable            = TableRegistry::get(  'People'          );
+        $aggressorsTable        = TableRegistry::get(  'Aggressors'      );
+        $historiesTable         = TableRegistry::get(  'Histories'       );
+        $attentionsTable        = TableRegistry::get(  'Attentions'      );
+        $peopleEntriesTable     = TableRegistry::get(  'PeopleEntries'   );
+        $peopleAdvocaciesTable  = TableRegistry::get(  'PeopleAdvocacies');
 
         //obtener una persona y dar formato a sus datos para llenar en el formulario
         $per = $peopleTable->get($id);
@@ -289,8 +294,7 @@ class AttentionsController extends AppController
 
         //para saber cuales redes de apoyo tiene actualmente una persona
         $advo = $this->PeopleAdvocacies->find('all',['conditions' => ['person_id' => $id]])
-                                            ->select(['PeopleAdvocacies.tipo','Advocacies.nombre' , 'Advocacies.telefono'])
-                                            ->contain(['Advocacies']);
+                                            ->select(['PeopleAdvocacies.tipo','PeopleAdvocacies.nombre' , 'PeopleAdvocacies.telefono']);
         $this->set('advo',$advo);
         
         //hijos 
@@ -312,97 +316,117 @@ class AttentionsController extends AppController
             $persona = $personas[0]; //obtiene la persona
             $persona = $this->StringManipulation->transformarArrays($persona,['fecha_de_nacimiento']);//transforma todos los datos que sean arrays en string tokenizados, menos los que esten en el array del segundo parametro
             
-            
-            if($this->request->data['dconfidencial'] == 1){//si la direccion es confidencial
+            if($persona['direccion_oculta'] == 1){//si la direccion es confidencial
                 $persona['provincia'] = "Confidencial/No indica";
                 $persona['canton'   ] = "Confidencial/No indica";
                 $persona['direccion'] = "Confidencial/No indica";
             }
+            
             $persona['person_id'] = $id;
+            $persona['es_agresor'] = 0;
             $per = $this->People->newEntity($persona);
             
             //cambio en agressors para formato DB
             $agresor = $personas[1];
             $agresor = $this->StringManipulation->transformarArrays($agresor,[]);
+            $agresor['es_agresor'] = 1;
             $ag      = $this->People->newEntity($agresor);
             
-            $ingresos  = $this->request->data['Entry'];
             $pingresos = $this->request->data['PeopleEntry'];
+            
+            //historia de violencia de la agredida
+            $historiaViolencia = $historias[0];
+            $historiaViolencia = $this->StringManipulation->transformarArrays($historiaViolencia,['vencimiento_proteccion']);
+            $historiaViolencia['person_id'] = $id;
+            if($historiaViolencia['antecedente_legal'] != 'Sí'){
+                $historiaViolencia['antecedente_legal_cuales'] = '';
+            }
             /************************ GUARDAR DATOS ***************************/
             
             
-            $aggressor_id = 1; //id del agresor para los saves posteriores
-            $attention_id = 1; //id de atencino para los saves posteriores
-            //guarda agredida, agresor (dos tablas) e historia
+            $aggressor_id; //id del agresor para los saves posteriores
+            $attention_id; //id de atencino para los saves posteriores
+            //guarda agredida, agresor, historia y atencion
             $guardado = true; //condicion de parada para el mensaje de error
-            if ($guardado = $guardado && $logsTable->save($per) && ($agrP = $peopleTable->save($ag))) {
-                //datos de la tabla agresor
-                $datosAgresor = ['person_id'=>$agrP->id];
-                $agT = $this->Aggressors->newEntity($datosAgresor);
+     
+            // if ($guardado = $guardado && ($lt = $logsTable->save($per)) && ($agrP = $peopleTable->save($ag)) ) {
+            //     //datos de la tabla agresor
+            //     $aggressor_id = $agrP->id;
+            //     $historiaViolencia['aggressor_id'] = $aggressor_id;
+            //     $hv = $this->Histories->newEntity($historiaViolencia);
+            //     //falta por salvar adecuadamente antecedentes legales******************************************
                 
-                if ($guardado = $guardado && ($agrA = $aggressorsTable->save($agT))) {
-                    $aggressor_id = $agrA->id;
+            //     if ($guardado = $guardado && $hstTabla = $historiesTable->save($hv)) {
+            //         $userID   = $this->Auth->user('id');
+            //         $location = $this->Users->find('all',['conditions' => ['Users.id' => $userID] ])
+            //                                     ->select(['Locations.ubicacion'])->contain('Locations');
                     
-                    $historiaViolencia = $historias[0];
-                    $historiaViolencia = $this->StringManipulation->transformarArrays($historiaViolencia,['vencimiento_proteccion']);
-                    $historiaViolencia['person_id'] = $id;
-                    $historiaViolencia['aggressor_id'] = $aggressor_id;
-                    $hv = $this->Histories->newEntity($historiaViolencia);
-                    //falta por salvar adecuadamente antecedentes legales******************************************
-                    if ($guardado = $guardado && $hstTabla = $historiesTable->save($hv)) {
-                        $datosAtencion = [ 'aggressor_id' => $aggressor_id, 'identificacion' => $persona['identificacion'],
-                                          'history_id' => $hstTabla->id, 'user_id' => $this->Auth->user('id'), 'tipo' => 'CEAAM']; 
-                        $atn = $this->Attentions->newEntity($datosAtencion);
-                        if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
-                            $attention_id = $atencion->id;
-                        }
-                    }
-                }
-            } 
+            //         $location = $location->toArray();
+            //         $location = $location[0]['Locations']['ubicacion'];
+            //         //datos de la atencion que se genera
+            //         $datosAtencion = [
+            //           'log_id'       => $lt->id      ,
+            //           'history_id'   => $hstTabla->id, 
+            //           'user_id'      => $userID      , 
+            //           'tipo'         => $location    ,
+            //         ]; 
+                    
+            //         $atn = $this->Attentions->newEntity($datosAtencion);
+            //         if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
+            //             $attention_id = $atencion->id;
+            //         }
+            //     }
+            // } 
             
             // for($j = 0; $j < 2; $j++){
-            //     //arreglar los datos para guardar en la base de datos, en las preguntas de llenar cual CEAAM
+            //     $strTipo = $pingresos[$j]['tipo_ing_eg'];
             //     if($j == 0){
-            //         $ingresos[$j] = $this->StringManipulation->transformarArrays($ingresos[$j],[]);
-            //         $strTipo = $ingresos[$j]['tipo_ing_eg'];
+            //         $pingresos[$j] = $this->StringManipulation->transformarArrays($pingresos[$j],['fecha_accion']);
                     
             //         if($strTipo == "Traslado CEAAM"){
-            //             $ingresos[$j]['tipo_ing_eg'] = $strTipo." ".$ingresos[$j]['ceaam_traslado'];
+            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
             //         }
-                    
-            //         elseif($strTipo == "Reingreso CEAAM"){
-            //             $ingresos[$j]['tipo_ing_eg'] = $strTipo." ".$ingresos[$j]['ceaam_reingreso'];
+            //         else if($strTipo == "Reingreso CEAAM"){
+            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_reingreso'];
             //         }
-                    
             //         $pingresos[$j]['tipo_accion'] = 'Ingreso';
+                
             //     }else{
-            //         if($this->request->data['ddconfidencial']==1){
-            //             $ingresos[$j]['provincia_destino' ] = "Confidencial/No indica";
-            //             $ingresos[$j]['canton_destino'    ] = "Confidencial/No indica";
-            //             $ingresos[$j]['destino_extranjero'] = "Confidencial/No indica";
+            //         if($this->request->data['dextranjero'] == 1){
+            //             $pingresos[$j]['provincia_destino' ] = "Extranjero";
+            //             $pingresos[$j]['canton_destino'    ] = "Extranjero";
             //         }
                     
-            //         if($ingresos[$j]['tipo_ing_eg']=="Traslado CEAAM"){
-            //             $ingresos[$j]['tipo_ing_eg'] = "Traslado CEAAM ".$ingresos[$j]['ceaam_traslado'];
+            //         if($pingresos[$j]['direccion_oculta'] == 1){
+            //             $pingresos[$j]['provincia_destino' ] = "Confidencial/No indica";
+            //             $pingresos[$j]['canton_destino'    ] = "Confidencial/No indica";
+            //             $pingresos[$j]['destino_extranjero'] = "Confidencial/No indica";
             //         }
-                    
+            //         if($strTipo == "Traslado CEAAM"){
+            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
+            //         }
             //         $pingresos[$j]['tipo_accion'] = 'Egreso';
             //     }
-                
-            //     $ingr = $this->Entries->newEntity($ingresos[$j]);
-                
-            //     if($guardado = $guardado && $in = $entriesTable->save($ingr)){
-            //         $pingresos[$j]['attention_id']  = $attention_id;
-            //         $pingresos[$j]['person_id'   ]  = $id;
-            //         $pingresos[$j]['entry_id'    ]  = $in->id;
-                    
-            //         $pi = $this->PeopleEntries->newEntity($pingresos[$j]);
-            //         ($guardado = $guardado && $peopleEntriesTable->save($pi));
-            //     }
+            //     $pingresos[$j]['attention_id']  = $attention_id;
+            //     $pingresos[$j]['person_id'   ]  = $id;
+            //     $pi = $this->PeopleEntries->newEntity($pingresos[$j]);
+            //     ($guardado = $guardado && $peopleEntriesTable->save($pi));
             // }
             
+            // //Guardar redes de apoyo
+            // $redes = $this->request->data['PeopleAdvocacy'];
+            // $redes = array_slice($redes, $advo->count());
+            // if(!empty($redes)){
+            //     foreach ($redes as $r) {
+            //         $r['person_id'] = $id;
+            //         $r['attention_id'] = $attention_id;
+            //         $redA = $this->PeopleAdvocacies->newEntity($r);
+            //         ($guardado = $guardado && $peopleAdvocaciesTable->save($redA));
+            //     }
+            // }
+
             
-            // // //guarda los hijos y su historia de violencia
+            // //guarda los hijos y su historia de violencia
             // $i = 1;
             // foreach($iHijo as $h){
             //     $datosHijo = $peopleTable->get($h->id);
@@ -443,7 +467,7 @@ class AttentionsController extends AppController
             
             if ($guardado) {
                 $this->Flash->success(__('Guardado.'));
-                //$this->redirect(['action'=>'index']);
+                // $this->redirect(['action'=>'index']);
             }else{
                 $this->Flash->error(__('Error al guardar datos.'));    
             }

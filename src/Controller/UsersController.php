@@ -1,16 +1,13 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Event\Event;
-
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
 class UsersController extends AppController {
-
     /**
      * Index method
      *
@@ -22,11 +19,9 @@ class UsersController extends AppController {
             'contain' => ['Groups']
         ];
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
-
     /**
      * View method
      *
@@ -39,11 +34,9 @@ class UsersController extends AppController {
         $user = $this->Users->get($id, [
             'contain' => ['Groups']
         ]);
-
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Add method
      *
@@ -65,7 +58,6 @@ class UsersController extends AppController {
         $this->set(compact('user', 'groups'));
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Edit method
      *
@@ -91,7 +83,6 @@ class UsersController extends AppController {
         $this->set(compact('user', 'groups'));
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Delete method
      *
@@ -158,7 +149,6 @@ class UsersController extends AppController {
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
         //$this->layout='ajax';
@@ -174,7 +164,6 @@ class UsersController extends AppController {
         //$user = $this->Users->get($id, [
         //    'contain' => []
         //]);
-
         //$this->set('user', $user);
         //$this->set('_serialize', ['user']);
         //$this->layout='ajax';
@@ -209,5 +198,4 @@ class UsersController extends AppController {
         }
         $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
     }
-
 }

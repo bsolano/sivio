@@ -26,29 +26,25 @@ class PeopleAdvocaciesTableTest extends TestCase
     public $fixtures = [
         'app.people_advocacies',
         'app.people',
-        'app.transfers',
         'app.aggressors',
+        'app.attentions',
         'app.histories',
-        'app.consultations',
         'app.users',
         'app.groups',
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
+        'app.locations',
+        'app.internal_references',
+        'app.consultations',
         'app.entries',
-        'app.people_entries',
         'app.evaluations',
         'app.advocacies',
         'app.followups',
         'app.followups_users',
-        'app.attentions',
-        'app.internal_references',
         'app.users_people',
-        'app.external_references',
-        'app.interventions',
+        'app.logs',
         'app.interventions_people',
-        'app.families',
-        'app.people_families'
+        'app.people_entries',
+        'app.external_references',
+        'app.transfers'
     ];
 
     /**

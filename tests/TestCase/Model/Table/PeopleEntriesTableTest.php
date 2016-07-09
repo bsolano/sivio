@@ -38,15 +38,14 @@ class PeopleEntriesTableTest extends TestCase
         'app.evaluations',
         'app.advocacies',
         'app.followups',
-        'app.followups_users',
         'app.people_advocacies',
+        'app.followups_users',
         'app.users_people',
         'app.logs',
         'app.interventions_people',
-        'app.interventions',
         'app.external_references',
         'app.transfers',
-        'app.attentions_people',
+        'app.interventions',
         'app.families',
         'app.people_families'
     ];

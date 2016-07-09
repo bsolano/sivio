@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
  * PeopleEntries Model
  *
  * @property \Cake\ORM\Association\BelongsTo $People
- * @property \Cake\ORM\Association\BelongsTo $Entries
  * @property \Cake\ORM\Association\BelongsTo $Attentions
  *
  * @method \App\Model\Entity\PeopleEntry get($primaryKey, $options = [])
@@ -40,10 +39,6 @@ class PeopleEntriesTable extends Table
 
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Entries', [
-            'foreignKey' => 'entry_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Attentions', [
@@ -97,6 +92,10 @@ class PeopleEntriesTable extends Table
         $validator
             ->allowEmpty('canton_destino');
 
+        $validator
+            ->boolean('direccion_oculta')
+            ->allowEmpty('direccion_oculta');
+
         return $validator;
     }
 
@@ -110,7 +109,6 @@ class PeopleEntriesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
-        $rules->add($rules->existsIn(['entry_id'], 'Entries'));
         $rules->add($rules->existsIn(['attention_id'], 'Attentions'));
         return $rules;
     }

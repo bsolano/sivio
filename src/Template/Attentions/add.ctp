@@ -124,18 +124,15 @@
                     
                     //Input del nombre de la persona o institucion  
                     "<div class=\"input text\">"+
-                        "<label for=\"advocacy-"+numAd+"-nombre\">Nombre de la persona o instutición</label>"+
-                        "<input name=\"Advocacy["+numAd+"][nombre]\" id=\"advocacy-"+numAd+"-nombre\" value=\"\" type=\"text\">"+
+                        "<label for=\"PeopleAdvocacy-"+numAd+"-nombre\">Nombre de la persona o instutición</label>"+
+                        "<input name=\"PeopleAdvocacy["+numAd+"][nombre]\" id=\"peopleadvocacy-"+numAd+"-nombre\" value=\"\" type=\"text\">"+
                     "</div>"+
                     
                     //Input del telefono
                     "<div class=\"input text\">"+
-                        "<label for=\"advocacy-"+numAd+"-telefono\">Teléfono</label>"+
-                        "<input name=\"Advocacy["+numAd+"][telefono]\" id=\"advocacy-"+numAd+"-telefono\" value=\"\" type=\"text\">"+
+                        "<label for=\"peopleadvocacy-"+numAd+"-telefono\">Teléfono</label>"+
+                        "<input name=\"PeopleAdvocacy["+numAd+"][telefono]\" id=\"peopleadvocacy-"+numAd+"-telefono\" value=\"\" type=\"text\">"+
                     "</div>" ;
-                    
-                    //Boton de eliminar red de apoyo
-                    //+"<input id='eliminarAdv' style='margin: 10px 5px;' type='button' value='Elminar red' class='button float-right' onclick='deleteInput(\'redesApoyo\')'/><br></br>";
                 
                 document.getElementById(divName).appendChild(newdiv);
              }

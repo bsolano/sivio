@@ -68,24 +68,46 @@
                 'value' => $histV->motivo_regreso,
                 'options' => $motivos
                 )
-            );   
+            );
+
+        $alegalsi = '';    
+        $alegalno = '';
+        $alegalnoindica = '';
+        $alegalcuales = '';
+        if($histV->antecedente_legal != null && $histV->antecedente_legal != ''){
+            switch ($histV->antecedente_legal) {
+                case 'Sí':
+                    $alegalsi = 'checked="checked"';    
+                    $alegalcuales = 'value = "'.$histV->antecedente_legal_cuales.'"';
+                    break;
+                case 'No':
+                    $alegalno = 'checked="checked"';
+                    break;
+                case 'No indica':
+                    $alegalnoindica = 'checked="checked"';
+                    break;
+                }
+        }    
+            
         ?>
         <br>
         <label>Antecedentes Legales</label>
         <input name="History[0][antecedente_legal]" value="" type="hidden">
         <div class="radio-inline screen-center screen-radio">
         	<label for="history-0-antecedente-legal-sí">
-        		<input name="History[0][antecedente_legal]" value="Sí" id="history-0-antecedente-legal-sí" type="radio">Sí, ¿cuáles? <input name="antecedente_legal_cuales" type="text"/>
+        		<input name="History[0][antecedente_legal]" value="Sí" id="history-0-antecedente-legal-sí" type="radio" <?= $alegalsi ?> >
+        		    Sí, ¿cuáles? 
+        		<input name="History[0][antecedente_legal_cuales]" type="text" <?= $alegalcuales ?> />
         	</label>
         </div>
         <div class="radio-inline screen-center screen-radio">
         	<label for="history-0-antecedente-legal-no">
-        		<input name="History[0][antecedente_legal]" value="No" id="history-0-antecedente-legal-no" type="radio">No
+        		<input name="History[0][antecedente_legal]" value="No" id="history-0-antecedente-legal-no" type="radio" <?= $alegalno ?> >No
         	</label>
         </div>
         <div class="radio-inline screen-center screen-radio">
         	<label for="history-0-antecedente-legal-no-indica">
-        		<input name="History[0][antecedente_legal]" value="No indica" id="history-0-antecedente-legal-no-indica" type="radio">No indica
+        		<input name="History[0][antecedente_legal]" value="No indica" id="history-0-antecedente-legal-no-indica" type="radio" <?= $alegalnoindica ?> >No indica
         	</label>
         </div>
             
