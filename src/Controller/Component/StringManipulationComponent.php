@@ -49,8 +49,11 @@ class StringManipulationComponent extends Component
          
         /**
          * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en string concatenada
-         * $array array de datos 
-         * $string array de datos que NO se tienen que cambiar a modo tokenizado, como fechas
+         * 
+         * @author Juan Diego Araya
+         * @param $array array de datos 
+         * @param $string array de datos que NO se tienen que cambiar a modo tokenizado, como fechas
+         * @return array original con cada uno de los sub arrays transformados a string concatenado. 
          */ 
         public function transformarArrays(& $array, $string){
             foreach($array as $key => $value){
@@ -65,6 +68,11 @@ class StringManipulationComponent extends Component
          * recorre un array de datos, y lo devuelve con los campos que se necesitan transformar en array
          * $array array de datos 
          * $string array de datos que NO se tienen que cambiar a modo array, como fechas
+         * 
+         * @author Juan Diego Araya
+         * @param $array El array con los datos de la forma "&dato1&dato2&"
+         * @param $string El array de nombre de llaves que se tienen que ignorar para este proceso, las fechas en este caso. 
+         * @return El array con los strings concatenados transformados a array
          */ 
         public function transformarStrings($array, $string){
             foreach($array as $key => $value){

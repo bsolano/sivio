@@ -1,29 +1,7 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Log'), ['action' => 'edit', $log->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Log'), ['action' => 'delete', $log->id], ['confirm' => __('Are you sure you want to delete # {0}?', $log->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Logs'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Log'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
 <div class="logs view large-9 medium-8 columns content">
-    <h3><?= h($log->id) ?></h3>
+    <h3><?= $log->nombre." ".$log->apellidos ?></h3>
     <table class="vertical-table">
-        <tr>
-            <th><?= __('Person') ?></th>
-            <td><?= $log->has('person') ? $this->Html->link($log->person->id, ['controller' => 'People', 'action' => 'view', $log->person->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Nombre') ?></th>
-            <td><?= h($log->nombre) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Apellidos') ?></th>
-            <td><?= h($log->apellidos) ?></td>
-        </tr>
         <tr>
             <th><?= __('Estado Civil') ?></th>
             <td><?= h($log->estado_civil) ?></td>

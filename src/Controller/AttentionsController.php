@@ -195,54 +195,54 @@ class AttentionsController extends AppController
         
         if ($this->request->is('post')) {
             
-            //se recupera todas las personas e historias
-            $personas  = $this->request->data['Person'];
-            $historias = $this->request->data['History'];
+            // //se recupera todas las personas e historias
+            // $personas  = $this->request->data['Person'];
+            // $historias = $this->request->data['History'];
             
-            //Persona, en formato DB
-            $log = $personas[0]; //obtiene la persona
-            $log = $this->StringManipulation->transformarArrays($log,['fecha_de_nacimiento']);//transforma todos los datos que sean arrays en string tokenizados, menos los que esten en el array del segundo parametro
-            if($log['direccion_oculta'] == 1){//si la direccion es confidencial
-                $log['provincia'] = "Confidencial/No indica";
-                $log['canton'   ] = "Confidencial/No indica";
-                $log['direccion'] = "Confidencial/No indica";
-            }
-            $log['person_id'] = $id; //LOG
-            $log['es_agresor'] = '0'; //LOG
-            $logFinal = $this->People->newEntity($log);
+            // //Persona, en formato DB
+            // $log = $personas[0]; //obtiene la persona
+            // $log = $this->StringManipulation->transformarArrays($log,['fecha_de_nacimiento']);//transforma todos los datos que sean arrays en string tokenizados, menos los que esten en el array del segundo parametro
+            // if($log['direccion_oculta'] == 1){//si la direccion es confidencial
+            //     $log['provincia'] = "Confidencial/No indica";
+            //     $log['canton'   ] = "Confidencial/No indica";
+            //     $log['direccion'] = "Confidencial/No indica";
+            // }
+            // $log['person_id'] = $id; //LOG
+            // $log['es_agresor'] = '0'; //LOG
+            // $logFinal = $this->People->newEntity($log);
 
-            //Agresor final, formato DB
-            // $agresorFinal = $personas[1];
-            // $agresorFinal = $this->StringManipulation->transformarArrays($agresorFinal,[]);
-            // $aggressor_id;
-            // if($at->aggressor == null){
-            //     $ag = $this->People->newEntity($agresorFinal);
-            //     //guardar ag ***************************************************
-            //     $agrP = $peopleTable->save($ag);
-            //     $datosAgresor = ['person_id'=>$agrP->id];
-            //     $agT = $this->Aggressors->newEntity($datosAgresor);
-            //     $agF = $this->$aggressorsTable->save($agF);
-            //     $aggressor_id = $agF->id;
-            //     //**************************************************************
-            // }else{
-            //     $aggressor_id = $aggressor_id;
+            // //Agresor final, formato DB
+            // // $agresorFinal = $personas[1];
+            // // $agresorFinal = $this->StringManipulation->transformarArrays($agresorFinal,[]);
+            // // $aggressor_id;
+            // // if($at->aggressor == null){
+            // //     $ag = $this->People->newEntity($agresorFinal);
+            // //     //guardar ag ***************************************************
+            // //     $agrP = $peopleTable->save($ag);
+            // //     $datosAgresor = ['person_id'=>$agrP->id];
+            // //     $agT = $this->Aggressors->newEntity($datosAgresor);
+            // //     $agF = $this->$aggressorsTable->save($agF);
+            // //     $aggressor_id = $agF->id;
+            // //     //**************************************************************
+            // // }else{
+            // //     $aggressor_id = $aggressor_id;
+            // // }
+            
+            // $diferencia = array_diff((array)json_decode(json_encode($logFinal,true)),(array)json_decode(json_encode($atencion->log,true)));
+            // if(!empty($diferencia)){
+                
             // }
             
-            $diferencia = array_diff((array)json_decode(json_encode($logFinal,true)),(array)json_decode(json_encode($atencion->log,true)));
-            if(!empty($diferencia)){
-                
-            }
             
+            // //Historia de violencia, formato DB
+            // // $historiaViolencia = $historias[0];
+            // // $historiaViolencia = $this->StringManipulation->transformarArrays($historiaViolencia,['vencimiento_proteccion']);
+            // // $historiaViolencia['person_id'] = $id;
+            // // $historiaViolencia['aggressor_id'] = $at->$aggressor_id;
             
-            //Historia de violencia, formato DB
-            // $historiaViolencia = $historias[0];
-            // $historiaViolencia = $this->StringManipulation->transformarArrays($historiaViolencia,['vencimiento_proteccion']);
-            // $historiaViolencia['person_id'] = $id;
-            // $historiaViolencia['aggressor_id'] = $at->$aggressor_id;
-            
-            // //Atencion producida, sin contar intervenciones, ingresos y egresos, redes de apoyo e hijos
-            // $atencionFinal = ['log' => $log, 'history' => $historia, 'aggressor' => $agresorFinal];
-            // $at = $this->Attentions->patchEntity($atencion, $atencionFinal);
+            // // //Atencion producida, sin contar intervenciones, ingresos y egresos, redes de apoyo e hijos
+            // // $atencionFinal = ['log' => $log, 'history' => $historia, 'aggressor' => $agresorFinal];
+            // // $at = $this->Attentions->patchEntity($atencion, $atencionFinal);
 
         }
         
@@ -467,7 +467,7 @@ class AttentionsController extends AppController
             
             if ($guardado) {
                 $this->Flash->success(__('Guardado.'));
-                // $this->redirect(['action'=>'index']);
+                $this->redirect(['action'=>'index']);
             }else{
                 $this->Flash->error(__('Error al guardar datos.'));    
             }

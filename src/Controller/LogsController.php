@@ -12,105 +12,44 @@ class LogsController extends AppController
 {
 
     /**
-     * Index method
+     * Método que permite mostrar un único regitro de una persona. 
      *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['People']
-        ];
-        $logs = $this->paginate($this->Logs);
-
-        $this->set(compact('logs'));
-        $this->set('_serialize', ['logs']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Log id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @param  $id Log id.
+     * @return Nada
+     * @author Juan Diego Araya
      */
     public function view($id = null)
     {
-        $log = $this->Logs->get($id, [
-            'contain' => ['People']
-        ]);
+        $this->loadComponent('StringManipulation'); 
+        $log = $this->Logs->get($id);
 
         $this->set('log', $log);
         $this->set('_serialize', ['log']);
     }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $log = $this->Logs->newEntity();
-        if ($this->request->is('post')) {
-            $log = $this->Logs->patchEntity($log, $this->request->data);
-            if ($this->Logs->save($log)) {
-                $this->Flash->success(__('The log has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The log could not be saved. Please, try again.'));
-            }
-        }
-        $people = $this->Logs->People->find('list', ['limit' => 200]);
-        $this->set(compact('log', 'people'));
-        $this->set('_serialize', ['log']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Log id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $log = $this->Logs->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $log = $this->Logs->patchEntity($log, $this->request->data);
-            if ($this->Logs->save($log)) {
-                $this->Flash->success(__('The log has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The log could not be saved. Please, try again.'));
-            }
-        }
-        $people = $this->Logs->People->find('list', ['limit' => 200]);
-        $this->set(compact('log', 'people'));
-        $this->set('_serialize', ['log']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Log id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $log = $this->Logs->get($id);
-        if ($this->Logs->delete($log)) {
-            $this->Flash->success(__('The log has been deleted.'));
-        } else {
-            $this->Flash->error(__('The log could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
-    }
     
+    /**
+     * Muestra todos los posibles registros de una persona en el sistema, y da la opción 
+     * de elegir alguno para verlo más a fondo. 
+     * 
+     * @author Juan Diego Araya
+     * @param $id Id de la persona.
+     * @return Nada.
+     */
+    public function indicePersona($id){
+        $this->loadModel('People');
+        $persona = $this->People->get($id);
+        
+        $personas = $this->Logs->find('all',['conditions' => ['person_id' => $id] ]);
+        
+        $logs = $this->paginate($personas);
+        $this->set(compact('logs'));
+        $this->set('_serialize', ['logs']);
+        $this->set('persona',$persona);
+        if($this->request->is('post')){
+            
+        }
+    }
+
     public function initialize(){
         parent::initialize();
         $this->Auth->allow();

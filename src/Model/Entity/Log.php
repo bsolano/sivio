@@ -4,11 +4,10 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Log Entity.
+ * Log Entity
  *
  * @property int $id
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
  * @property string $nombre
  * @property string $apellidos
  * @property \Cake\I18n\Time $fecha_de_nacimiento
@@ -33,6 +32,7 @@ use Cake\ORM\Entity;
  * @property string $telefono
  * @property int $edad
  * @property int $num_de_hijos
+ * @property bool $direccion_oculta
  * @property string $provincia
  * @property string $canton
  * @property string $direccion
@@ -41,6 +41,10 @@ use Cake\ORM\Entity;
  * @property string $num_familia
  * @property string $rol_familia
  * @property int $acepta_seguimiento
+ * @property bool $es_agresor
+ * @property \Cake\I18n\Time $created
+ *
+ * @property \App\Model\Entity\Person $person
  */
 class Log extends Entity
 {
@@ -56,6 +60,6 @@ class Log extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

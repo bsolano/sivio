@@ -144,6 +144,6 @@
     }
     
     function verLogs() {
-        document.location = "logs/view/"+document.querySelector('input[name = "usuaria"]:checked').value;
+        document.location = "logs/indicePersona/"+document.querySelector('input[name = "usuaria"]:checked').value;
     }
 </script>

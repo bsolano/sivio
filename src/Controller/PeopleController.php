@@ -43,7 +43,7 @@ class PeopleController extends AppController
     public function view($id = null)
     {
         $person = $this->People->get($id, [
-            'contain' => ['Histories', 'Interventions', 'Advocacies', 'Entries', 'Families', 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
+            'contain' => ['Histories', /*'Interventions', 'Advocacies', 'Entries', 'Families',*/ 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
         ]);
         
         $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
@@ -94,7 +94,7 @@ class PeopleController extends AppController
     public function edit($id = null)
     {
         $person = $this->People->get($id, [
-            'contain' => ['Interventions', 'Advocacies', 'Entries', 'Families', 'Users']
+            'contain' => [ /*'Interventions', 'Advocacies', 'Entries', 'Families',*/ 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->data;
@@ -123,12 +123,12 @@ class PeopleController extends AppController
         $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
         
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
-        $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
-        $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
-        $entries = $this->People->Entries->find('list', ['limit' => 200]);
-        $families = $this->People->Families->find('list', ['limit' => 200]);
+        //$interventions = $this->People->Interventions->find('list', ['limit' => 200]);
+        //$advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
+        //$entries = $this->People->Entries->find('list', ['limit' => 200]);
+        //$families = $this->People->Families->find('list', ['limit' => 200]);
         $users = $this->People->Users->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'histories', 'interventions', 'advocacies', 'entries', 'families', 'users'));
+        $this->set(compact('person', /*'histories', 'interventions', 'advocacies', 'entries', 'families',*/ 'users'));
         $this->set('_serialize', ['person']);
     }
 
