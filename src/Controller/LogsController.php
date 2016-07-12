@@ -4,9 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Logs Controller
+ * 
+ * Controlador de versiones (logs)
  *
- * @property \App\Model\Table\LogsTable $Logs
+ * @author     Jason Anchía
+ * @author     Juan Diego Araya
+ * @link       http://sivio-edsv.c9users.io/logs/
+ 
  */
 class LogsController extends AppController
 {
