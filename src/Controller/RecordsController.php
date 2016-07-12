@@ -9,11 +9,12 @@ use App\Controller\AppController;
 class RecordsController extends AppController
 {
      /**
-      * Busca los datos de la usuaria y los muestra en el expediente.
+      * Busca los datos de la usuaria y los muestra en el expediente, ademas muestra los hitoriales de consultas y atenciones.
       * 
       * @param $id ID de la persona en la DB.
       * @return datos usuaria
       * @author DavidHine
+      * @author Jose Lopez
       * @author Juan Diego Araya
      
       */ 

@@ -34,6 +34,7 @@ use App\Controller\AppController;
  * @category   CategoryName
  * @package    PackageName
  * @author     David Hine
+ * @author     Jose Lopez
  * @copyright  
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: 2

@@ -1,16 +1,23 @@
+
+
 <fieldset>
-    <h3><?= __('Historial de Atenciones') ?></h3>
-    <div>
-       <?php
-            // $p = $atenciones->toArray();
-            foreach($atenciones as $a){
-                echo "<legend> Atención </legend><br>"; //Encabezado
-                
-                echo $this->Form->input('Fecha de atención'         ,['value'=> $a['created']           ,'readonly' => 'readonly']); 
-                echo $this->Form->input('Tipo'                      ,['value'=> $a['tipo']              ,'readonly' => 'readonly']); 
-                echo $this->Form->input('Datos adicionales'         ,['value'=> $a['datos_adicionales'] ,'readonly' => 'readonly']); 
-                echo $this->Form->input('Última persona en editar'  ,['value'=> $a['user']['username' ] ,'readonly' => 'readonly']); 
-            }
-        ?>  
+    <div class="records index large-8 medium-8 columns content">
+         <h3><?= __('Historial de Atenciones') ?></h3>
+        <table cellpadding="0" cellspacing="0" span="1" width="100%">
+            <tr>
+                <th><?= 'Fecha de atención'             ?></th>
+                <th><?= 'Tipo'                          ?></th>
+                <th><?= 'Datos adicionales'             ?></th>
+                <th><?= 'Última persona en editar'      ?></th>
+            </tr>
+            <?php foreach ($atenciones as $a):  ?>
+                <tr>
+                    <td><?= h($a->created                       ) ?></td>
+                    <td><?= h($a->tipo                          ) ?></td>
+                    <td><?= h($a->datos_adicionales             ) ?></td>
+                    <td><?= h($a->user->username                ) ?></td>
+                 </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
 </fieldset>
