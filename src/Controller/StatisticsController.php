@@ -33,8 +33,7 @@ use App\Controller\AppController;
  *
  * @category   CategoryName
  * @package    PackageName
- * @author     Original Author <author@example.com>
- * @author     Another Author <another@example.com>
+ * @author     David Hine
  * @copyright  
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    Release: 2
@@ -79,7 +78,7 @@ class StatisticsController extends AppController
             $opciones = array_filter($campos);
             $conditions=array('conditions'=> (array($opciones)));
 
-            $logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id','Attentions.created')->contain(['Logs']);
+            $logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id')->contain(['Logs']);
            
             
             $personIds = array();
