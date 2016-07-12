@@ -41,7 +41,13 @@ class PeopleController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
-    {
+    { 
+        $this->loadModel('Groups');
+        //Grupo actual
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
         $person = $this->People->get($id, [
             'contain' => ['Histories', /*'Interventions', 'Advocacies', 'Entries', 'Families',*/ 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
         ]);
@@ -60,7 +66,10 @@ class PeopleController extends AppController
      */
     public function add()
     {
+        
         $person = $this->People->newEntity();
+        
+        
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
@@ -74,13 +83,13 @@ class PeopleController extends AppController
                 $this->Flash->error(__('No ha sido posible guardar la información, inténtelo nuevamente.'));
             }
         }
-        $histories = $this->People->Histories->find('list', ['limit' => 200]);
-        $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
-        $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
-        $entries = $this->People->Entries->find('list', ['limit' => 200]);
-        $families = $this->People->Families->find('list', ['limit' => 200]);
-        $users = $this->People->Users->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'histories', 'interventions', 'advocacies', 'entries', 'families', 'users'));
+        // $histories = $this->People->Histories->find('list', ['limit' => 200]);
+        // $interventions = $this->People->InterventionsPeople->find('list', ['limit' => 200]);
+        // $advocacies = $this->People->PeopleAdvocacies->find('list', ['limit' => 200]);
+        // $entries = $this->People->PeopleEntries->find('list', ['limit' => 200]);
+        // //$families = $this->People->Families->find('list', ['limit' => 200]);
+        // $users = $this->People->Users->find('list', ['limit' => 200]);
+        $this->set(compact('person', 'histories', 'interventions_people', 'people_advocacies', 'people_entries', 'users'));
         $this->set('_serialize', ['person']);
     }
 

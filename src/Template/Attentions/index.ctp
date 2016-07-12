@@ -19,9 +19,9 @@
                 foreach ($attentions as $attention): 
             ?>
             <tr>
-                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['log']['person_id'] ?>, <?= $attention['id'] ?>)'>Editar</button> </td>
-                <td><?php echo $attention['log']['identificacion']; ?></td>
-                <td><?php echo $attention['log']['nombre']." ".$attention['Logs']['apellidos']; ?></td>
+                <td><button name="at" class = "button" onclick='editarAtencion(<?= $attention['person']['person_id'] ?>, <?= $attention['id'] ?>)'>Editar</button> </td>
+                <td><?php echo $attention['person']['identificacion']; ?></td>
+                <td><?php echo $attention['person']['nombre']." ".$attention['person']['apellidos']; ?></td>
                 <td><?php echo $attention['user']['username']; ?></td>
                 <td><?php echo $attention['tipo']; ?></td>
                 <td>
@@ -35,7 +35,7 @@
                                     $disabled   = ($i >  $numSegs+1) ? "disabled" : " ";
                                     $funct =  ($fId == null) ?  
                                             "noHay(".$attention['log']['person_id'].','.$attention['id'].')'     :
-                                            "darSeguimiento(".$attention['log']['person_id'].','.$fId.','.$attention['id'].')' ; ?>
+                                            "darSeguimiento(".$attention['person']['id'].','.$fId.','.$attention['id'].')' ; ?>
                         
                                     <button name="at" class = "<?= $claseBoton ?>" style ="width: 20%" onclick= "<?= $funct ?>" <?= $disabled ?> ><?= $i ?> </button>  <?php
                                 }

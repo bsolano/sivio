@@ -34,12 +34,12 @@ class AttentionsController extends AppController
 
     /**
      * Index de atenciones existentes
-     *
-     * @return \Cake\Network\Response|null
+     * @author Jason Anchía
+     * @author Juan Diego Araya
      */
     public function index()
     {
-        $atenciones = $this->Attentions->find('all')->contain(['Logs', 'Users','Followups']);
+        $atenciones = $this->Attentions->find('all')->contain(['People','Users','Followups']);
         $attentions = $this->paginate($atenciones);
         $this->set(compact('attentions'));
         $this->set('_serialize', ['attentions']);
@@ -52,6 +52,8 @@ class AttentionsController extends AppController
      * @param $id ID de la persona
      * @param $atId ID de la atención a la que pertenece el followup
      * @param $fId ID del followup (en caso que exista uno)
+     * @author Jason Anchía
+     * @author Juan Diego Araya
     */
     public function followup($id, $atId = null, $fId = null){
         //concatenar y desconcatenar strings con &
@@ -61,7 +63,7 @@ class AttentionsController extends AppController
         $this->loadModel('People');
         $this->loadModel('Followups');
         
-        $peopleTable         = TableRegistry::get(  'People'         );
+        $peopleTable         = TableRegistry::get(  'People'            );
         $followTable         = TableRegistry::get(  'Followups'         );
         
         $advo = $this->PeopleAdvocacies->
@@ -139,6 +141,8 @@ class AttentionsController extends AppController
      * a las convenciones pre-establecidas. 
      * @param $id es el id de la persona en la base de datos
      * @param $atId id de la atencion ya existente
+     * @author Jason Anchía
+     * @author Juan Diego Araya
      */
     public function edit($id, $atId)
     { 
@@ -428,24 +432,24 @@ class AttentionsController extends AppController
 
             
             //guarda los hijos y su historia de violencia
-            $i = 1;
-            foreach($iHijo as $h){
-                $datosHijo = $peopleTable->get($h->id);
-                if ( $datosHijo == null ) {
-                    debug("sail hatan");
-                }
+            // $i = 1;
+            // foreach($iHijo as $h){
+            //     $datosHijo = $peopleTable->get($h->id);
+            //     if ( $datosHijo == null ) {
+            //         debug("sail hatan");
+            //     }
                 
-                $hijo = $this->People->patchEntity($datosHijo, $personas['Hijo'.$i]);
-            // 
-                $historiaViolenciaHijo = $historias[('Hijo'.$i)];
-                $historiaViolenciaHijo = $this->StringManipulation->transformarArrays($historiaViolenciaHijo,[]);
-                $historiaViolenciaHijo['person_id']    = $h->id;
-                $historiaViolenciaHijo['aggressor_id'] = $aggressor_id;
-                $hstHijo = $this->Histories->newEntity($historiaViolenciaHijo);
-            // 
-                ($guardado = $guardado && $peopleTable->save($hijo) && $historiesTable->save($hstHijo));
-                $i++;
-            }
+            //     $hijo = $this->People->patchEntity($datosHijo, $personas['Hijo'.$i]);
+            // // 
+            //     $historiaViolenciaHijo = $historias[('Hijo'.$i)];
+            //     $historiaViolenciaHijo = $this->StringManipulation->transformarArrays($historiaViolenciaHijo,[]);
+            //     $historiaViolenciaHijo['person_id']    = $h->id;
+            //     $historiaViolenciaHijo['aggressor_id'] = $aggressor_id;
+            //     $hstHijo = $this->Histories->newEntity($historiaViolenciaHijo);
+            // // 
+            //     ($guardado = $guardado && $peopleTable->save($hijo) && $historiesTable->save($hstHijo));
+            //     $i++;
+            // }
             
             // --------------------------------------------------
             $intervP = $this->request->data['InterventionsPerson'];

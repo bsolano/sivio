@@ -9,11 +9,11 @@
             Los botones que generan la acción mencionada.
         -->
         <div class="large-6 large-right columns">
-            <input id="bnt_Vista" style="margin: 10px 5px; display: none;" type="button" value="Ver Perfil" class="secondary button float-right" onclick='ver()'/>
             <input id="bnt_Expediente" style="margin: 10px 5px; display: none;" type="button" value="Expediente" class="secondary button float-right" onclick='expediente()'/>
-            <input id="bnt_Atencion" style="margin: 10px 5px; display: none;" type="button" value="Atención" class="secondary button float-right" onclick='esAtencion()'/>
-            <input id="bnt_Consulta" style="margin: 10px 5px; display: none;" type="button" value="Consulta" class="secondary button float-right" onclick='esConsulta()'/>
-            <input id="bnt_logs"     style="margin: 10px 5px; display: none;" type="button" value="Versiones"     class="secondary button float-right" onclick='verLogs()'/>
+            <!--<input id="bnt_Vista" style="margin: 10px 5px; display: none;" type="button" value="Ver Perfil" class="secondary button float-right" onclick='ver()'/>-->
+            <!--<input id="bnt_Atencion" style="margin: 10px 5px; display: none;" type="button" value="Atención" class="secondary button float-right" onclick='esAtencion()'/>-->
+            <!--<input id="bnt_Consulta" style="margin: 10px 5px; display: none;" type="button" value="Consulta" class="secondary button float-right" onclick='esConsulta()'/>-->
+            <!--<input id="bnt_logs"     style="margin: 10px 5px; display: none;" type="button" value="Versiones"     class="secondary button float-right" onclick='verLogs()'/>-->
 
         </div>
     </div>

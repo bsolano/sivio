@@ -15,7 +15,7 @@ use App\Controller\AppController;
  * @package    
  * @author     David Hine
  * @author     José López
- * @author     Eduardo Solórzano
+ * @author     Juan Diego Araya
  * @copyright  
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    
@@ -53,6 +53,7 @@ class RecordsController extends AppController
       */ 
     public function index($id = null)
     {
+        $this->loadModel('Groups');
         $this->loadModel('People');
         $this->loadModel('Attentions');
         $this->loadModel('Consultations');
@@ -75,6 +76,12 @@ class RecordsController extends AppController
         //Consulta consultations
         $consult = $this->Consultations->find('all',['conditions' => ['Consultations.person_id' => $id]]);
         $this->set('con', $consult);
+        
+        //Grupo actual
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
     }
     
     /**

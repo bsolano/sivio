@@ -1,5 +1,14 @@
 <?= $this->Html->css('sivio.tabs.css') ?>
 <?= $this->Form->create(); ?>
+    <?php $p = $persona->toArray(); ?>
+    
+    <input id="bnt_Vista"    style="margin: 10px 5px;"  type="button" value="Ver Perfil" class="hollow secondary button float-right" onclick='ver       ( <?= $p[0]['id'] ?> )'/>
+    <input id="bnt_logs"     style="margin: 10px 5px; " type="button" value="Versiones"  class="hollow secondary button float-right" onclick='verLogs   ( <?= $p[0]['id'] ?> )'/>
+    <input id="bnt_Consulta" style="margin: 10px 5px; " type="button" value="Consulta"   class="hollow secondary button float-right" onclick='esConsulta( <?= $p[0]['id'] ?> )'/>
+    <?php if ($group_name  != 'RecepcionistaDelegacionDeLaMujer' ): ?>
+        <input id="bnt_Atencion" style="margin: 10px 5px; " type="button" value="Atención"   class="hollow secondary button float-right" onclick='esAtencion( <?= $p[0]['id'] ?> )'/>
+    <?php endif; ?>
+    
     <div class="records form large-9 medium-8 columns content" style="width: 100%;">
     <!-- TABS -->
     <section class="wrapper">
@@ -41,4 +50,21 @@
               });
         })
         
+        function ver(id) {
+            window.location.replace("http://"+ window.location.hostname + "/people/view/"       + id);
+        }
+        //Crea una consulta para la usuaria seleccionada.
+        function esConsulta(id) {
+            window.location.replace("http://"+ window.location.hostname + "/consultations/add/" + id);
+        }
+        
+        // Crea una atención para la usuaria seleccionada.
+        function esAtencion(id) {
+            window.location.replace("http://"+ window.location.hostname + "/attentions/add/"    + id);
+        }
+        
+        function verLogs(id) {
+            window.location.replace("http://"+ window.location.hostname + "/logs/indicePersona/"+ id);
+        }
+
 	</script>

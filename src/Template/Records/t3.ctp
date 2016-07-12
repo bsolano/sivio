@@ -1,9 +1,7 @@
-
-
 <fieldset>
-    <div class="records index large-8 medium-8 columns content">
+    <div class="records index large-8 medium-8 columns content" style = "width : 100%">
          <h3><?= __('Historial de Atenciones') ?></h3>
-        <table cellpadding="0" cellspacing="0" span="1" width="100%">
+        <table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= 'Fecha de atención'             ?></th>
                 <th><?= 'Tipo'                          ?></th>
