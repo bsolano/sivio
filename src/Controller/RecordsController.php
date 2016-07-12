@@ -6,6 +6,39 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\RecordsTable $Records
  */
+ 
+ /**
+ * 
+ * Index de Reportes
+ *
+ * @category   
+ * @package    
+ * @author     David Hine
+ * @author     José López
+ * @author     Eduardo Solórzano
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    
+ * @link       http://inge2-yeldir.c9users.io/records
+ * @see        
+ * @since      Release 3
+ */
+
+ 
+ /**
+ * Vista para records
+ *
+ *
+ * @category   CategoryName
+ * @package    PackageName
+ * @author     David Hine
+ * @author     Jose Lopez
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: 2
+ * @link       http://inge2-yeldir.c9users.io/records
+ * @since      Disponible desde release 3
+ */
 class RecordsController extends AppController
 {
      /**
