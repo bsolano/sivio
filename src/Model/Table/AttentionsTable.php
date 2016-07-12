@@ -9,9 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Attentions Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Histories
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Logs
  * @property \Cake\ORM\Association\HasMany $Followups
  * @property \Cake\ORM\Association\HasMany $InterventionsPeople
  * @property \Cake\ORM\Association\HasMany $PeopleAdvocacies
@@ -46,15 +46,14 @@ class AttentionsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('People', [
+            'foreignKey' => 'person_id'
+        ]);
         $this->belongsTo('Histories', [
             'foreignKey' => 'history_id'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
-        ]);
-        $this->belongsTo('Logs', [
-            'foreignKey' => 'log_id',
-            'joinType' => 'INNER'
         ]);
         $this->hasMany('Followups', [
             'foreignKey' => 'attention_id'
@@ -100,9 +99,9 @@ class AttentionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['history_id'], 'Histories'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['log_id'], 'Logs'));
         return $rules;
     }
 }

@@ -2,16 +2,16 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\Log;
 
 /**
  * 
  * Controlador de versiones (logs)
  *
- * @author     Jason Anchía
  * @author     Juan Diego Araya
  * @link       http://sivio-edsv.c9users.io/logs/
+*/
  
- */
 class LogsController extends AppController
 {
 
@@ -26,8 +26,8 @@ class LogsController extends AppController
     {
         $this->loadComponent('StringManipulation'); 
         $log = $this->Logs->get($id);
-
-        $this->set('log', $log);
+        $log = $this->StringManipulation->transformarStringsConcatenadosaLectura($log->toArray(), ['fecha_de_nacimiento','created']);
+        $this->set('log', new Log($log));//Devolviendolo a formato de lectura para el .ctp
         $this->set('_serialize', ['log']);
     }
     

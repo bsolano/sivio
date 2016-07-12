@@ -44,12 +44,13 @@ FOR EACH ROW BEGIN
 --agregar en el insert los campos que se hayan agregado a people, al final de los values para mantener la consistencia. 
    insert into `logs`(
 		`person_id`, `nombre`, `apellidos`, `fecha_de_nacimiento`, `estado_civil`, 
-		`escolaridad`, `atencion_especializada`, `nacionalidad`, `genero`, `ocupacion`, 
-		`lugar_trabajo`, `adicciones`, `condicion_migratoria`, `condicion_laboral`, `experiencia_laboral`, 
-		`condicion_aseguramiento`, `vivienda`, `tipo_familia`, `embarazo`, `condicion_salud`, 
-		`identificacion`, `tipo_identificacion`, `telefono`, `edad`, `num_de_hijos`, `provincia`, 
-		`canton`, `direccion`, `hijos_mayor_doce`, `num_hijos_ceaam`, `num_familia`, `rol_familia`, `acepta_seguimiento`
-		)
+		`escolaridad`, `nacionalidad`, `genero`, `ocupacion`,  `lugar_trabajo`, `adicciones`,
+		`condicion_migratoria`, `condicion_laboral`, `experiencia_laboral`, `condicion_aseguramiento`,
+		`vivienda`, `tipo_familia`, `embarazo`, `condicion_salud`, `identificacion`, `tipo_identificacion`,
+		`telefono`, `edad`, `num_de_hijos`, `direccion_oculta`,  `provincia`,`canton`, `direccion`, 
+		`hijos_mayor_doce`, `num_hijos_ceaam`, `num_familia`, `rol_familia`, `acepta_seguimiento`,
+		`atencion_especializada`,  `es_agresor`
+	)
    select *
    from people
    where id = NEW.id;
@@ -57,3 +58,23 @@ END;
 //
 delimiter ;
 
+drop trigger people.copiar_tabla_insert;
+delimiter //
+CREATE TRIGGER `copiar_tabla_insert` AFTER INSERT ON people
+FOR EACH ROW BEGIN
+--agregar en el insert los campos que se hayan agregado a people, al final de los values para mantener la consistencia. 
+   insert into `logs`(
+		`person_id`, `nombre`, `apellidos`, `fecha_de_nacimiento`, `estado_civil`, 
+		`escolaridad`, `nacionalidad`, `genero`, `ocupacion`,  `lugar_trabajo`, `adicciones`,
+		`condicion_migratoria`, `condicion_laboral`, `experiencia_laboral`, `condicion_aseguramiento`,
+		`vivienda`, `tipo_familia`, `embarazo`, `condicion_salud`, `identificacion`, `tipo_identificacion`,
+		`telefono`, `edad`, `num_de_hijos`, `direccion_oculta`,  `provincia`,`canton`, `direccion`, 
+		`hijos_mayor_doce`, `num_hijos_ceaam`, `num_familia`, `rol_familia`, `acepta_seguimiento`,
+		`atencion_especializada`,  `es_agresor`
+	)
+   select *
+   from people
+   where id = NEW.id;
+END;
+//
+delimiter ;

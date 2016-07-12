@@ -78,16 +78,23 @@ class StatisticsController extends AppController
             $opciones = array_filter($campos);
             $conditions=array('conditions'=> (array($opciones)));
 
-            $logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id')->contain(['Logs']);
-           
+            
+            $personas = $this->Attentions->find('all',$conditions)->select('Attentions.person_id');
+            $personas = array_unique($personas->toArray());
             
             $personIds = array();
-            foreach($logs as $l){
-                array_push($personIds, $l['Logs']['person_id'] );
-                
+            foreach($personas as $p){
+                array_push($personIds, $p->person_id );
             }
             
-            $personIds = array_unique($personIds);
+            //$logs = $this->Attentions->find('all',$conditions)->select('Logs.person_id')->contain(['Logs']);
+            // $personIds = array();
+            // foreach($logs as $l){
+            //     array_push($personIds, $l['Logs']['person_id'] );
+            // }
+            // $personIds = array_unique($personIds);
+            
+            
             
            
             // Carga el arreglo de datos

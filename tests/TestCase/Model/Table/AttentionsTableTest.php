@@ -25,8 +25,9 @@ class AttentionsTableTest extends TestCase
      */
     public $fixtures = [
         'app.attentions',
-        'app.aggressors',
         'app.people',
+        'app.aggressors',
+        'app.histories',
         'app.consultations',
         'app.users',
         'app.groups',
@@ -36,18 +37,14 @@ class AttentionsTableTest extends TestCase
         'app.evaluations',
         'app.advocacies',
         'app.followups',
-        'app.people_advocacies',
         'app.followups_users',
         'app.users_people',
         'app.external_references',
-        'app.histories',
         'app.logs',
         'app.transfers',
-        'app.interventions',
         'app.interventions_people',
-        'app.people_entries',
-        'app.families',
-        'app.people_families'
+        'app.people_advocacies',
+        'app.people_entries'
     ];
 
     /**

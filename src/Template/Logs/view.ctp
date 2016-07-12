@@ -1,9 +1,9 @@
 
-<div class="logs view large-9 medium-8 columns content">
+<div class="logs view medium-9 medium-8 columns content">
     <h3><?= $log->nombre." ".$log->apellidos ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Estado Civil') ?></th>
+            <th><?= __('Estado civil') ?></th>
             <td><?= h($log->estado_civil) ?></td>
         </tr>
         <tr>
@@ -11,7 +11,7 @@
             <td><?= h($log->escolaridad) ?></td>
         </tr>
         <tr>
-            <th><?= __('Atencion Especializada') ?></th>
+            <th><?= __('Atención especializada') ?></th>
             <td><?= h($log->atencion_especializada) ?></td>
         </tr>
         <tr>
@@ -19,15 +19,15 @@
             <td><?= h($log->nacionalidad) ?></td>
         </tr>
         <tr>
-            <th><?= __('Genero') ?></th>
+            <th><?= __('Género') ?></th>
             <td><?= h($log->genero) ?></td>
         </tr>
         <tr>
-            <th><?= __('Ocupacion') ?></th>
+            <th><?= __('Ocupación') ?></th>
             <td><?= h($log->ocupacion) ?></td>
         </tr>
         <tr>
-            <th><?= __('Lugar Trabajo') ?></th>
+            <th><?= __('Lugar de trabajo') ?></th>
             <td><?= h($log->lugar_trabajo) ?></td>
         </tr>
         <tr>
@@ -35,15 +35,15 @@
             <td><?= h($log->adicciones) ?></td>
         </tr>
         <tr>
-            <th><?= __('Condicion Migratoria') ?></th>
+            <th><?= __('Condición migratoria') ?></th>
             <td><?= h($log->condicion_migratoria) ?></td>
         </tr>
         <tr>
-            <th><?= __('Condicion Laboral') ?></th>
+            <th><?= __('Condición laboral') ?></th>
             <td><?= h($log->condicion_laboral) ?></td>
         </tr>
         <tr>
-            <th><?= __('Condicion Aseguramiento') ?></th>
+            <th><?= __('Condición de aseguramiento') ?></th>
             <td><?= h($log->condicion_aseguramiento) ?></td>
         </tr>
         <tr>
@@ -51,19 +51,19 @@
             <td><?= h($log->vivienda) ?></td>
         </tr>
         <tr>
-            <th><?= __('Tipo Familia') ?></th>
+            <th><?= __('Tipo de familia') ?></th>
             <td><?= h($log->tipo_familia) ?></td>
         </tr>
         <tr>
-            <th><?= __('Condicion Salud') ?></th>
+            <th><?= __('Condición de salud') ?></th>
             <td><?= h($log->condicion_salud) ?></td>
         </tr>
         <tr>
-            <th><?= __('Tipo Identificacion') ?></th>
+            <th><?= __('Tipo de identificación') ?></th>
             <td><?= h($log->tipo_identificacion) ?></td>
         </tr>
         <tr>
-            <th><?= __('Telefono') ?></th>
+            <th><?= __('Teléfono') ?></th>
             <td><?= h($log->telefono) ?></td>
         </tr>
         <tr>
@@ -71,27 +71,23 @@
             <td><?= h($log->provincia) ?></td>
         </tr>
         <tr>
-            <th><?= __('Canton') ?></th>
+            <th><?= __('Cantón') ?></th>
             <td><?= h($log->canton) ?></td>
         </tr>
         <tr>
-            <th><?= __('Num Familia') ?></th>
+            <th><?= __('Número de familia') ?></th>
             <td><?= h($log->num_familia) ?></td>
         </tr>
         <tr>
-            <th><?= __('Rol Familia') ?></th>
+            <th><?= __('Rol en la familia') ?></th>
             <td><?= h($log->rol_familia) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($log->id) ?></td>
         </tr>
         <tr>
             <th><?= __('Embarazo') ?></th>
             <td><?= $this->Number->format($log->embarazo) ?></td>
         </tr>
         <tr>
-            <th><?= __('Identificacion') ?></th>
+            <th><?= __('Identificación') ?></th>
             <td><?= $this->Number->format($log->identificacion) ?></td>
         </tr>
         <tr>
@@ -99,32 +95,32 @@
             <td><?= $this->Number->format($log->edad) ?></td>
         </tr>
         <tr>
-            <th><?= __('Num De Hijos') ?></th>
+            <th><?= __('Número de hijos') ?></th>
             <td><?= $this->Number->format($log->num_de_hijos) ?></td>
         </tr>
         <tr>
-            <th><?= __('Num Hijos Ceaam') ?></th>
+            <th><?= __('Número de hijos con que ingresa a CEAAM') ?></th>
             <td><?= $this->Number->format($log->num_hijos_ceaam) ?></td>
         </tr>
         <tr>
-            <th><?= __('Acepta Seguimiento') ?></th>
+            <th><?= __('Acepta seguimientos') ?></th>
             <td><?= $this->Number->format($log->acepta_seguimiento) ?></td>
         </tr>
         <tr>
-            <th><?= __('Fecha De Nacimiento') ?></th>
+            <th><?= __('Fecha de nacimiento') ?></th>
             <td><?= h($log->fecha_de_nacimiento) ?></td>
         </tr>
         <tr>
-            <th><?= __('Experiencia Laboral') ?></th>
-            <td><?= $log->experiencia_laboral ? __('Yes') : __('No'); ?></td>
+            <th><?= __('Experiencia laboral') ?></th>
+            <td><?= $log->experiencia_laboral ? __('Sí') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('Hijos Mayor Doce') ?></th>
-            <td><?= $log->hijos_mayor_doce ? __('Yes') : __('No'); ?></td>
+            <th><?= __('Hijos mayores de doce') ?></th>
+            <td><?= $log->hijos_mayor_doce ? __('Sí') : __('No'); ?></td>
         </tr>
     </table>
     <div class="row">
-        <h4><?= __('Direccion') ?></h4>
+        <h5><?= __('Dirección') ?></h5>
         <?= $this->Text->autoParagraph(h($log->direccion)); ?>
     </div>
 </div>

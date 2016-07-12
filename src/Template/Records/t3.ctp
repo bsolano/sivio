@@ -1,22 +1,16 @@
 <fieldset>
-        <h3><?= __('Historial de Atenciones') ?></h3>
-         <div class="externalReferences index large-6 medium-6 columns content">
-           <?php
-                $p= $logs->toArray();
-
-          $n = 0;
-            foreach($p as $a){
-                if($pi == $p[$n]['Logs']['person_id'] ){
-                echo "<legend> Atencion </legend><br>";
-                echo $this->Form->input('id',array('value'=>$p[$n]['Logs']['person_id'], 'readonly' => 'readonly' )); 
-                echo $this->Form->input('Numero de familia',array('value'=>$p[$n]['Logs']['num_familia'], 'readonly' => 'readonly' )); 
-                echo $this->Form->input('fecha de ingreso',array('value'=>$p[$n]['Logs']['fecha'],'readonly' => 'readonly')); 
-                echo $this->Form->input('Motivo de ingreso',array('value'=>$p[$n]['Logs']['institucion_que_refiere'],'readonly' => 'readonly')); 
-                }
-                $n++;
+    <h3><?= __('Historial de Atenciones') ?></h3>
+    <div>
+       <?php
+            // $p = $atenciones->toArray();
+            foreach($atenciones as $a){
+                echo "<legend> Atención </legend><br>"; //Encabezado
+                
+                echo $this->Form->input('Fecha de atención'         ,['value'=> $a['created']           ,'readonly' => 'readonly']); 
+                echo $this->Form->input('Tipo'                      ,['value'=> $a['tipo']              ,'readonly' => 'readonly']); 
+                echo $this->Form->input('Datos adicionales'         ,['value'=> $a['datos_adicionales'] ,'readonly' => 'readonly']); 
+                echo $this->Form->input('Última persona en editar'  ,['value'=> $a['user']['username' ] ,'readonly' => 'readonly']); 
             }
-            ?>  
+        ?>  
     </div>
-      <h3><?= __('') ?></h3>
-     
 </fieldset>

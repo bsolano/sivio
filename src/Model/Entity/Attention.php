@@ -7,14 +7,14 @@ use Cake\ORM\Entity;
  * Attention Entity
  *
  * @property int $id
+ * @property int $person_id
  * @property int $history_id
  * @property int $user_id
  * @property string $tipo
  * @property \Cake\I18n\Time $created
- * @property int $log_id
  * @property string $datos_adicionales
  *
- * @property \App\Model\Entity\Aggressor $aggressor
+ * @property \App\Model\Entity\Person $person
  * @property \App\Model\Entity\History $history
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Log $log

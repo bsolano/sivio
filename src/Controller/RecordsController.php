@@ -9,12 +9,12 @@ use App\Controller\AppController;
 class RecordsController extends AppController
 {
      /**
-      * Recuperar usuaria y mostrar datos asociados. 
-      * 
       * Busca los datos de la usuaria y los muestra en el expediente.
-      * @param string|null $id Person id.
+      * 
+      * @param $id ID de la persona en la DB.
       * @return datos usuaria
       * @author DavidHine
+      * @author Juan Diego Araya
      
       */ 
     public function index($id = null)
@@ -31,7 +31,6 @@ class RecordsController extends AppController
         //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
    
         //Se construye el query
-        
         $query = $this->paginate($this->People->find('all',$conditions)); 
         $this->set('persona', $query);
         
@@ -43,6 +42,7 @@ class RecordsController extends AppController
         $consult = $this->Consultations->find('all',['conditions' => ['Consultations.person_id' => $id]]);
         $this->set('con', $consult);
     }
+    
     /**
      * View method
      *

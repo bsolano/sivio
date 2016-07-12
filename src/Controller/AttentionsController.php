@@ -21,10 +21,14 @@ use App\Model\Entity\Followup;
 use App\Model\Entity\Log;
 
 /**
- * Attentions Controller
+ * 
+ * Controlador de atenciones
  *
- * @property \App\Model\Table\AttentionsTable $Attentions
- */
+ * @author     Juan Diego Araya
+ * @author     Jason Anchía
+ * @link       http://sivio-edsv.c9users.io/attentions/
+*/
+
 class AttentionsController extends AppController
 {
 
@@ -161,12 +165,12 @@ class AttentionsController extends AppController
         $peopleEntriesTable  = TableRegistry::get(  'PeopleEntries'  );
 
         //atencion existente
-        $atencion = $this->Attentions->get($atId, ['contain'=>['Logs', 'Histories']]);
+        $atencion = $this->Attentions->get($atId, ['contain'=>['People', 'Histories']]);
         
         //persona
-        $persona = $atencion['log'];
+        $persona = $atencion['person'];
         $persona = $this->StringManipulation->transformarStrings($persona->toArray(),['fecha_de_nacimiento']);
-        $persona = new Log($persona);
+        $persona = new Person($persona);
         //historia de violencia
         $historia = $atencion['history'];
         $id_agresor = $historia['aggressor_id'];
@@ -286,9 +290,9 @@ class AttentionsController extends AppController
 
         //obtener una persona y dar formato a sus datos para llenar en el formulario
         $per = $peopleTable->get($id);
-        $per->condicion_salud           = $this->StringManipulation->StringTokenedToArray($per->condicion_salud);
-        $per->condicion_aseguramiento   = $this->StringManipulation->StringTokenedToArray($per->condicion_aseguramiento);
-        $per->adicciones                = $this->StringManipulation->StringTokenedToArray($per->adicciones);
+        $per->condicion_salud           = $this->StringManipulation->StringTokenedToArray($per->condicion_salud         );
+        $per->condicion_aseguramiento   = $this->StringManipulation->StringTokenedToArray($per->condicion_aseguramiento );
+        $per->adicciones                = $this->StringManipulation->StringTokenedToArray($per->adicciones              );
         $this->set('persona', $per);
 
 
@@ -309,7 +313,7 @@ class AttentionsController extends AppController
         if ($this->request->is('post')) {
             $this->set('data',$this->request->data);
             //se recupera todas las personas e historias
-            $personas = $this->request->data['Person'];
+            $personas  = $this->request->data['Person' ];
             $historias = $this->request->data['History'];
             
             //cambio de todo en persona para poder guardarlo en la DB
@@ -321,10 +325,8 @@ class AttentionsController extends AppController
                 $persona['canton'   ] = "Confidencial/No indica";
                 $persona['direccion'] = "Confidencial/No indica";
             }
-            
-            $persona['person_id'] = $id;
             $persona['es_agresor'] = 0;
-            $per = $this->People->newEntity($persona);
+            $per = $this->People->patchEntity($per, $persona);
             
             //cambio en agressors para formato DB
             $agresor = $personas[1];
@@ -349,120 +351,119 @@ class AttentionsController extends AppController
             //guarda agredida, agresor, historia y atencion
             $guardado = true; //condicion de parada para el mensaje de error
      
-            // if ($guardado = $guardado && ($lt = $logsTable->save($per)) && ($agrP = $peopleTable->save($ag)) ) {
-            //     //datos de la tabla agresor
-            //     $aggressor_id = $agrP->id;
-            //     $historiaViolencia['aggressor_id'] = $aggressor_id;
-            //     $hv = $this->Histories->newEntity($historiaViolencia);
-            //     //falta por salvar adecuadamente antecedentes legales******************************************
+            if ($guardado = $guardado && ($pt = $peopleTable->save($per)) && ($agrP = $peopleTable->save($ag)) ) {
+                //datos de la tabla agresor
+                $aggressor_id = $agrP->id;
+                $historiaViolencia['aggressor_id'] = $aggressor_id;
+                $hv = $this->Histories->newEntity($historiaViolencia);
+
+                if ($guardado = $guardado && $hstTabla = $historiesTable->save($hv)) {
+                    $userID   = $this->Auth->user('id');
+                    $location = $this->Users->find('all',['conditions' => ['Users.id' => $userID] ])
+                                                ->select(['Locations.ubicacion'])->contain('Locations');
+                    
+                    $location = $location->toArray();
+                    $location = $location[0]['Locations']['ubicacion'];
+                    //datos de la atencion que se genera
+                    $datosAtencion = [
+                      'person_id'    => $pt->id      ,
+                      'history_id'   => $hstTabla->id, 
+                      'user_id'      => $userID      , 
+                      'tipo'         => $location    ,
+                    ]; 
+                    
+                    $atn = $this->Attentions->newEntity($datosAtencion);
+                    if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
+                        $attention_id = $atencion->id;
+                    }
+                }
+            } 
+            
+            for($j = 0; $j < 2; $j++){
+                $strTipo = $pingresos[$j]['tipo_ing_eg'];
+                if($j == 0){
+                    $pingresos[$j] = $this->StringManipulation->transformarArrays($pingresos[$j],['fecha_accion']);
+                    
+                    if($strTipo == "Traslado CEAAM"){
+                        $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
+                    }
+                    else if($strTipo == "Reingreso CEAAM"){
+                        $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_reingreso'];
+                    }
+                    $pingresos[$j]['tipo_accion'] = 'Ingreso';
                 
-            //     if ($guardado = $guardado && $hstTabla = $historiesTable->save($hv)) {
-            //         $userID   = $this->Auth->user('id');
-            //         $location = $this->Users->find('all',['conditions' => ['Users.id' => $userID] ])
-            //                                     ->select(['Locations.ubicacion'])->contain('Locations');
+                }else{
+                    if($this->request->data['dextranjero'] == 1){
+                        $pingresos[$j]['provincia_destino' ] = "Extranjero";
+                        $pingresos[$j]['canton_destino'    ] = "Extranjero";
+                    }
                     
-            //         $location = $location->toArray();
-            //         $location = $location[0]['Locations']['ubicacion'];
-            //         //datos de la atencion que se genera
-            //         $datosAtencion = [
-            //           'log_id'       => $lt->id      ,
-            //           'history_id'   => $hstTabla->id, 
-            //           'user_id'      => $userID      , 
-            //           'tipo'         => $location    ,
-            //         ]; 
-                    
-            //         $atn = $this->Attentions->newEntity($datosAtencion);
-            //         if ($guardado = $guardado && $atencion = $attentionsTable->save($atn) ) {
-            //             $attention_id = $atencion->id;
-            //         }
-            //     }
-            // } 
+                    if($pingresos[$j]['direccion_oculta'] == 1){
+                        $pingresos[$j]['provincia_destino' ] = "Confidencial/No indica";
+                        $pingresos[$j]['canton_destino'    ] = "Confidencial/No indica";
+                        $pingresos[$j]['destino_extranjero'] = "Confidencial/No indica";
+                    }
+                    if($strTipo == "Traslado CEAAM"){
+                        $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
+                    }
+                    $pingresos[$j]['tipo_accion'] = 'Egreso';
+                }
+                $pingresos[$j]['attention_id']  = $attention_id;
+                $pingresos[$j]['person_id'   ]  = $id;
+                $pi = $this->PeopleEntries->newEntity($pingresos[$j]);
+                ($guardado = $guardado && $peopleEntriesTable->save($pi));
+            }
             
-            // for($j = 0; $j < 2; $j++){
-            //     $strTipo = $pingresos[$j]['tipo_ing_eg'];
-            //     if($j == 0){
-            //         $pingresos[$j] = $this->StringManipulation->transformarArrays($pingresos[$j],['fecha_accion']);
-                    
-            //         if($strTipo == "Traslado CEAAM"){
-            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
-            //         }
-            //         else if($strTipo == "Reingreso CEAAM"){
-            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_reingreso'];
-            //         }
-            //         $pingresos[$j]['tipo_accion'] = 'Ingreso';
+            //Guardar redes de apoyo
+            $redes = $this->request->data['PeopleAdvocacy'];
+            $redes = array_slice($redes, $advo->count());
+            if(!empty($redes)){
+                foreach ($redes as $r) {
+                    $r['person_id'] = $id;
+                    $r['attention_id'] = $attention_id;
+                    $redA = $this->PeopleAdvocacies->newEntity($r);
+                    ($guardado = $guardado && $peopleAdvocaciesTable->save($redA));
+                }
+            }
+
+            
+            //guarda los hijos y su historia de violencia
+            $i = 1;
+            foreach($iHijo as $h){
+                $datosHijo = $peopleTable->get($h->id);
+                if ( $datosHijo == null ) {
+                    debug("sail hatan");
+                }
                 
-            //     }else{
-            //         if($this->request->data['dextranjero'] == 1){
-            //             $pingresos[$j]['provincia_destino' ] = "Extranjero";
-            //             $pingresos[$j]['canton_destino'    ] = "Extranjero";
-            //         }
-                    
-            //         if($pingresos[$j]['direccion_oculta'] == 1){
-            //             $pingresos[$j]['provincia_destino' ] = "Confidencial/No indica";
-            //             $pingresos[$j]['canton_destino'    ] = "Confidencial/No indica";
-            //             $pingresos[$j]['destino_extranjero'] = "Confidencial/No indica";
-            //         }
-            //         if($strTipo == "Traslado CEAAM"){
-            //             $pingresos[$j]['tipo_ing_eg'] = $strTipo." ".$pingresos[$j]['ceaam_traslado'];
-            //         }
-            //         $pingresos[$j]['tipo_accion'] = 'Egreso';
-            //     }
-            //     $pingresos[$j]['attention_id']  = $attention_id;
-            //     $pingresos[$j]['person_id'   ]  = $id;
-            //     $pi = $this->PeopleEntries->newEntity($pingresos[$j]);
-            //     ($guardado = $guardado && $peopleEntriesTable->save($pi));
-            // }
+                $hijo = $this->People->patchEntity($datosHijo, $personas['Hijo'.$i]);
+            // 
+                $historiaViolenciaHijo = $historias[('Hijo'.$i)];
+                $historiaViolenciaHijo = $this->StringManipulation->transformarArrays($historiaViolenciaHijo,[]);
+                $historiaViolenciaHijo['person_id']    = $h->id;
+                $historiaViolenciaHijo['aggressor_id'] = $aggressor_id;
+                $hstHijo = $this->Histories->newEntity($historiaViolenciaHijo);
+            // 
+                ($guardado = $guardado && $peopleTable->save($hijo) && $historiesTable->save($hstHijo));
+                $i++;
+            }
             
-            // //Guardar redes de apoyo
-            // $redes = $this->request->data['PeopleAdvocacy'];
-            // $redes = array_slice($redes, $advo->count());
-            // if(!empty($redes)){
-            //     foreach ($redes as $r) {
-            //         $r['person_id'] = $id;
-            //         $r['attention_id'] = $attention_id;
-            //         $redA = $this->PeopleAdvocacies->newEntity($r);
-            //         ($guardado = $guardado && $peopleAdvocaciesTable->save($redA));
-            //     }
-            // }
+            // --------------------------------------------------
+            $intervP = $this->request->data['InterventionsPerson'];
+            //$interv  = $this->request->data['Interventions'];
 
-            
-            // //guarda los hijos y su historia de violencia
-            // $i = 1;
-            // foreach($iHijo as $h){
-            //     $datosHijo = $peopleTable->get($h->id);
-            //     if ( $datosHijo == null ) {
-            //         debug("sail hatan");
-            //     }
-                
-            //     $hijo = $this->People->patchEntity($datosHijo, $personas['Hijo'.$i]);
-            // // 
-            //     $historiaViolenciaHijo = $historias[('Hijo'.$i)];
-            //     $historiaViolenciaHijo = $this->StringManipulation->transformarArrays($historiaViolenciaHijo,[]);
-            //     $historiaViolenciaHijo['person_id']    = $h->id;
-            //     $historiaViolenciaHijo['aggressor_id'] = $aggressor_id;
-            //     $hstHijo = $this->Histories->newEntity($historiaViolenciaHijo);
-            // // 
-            //     ($guardado = $guardado && $peopleTable->save($hijo) && $historiesTable->save($hstHijo));
-            //     $i++;
-            // }
-            
-            // // --------------------------------------------------
-            // $intervP = $this->request->data['InterventionsPerson'];
-            // //$interv  = $this->request->data['Interventions'];
+            foreach ($intervP as $iv) { 
+                if ($iv['options'] != '' ) {
 
-            // foreach ($intervP as $iv) { 
-            //     if ($iv['options'] != '' ) {
+                    $iv = $this->StringManipulation->transformarArrays($iv,[]);
 
-            //         $iv = $this->StringManipulation->transformarArrays($iv,[]);
-
-            //         $itv = $this->InterventionsPeople->newEntity(  );
-            //         $itv->person_id         = $per->id;
-            //         //$itv->attention_id      = $attention_id ; // AYAYYAYAYAAYYAYAYYAYAYYAYAYAYA
-            //         $itv = $this->InterventionsPeople->patchEntity($itv, $iv );
-            //         // $this->InterventionsPeople->save($itv);
-            //         //debug($iv);
-            //     }
-            // }
+                    $itv = $this->InterventionsPeople->newEntity(  );
+                    $itv->person_id         = $per->id;
+                    //$itv->attention_id      = $attention_id ; // AYAYYAYAYAAYYAYAYYAYAYYAYAYAYA
+                    $itv = $this->InterventionsPeople->patchEntity($itv, $iv );
+                    // $this->InterventionsPeople->save($itv);
+                    //debug($iv);
+                }
+            }
 
             
             if ($guardado) {
