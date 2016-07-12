@@ -18,6 +18,9 @@
             echo 'Escolaridad';
             $options = ['','ningún grado' => 'Ningún grado','primaria completa' => 'Primaria completa', 'primaria incompleta' => 'Primaria incompleta', 'secundaria completa' => 'Secundaria completa','secundaria incompleta' => 'Secundaria incompleta','parauniversitario/técnico' => 'Parauniversitario/Técnico','universitaria completa' => 'Universitaria completa','universitaria incompleta' => 'Universitaria incompleta'];
             echo $this->Form->select('escolaridad', $options,['value' => 0]);
+             echo 'Lugar';
+            $options = ['','CEAAM' => 'CEAAM','primaria completa' => 'Delegación'];
+            echo $this->Form->select('lugar', $options,['value' => 0]);
             echo 'Edad:'; 
         ?>
             
@@ -53,7 +56,7 @@
         <ul class="tabs">
             <li><a href="#tab1">Personas</a></li>
             <li><a href="#tab2">Indicadores Sociodemográficos</a></li>
-            <li><a href="#tab3">Historial de Atenciones</a></li>
+            
             
           
         </ul>
@@ -61,7 +64,7 @@
         <section class="block">
             <article id="tab1"> <?php include 't1.ctp';?> </article>
             <article id="tab2"> <?php include 't2.ctp';?> </article>
-            <article id="tab3"> <?php include 't3.ctp';?> </article>
+            
      <!-- TAB de Intervenciones -->
         </section>
     </section>

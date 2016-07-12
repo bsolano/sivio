@@ -72,10 +72,11 @@ class StatisticsController extends AppController
             $data = array($s);
             
             $desde = $data[0]['desde'];
+            $lugar = $data[0]['lugar'];
             $hasta = $data[0]['hasta'];
             $hasta = $hasta['year'].'-'.$hasta['month'].'-'.$hasta['day'];
             $desde = $desde['year'].'-'.$desde['month'].'-'.$desde['day'];
-            $campos = array('date(Attentions.created) >=' => date($desde), 'date(Attentions.created) <=' => date($hasta),'Attentions.tipo'=>'CEAAM' );
+            $campos = array('date(Attentions.created) >=' => date($desde), 'date(Attentions.created) <=' => date($hasta),'Attentions.tipo'=>$lugar );
             $opciones = array_filter($campos);
             $conditions=array('conditions'=> (array($opciones)));
 
