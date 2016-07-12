@@ -11,7 +11,7 @@
                 $nacionales = $nacionales + 1;
              }else {
                $extranjeras = $extranjeras + 1;
-                echo $results->nacionalidad;
+                
              }
                    
     
