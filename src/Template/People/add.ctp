@@ -108,7 +108,7 @@
             <div></div>
         </div>
     </fieldset>
-    <?= $this->Form->button('Enviar', ['class' => 'secondary button']) ?>
+    <?= $this->Form->button('Guardar', ['class' => 'secondary button']) ?>
     <?= $this->Form->end() ?>
 </div>
 <div class="large-4 large-centered columns content"></div>

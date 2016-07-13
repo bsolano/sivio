@@ -27,7 +27,7 @@
                 <td>
                     <div class= "event" >
                         <?php 
-                            if($attention['log']['acepta_seguimiento'] == 1): 
+                            if($attention['person']['acepta_seguimiento'] == 1): 
                                 $numSegs = sizeof($attention['followups']);
                                 for($i = 1; $i <=4 ; $i++){
                                     $claseBoton = ($i <= $numSegs) ? "primary button" : "hollow primary button";

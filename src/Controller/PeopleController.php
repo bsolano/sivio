@@ -208,11 +208,11 @@ class PeopleController extends AppController
         $years = array();
         $this->loadModel('Evaluations'); //Carga el modelo Evaluation en la base
         $this->loadModel('Attentions'); //Carga el modelo Attention en la base
-        $this->loadModel('Logs');
+        $this->loadModel('People');
 
         $deOCe = $this->Attentions->find();
-        $deOCe->matching('Logs', function ($q) use ($person) {
-        return $q->where(['Logs.person_id' => $person]);
+        $deOCe->matching('People', function ($q) use ($person) {
+        return $q->where(['People.id' => $person]);
          });
         
         $eva = $this->Evaluations->find('all', [
