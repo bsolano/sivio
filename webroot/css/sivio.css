@@ -681,12 +681,12 @@ div.message.hidden {
   /*width: 100%;*/
 }
 
-ul.tabs {
+ul.tabs_modal,ul.tabs {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-ul.tabs li {
+ul.tabs_modal li,ul.tabs li {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
   background-color: #F2F2F2 ;
@@ -699,16 +699,16 @@ ul.tabs li {
   border: 1px solid #dbdbdb !important;
   border-bottom: 1px solid #5AB1D0 !important;
 }
-ul.tabs li:hover {
+ul.tabs_modal li:hover,ul.tabs li:hover {
     background-color: rgb(220, 220, 220) ;
     transition-duration: 1s;
 }
-ul.tabs li a {
+ul.tabs_modal li a,ul.tabs li a {
   color: gray;
   text-decoration: none;
   outline: 0;
 }
-ul.tabs li.active {
+ul.tabs_modal li.active,ul.tabs li.active {
     transition-duration: 0s;
   margin-bottom: -1px !important;
   border: 1px solid #5AB1D0 !important;

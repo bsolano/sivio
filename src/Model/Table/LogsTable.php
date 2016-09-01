@@ -1,31 +1,18 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Person;
+use App\Model\Entity\Log;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * People Model
+ * Logs Model
  *
- * @property \Cake\ORM\Association\HasMany $Aggressors
- * @property \Cake\ORM\Association\HasMany $Consultations
- * @property \Cake\ORM\Association\HasMany $ExternalReferences
- * @property \Cake\ORM\Association\HasMany $Followups
- * @property \Cake\ORM\Association\HasMany $Histories
- * @property \Cake\ORM\Association\HasMany $InternalReferences
- * @property \Cake\ORM\Association\HasMany $Logs
- * @property \Cake\ORM\Association\HasMany $Transfers
- * @property \Cake\ORM\Association\BelongsToMany $Attentions
- * @property \Cake\ORM\Association\BelongsToMany $Interventions
- * @property \Cake\ORM\Association\BelongsToMany $Advocacies
- * @property \Cake\ORM\Association\BelongsToMany $Entries
- * @property \Cake\ORM\Association\BelongsToMany $Families
- * @property \Cake\ORM\Association\BelongsToMany $Users
+ * @property \Cake\ORM\Association\BelongsTo $People
  */
-class PeopleTable extends Table
+class LogsTable extends Table
 {
 
     /**
@@ -38,63 +25,13 @@ class PeopleTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('people');
+        $this->table('logs');
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->hasMany('Aggressors', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('Consultations', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('ExternalReferences', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('Followups', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('Histories', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('InternalReferences', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('Logs', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->hasMany('Transfers', [
-            'foreignKey' => 'person_id'
-        ]);
-        $this->belongsToMany('Attentions', [
+        $this->belongsTo('People', [
             'foreignKey' => 'person_id',
-            'targetForeignKey' => 'attention_id',
-            'joinTable' => 'attentions_people'
-        ]);
-        $this->belongsToMany('Interventions', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'intervention_id',
-            'joinTable' => 'interventions_people'
-        ]);
-        $this->belongsToMany('Advocacies', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'advocacy_id',
-            'joinTable' => 'people_advocacies'
-        ]);
-        $this->belongsToMany('Entries', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'entry_id',
-            'joinTable' => 'people_entries'
-        ]);
-        $this->belongsToMany('Families', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'family_id',
-            'joinTable' => 'people_families'
-        ]);
-        $this->belongsToMany('Users', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'user_id',
-            'joinTable' => 'users_people'
+            'joinType' => 'INNER'
         ]);
     }
 
@@ -222,15 +159,17 @@ class PeopleTable extends Table
 
         return $validator;
     }
-    
+
     /**
-    * Método para buscar expedientes por identificación (cédula, etc)
-    * o por nombre y/o apellido
-    */
-    public function find_record($keyword) {
-        return $this->find()
-            ->where(['identificacion LIKE' => '%'.$keyword.'%'])
-            ->orWhere(['nombre LIKE' => '%'.$keyword.'%'])
-            ->orWhere(['apellidos LIKE' => '%'.$keyword.'%']);
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['person_id'], 'People'));
+        return $rules;
     }
 }

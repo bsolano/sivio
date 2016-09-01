@@ -170,6 +170,8 @@ class PeopleController extends AppController
      /**
      * records_search method
      * Busca las atenciones de la persona solicitada.
+     * @param $person: id de la persona al que se le quiere buscar el resumen
+     * @author Erick & Brandon 
      */ 
     public function summaryview($person = null){
         //$atentions = [1,2,3,4,5];
