@@ -31,27 +31,20 @@ class LogsTableTest extends TestCase
         'app.histories',
         'app.users',
         'app.groups',
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.locations',
         'app.internal_references',
         'app.consultations',
         'app.entries',
-        'app.people_entries',
         'app.evaluations',
         'app.advocacies',
         'app.followups',
         'app.followups_users',
-        'app.people_advocacies',
         'app.users_people',
         'app.interventions_people',
-        'app.interventions',
-        'app.attentions_people',
+        'app.people_advocacies',
+        'app.people_entries',
         'app.external_references',
-        'app.transfers',
-        'app.families',
-        'app.people_families'
+        'app.transfers'
     ];
 
     /**

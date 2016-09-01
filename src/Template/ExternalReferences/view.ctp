@@ -1,16 +1,13 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit External Reference'), ['action' => 'edit', $externalReference->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete External Reference'), ['action' => 'delete', $externalReference->id], ['confirm' => __('Are you sure you want to delete # {0}?', $externalReference->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List External References'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New External Reference'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('PDF'), ['action' => 'pdf', $externalReference->id]) ?> </li>
-    </ul>
-</nav>
+
+
 <div class="externalReferences view large-9 medium-8 columns content">
+    
+    
+    
+    
+    <input type="button" value="Generar PDF" display:"block" class="primary button float-right" onclick="pdf(<?= h($externalReference->id) ?> )" />
+   
+    <input type="button" value="Enviar Correo" display:"block" class="primary button float-right" onclick="correo(<?= h($externalReference->id)?>, <?= h($Cid)?>)"/>
     <h3><?= h($externalReference->id) ?></h3>
     
     <table class="vertical-table">
@@ -72,4 +69,26 @@
         <h4><?= __('Observacion') ?></h4>
         <?= $this->Text->autoParagraph(h($externalReference->observacion)); ?>
     </div>
+    <input type="button" value="Continuar" display:"block" class="primary button float-right" onclick="continuar(<?= h($Cid) ?>)"/>
 </div>
+<script type="text/javascript">
+    function pdf(referencia) {
+       
+                document.location = "/ExternalReferences/pdf/"+referencia;
+       
+    }
+    
+    function correo(id,Cid) {
+        
+      
+       
+                document.location = "/ExternalReferences/enviarCorreo/"+id+"/"+Cid;
+       
+    }
+    
+     function continuar(Cid) {
+       
+                document.location = "/ExternalReferences/continuar/"+Cid;
+       
+    }
+</script>

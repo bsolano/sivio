@@ -43,6 +43,7 @@ class LogsFixture extends TestFixture
         'telefono' => ['type' => 'string', 'length' => 8, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'edad' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'num_de_hijos' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'direccion_oculta' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'provincia' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'canton' => ['type' => 'string', 'length' => 45, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'direccion' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
@@ -51,6 +52,8 @@ class LogsFixture extends TestFixture
         'num_familia' => ['type' => 'string', 'length' => 10, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'rol_familia' => ['type' => 'string', 'length' => 25, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'acepta_seguimiento' => ['type' => 'integer', 'length' => 4, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'es_agresor' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'date', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -72,7 +75,7 @@ class LogsFixture extends TestFixture
             'person_id' => 1,
             'nombre' => 'Lorem ipsum dolor sit amet',
             'apellidos' => 'Lorem ipsum dolor sit amet',
-            'fecha_de_nacimiento' => '2016-06-03',
+            'fecha_de_nacimiento' => '2016-07-09',
             'estado_civil' => 'Lorem ipsum d',
             'escolaridad' => 'Lorem ipsum dolor sit a',
             'atencion_especializada' => 'Lorem ipsum dolor sit amet',
@@ -94,6 +97,7 @@ class LogsFixture extends TestFixture
             'telefono' => 'Lorem ',
             'edad' => 1,
             'num_de_hijos' => 1,
+            'direccion_oculta' => 1,
             'provincia' => 'Lorem ipsum dolor sit amet',
             'canton' => 'Lorem ipsum dolor sit amet',
             'direccion' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
@@ -101,7 +105,9 @@ class LogsFixture extends TestFixture
             'num_hijos_ceaam' => 1,
             'num_familia' => 'Lorem ip',
             'rol_familia' => 'Lorem ipsum dolor sit a',
-            'acepta_seguimiento' => 1
+            'acepta_seguimiento' => 1,
+            'es_agresor' => 1,
+            'created' => '2016-07-09'
         ],
     ];
 }

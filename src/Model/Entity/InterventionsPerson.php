@@ -4,15 +4,21 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * InterventionsPerson Entity.
+ * InterventionsPerson Entity
  *
- * @property int $intervention_id
- * @property \App\Model\Entity\Intervention $intervention
  * @property int $id
  * @property int $attention_id
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
  * @property string $tipo_intervencion
+ * @property string $options
+ * @property bool $madre
+ * @property bool $CF_nutri_salud
+ * @property int $cuido_adultos
+ * @property int $bisuteria_artesania
+ *
+ * @property \App\Model\Entity\Intervention $intervention
+ * @property \App\Model\Entity\Attention $attention
+ * @property \App\Model\Entity\Person $person
  */
 class InterventionsPerson extends Entity
 {
@@ -30,6 +36,6 @@ class InterventionsPerson extends Entity
         '*' => true,
         'id' => false,
         'intervention_id' => false,
-        'person_id' => false,
+        'person_id' => false
     ];
 }

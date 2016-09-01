@@ -4,19 +4,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Attention Entity.
+ * Attention Entity
  *
  * @property int $id
- * @property int $aggressor_id
- * @property \App\Model\Entity\Aggressor $aggressor
+ * @property int $person_id
  * @property int $history_id
- * @property \App\Model\Entity\History $history
  * @property int $user_id
- * @property \App\Model\Entity\User $user
  * @property string $tipo
- * @property int $identificacion
  * @property \Cake\I18n\Time $created
+ * @property string $datos_adicionales
+ *
  * @property \App\Model\Entity\Person $person
+ * @property \App\Model\Entity\History $history
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Log $log
  * @property \App\Model\Entity\Followup[] $followups
  * @property \App\Model\Entity\InterventionsPerson[] $interventions_people
  * @property \App\Model\Entity\PeopleAdvocacy[] $people_advocacies
@@ -36,6 +37,6 @@ class Attention extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

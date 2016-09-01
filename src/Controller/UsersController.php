@@ -1,16 +1,13 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Event\Event;
-
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
 class UsersController extends AppController {
-
     /**
      * Index method
      *
@@ -22,11 +19,9 @@ class UsersController extends AppController {
             'contain' => ['Groups']
         ];
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
-
     /**
      * View method
      *
@@ -39,11 +34,9 @@ class UsersController extends AppController {
         $user = $this->Users->get($id, [
             'contain' => ['Groups']
         ]);
-
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Add method
      *
@@ -65,7 +58,6 @@ class UsersController extends AppController {
         $this->set(compact('user', 'groups'));
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Edit method
      *
@@ -91,7 +83,6 @@ class UsersController extends AppController {
         $this->set(compact('user', 'groups'));
         $this->set('_serialize', ['user']);
     }
-
     /**
      * Delete method
      *
@@ -112,11 +103,30 @@ class UsersController extends AppController {
     }
     
     public function login() {
+        
+        $locations = $this->loadModel('Locations')->find('list');
+        
+        $locations = $locations->toArray();
+       //$locations = [];
+        
+        
+        $this->set('locations', $locations);
+        //$this->set(compact('locations'));
+        //$this->set('_serialize', ['locations']);
+        
+        if($this->request->session()->read('Auth.User')) {
+            // si ya esta loggeado, redirija a la pagina de expedientes
+            return $this->redirect($this->Auth->redirectUrl());
+		}
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
+            $loc = $this->request->data('location_id');
+            print_r($loc);
             if ($user) {
                 $this->Auth->setUser($user);
+                $this->request->session()->write('Config.location', $loc);
                 return $this->redirect($this->Auth->redirectUrl());
+                
             }
             $this->Flash->error('Su nombre de usuario y clave son incorrectos.');
         }
@@ -139,7 +149,6 @@ class UsersController extends AppController {
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
         //$this->layout='ajax';
@@ -155,7 +164,6 @@ class UsersController extends AppController {
         //$user = $this->Users->get($id, [
         //    'contain' => []
         //]);
-
         //$this->set('user', $user);
         //$this->set('_serialize', ['user']);
         //$this->layout='ajax';
@@ -167,36 +175,27 @@ class UsersController extends AppController {
     
     
     /**
-     * designees
-     * Busca las personas asignadas a la usuaria logueada.
+     * designees method
+     * Por medio del id enviado, busca las personas asignadas al respesctivo usuario
+     * @param string|null $id Person id.
+     * @return void
+     * @author Brandon Madrigal B33906
      */ 
     public function designees($user = null) {
+        $uid = $this->request->session()->read('Auth.User.id');
+        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
+        if ($uid == $user) {
         $this->loadModel('UsersPeople'); //Carga la tabla Users_People en en este controlador.
         $this->loadModel('People'); //Carga la tabla People en en este controlador.
         //$designeePeople = array();
-        $userData = $this->Users->get($user); //Obtiene la información de la usuaria logueada.
         $designeesData = $this->UsersPeople->find('all', [
         'conditions' => ['UsersPeople.user_id' => $user]
         ]); //Obtiene el id de las personas asignadas al usuario logeado.
         $people = $this->People->find('all');
-        
-       /*$flag = false;
-       foreach ($designeesData as $designeeData){
-            foreach ($people as $person) {
-                if($designeeData->person_id == $person->id){
-                    $tempPerson = (array) $person;
-                    $tempDesignee = (array) $designeeData;
-                    $tempDesigneePerson = (object) array_merge_recursive($tempPerson, $tempDesignee); //Combina las instancias.
-                    
-                    array_push($designeePeople, $tempDesigneePerson);
-                }
-             }
-        }*/
-        //$this->set(['designeePeople' => $designeePeople]); //Guarda en variable accesible desde la vista.
-        
-        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
+    
         $this->set(['designeesData' => $designeesData]); //Guarda en variable accesible desde la vista.
         $this->set(['people' => $people]); //Guarda en variable accesible desde la vista.
+        }
+        $this->set(['user' => $userData]); //Guarda en variable accesible desde la vista.
     }
-
 }

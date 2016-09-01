@@ -1,3 +1,13 @@
+<?php 
+    /** 
+     * designees ctp
+     * Vista de designees, construye una tabla a partir de las personas asignadas al usuario logueado.
+     * @author Brandon Madrigal B33906
+     */
+?>
+
+     <?php $uid = $this->request->session()->read('Auth.User.id');  ?>
+     <?php if ($uid == $user->id): /*Por seguridad cersiora que el id del usuario consultado sea el mismo que el usuario logueado*/?>
      <title>
         <?php $this->assign('title', 'Personas asignadas'); ?>
      </title>
@@ -10,7 +20,10 @@
                 <th>Identificación</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Observaciones</th>
+                <th>Atención</th>
+                <th>Perfil</th>
             </tr>
+            <!-- Se verifica que existan los datos a mostrar, en caso de existir se muestran como entradas de la tabla -->
              <?php if ($designeesData != null && $people != null ): ?>
                   <?php foreach ($designeesData as $designeeData): ?> 
                           <?php $stop = false; ?>
@@ -23,9 +36,17 @@
                                                    <td> <?php echo $person->identificacion;?> </td>
                                                    <td> <?php echo $person->fecha_de_nacimiento;?> </td>
                                                    <td> <?php echo $designeeData->observaciones;?></td>
+                                                   <td> <?= $this->Html->link("Ir a Atención", ['controller' => 'Attentions', 'action' => 'add', $person->id]) ?> </td>
+                                                   <td> <?= $this->Html->link("Ir a Perfil", ['controller' => 'People', 'action' => 'summaryview', $person->id]) ?> </td>
                                         </tr>
                                   <?php endif; ?>
                             <?php endforeach; ?>
                     <?php endforeach; ?>
+                 <?php else: ?>
+                    No tiene personas asignadas en este momento.
                 <?php endif; ?>
+               
             </table>
+            <?php else: ?>
+            Usted no tiene permiso.
+            <?php endif; ?>

@@ -1,32 +1,89 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
-
 /**
  * Records Controller
  *
  * @property \App\Model\Table\RecordsTable $Records
  */
+ 
+ /**
+ * 
+ * Index de Reportes
+ *
+ * @category   
+ * @package    
+ * @author     David Hine
+ * @author     José López
+ * @author     Juan Diego Araya
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    
+ * @link       http://inge2-yeldir.c9users.io/records
+ * @see        
+ * @since      Release 3
+ */
+
+ 
+ /**
+ * Vista para records
+ *
+ *
+ * @category   CategoryName
+ * @package    PackageName
+ * @author     David Hine
+ * @author     Jose Lopez
+ * @copyright  
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: 2
+ * @link       http://inge2-yeldir.c9users.io/records
+ * @since      Disponible desde release 3
+ */
 class RecordsController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
+     /**
+      * Busca los datos de la usuaria y los muestra en el expediente, ademas muestra los hitoriales de consultas y atenciones.
+      * 
+      * @param $id ID de la persona en la DB.
+      * @return datos usuaria
+      * @author DavidHine
+      * @author Jose Lopez
+      * @author Juan Diego Araya
+     
+      */ 
+    public function index($id = null)
     {
-        $this->paginate = [
-            'contain' => ['Transfers']
-        ];
-        $records = $this->paginate($this->Records);
-
-        $this->set(compact('records'));
-        $this->set('_serialize', ['records']);
+        $this->loadModel('Groups');
+        $this->loadModel('People');
+        $this->loadModel('Attentions');
+        $this->loadModel('Consultations');
+        $campos = array('People.id' => $id);
+        
+        // Elimina los campos en blanco del query
+        $opciones = array_filter($campos);
+        
+        $conditions = array('conditions'=> (array($opciones)));
+        //$c=array('conditions'=> (array(array('People.nacionalidad' => 'mexicana'))));
+   
+        //Se construye el query
+        $query = $this->paginate($this->People->find('all',$conditions)); 
+        $this->set('persona', $query);
+        
+        //Consulta atenciones 
+        $atenciones = $this->Attentions->find('all',['conditions' => ['Attentions.person_id'    => $id]])->contain('Users');
+        $this->set('atenciones', $atenciones);
+        
+        //Consulta consultations
+        $consult = $this->Consultations->find('all',['conditions' => ['Consultations.person_id' => $id]]);
+        $this->set('con', $consult);
+        
+        //Grupo actual
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
     }
-
+    
     /**
      * View method
      *
@@ -39,75 +96,18 @@ class RecordsController extends AppController
         $record = $this->Records->get($id, [
             'contain' => ['Transfers']
         ]);
-
         $this->set('record', $record);
         $this->set('_serialize', ['record']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+      public function initialize()
     {
-        $record = $this->Records->newEntity();
-        if ($this->request->is('post')) {
-            $record = $this->Records->patchEntity($record, $this->request->data);
-            if ($this->Records->save($record)) {
-                $this->Flash->success(__('The record has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The record could not be saved. Please, try again.'));
-            }
-        }
-        $transfers = $this->Records->Transfers->find('list', ['limit' => 200]);
-        $this->set(compact('record', 'transfers'));
-        $this->set('_serialize', ['record']);
+        parent::initialize();
+        $this->Auth->allow();
+        
+        // Json
+        $this->loadComponent('RequestHandler');
     }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Record id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $record = $this->Records->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $record = $this->Records->patchEntity($record, $this->request->data);
-            if ($this->Records->save($record)) {
-                $this->Flash->success(__('The record has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The record could not be saved. Please, try again.'));
-            }
-        }
-        $transfers = $this->Records->Transfers->find('list', ['limit' => 200]);
-        $this->set(compact('record', 'transfers'));
-        $this->set('_serialize', ['record']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Record id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $record = $this->Records->get($id);
-        if ($this->Records->delete($record)) {
-            $this->Flash->success(__('The record has been deleted.'));
-        } else {
-            $this->Flash->error(__('The record could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
-    }
+    
+    
 }

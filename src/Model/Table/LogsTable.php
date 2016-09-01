@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Log;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -11,6 +10,17 @@ use Cake\Validation\Validator;
  * Logs Model
  *
  * @property \Cake\ORM\Association\BelongsTo $People
+ * @property \Cake\ORM\Association\HasMany $Attentions
+ *
+ * @method \App\Model\Entity\Log get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Log newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Log[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Log|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Log patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Log[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Log findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class LogsTable extends Table
 {
@@ -29,9 +39,14 @@ class LogsTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
             'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Attentions', [
+            'foreignKey' => 'log_id'
         ]);
     }
 
@@ -128,6 +143,10 @@ class LogsTable extends Table
             ->allowEmpty('num_de_hijos');
 
         $validator
+            ->boolean('direccion_oculta')
+            ->allowEmpty('direccion_oculta');
+
+        $validator
             ->allowEmpty('provincia');
 
         $validator
@@ -156,6 +175,10 @@ class LogsTable extends Table
         $validator
             ->integer('acepta_seguimiento')
             ->allowEmpty('acepta_seguimiento');
+
+        $validator
+            ->boolean('es_agresor')
+            ->allowEmpty('es_agresor');
 
         return $validator;
     }

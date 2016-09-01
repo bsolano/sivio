@@ -1,47 +1,70 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Record'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Transfers'), ['controller' => 'Transfers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Transfer'), ['controller' => 'Transfers', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="records index large-9 medium-8 columns content">
-    <h3><?= __('Records') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('nombre_institucion') ?></th>
-                <th><?= $this->Paginator->sort('ubicacion') ?></th>
-                <th><?= $this->Paginator->sort('numero_expediente') ?></th>
-                <th><?= $this->Paginator->sort('transfers_id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($records as $record): ?>
-            <tr>
-                <td><?= $this->Number->format($record->id) ?></td>
-                <td><?= h($record->nombre_institucion) ?></td>
-                <td><?= h($record->ubicacion) ?></td>
-                <td><?= h($record->numero_expediente) ?></td>
-                <td><?= $record->has('transfer') ? $this->Html->link($record->transfer->id, ['controller' => 'Transfers', 'action' => 'view', $record->transfer->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $record->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $record->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $record->id], ['confirm' => __('Are you sure you want to delete # {0}?', $record->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+<?= $this->Html->css('sivio.tabs.css') ?>
+<?= $this->Form->create(); ?>
+    <?php $p = $persona->toArray(); ?>
+    
+    <input id="bnt_Vista"    style="margin: 10px 5px;"  type="button" value="Ver Perfil" class="hollow secondary button float-right" onclick='ver       ( <?= $p[0]['id'] ?> )'/>
+    <input id="bnt_logs"     style="margin: 10px 5px; " type="button" value="Versiones"  class="hollow secondary button float-right" onclick='verLogs   ( <?= $p[0]['id'] ?> )'/>
+    <input id="bnt_Consulta" style="margin: 10px 5px; " type="button" value="Consulta"   class="hollow secondary button float-right" onclick='esConsulta( <?= $p[0]['id'] ?> )'/>
+    <?php if ($group_name  != 'RecepcionistaDelegacionDeLaMujer' ): ?>
+        <input id="bnt_Atencion" style="margin: 10px 5px; " type="button" value="Atención"   class="hollow secondary button float-right" onclick='esAtencion( <?= $p[0]['id'] ?> )'/>
+    <?php endif; ?>
+    
+    <div class="records form large-9 medium-8 columns content" style="width: 100%;">
+    <!-- TABS -->
+    <section class="wrapper">
+        <ul class="tabs">
+            <li><a href="#tab1">Datos Personales</a></li>
+            <li><a href="#tab2">Historial de Consultas</a></li>
+            <li><a href="#tab3">Historial de Atenciones</a></li>
+            
+          
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
+        
+        <section class="block">
+            <article id="tab1"> <?php include 't1.ctp';?> </article>
+            <article id="tab2"> <?php include 't2.ctp';?> </article>
+            <article id="tab3"> <?php include 't3.ctp';?> </article>
+
+        </section>
+    </section>
+
     </div>
-</div>
+    <?= $this->Form->end() ?>
+
+
+<!----------------------------------------------------------------------------->
+<!--               JS's                                                       ->
+<!----------------------------------------------------------------------------->
+	<script type="text/javascript" id='scpts'>
+        $(function(){
+            $('ul.tabs li:first').addClass('active');
+            $('.block article').hide();
+            $('.block article:first').show();
+            $('ul.tabs li').on('click',function(){
+                $('ul.tabs li').removeClass('active');
+                $(this).addClass('active')
+                $('.block article').hide();
+                var activeTab = $(this).find('a').attr('href');
+                $(activeTab).show();
+                return false;
+              });
+        })
+        
+        function ver(id) {
+            window.location.replace("http://"+ window.location.hostname + "/people/view/"       + id);
+        }
+        //Crea una consulta para la usuaria seleccionada.
+        function esConsulta(id) {
+            window.location.replace("http://"+ window.location.hostname + "/consultations/add/" + id);
+        }
+        
+        // Crea una atención para la usuaria seleccionada.
+        function esAtencion(id) {
+            window.location.replace("http://"+ window.location.hostname + "/attentions/add/"    + id);
+        }
+        
+        function verLogs(id) {
+            window.location.replace("http://"+ window.location.hostname + "/logs/indicePersona/"+ id);
+        }
+
+	</script>

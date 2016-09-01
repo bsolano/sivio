@@ -208,6 +208,7 @@ select[multiple] {
 input[type=checkbox],
 input[type=radio] {
     margin-right: 0.5em;
+    opacity:0.5; /*  En windows se ve muy feo en 1  */
 }
 
 .date select,
@@ -415,6 +416,7 @@ pre {
     margin-right: 9px;
 }
 
+
 .top-bar.expanded .title-area {
     background: #01545b;
 }
@@ -444,6 +446,7 @@ pre {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;  /* Para evitar que se divida en varias filas*/
 }
 .top-bar ul li:not(.has-form) a:not(.button):before {
   content: "";
@@ -630,6 +633,9 @@ div.message.hidden {
     /*min-height: 92%; */
     
     /*display: inline-block;*/
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Force equal height by overflowing */
@@ -732,6 +738,7 @@ article {
 
 /*   FIN TABS  */
 
+
 /* sumarry view boxes */
 .box_summary{   
      border-width: 2%;
@@ -741,7 +748,7 @@ article {
      width: 80%;
 }
 .box_summary:hover{
-      background-color: grey;
+      background-color: #DCDCDC;
       cursor: pointer;
 }    
 /* END SUMMARY VIEW BOXES */
@@ -765,10 +772,120 @@ article {
 
 select, [type="color"], [type="date"], [type="datetime-local"], [type="datetime"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], textarea {color:inherit;}
 
+.select > .checkbox {
+    border-left: 1px solid rgba(220, 220, 220, .6);
+    padding-left: .5em;
+    /*margin-top: .5rem;*/
+}
+
+option {
+    padding: .75rem;
+    border-right: 1px solid gray;
+}
+
+.button {margin:0;}
+
+hr {margin:.5rem auto;}
+
+.menu {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+[type="checkbox"], [type="file"], [type="radio"] {
+    margin-bottom: .5rem;
+    margin-top   : .5rem;
+}
+
+.title-bar {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.large-12 {
+    width: calc(100% + 2rem);
+}
+
+
+
+            /* PLACEHOLDERS */
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: gray;
+}
+
+input:-ms-input-placeholder { /* IE 10+ */
+  color: gray;
+}
+
+                            /* Firefox 19+ */
+input::-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus::-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Firefox 4 - 18 */
+input:-moz-placeholder { 
+  color: gray;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+input:focus:-moz-placeholder {
+  opacity: 0.3;
+  transition: opacity 2s ease-in-out;
+}
 /*-EO:OVERRIDES-----*/
 
-/*Para que el texto de las tablas no se amontone*/
 
 td {
     word-wrap: break-word;
 }
+
+
+/*        Animacion Cargando -----------------------------------------         */
+
+.cssload-container{ position:relative; }
+.cssload-whirlpool,
+.cssload-whirlpool::before,
+.cssload-whirlpool::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid rgb(204,204,204);
+	border-left-color: rgb(0,0,0);
+	border-radius: 974px;
+}
+.cssload-whirlpool {
+	margin: -24px 0 0 -24px;
+	height: 49px;
+	width: 49px;
+	animation: cssload-rotate 1150ms linear infinite;
+}
+.cssload-whirlpool::before {
+	content: "";
+	margin: -22px 0 0 -22px;
+	height: 43px;
+	width: 43px;
+	animation: cssload-rotate 1150ms linear infinite;
+}
+.cssload-whirlpool::after {
+	content: "";
+	margin: -28px 0 0 -28px;
+	height: 55px;
+	width: 55px;
+	animation: cssload-rotate 2300ms linear infinite;
+}
+@keyframes cssload-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+/*              FIN animacion  cargando ---------------------------------------*/

@@ -41,10 +41,19 @@ class PeopleController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
-    {
+    { 
+        $this->loadModel('Groups');
+        //Grupo actual
+        $session = $this->request->session();
+        $user_group_id = $session->read('Auth.User.group_id');
+        $group = $this->Groups->get($user_group_id);
+        $this->set('group_name', $group->name);
         $person = $this->People->get($id, [
-            'contain' => ['Histories', 'Interventions', 'Advocacies', 'Entries', 'Families', 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
+            'contain' => ['Histories', /*'Interventions', 'Advocacies', 'Entries', 'Families',*/ 'Users', 'Transfers', 'Aggressors', 'Consultations', 'ExternalReferences', 'Followups', 'InternalReferences']
         ]);
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
 
         $this->set('person', $person);
         $this->set('_serialize', ['person']);
@@ -57,8 +66,10 @@ class PeopleController extends AppController
      */
     public function add()
     {
-        $this->loadComponent('StringManipulation');
+        
         $person = $this->People->newEntity();
+        
+        
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
@@ -67,18 +78,18 @@ class PeopleController extends AppController
             $person->rol_familia = 'Agredida';
             if ($this->People->save($person)) {
                 $this->Flash->success(__('La información ha sido guardada satisfactoriamente.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $person->id]);
             } else {
                 $this->Flash->error(__('No ha sido posible guardar la información, inténtelo nuevamente.'));
             }
         }
-        $histories = $this->People->Histories->find('list', ['limit' => 200]);
-        $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
-        $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
-        $entries = $this->People->Entries->find('list', ['limit' => 200]);
-        $families = $this->People->Families->find('list', ['limit' => 200]);
-        $users = $this->People->Users->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'histories', 'interventions', 'advocacies', 'entries', 'families', 'users'));
+        // $histories = $this->People->Histories->find('list', ['limit' => 200]);
+        // $interventions = $this->People->InterventionsPeople->find('list', ['limit' => 200]);
+        // $advocacies = $this->People->PeopleAdvocacies->find('list', ['limit' => 200]);
+        // $entries = $this->People->PeopleEntries->find('list', ['limit' => 200]);
+        // //$families = $this->People->Families->find('list', ['limit' => 200]);
+        // $users = $this->People->Users->find('list', ['limit' => 200]);
+        $this->set(compact('person', 'histories', 'interventions_people', 'people_advocacies', 'people_entries', 'users'));
         $this->set('_serialize', ['person']);
     }
 
@@ -92,24 +103,41 @@ class PeopleController extends AppController
     public function edit($id = null)
     {
         $person = $this->People->get($id, [
-            'contain' => ['Interventions', 'Advocacies', 'Entries', 'Families', 'Users']
+            'contain' => [ /*'Interventions', 'Advocacies', 'Entries', 'Families',*/ 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $person = $this->People->patchEntity($person, $this->request->data);
+            $data = $this->request->data;
+            $data = $this->StringManipulation->transformarArrays($data,['fecha_de_nacimiento']);
+            $person = $this->People->patchEntity($person, $data);
+            
+            if ($person->direccion_oculta == 1) {
+                $person->provincia = "Oculto";
+                $person->canton = "Oculto";
+                $person->direccion = "Oculto";
+            }
+            
             if ($this->People->save($person)) {
-                $this->Flash->success(__('The person has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('La información fue actualizada satisfactoriamente.'));
+                return $this->redirect(['action' => 'view', $person->id]);
             } else {
-                $this->Flash->error(__('The person could not be saved. Please, try again.'));
+                $this->Flash->error('No se pudo actualizar la información, inténtelo nuevamente.');
+            /*    $this->Flash->success(__('Datos Actualizados.'));
+                return $this->redirect(['controller' => 'Records','action' => 'index']);
+            } else {
+                $this->Flash->error(__('Error, por favor intente de nuevo.')); */
             }
         }
+        
+        $person->adicciones = $this->StringManipulation->StringTokenedToArray($person->adicciones);
+        $person->condicion_salud = $this->StringManipulation->StringTokenedToArray($person->condicion_salud);
+        
         $histories = $this->People->Histories->find('list', ['limit' => 200]);
-        $interventions = $this->People->Interventions->find('list', ['limit' => 200]);
-        $advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
-        $entries = $this->People->Entries->find('list', ['limit' => 200]);
-        $families = $this->People->Families->find('list', ['limit' => 200]);
+        //$interventions = $this->People->Interventions->find('list', ['limit' => 200]);
+        //$advocacies = $this->People->Advocacies->find('list', ['limit' => 200]);
+        //$entries = $this->People->Entries->find('list', ['limit' => 200]);
+        //$families = $this->People->Families->find('list', ['limit' => 200]);
         $users = $this->People->Users->find('list', ['limit' => 200]);
-        $this->set(compact('person', 'histories', 'interventions', 'advocacies', 'entries', 'families', 'users'));
+        $this->set(compact('person', /*'histories', 'interventions', 'advocacies', 'entries', 'families',*/ 'users'));
         $this->set('_serialize', ['person']);
     }
 
@@ -125,9 +153,9 @@ class PeopleController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $person = $this->People->get($id);
         if ($this->People->delete($person)) {
-            $this->Flash->success(__('The person has been deleted.'));
+            $this->Flash->error('La persona fue eliminada');
         } else {
-            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
+            $this->Flash->error('No se pudo eliminar la usuaria, inténtelo nuevamente.');
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -177,6 +205,14 @@ class PeopleController extends AppController
         //$atentions = [1,2,3,4,5];
         $years = array();
         $this->loadModel('Evaluations'); //Carga el modelo Evaluation en la base
+        $this->loadModel('Attentions'); //Carga el modelo Attention en la base
+        $this->loadModel('People');
+
+        $deOCe = $this->Attentions->find();
+        $deOCe->matching('People', function ($q) use ($person) {
+        return $q->where(['People.id' => $person]);
+         });
+        
         $eva = $this->Evaluations->find('all', [
         'conditions' => ['Evaluations.people_id' => $person] 
         ]); //Busca todas las evaluaciones con el id de la persona seleccionada anteriormente.
@@ -189,11 +225,17 @@ class PeopleController extends AppController
                 array_push($years,$date->fecha_inicio->format('Y'));
             }
         }
-        
+        foreach ($deOCe as $dateDeOCe){
+            if(!in_array($dateDeOCe->created->format('Y'), $years)){
+                array_push($years,$dateDeOCe->created->format('Y'));
+            }
+        }
+        arsort($years);
         $person_data = $this->People->get($person);
         $this->set(['atentions' => $eva]);
         $this->set(['years' => $years]);
         $this->set(['person' => $person_data]);
+        $this->set(['deOCes' => $deOCe]);
     }
     
     public function initialize()
@@ -203,6 +245,7 @@ class PeopleController extends AppController
         
         // Json
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('StringManipulation');
     }
     
 }

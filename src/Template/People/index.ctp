@@ -9,38 +9,90 @@
             Filtre expedientes
         </legend>
         <?php
-            echo $this->Form->input('keyword', ['placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '',]);
+            echo $this->Form->input('keyword', [
+                    'placeholder' => 'Digite una parte del nombre o de la identificación', 'label' => '', 'onkeydown' => "pressed(event)",
+                    'style' => 'background:url(img/magglass.svg) no-repeat scroll right center / 1.3rem 1.3rem content-box;'
+                ]
+            );
         ?>
-        <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'class' => 'button secondary']) ?>
+        <!-- icon by Creative Stall --> 
+        <?= $this->Form->button('Buscar expediente', ['onclick' => 'loadResults()', 'type' => 'button', 'id'=> 'btnBExp', 'class' => 'button secondary']) ?>
         <div id="results">Por favor ingrese su criterio de búsqueda.</div>
     </div>
     
 </div>
 
 <script>
-
-function loadResults(){
-
-       jQuery.ajax({
-             type: "get",  // Request method: post, get
-             url: "/people/recordsSearch.ajax?keyword=" + document.getElementById("keyword").value, // URL to request
-             //data: data,  // post data
-             success: function(response) {
-                                  document.getElementById("results").innerHTML = response;
-                           },
-                           error:function (XMLHttpRequest, textStatus, errorThrown) {
-                                   document.getElementById("results").innerHTML = 'No es posible obtener un respuesta, intente de nuevo.';
-                           }
-          });
-          return false;
-}
-</script>
-<script type="text/javascript">
-    function crearUsuaria() {
-        if(document.getElementById("keyword").value == ""){
-            if(confirm("¿Está segura?\nNo ha realizado una busqueda")) {
-                document.location = "/people/add";
+    
+    /*
+     * Permite realizar busquedas con solo presionar [Enter] 
+     * -Jason
+     */
+    function pressed(e) {
+        if ( (window.event ? event.keyCode : e.which) == 13) { // [Enter]
+            loadResults();
+        }
+    }
+    
+    
+    /* Evita que se realicen busquedas vacias (porque se 'trae' toda la base de datos)
+     * y evita que se re-haga una busqueda que ya fue realizada 
+     * -Jason
+     */
+    var lastKwd;
+    function loadResults(){
+        var keywd = document.getElementById("keyword").value;
+        var rslts = document.getElementById("results")      ;
+        
+        if ( lastKwd == keywd ) { return false; }
+        if ( keywd == ""      ) {
+            rslts.innerHTML = 'Ingrese un criterio de busqueda';
+            return false;
+        }
+        lastKwd = keywd;
+        
+        // animacion mientras se espera la respuesta del query
+        // solo añade una clase asociada a un css que contiene la animación -Jason
+        rslts.innerHTML = "\
+            <div class=\"cssload-container\">\
+    	    <div class=\"cssload-whirlpool\"></div>\
+            </div>\ "
+        ;
+        
+        // Query    -Jose Pablo Ruiz    
+        jQuery.ajax({
+            type: "get",  // Request method: post, get
+            url: "/people/recordsSearch.ajax?keyword=" + keywd, // URL to request
+            //data: data,  // post data
+            success: function(response) {
+                rslts.innerHTML = response;
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                rslts.innerHTML = 'No es posible obtener un respuesta, intente de nuevo.';
             }
+        });
+    
+        return false;
+    }
+
+    function crearUsuaria() {
+        
+        if(document.getElementById("keyword").value == ""){
+            swal({
+              title:"¿Está segura?",
+              text: "No ha realizado una busqueda",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Sí",
+              cancelButtonText: "No",
+              closeOnConfirm: false     ,
+              showLoaderOnConfirm: true
+            },
+            // si la respuesta es 'si'
+            function(){
+              document.location = "/people/add";
+            });
         } else {
             document.location = "/people/add";
         }
@@ -48,21 +100,50 @@ function loadResults(){
     
     // Aquí muestra un solo boton a oficinisita, es codigo quemado, preguntando si el grupo es 3 = recepcionista delegacion de la mujer.
     function usuariaSelect() {
-        //var user_name = "<?php echo $group_name ?>";
+        /*
+            Permite mostrar u ocultar los botones necesarios si no se tiene permisos.
+        */
         if( "<?php echo $group_name ?>" == 'RecepcionistaDelegacionDeLaMujer' ) {
-            document.getElementById("bnt_Atencion").style.display = "none";
-            document.getElementById("bnt_Consulta").style.display = "block";
+            // document.getElementById("bnt_Vista"     ).style.display = "block";
+            // document.getElementById("bnt_Atencion"  ).style.display = "none";
+            // document.getElementById("bnt_Consulta"  ).style.display = "block";
+            document.getElementById("bnt_Expediente").style.display = "block";
+            // document.getElementById("bnt_logs"      ).style.display = "block";
         } else {
-            document.getElementById("bnt_Atencion").style.display = "block";
-            document.getElementById("bnt_Consulta").style.display = "block";
+            // document.getElementById("bnt_Vista"     ).style.display = "block";
+            // document.getElementById("bnt_Atencion"  ).style.display = "block";
+            // document.getElementById("bnt_Consulta"  ).style.display = "block";
+            document.getElementById("bnt_Expediente").style.display = "block";
+            // document.getElementById("bnt_logs"      ).style.display = "block";
         }
     }
     
-    function esConsulta() {
-        document.location = "/consultations/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    /*
+        Redirecciona hacia la vista de la usuaria seleccionada
+    */
+    // function ver() {
+    //     document.location = "/people/view/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    // }
+    
+    // /*
+    //     Crea una consulta para la usuaria seleccionada.
+    // */
+    // function esConsulta() {
+    //     document.location = "/consultations/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    // }
+    
+    // /*
+    //     Crea una atención para la usuaria seleccionada.
+    // */
+    // function esAtencion() {
+    //     document.location = "/attentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
+    // }
+    
+    function expediente() {
+        document.location = "/records/index/" + document.querySelector('input[name = "usuaria"]:checked').value;
     }
     
-    function esAtencion() {
-        document.location = "/attentions/add/" + document.querySelector('input[name = "usuaria"]:checked').value;
-    }
+    // function verLogs() {
+    //     document.location = "logs/indicePersona/"+document.querySelector('input[name = "usuaria"]:checked').value;
+    // }
 </script>

@@ -1,20 +1,22 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New External Reference'), ['action' => 'add',3246546431]) ?></li>
+
+        
+        
     </ul>
 </nav>
-<div class="externalReferences index large-9 medium-8 columns content">
-    <h3><?= __('External References') ?></h3>
+<div class="externalReferences index large-11 medium-8 columns content">
+    
+    <h3><?= __('Referencia Externa') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('receptor') ?></th>
-                <th><?= $this->Paginator->sort('telefono') ?></th>
-                <th><?= $this->Paginator->sort('person_id') ?></th>
-                <th><?= $this->Paginator->sort('direccion') ?></th>
-                <th><?= $this->Paginator->sort('persona') ?></th>
+                <th><?= $this->Paginator->sort('Teléfono') ?></th>
+                <th><?= $this->Paginator->sort('Identificación') ?></th>
+                <th><?= $this->Paginator->sort('Dirección') ?></th>
+                <th><?= $this->Paginator->sort('Nombre') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -47,3 +49,13 @@
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
+
+
+
+<script type="text/javascript">
+    function add() {
+       
+                document.location = "/ExternalReferences/add";
+       
+    }
+</script>

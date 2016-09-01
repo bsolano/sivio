@@ -1,15 +1,7 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List External References'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="externalReferences form large-9 medium-8 columns content">
+<div class="externalReferences form large-3 medium-5 columns content">
     <?= $this->Form->create($externalReference) ?>
-    <fieldset>
-     
+   
+    
         
          <legend><?= __('Persona') ?></legend>
         <?php
@@ -17,18 +9,22 @@
         
      
       
-        echo $this->Form->input('identificacion', ['value' => $p[0]['identificacion'], 'empty' => true,'label' => 'Identificación' ]);
-           echo $this->Form->input('persona', ['value' => $p[0]['nombre'].' '.$p[0]['apellidos'], 'empty' => true,'label' => 'Nombre' ]);
-             echo $this->Form->input('nacionalidad', ['value' => $p[0]['nacionalidad'], 'empty' => true,'label' => 'Nacionalidad' ]);
-            echo $this->Form->input('edad', ['value' => $p[0]['edad'], 'empty' => true,'label' => 'Edad' ]);
-            echo $this->Form->input('telefono', ['value' => $p[0]['numero_de_telefono'], 'empty' => true,'label' => 'Teléfono' ]);
-            echo $this->Form->input('direccion', ['value' => $p[0]['provincia'].' '.$p[0]['canton'], 'empty' => true,'label' => 'Dirección' ]);
-            
-            
+        echo $this->Form->input('identificacion',array('value' => $p[0]['identificacion'], 'empty' => true,'label' => 'Identificación','readonly' => 'readonly'));
+           echo $this->Form->input('persona', array('value' => $p[0]['nombre'].' '.$p[0]['apellidos'], 'empty' => true,'label' => 'Nombre','readonly' => 'readonly'));
+             echo $this->Form->input('nacionalidad', array('value' => $p[0]['nacionalidad'], 'empty' => true,'label' => 'Nacionalidad' ,'readonly' => 'readonly'));
+            echo $this->Form->input('edad', array('value' => $p[0]['edad'], 'empty' => true,'label' => 'Edad' ,'readonly' => 'readonly'));
+            echo $this->Form->input('telefono', array('value' => $p[0]['numero_de_telefono'], 'em]pty' => true,'label' => 'Teléfono' ,'readonly' => 'readonly'));
+            echo $this->Form->input('direccion', array('value' => $p[0]['provincia'].' '.$p[0]['canton'], 'empty' => true,'label' => 'Dirección' ,'readonly' => 'readonly'));
             ?>
+             
+     </div>       
+      <div class="externalReferences form large-3 medium-5 columns content">    
+      
             <legend><?= __('Institución') ?></legend>
+          
             <?php
             echo $this->Form->input('receptor');
+            echo  "<br>";
             $options = ['IMAS' => 'IMAS', 'FISCALIA' => 'FISCALÍA'];
             echo $this->Form->select('institucion', $options,['empty' => '(Institución)']);
             
@@ -36,12 +32,18 @@
             echo $this->Form->input('telefono_receptor',['empty' => true,'label' => 'Teléfono Receptor' ]);
             echo $this->Form->input('correo');
              ?>
+             
+    </div>
+    
+    <div class="externalReferences form large-6 medium-5 columns content">
             <legend><?= __('Motivo') ?></legend>
             <?php
             echo $this->Form->input('observacion',[ 'empty' => true,'label' => 'Observación' ]);
+            
           
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+        <div id="submit"><?= $this->Form->button(__('Enviar'), ['class' => 'secondary button']) ?></div>
+    </div>    
+    
+    
     <?= $this->Form->end() ?>
-</div>

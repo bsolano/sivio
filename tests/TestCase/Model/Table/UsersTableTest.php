@@ -45,7 +45,10 @@ class UsersTableTest extends TestCase
         'app.people_entries',
         'app.families',
         'app.people_families',
-        'app.users_people'
+        'app.users_people',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos'
     ];
 
     /**
@@ -98,6 +101,16 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test beforeSave method
+     *
+     * @return void
+     */
+    public function testBeforeSave()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

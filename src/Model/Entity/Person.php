@@ -12,7 +12,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $fecha_de_nacimiento
  * @property string $estado_civil
  * @property string $escolaridad
- * @property string $atencion_especializada
  * @property string $nacionalidad
  * @property string $genero
  * @property string $ocupacion
@@ -31,6 +30,7 @@ use Cake\ORM\Entity;
  * @property string $telefono
  * @property int $edad
  * @property int $num_de_hijos
+ * @property int $direccion_oculta
  * @property string $provincia
  * @property string $canton
  * @property string $direccion
@@ -45,6 +45,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Followup[] $followups
  * @property \App\Model\Entity\History[] $histories
  * @property \App\Model\Entity\InternalReference[] $internal_references
+ * @property \App\Model\Entity\Log[] $logs
  * @property \App\Model\Entity\Transfer[] $transfers
  * @property \App\Model\Entity\Attention[] $attentions
  * @property \App\Model\Entity\Intervention[] $interventions

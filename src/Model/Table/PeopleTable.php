@@ -18,7 +18,6 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\HasMany $InternalReferences
  * @property \Cake\ORM\Association\HasMany $Logs
  * @property \Cake\ORM\Association\HasMany $Transfers
- * @property \Cake\ORM\Association\BelongsToMany $Attentions
  * @property \Cake\ORM\Association\BelongsToMany $Interventions
  * @property \Cake\ORM\Association\BelongsToMany $Advocacies
  * @property \Cake\ORM\Association\BelongsToMany $Entries
@@ -66,31 +65,6 @@ class PeopleTable extends Table
         $this->hasMany('Transfers', [
             'foreignKey' => 'person_id'
         ]);
-        $this->belongsToMany('Attentions', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'attention_id',
-            'joinTable' => 'attentions_people'
-        ]);
-        $this->belongsToMany('Interventions', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'intervention_id',
-            'joinTable' => 'interventions_people'
-        ]);
-        $this->belongsToMany('Advocacies', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'advocacy_id',
-            'joinTable' => 'people_advocacies'
-        ]);
-        $this->belongsToMany('Entries', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'entry_id',
-            'joinTable' => 'people_entries'
-        ]);
-        $this->belongsToMany('Families', [
-            'foreignKey' => 'person_id',
-            'targetForeignKey' => 'family_id',
-            'joinTable' => 'people_families'
-        ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'person_id',
             'targetForeignKey' => 'user_id',
@@ -127,9 +101,6 @@ class PeopleTable extends Table
 
         $validator
             ->allowEmpty('escolaridad');
-
-        $validator
-            ->allowEmpty('atencion_especializada');
 
         $validator
             ->allowEmpty('nacionalidad');
@@ -191,6 +162,10 @@ class PeopleTable extends Table
             ->allowEmpty('num_de_hijos');
 
         $validator
+            ->integer('direccion_oculta')
+            ->allowEmpty('direccion_oculta');
+
+        $validator
             ->allowEmpty('provincia');
 
         $validator
@@ -205,16 +180,13 @@ class PeopleTable extends Table
 
         $validator
             ->integer('num_hijos_ceaam')
-            ->requirePresence('num_hijos_ceaam', 'create')
-            ->notEmpty('num_hijos_ceaam');
+            ->allowEmpty('num_hijos_ceaam');
 
         $validator
-            ->requirePresence('num_familia', 'create')
-            ->notEmpty('num_familia');
+            ->allowEmpty('num_familia');
 
         $validator
-            ->requirePresence('rol_familia', 'create')
-            ->notEmpty('rol_familia');
+            ->allowEmpty('rol_familia');
 
         $validator
             ->integer('acepta_seguimiento')
@@ -229,7 +201,13 @@ class PeopleTable extends Table
     */
     public function find_record($keyword) {
         return $this->find()
-            ->where(['identificacion LIKE' => '%'.$keyword.'%'])
+            ->where([
+                'identificacion LIKE' => '%'.$keyword.'%',
+                'identificacion !='   => '0'             , 
+                /*  ya se cambio para que identificacion sea nullable, pero aun hay algunos en 0
+                    se deben cambiar a mano. Por mientras, hasta que se hable, eso.
+                */
+                ])
             ->orWhere(['nombre LIKE' => '%'.$keyword.'%'])
             ->orWhere(['apellidos LIKE' => '%'.$keyword.'%']);
     }

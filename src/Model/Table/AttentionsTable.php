@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Attention;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -10,14 +9,23 @@ use Cake\Validation\Validator;
 /**
  * Attentions Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Aggressors
+ * @property \Cake\ORM\Association\BelongsTo $People
  * @property \Cake\ORM\Association\BelongsTo $Histories
  * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\HasMany $Followups
  * @property \Cake\ORM\Association\HasMany $InterventionsPeople
  * @property \Cake\ORM\Association\HasMany $PeopleAdvocacies
  * @property \Cake\ORM\Association\HasMany $PeopleEntries
- * @property \Cake\ORM\Association\BelongsToMany $People
+ *
+ * @method \App\Model\Entity\Attention get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Attention newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Attention[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Attention|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Attention patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Attention[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Attention findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AttentionsTable extends Table
 {
@@ -38,8 +46,8 @@ class AttentionsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Aggressors', [
-            'foreignKey' => 'aggressor_id'
+        $this->belongsTo('People', [
+            'foreignKey' => 'person_id'
         ]);
         $this->belongsTo('Histories', [
             'foreignKey' => 'history_id'
@@ -59,11 +67,6 @@ class AttentionsTable extends Table
         $this->hasMany('PeopleEntries', [
             'foreignKey' => 'attention_id'
         ]);
-        $this->belongsToMany('People', [
-            'foreignKey' => 'attention_id',
-            'targetForeignKey' => 'person_id',
-            'joinTable' => 'attentions_people'
-        ]);
     }
 
     /**
@@ -82,8 +85,7 @@ class AttentionsTable extends Table
             ->allowEmpty('tipo');
 
         $validator
-            ->integer('identificacion')
-            ->allowEmpty('identificacion');
+            ->allowEmpty('datos_adicionales');
 
         return $validator;
     }
@@ -97,7 +99,7 @@ class AttentionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['aggressor_id'], 'Aggressors'));
+        $rules->add($rules->existsIn(['person_id'], 'People'));
         $rules->add($rules->existsIn(['history_id'], 'Histories'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;

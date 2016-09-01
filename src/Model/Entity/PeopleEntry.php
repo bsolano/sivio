@@ -4,19 +4,27 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PeopleEntry Entity.
+ * PeopleEntry Entity
  *
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
- * @property int $entry_id
- * @property \App\Model\Entity\Entry $entry
  * @property string $tipo_accion
  * @property \Cake\I18n\Time $fecha_accion
  * @property int $id
  * @property int $attention_id
- * @property \App\Model\Entity\Attention $attention
  * @property string $rechazo
  * @property string $motivo_rechazo
+ * @property string $ceaam_ingresa
+ * @property string $tipo_ing_eg
+ * @property string $motivo_ing_eg
+ * @property string $destino_extranjero
+ * @property string $entidad_traslada
+ * @property string $provincia_destino
+ * @property string $canton_destino
+ * @property bool $direccion_oculta
+ *
+ * @property \App\Model\Entity\Person $person
+ * @property \App\Model\Entity\Entry $entry
+ * @property \App\Model\Entity\Attention $attention
  */
 class PeopleEntry extends Entity
 {
@@ -32,6 +40,6 @@ class PeopleEntry extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'id' => false
     ];
 }

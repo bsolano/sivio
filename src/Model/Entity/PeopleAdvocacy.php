@@ -4,15 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PeopleAdvocacy Entity.
+ * PeopleAdvocacy Entity
  *
  * @property int $person_id
- * @property \App\Model\Entity\Person $person
- * @property int $advocacy_id
- * @property \App\Model\Entity\Advocacy $advocacy
  * @property string $tipo
  * @property int $id
  * @property int $attention_id
+ * @property string $nombre
+ * @property string $telefono
+ *
+ * @property \App\Model\Entity\Person $person
+ * @property \App\Model\Entity\Attention $attention
  */
 class PeopleAdvocacy extends Entity
 {
@@ -28,8 +30,6 @@ class PeopleAdvocacy extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
-        'person_id' => false,
-        'advocacy_id' => false,
+        'id' => false
     ];
 }
